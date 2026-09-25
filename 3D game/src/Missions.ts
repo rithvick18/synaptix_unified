@@ -1,0 +1,774 @@
+import * as THREE from 'three'
+import type { PackMedia, PackVoices } from './MemoryPack'
+import type { Player } from './Player'
+import type { State } from './State'
+import type { Outcome, Telemetry } from './Telemetry'
+import type { WorldSource } from './World'
+import type { ChoiceCard, UI } from './ui'
+
+/**
+ * SPEC.md §5.4 / §5.5 / §5.6 — the mission step runner.
+ *
+ * Three step types, a three-level hint ladder whose level-3 behaviour depends on the step
+ * type, skip, and the containment test that keeps a navigate step from hanging when the
+ * player is already standing in the target room.
+ *
+ * §2's hard product rule is why this file contains almost no prose: every instruction,
+ * hint and choice string is read from the pack. The two engine-authored strings are the
+ * positional "Step n of m" label and the neutral nudge after a choice that was not the
+ * answer — neither is autobiographical content, and neither says "wrong".
+ */
+
+// ---------------------------------------------------------------------------
+// Pack shape — §4.1, exactly.
+//
+// These are the *validated* shapes. Checkpoint C's MemoryPack.ts is the only thing that
+// constructs them, and it does so only after §4.2 has passed, so the runner below never
+// re-checks a reference: by the time a `Step` exists, its room, object and highlight ids
+// are known to be present in the active world and its choices are known to name people.
+// ---------------------------------------------------------------------------
+
+export interface Person {
+  id: string
+  name: string
+  relationship: string
+  photo?: string
+  voice?: string
+}
+
+export interface StepHints {
+  repeat: string
+  highlight: string
+  guide: string
+}
+
+export interface NavigateStep {
+  type: 'navigate'
+  targetRoom: string
+  instruction: string
+  hints: StepHints
+}
+
+export interface FindStep {
+  type: 'find'
+  targetObject: string
+  instruction: string
+  hints: StepHints
+}
+
+/**
+ * An explicit text option for a recall question that is not about *who* somebody is.
+ *
+ * "Which festival were we celebrating?" has no person behind its choices, so there is
+ * nobody to look up in `people` and no portrait to show. The caregiver writes the label
+ * out instead, exactly as the patient should read it — §2's rule that the engine never
+ * invents autobiographical content applies here as much as anywhere: `label` and
+ * `detail` are displayed verbatim and are never generated.
+ */
+export interface TextChoice {
+  id: string
+  label: string
+  /** Optional second line — where or when, in the caregiver's words. */
+  detail?: string
+}
+
+/**
+ * Which of the two choice formats a recall step uses. Declared rather than sniffed, so
+ * a pack says what it means and validation can check the right rules:
+ *
+ * - `person` — `choices` are ids into `people`; cards can carry a portrait and a voice.
+ * - `text`   — `choices` are ids into this step's own `options`; cards are always text.
+ *
+ * Both formats share everything else: `answer` must be one of `choices`, and
+ * `reducedChoices` must be a subset of `choices` that still contains the answer.
+ */
+export type ChoiceFormat = 'person' | 'text'
+
+export interface RecallStep {
+  memory?: { photo?: string; caption: string }
+  type: 'recall'
+  question: string
+  /** Defaults to `person` when a pack omits it, which keeps §4.1's example valid. */
+  choiceType: ChoiceFormat
+  /** Ids, in both formats. What they point at is what `choiceType` decides. */
+  choices: string[]
+  /** Present exactly when `choiceType` is `text`; one entry per id in `choices`. */
+  options?: TextChoice[]
+  answer: string
+  reducedChoices?: string[]
+  hints: StepHints
+}
+
+export type Step = NavigateStep | FindStep | RecallStep
+
+export interface Mission {
+  id: string
+  title: string
+  /** One short line for the level-selection screen. Caregiver-written, like everything. */
+  description: string
+  steps: Step[]
+}
+
+/**
+ * Marks a pack as authored demonstration content rather than a real person's history.
+ * The two packs bundled with this repository are fictional and say so on screen; a
+ * caregiver-supplied pack describing a real patient simply omits this block.
+ */
+export interface DemoNotice {
+  fictional: boolean
+  notice: string
+}
+
+export interface MemoryPack {
+  patient: { name: string }
+  people: Person[]
+  anchors: Record<string, string>
+  missions: Mission[]
+  demo?: DemoNotice
+  /** SPEC.md §10.8 — set on commit by the (still-inert, `agent.enabled: false`) agent
+   *  layer. Absent on every hand-authored or caregiver-editor pack. Type-only import:
+   *  erased at build time, so this carries no runtime dependency on `src/agent/`. */
+  provenance?: import('./agent/provenance').ProvenanceBlock
+}
+
+// ---------------------------------------------------------------------------
+// Hint ladder timings — §5.4's "~20 s / ~45 s / ~75 s", measured from step start on
+// State.elapsed(), which runs in `exploring` and `answering` and freezes in `paused`.
+// ---------------------------------------------------------------------------
+
+export const HINT_DELAYS_MS: readonly [number, number, number] = [20_000, 45_000, 75_000]
+
+/** What the player is asked at this step — the string that is shown and spoken. */
+export function instructionOf(step: Step): string {
+  return step.type === 'recall' ? step.question : step.instruction
+}
+
+// ---------------------------------------------------------------------------
+// Speech
+//
+// §5.4 level 1 is "shown and spoken". This uses the browser's own speech synthesis, not
+// a pack audio file: recorded caregiver voice is pack media and belongs to Checkpoint C.
+// Silently absent where the API is not available, per §1.1's degradation contract.
+// ---------------------------------------------------------------------------
+
+function speak(text: string, onEnd?: () => void): void {
+  const synth = typeof window !== 'undefined' ? window.speechSynthesis : undefined
+  if (!synth) {
+    // Absent speech must not swallow whatever was queued behind it.
+    onEnd?.()
+    return
+  }
+  try {
+    synth.cancel()
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.rate = 0.92
+    if (onEnd) {
+      // `cancel()` also ends an utterance, so `onEnd` fires on interruption as well as
+      // on completion. Callers guard against acting on a step that has since moved on.
+      utterance.onend = () => onEnd()
+      utterance.onerror = () => onEnd()
+    }
+    synth.speak(utterance)
+  } catch {
+    onEnd?.()
+  }
+}
+
+/** §5.6 resets audio playback. */
+export function stopSpeaking(): void {
+  try {
+    window.speechSynthesis?.cancel()
+  } catch {
+    /* ignore */
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Hint beacon — the level-2 highlight
+//
+// Deliberately *not* the material swap Interaction.ts uses for focus (§5.3). That swap
+// stores and restores a mesh's own materials; running a second, longer-lived swap over
+// the same object would have the two restore each other's clones. A separate box drawn
+// around the target's bounding volume touches no material at all, survives a door
+// swinging mid-hint, and is removed by dropping one object from the scene.
+//
+// Depth-tested on purpose: the beacon does not shine through walls. Level 2 makes the
+// target obvious once it is in view; level 3 is the step that says where to go.
+// ---------------------------------------------------------------------------
+
+const BEACON_COLOUR = 0xffc45e
+
+class HintBeacon {
+  private group = new THREE.Group()
+  private box = new THREE.Mesh(
+    new THREE.BoxGeometry(1, 1, 1),
+    new THREE.MeshBasicMaterial({
+      color: BEACON_COLOUR,
+      transparent: true,
+      opacity: 0.16,
+      depthWrite: false
+    })
+  )
+  private edges = new THREE.LineSegments(
+    new THREE.EdgesGeometry(new THREE.BoxGeometry(1, 1, 1)),
+    new THREE.LineBasicMaterial({ color: BEACON_COLOUR, transparent: true, opacity: 0.9 })
+  )
+
+  private target: THREE.Object3D | null = null
+  private bounds = new THREE.Box3()
+  private size = new THREE.Vector3()
+  private centre = new THREE.Vector3()
+
+  constructor(parent: THREE.Object3D) {
+    this.group.name = 'hint-beacon'
+    this.group.visible = false
+    // renderOrder is per-object in three.js, not inherited from a parent group.
+    this.box.renderOrder = 2
+    this.edges.renderOrder = 3
+    this.group.add(this.box, this.edges)
+    parent.add(this.group)
+  }
+
+  show(target: THREE.Object3D | undefined): void {
+    if (!target) return
+    this.target = target
+    this.group.visible = true
+    this.fit()
+  }
+
+  hide(): void {
+    this.target = null
+    this.group.visible = false
+  }
+
+  /** Re-fits every frame so a hinted door keeps its beacon while it swings. */
+  update(elapsedMs: number): void {
+    if (!this.target) return
+    this.fit()
+    const pulse = 0.5 + 0.5 * Math.sin(elapsedMs / 420)
+    ;(this.box.material as THREE.MeshBasicMaterial).opacity = 0.1 + 0.12 * pulse
+    ;(this.edges.material as THREE.LineBasicMaterial).opacity = 0.55 + 0.4 * pulse
+  }
+
+  /** Drops the beacon out of the scene. One runner per attempt means one beacon each. */
+  dispose(): void {
+    this.hide()
+    this.group.removeFromParent()
+    this.box.geometry.dispose()
+    ;(this.box.material as THREE.Material).dispose()
+    this.edges.geometry.dispose()
+    ;(this.edges.material as THREE.Material).dispose()
+  }
+
+  private fit(): void {
+    if (!this.target) return
+    this.bounds.setFromObject(this.target)
+    if (this.bounds.isEmpty()) return
+    this.bounds.expandByScalar(0.05)
+    this.bounds.getSize(this.size)
+    this.bounds.getCenter(this.centre)
+    this.group.position.copy(this.centre)
+    this.group.scale.set(
+      Math.max(this.size.x, 0.02),
+      Math.max(this.size.y, 0.02),
+      Math.max(this.size.z, 0.02)
+    )
+  }
+}
+
+// ---------------------------------------------------------------------------
+// The runner
+// ---------------------------------------------------------------------------
+
+export interface MissionRunnerDeps {
+  pack: MemoryPack
+  mission: Mission
+  world: WorldSource
+  player: Player
+  state: State
+  telemetry: Telemetry
+  ui: UI
+  /** What actually loaded (§4.2) — photos, voices, and each question's card style. */
+  media: PackMedia
+  /** Positional playback of the pack's voices, mounted on the `audioSource` anchor. */
+  voices: PackVoices
+  /**
+   * Which level this is, in the words the player sees — e.g. "Level 2 of 3 · Morning
+   * walk". Shown above the step instruction for the whole attempt, so the screen always
+   * says what is being played as well as what to do next.
+   */
+  levelLabel: string
+}
+
+/** Engine chrome, not memory content: neutral, never "wrong", never a tally. */
+const NEUTRAL_NUDGE = 'Take your time — have another look.'
+
+export class MissionRunner {
+  private index = -1
+  private hintLevel: 0 | 1 | 2 | 3 = 0
+  private startedAt = 0
+  private running = false
+  private revealed = false
+  private beacon: HintBeacon
+  private people = new Map<string, Person>()
+  private disposed = false
+  /** Step index that has had its one optional gentle cue (camera support, src/camera/). */
+  private cuedAt = -1
+
+  /**
+   * Optional camera support (src/camera/): when set, a new step's instruction is spoken
+   * through this instead of at once, so it can wait briefly for the player to look back.
+   * The text is always shown immediately. Null — the default — speaks at once.
+   */
+  instructionGate: ((speakNow: () => void) => void) | null = null
+
+  /** One entry per finished step, in order. Checkpoint D aggregates from the event log. */
+  readonly outcomes: (Outcome | null)[]
+
+  constructor(private deps: MissionRunnerDeps) {
+    this.beacon = new HintBeacon(deps.world.root)
+    this.outcomes = deps.mission.steps.map(() => null)
+    for (const person of deps.pack.people) this.people.set(person.id, person)
+  }
+
+  get steps(): Step[] {
+    return this.deps.mission.steps
+  }
+
+  get current(): Step | null {
+    return this.running ? (this.steps[this.index] ?? null) : null
+  }
+
+  get stepIndex(): number {
+    return this.index
+  }
+
+  get level(): 0 | 1 | 2 | 3 {
+    return this.hintLevel
+  }
+
+  get active(): boolean {
+    return this.running
+  }
+
+  /** Running time since the current step began (paused time excluded), or null. */
+  get stepAgeMs(): number | null {
+    return this.current ? this.deps.state.elapsed() - this.startedAt : null
+  }
+
+  // --- Lifecycle ---------------------------------------------------------------
+
+  start(): void {
+    this.running = true
+    this.outcomes.fill(null)
+    this.deps.telemetry.missionStart(this.deps.mission.id)
+    this.beginStep(0)
+  }
+
+  /** §5.6 — everything the runner owns, back to nothing. `start()` then re-runs §5.5. */
+  reset(): void {
+    this.running = false
+    this.index = -1
+    this.hintLevel = 0
+    this.revealed = false
+    this.startedAt = 0
+    this.outcomes.fill(null)
+    this.cuedAt = -1
+    this.beacon.hide()
+    stopSpeaking()
+    this.deps.voices.stop()
+    this.deps.ui.hideAnswerCard()
+    this.deps.ui.hideInstruction()
+    this.deps.ui.setHint(null)
+  }
+
+  /**
+   * Retires this runner for good. A level is one runner, and switching levels builds a
+   * new one — without this the old runner's beacon would stay parented to the world and
+   * a second attempt would pulse two boxes at once.
+   */
+  dispose(): void {
+    if (this.disposed) return
+    this.disposed = true
+    this.reset()
+    this.beacon.dispose()
+  }
+
+  /** Called once per frame from the game loop, in every state. */
+  update(): void {
+    if (!this.running) return
+    const step = this.current
+    if (!step) return
+    // §5.1: `elapsed()` freezes in `paused` and `completed`, so the ladder stops there
+    // on its own — and keeps running in `answering`, which is the point.
+    if (this.deps.state.timersRunning) {
+      const since = this.deps.state.elapsed() - this.startedAt
+      while (this.hintLevel < 3 && since >= HINT_DELAYS_MS[this.hintLevel as 0 | 1 | 2]) {
+        this.showHint((this.hintLevel + 1) as 1 | 2 | 3)
+      }
+    }
+    this.beacon.update(this.deps.state.elapsed())
+  }
+
+  // --- Signals from the game loop ------------------------------------------------
+
+  /** The player's room changed. Fires `room_enter` and may complete a navigate step. */
+  notifyRoom(room: string | null): void {
+    if (room) this.deps.telemetry.roomEnter(room)
+    const step = this.current
+    if (step?.type === 'navigate' && room === step.targetRoom) this.endStep(this.performedOutcome())
+  }
+
+  /** The player pressed E on an interactable. May complete a find step. */
+  notifyInteract(id: string): void {
+    const step = this.current
+    const correct = step?.type === 'find' && step.targetObject === id
+    this.deps.telemetry.objectInteract(id, correct)
+    if (correct) this.endStep(this.performedOutcome())
+  }
+
+  /** §5.4: "Skip is always available." */
+  skip(): void {
+    if (!this.current) return
+    this.endStep('skipped')
+  }
+
+  // --- Steps ----------------------------------------------------------------------
+
+  private beginStep(index: number): void {
+    this.index = index
+    this.hintLevel = 0
+    this.revealed = false
+    const step = this.steps[index]
+    if (!step) {
+      this.complete()
+      return
+    }
+
+    this.startedAt = this.deps.state.elapsed()
+    this.deps.telemetry.stepStart(index, step.type)
+
+    const text = instructionOf(step)
+    this.deps.ui.setHint(null)
+    this.deps.ui.showInstruction(
+      this.deps.levelLabel,
+      `Step ${index + 1} of ${this.steps.length}`,
+      text
+    )
+    this.speakInstruction(text)
+
+    if (step.type === 'recall') {
+      const cards = this.choiceCards(step, step.choices)
+      // §4.2's last resort: "All choice rendering fails → skip the step, outcome
+      // `skipped`." Validation rejects a pack whose choices name nobody, so this is
+      // defensive rather than routine — but a question with nothing on it must not sit
+      // on screen waiting for a click that can never come.
+      if (cards.length === 0) {
+        console.warn('[memoria] no renderable choices for this question; skipping the step')
+        this.endStep('skipped')
+        return
+      }
+      this.openAnswerCard(step, cards)
+      return
+    }
+
+    this.leaveAnswering()
+
+    // §5.5 — containment at step start, not a future entry event. A player already
+    // standing in the target room finishes here and now; waiting for `room_enter` when
+    // no boundary is going to be crossed is the hang this exists to prevent.
+    if (step.type === 'navigate') {
+      const room = this.deps.world.roomOf(this.deps.player.groundPoint())
+      if (room === step.targetRoom) {
+        this.endStep('independent')
+        return
+      }
+    }
+  }
+
+  private endStep(outcome: Outcome): void {
+    const index = this.index
+    const step = this.steps[index]
+    if (!step) return
+
+    this.outcomes[index] = outcome
+    this.beacon.hide()
+    stopSpeaking()
+    this.deps.ui.setHint(null)
+    this.deps.ui.hideAnswerCard()
+    this.deps.telemetry.stepEnd(index, step.type, outcome)
+
+    this.beginStep(index + 1)
+  }
+
+  /**
+   * §4.3: correct with no hint is `independent`; correct after any hint is `cued` —
+   * including after level-3 guidance, because on a navigate or find step the player
+   * still had to walk there or press E themselves.
+   */
+  private performedOutcome(): Outcome {
+    return this.hintLevel === 0 ? 'independent' : 'cued'
+  }
+
+  private complete(): void {
+    this.running = false
+    this.beacon.hide()
+    stopSpeaking()
+    this.deps.ui.hideAnswerCard()
+    this.deps.ui.hideInstruction()
+    this.deps.ui.setHint(null)
+    // Checkpoint B ended here with a placeholder completion screen. §4.4's real summary
+    // is computed from the recorded event log, so it is rendered by whoever is listening
+    // on the telemetry seam — the runner's job is to say that the mission finished.
+    this.deps.telemetry.missionComplete(this.deps.mission.id)
+    this.deps.state.set('completed')
+    this.deps.player.releaseLock()
+  }
+
+  /** Speaks a new step's instruction — at once, or through `instructionGate`. */
+  private speakInstruction(text: string): void {
+    const gate = this.instructionGate
+    if (!gate) {
+      speak(text)
+      return
+    }
+    const at = this.index
+    try {
+      // Held speech is dropped if the step has moved on, a hint has since been spoken,
+      // or the game is paused: the text has been on screen throughout either way.
+      gate(() => {
+        if (this.running && this.index === at && this.hintLevel === 0 && this.deps.state.timersRunning) speak(text)
+      })
+    } catch {
+      speak(text)
+    }
+  }
+
+  // --- Optional camera support (src/camera/) -----------------------------------------
+  //
+  // Two narrow hooks. The camera layer never touches runner state directly: its policy
+  // decides *whether*, and these decide *what*, using the ladder the game already has.
+
+  /**
+   * Shows the next hint-ladder level now instead of waiting for its timer. The ladder is
+   * unchanged — same levels, same order, same telemetry, same §4.3 scoring — this only
+   * moves the next rung earlier. Returns false when there is nothing to advance.
+   */
+  requestHint(): boolean {
+    if (!this.current || !this.deps.state.timersRunning || this.hintLevel >= 3) return false
+    this.showHint((this.hintLevel + 1) as 1 | 2 | 3)
+    return true
+  }
+
+  /**
+   * One gentle reminder per step: the pack's own `hints.repeat` words, shown if no hint
+   * is on screen yet, and spoken. It is not a hint level and changes no outcome.
+   */
+  gentleCue(): boolean {
+    const step = this.current
+    if (!step || !this.deps.state.timersRunning || this.cuedAt === this.index) return false
+    this.cuedAt = this.index
+    if (this.hintLevel === 0) this.setHintText(step.hints.repeat)
+    speak(step.hints.repeat)
+    return true
+  }
+
+  // --- Hint ladder (§5.4) ------------------------------------------------------------
+
+  private showHint(level: 1 | 2 | 3): void {
+    const step = this.current
+    if (!step) return
+    this.hintLevel = level
+    this.deps.telemetry.hintShown(level, this.index)
+
+    if (level === 1) {
+      // Repeat the instruction, shown and spoken. Identical for all three step types.
+      this.setHintText(step.hints.repeat)
+      speak(step.hints.repeat)
+      return
+    }
+
+    if (level === 2) {
+      if (step.type === 'recall') {
+        // Swap to the reduced choices, always keeping the answer.
+        this.deps.ui.updateAnswerCard({
+          choices: this.choiceCards(step, this.reduce(step)),
+          note: null
+        })
+      } else {
+        this.beacon.show(this.deps.world.hintTargets[step.hints.highlight])
+        if (!this.deps.world.hintTargets[step.hints.highlight]) {
+          console.warn(`[memoria] hint target missing from world: ${step.hints.highlight}`)
+        }
+      }
+      // The pack's own words stay on screen; the added assistance is visual.
+      this.setHintText(step.hints.repeat)
+      return
+    }
+
+    // Level 3 — the branch the whole table exists for.
+    this.setHintText(step.hints.guide)
+
+    if (step.type !== 'recall') {
+      // navigate / find: show guidance and speak it, then wait. Nothing completes here
+      // — the player still has to walk into the room or press E on the object, and
+      // doing so scores `cued` (§4.3). Skip stays available.
+      speak(step.hints.guide)
+      return
+    }
+
+    // Reveal the answer. The step may now end as `revealed`. The card is marked before
+    // anything is spoken, so the state the callback below tests is already settled.
+    this.revealed = true
+    this.deps.ui.updateAnswerCard({ revealedId: step.answer, note: null })
+
+    // "It was Ananya, your granddaughter." — and then Ananya, in her own voice.
+    // Chained rather than simultaneous: two voices at once is the one thing a person
+    // with dementia can least afford to untangle. Cancelling an utterance also fires
+    // its `onend`, so the callback re-checks that the step it belongs to is still the
+    // one on screen before playing anything.
+    const at = this.index
+    speak(step.hints.guide, () => {
+      if (step.choiceType !== 'person') return
+      if (this.running && this.index === at && this.revealed) this.deps.voices.play(step.answer)
+    })
+  }
+
+  private setHintText(text: string): void {
+    this.deps.ui.setHint(text)
+    if (this.deps.ui.answerCardVisible) this.deps.ui.updateAnswerCard({ note: null })
+  }
+
+  // --- Recall ------------------------------------------------------------------------
+
+  private openAnswerCard(step: RecallStep, cards: ChoiceCard[]): void {
+    // §5.1: freeze movement and release the pointer *deliberately*. `releaseLock()` sets
+    // `expectingUnlock` first, so the pointerlockchange handler does not read this as a
+    // pause. Timers keep running — `answering` does not stop the clock.
+    this.deps.state.set('answering')
+    this.deps.player.releaseLock()
+
+    this.deps.ui.showAnswerCard({
+      question: step.question,
+      memory: step.memory ? { photo: step.memory.photo ? this.deps.media?.resolver?.resolve(step.memory.photo, true) : undefined, caption: step.memory.caption } : undefined,
+      choices: cards,
+      revealedId: null,
+      note: null,
+      onSelect: (id) => this.onChoice(step, id),
+      onSkip: () => this.skip(),
+      onContinue: () => this.endStep('revealed')
+    })
+    this.deps.telemetry.questionShown(this.index)
+  }
+
+  private onChoice(step: RecallStep, id: string): void {
+    const correct = id === step.answer
+    this.deps.telemetry.answerSelected(id, correct)
+
+    // Every card speaks with its own voice, whichever one was picked. Playing the voice
+    // only for the answer would be a correctness signal, which §5.4 rules out as surely
+    // as a red cross does. Missing voice → silence (§4.2), never a beep or a buzz.
+    // A `text` choice names an event, not a person, so there is no voice to play.
+    if (step.choiceType === 'person') this.deps.voices.play(id)
+
+    if (this.revealed) {
+      // The answer was already given, so this is not the player recalling it (§4.3).
+      this.endStep('revealed')
+      return
+    }
+    if (correct) {
+      this.endStep(this.performedOutcome())
+      return
+    }
+    // §5.4: nothing ever shows "wrong". The card stays, every choice stays enabled.
+    this.deps.ui.updateAnswerCard({ note: NEUTRAL_NUDGE })
+  }
+
+  /**
+   * §5.4 level 2 for recall: keep the answer, remove a distractor deterministically.
+   * §4.2: a `reducedChoices` that has lost the answer is ignored with a warning — so the
+   * fallback has to be deterministic too. It drops the last distractor in declaration
+   * order, which is the same choice on every run and every machine.
+   */
+  private reduce(step: RecallStep): string[] {
+    const supplied = step.reducedChoices
+    if (supplied && supplied.includes(step.answer)) {
+      const kept = supplied.filter((id) => step.choices.includes(id))
+      if (kept.includes(step.answer) && kept.length >= 2) return kept
+    }
+    if (supplied) console.warn('[memoria] reducedChoices unusable, reducing deterministically')
+
+    const distractors = step.choices.filter((id) => id !== step.answer)
+    if (distractors.length === 0) return [...step.choices]
+    const dropped = distractors[distractors.length - 1]
+    return step.choices.filter((id) => id !== dropped)
+  }
+
+  /**
+   * §4.2: "**Any** recall photo fails to load → apply the same text-only card style to
+   * every choice in that question. Never mix photo and text cards — the odd one out
+   * identifies the answer."
+   *
+   * The decision is not taken here. MemoryPack settles it once per question, over the
+   * question's full choice list, after every photo has either decoded or failed; this
+   * only reads it. That matters because level 2 re-renders the card with a *subset* of
+   * the choices, and the style must not change halfway through a question. The UI
+   * re-checks the invariant independently when it renders.
+   *
+   * A choice with nothing behind it — no person, or no matching `options` entry — is
+   * dropped rather than rendered as a bare id. Validation rejects such a pack outright,
+   * so the only way to reach that is a world and pack that disagree at runtime — and an
+   * empty list is what `beginStep` reads as §4.2's "all choice rendering fails".
+   *
+   * A `text` question never has portraits or voices to begin with, so it skips the
+   * photo decision entirely and always renders text cards. That is the same shape §4.2
+   * falls back to, which is why the no-mixing rule needs no special case here.
+   */
+  private choiceCards(step: RecallStep, ids: string[]): ChoiceCard[] {
+    if (step.choiceType === 'text') return this.textCards(step, ids)
+
+    const style = this.deps.media.cardStyle(this.deps.mission.id, this.index)
+    const cards: ChoiceCard[] = []
+    for (const id of ids) {
+      const person = this.people.get(id)
+      if (!person) {
+        console.warn(`[memoria] choice id absent from people, dropping it: ${id}`)
+        continue
+      }
+      cards.push({
+        id: person.id,
+        name: person.name,
+        relationship: person.relationship,
+        photoUrl: style === 'photo' ? this.deps.media.photoFor(person.id) : null,
+        // Present whether or not the card shows a photo: a text card can still speak.
+        hasVoice: this.deps.media.voiceFor(person.id) !== null
+      })
+    }
+    return cards
+  }
+
+  private textCards(step: RecallStep, ids: string[]): ChoiceCard[] {
+    const cards: ChoiceCard[] = []
+    for (const id of ids) {
+      const option = step.options?.find((o) => o.id === id)
+      if (!option) {
+        console.warn(`[memoria] choice id absent from options, dropping it: ${id}`)
+        continue
+      }
+      cards.push({
+        id: option.id,
+        name: option.label,
+        relationship: option.detail ?? '',
+        photoUrl: null,
+        hasVoice: false
+      })
+    }
+    return cards
+  }
+
+  /** Back to walking: re-lock only on the way into `exploring`, per §5.1. */
+  private leaveAnswering(): void {
+    this.deps.state.set('exploring')
+    if (!this.deps.ui.overlayVisible) this.deps.player.requestLock()
+  }
+}

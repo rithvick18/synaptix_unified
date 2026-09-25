@@ -1,0 +1,28 @@
+{
+  "name": "player-observation-web",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "setup:assets": "node scripts/setup-assets.mjs",
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "integration": "node --experimental-strip-types scripts/integration-check.ts",
+    "check:browser": "node scripts/browser-check.mjs",
+    "check:demo": "node scripts/demo-check.mjs"
+  },
+  "dependencies": {
+    "@mediapipe/tasks-vision": "1.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "24.3.0",
+    "@types/ws": "8.18.1",
+    "typescript": "5.9.3",
+    "vite": "7.1.5",
+    "vitest": "3.2.4",
+    "ws": "8.18.3"
+  }
+}

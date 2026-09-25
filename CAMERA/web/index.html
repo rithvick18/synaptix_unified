@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Player Observation Demo</title>
+    <link rel="icon" href="data:," />
+    <link rel="stylesheet" href="/src/demo/demo.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Player observation demo</h1>
+      <p class="note">
+        Camera frames are processed in this browser by MediaPipe Face Landmarker. Only derived numbers are sent
+        to the service. Head orientation is not eye gaze, and none of these signals establish engagement, emotion,
+        fatigue or cognitive state.
+      </p>
+    </header>
+
+    <main>
+      <section class="panel" id="connection-panel">
+        <h2>1 · Service</h2>
+        <div class="row">
+          <label>Service URL <input id="base-url" value="http://127.0.0.1:8765" size="26" /></label>
+          <label>Producer transport
+            <select id="transport">
+              <option value="websocket">WebSocket</option>
+              <option value="http">HTTP fallback</option>
+            </select>
+          </label>
+          <button id="btn-session">Create session &amp; connect</button>
+          <button id="btn-end-session" disabled>End session</button>
+        </div>
+        <dl class="kv">
+          <dt>Session</dt><dd id="session-id">—</dd>
+          <dt>Game adapter</dt><dd id="adapter-status">idle</dd>
+          <dt>Camera producer link</dt><dd id="producer-status">idle</dd>
+        </dl>
+      </section>
+
+      <section class="panel" id="camera-panel">
+        <h2>2 · Camera</h2>
+        <div class="row">
+          <button id="btn-cam-start" disabled>Start camera</button>
+          <button id="btn-cam-stop" disabled>Stop camera</button>
+          <button id="btn-calibrate" disabled>Calibrate</button>
+          <label><input type="checkbox" id="chk-overlay" checked /> Landmark overlay</label>
+          <label><input type="checkbox" id="chk-mirror" checked /> Mirror preview</label>
+        </div>
+        <div class="preview">
+          <video id="video" muted playsinline></video>
+          <canvas id="overlay"></canvas>
+          <div id="calibration-guide" hidden>
+            <p id="calibration-text">Look at the centre of the screen and hold still</p>
+            <progress id="calibration-progress" max="1" value="0"></progress>
+          </div>
+        </div>
+        <dl class="kv">
+          <dt>Camera</dt><dd id="observer-status">idle</dd>
+          <dt>Tracking</dt><dd id="tracking-status">—</dd>
+          <dt>Calibration</dt><dd id="calibration-status">—</dd>
+          <dt>Backend</dt><dd id="perf-backend">—</dd>
+          <dt>Measured inference</dt><dd id="perf-inference">—</dd>
+          <dt>Measured processed rate</dt><dd id="perf-fps">—</dd>
+          <dt>Dropped (busy) frames</dt><dd id="perf-dropped">—</dd>
+        </dl>
+      </section>
+
+      <section class="panel" id="signals-panel">
+        <h2>3 · Observed signals <small>(producer, before the service)</small></h2>
+        <dl class="kv">
+          <dt>Head yaw / pitch / roll</dt><dd id="m-angles">—</dd>
+          <dt>head_facing_score</dt><dd><meter id="m-facing-meter" min="0" max="1" value="0"></meter> <span id="m-facing">—</span></dd>
+          <dt>Head orientation</dt><dd id="m-orientation">—</dd>
+          <dt>Head-away duration</dt><dd id="m-away">—</dd>
+          <dt>Eye openness L / R</dt><dd id="m-eyes">—</dd>
+          <dt>Blink coefficient L / R</dt><dd id="m-blink">—</dd>
+          <dt>Eyes closed for</dt><dd id="m-closed">—</dd>
+          <dt>Tracking quality</dt><dd id="m-quality">—</dd>
+        </dl>
+        <h3>Gestures (from the service, each ID delivered once)</h3>
+        <ol id="gesture-log" class="log" reversed></ol>
+      </section>
+
+      <section class="panel" id="state-panel">
+        <h2>4 · Service state &amp; suggestions</h2>
+        <dl class="kv">
+          <dt>Attention state</dt><dd><strong id="s-attention">—</strong> <span id="s-reason" class="muted"></span></dd>
+          <dt>Vision data</dt><dd id="s-vision">—</dd>
+          <dt>Vision adaptation</dt><dd id="s-adaptation">—</dd>
+          <dt>Hold new instructions</dt><dd id="s-hold">—</dd>
+          <dt>Inactivity (gameplay)</dt><dd id="s-inactivity">—</dd>
+          <dt>task_engagement_score</dt><dd id="s-engagement">—</dd>
+        </dl>
+        <label class="toggle"><input type="checkbox" id="chk-adaptation" checked /> Vision-based adaptation enabled</label>
+        <div class="action" id="latest-action">
+          <p class="muted">No suggested action yet.</p>
+        </div>
+        <ol id="action-log" class="log" reversed></ol>
+      </section>
+
+      <section class="panel" id="game-panel">
+        <h2>5 · Gameplay events</h2>
+        <p class="muted">Buttons send the events a game would send. Task: <code id="task-id">—</code></p>
+        <div class="buttons">
+          <button data-ev="task_started">Start task</button>
+          <button data-ev="answer_correct">Answer (correct)</button>
+          <button data-ev="answer_wrong">Answer (wrong)</button>
+          <button data-ev="hint_requested">Request hint</button>
+          <button data-ev="task_completed">Complete task</button>
+          <button data-ev="task_skipped">Skip task</button>
+          <button data-ev="player_activity">Player moved</button>
+          <button data-ev="pause" id="btn-pause">Pause</button>
+          <button data-ev="idle">Start expected idle</button>
+        </div>
+        <ol id="event-log" class="log" reversed></ol>
+      </section>
+
+      <section class="panel simulation" id="sim-panel">
+        <h2>SIMULATION MODE — not camera data</h2>
+        <p>
+          For testing transport and policy only. Synthetic face frames go through the real signal processor and are
+          sent with <code>simulated: true</code>. It never starts automatically, including when the camera or the model
+          fails, and it cannot run while the camera is running.
+        </p>
+        <div class="row">
+          <button id="btn-sim-start" disabled>Start simulation</button>
+          <button id="btn-sim-stop" disabled>Stop simulation</button>
+          <button id="btn-sim-calibrate" disabled>Calibrate (simulated)</button>
+          <button id="btn-sim-nod" disabled>Nod</button>
+          <button id="btn-sim-shake" disabled>Head shake</button>
+          <button id="btn-sim-blink" disabled>Blink</button>
+        </div>
+        <div class="row">
+          <label>Yaw <input type="range" id="sim-yaw" min="-60" max="60" value="0" /> <span id="sim-yaw-v">0°</span></label>
+          <label>Pitch <input type="range" id="sim-pitch" min="-40" max="40" value="0" /> <span id="sim-pitch-v">0°</span></label>
+          <label><input type="checkbox" id="sim-face" checked /> Face present</label>
+          <label><input type="checkbox" id="sim-eyes" /> Eyes closed</label>
+          <label><input type="checkbox" id="sim-second" /> Second face</label>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="/src/demo/main.ts"></script>
+  </body>
+</html>

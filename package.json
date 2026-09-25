@@ -1,0 +1,17 @@
+{
+  "name": "memoria-unified",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Memoria 3D with optional camera support from the player-observation app. Orchestration only; each project keeps its own tooling.",
+  "type": "module",
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "node scripts/dev.mjs",
+    "dev:debug": "node scripts/dev.mjs --with-camera-app",
+    "check": "node scripts/check.mjs",
+    "check:e2e": "node scripts/camera-e2e.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}

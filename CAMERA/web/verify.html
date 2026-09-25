@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FaceObserver verify</title>
+    <link rel="icon" href="data:," />
+    <style>
+      body { font: 13px system-ui, sans-serif; margin: 16px; background: #111; color: #ddd; }
+      .stage { position: relative; width: 640px; max-width: 100%; }
+      .stage video, .stage canvas { width: 100%; display: block; }
+      .stage canvas { position: absolute; inset: 0; height: 100%; }
+      pre { white-space: pre-wrap; }
+    </style>
+  </head>
+  <body>
+    <p>Bare verification harness for FaceObserver (used by <code>npm run check:browser</code>). Frames stay in this page.</p>
+    <div class="stage">
+      <video id="video" muted playsinline></video>
+      <canvas id="overlay"></canvas>
+    </div>
+    <pre id="out"></pre>
+    <script type="module" src="/src/verify/main.ts"></script>
+  </body>
+</html>

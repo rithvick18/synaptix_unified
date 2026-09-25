@@ -1,0 +1,10 @@
+.DS_Store
+.env
+service/.venv/
+service/.pytest_cache/
+service/.pytest.log
+**/__pycache__/
+graphify-out/cache/
+graphify-out/.graphify_python
+graphify-out/.graphify_root
+.claude/
