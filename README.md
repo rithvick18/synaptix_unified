@@ -12,6 +12,14 @@ Camera support is **optional and off by default**. With it off, Memoria behaves 
 
 ## Quick start
 
+The 2D game suite in `SYNAPTIX/` is a git submodule, so clone with submodules:
+
+```sh
+git clone --recurse-submodules https://github.com/rithvick18/synaptix_unified
+```
+
+If you already cloned without them, run `git submodule update --init` inside the repo; otherwise `SYNAPTIX/` stays empty.
+
 From this folder:
 
 ```sh
