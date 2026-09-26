@@ -1,5 +1,16 @@
 # Memoria 3D
 
+> **The Reminiscence Therapy Suite is now the first screen.** It is product branding for an
+> activity space for exploring familiar places, objects, photographs and sounds with a
+> caregiver. It is not a medical treatment, and it has no scores or timers. See
+> [docs/suite/README.md](docs/suite/README.md) for the flow, the content packs, the
+> languages, the verification results and the limitations, and see `docs/suite/` for how
+> to add a pack, a language, an activity or an asset.
+>
+> The guided tasks described below are unchanged. They are one button away on the suite's
+> home screen, or open first with `?start=tasks`. `?patient=mira` and `?patient=raju` also
+> open them first.
+
 First-person cognitive-care prototype (SIH26003). SPEC.md §6 rows A–D are done: scaffold,
 renderer, procedural world, movement and interaction (A); the mission runner, hint ladder,
 answer card, skip, restart and telemetry hooks (B); real caregiver packs with validation,

@@ -1,0 +1,7 @@
+{
+  "schema": 1,
+  "packs": [
+    { "id": "everyday-home", "path": "everyday-home/pack.json" },
+    { "id": "northeast-home", "path": "northeast-home/pack.json" }
+  ]
+}

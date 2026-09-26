@@ -1,5 +1,6 @@
 import type { EnvironmentStyle } from './agent/environment'
 import type { MemoryPack, RecallStep } from './Missions'
+import type { SuiteProfile } from './suite/contracts'
 import { DEFAULT_HOUSE, TEMPLATES } from './templates'
 
 export interface Crop { x: number; y: number; zoom: number }
@@ -42,6 +43,9 @@ export interface LocalProfile {
   mirrored: boolean
   people: LocalPerson[]
   questions: Question[]
+  /** Reminiscence Therapy Suite settings and media (caregiver setup). Absent on profiles
+   *  saved before the suite existed; read it through `suiteOf` in src/suite/profile. */
+  suite?: SuiteProfile
 }
 export const newId = (): string => crypto.randomUUID()
 export function newProfile(): LocalProfile {

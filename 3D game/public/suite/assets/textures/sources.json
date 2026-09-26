@@ -1,0 +1,279 @@
+{
+  "retrieved": "2026-09-25",
+  "sets": [
+    {
+      "id": "oak_veneer_01",
+      "name": "wood",
+      "title": "Oak Veneer 01",
+      "authors": [
+        "Jenelle van Heerden"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/oak_veneer_01",
+      "tileMetres": 1.8300000429153442,
+      "retrieved": "2026-09-25",
+      "maps": {
+        "diff": {
+          "file": "wood_diff.webp",
+          "px": 1024,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/oak_veneer_01/oak_veneer_01_diff_1k.jpg",
+          "bytes": 76620
+        },
+        "nor": {
+          "file": "wood_nor.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/oak_veneer_01/oak_veneer_01_nor_gl_1k.jpg",
+          "bytes": 4110
+        }
+      },
+      "modified": "1k JPG re-encoded to WebP (cwebp); diffuse 1024px, normal 512px; roughness/AO/displacement maps not used"
+    },
+    {
+      "id": "laminate_floor_02",
+      "name": "floor-wood",
+      "title": "Laminate Floor 02",
+      "authors": [
+        "Dario Barresi",
+        "Charlotte Baglioni"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/laminate_floor_02",
+      "tileMetres": 1.6999999284744263,
+      "retrieved": "2026-09-25",
+      "maps": {
+        "diff": {
+          "file": "floor-wood_diff.webp",
+          "px": 1024,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/laminate_floor_02/laminate_floor_02_diff_1k.jpg",
+          "bytes": 115096
+        },
+        "nor": {
+          "file": "floor-wood_nor.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/laminate_floor_02/laminate_floor_02_nor_gl_1k.jpg",
+          "bytes": 5312
+        }
+      },
+      "modified": "1k JPG re-encoded to WebP (cwebp); diffuse 1024px, normal 512px; roughness/AO/displacement maps not used"
+    },
+    {
+      "id": "painted_plaster_wall",
+      "name": "plaster",
+      "title": "Painted Plaster Wall",
+      "authors": [
+        "Amal Kumar"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/painted_plaster_wall",
+      "tileMetres": 2,
+      "retrieved": "2026-09-25",
+      "maps": {
+        "diff": {
+          "file": "plaster_diff.webp",
+          "px": 1024,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/painted_plaster_wall/painted_plaster_wall_diff_1k.jpg",
+          "bytes": 119552
+        },
+        "nor": {
+          "file": "plaster_nor.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/painted_plaster_wall/painted_plaster_wall_nor_gl_1k.jpg",
+          "bytes": 36126
+        }
+      },
+      "modified": "1k JPG re-encoded to WebP (cwebp); diffuse 1024px, normal 512px; roughness/AO/displacement maps not used"
+    },
+    {
+      "id": "mixed_stone_tiles",
+      "name": "terrazzo",
+      "title": "Mixed Stone Tiles",
+      "authors": [
+        "Dimitrios Savva"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/mixed_stone_tiles",
+      "tileMetres": 1.8000000715255737,
+      "retrieved": "2026-09-25",
+      "maps": {
+        "diff": {
+          "file": "terrazzo_diff.webp",
+          "px": 1024,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mixed_stone_tiles/mixed_stone_tiles_diff_1k.jpg",
+          "bytes": 294764
+        },
+        "nor": {
+          "file": "terrazzo_nor.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mixed_stone_tiles/mixed_stone_tiles_nor_gl_1k.jpg",
+          "bytes": 56476
+        }
+      },
+      "modified": "1k JPG re-encoded to WebP (cwebp); diffuse 1024px, normal 512px; roughness/AO/displacement maps not used"
+    },
+    {
+      "id": "floor_tiles_06",
+      "name": "tile",
+      "title": "Floor Tiles 06",
+      "authors": [
+        "Rob Tuytel"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/floor_tiles_06",
+      "tileMetres": 3,
+      "retrieved": "2026-09-25",
+      "maps": {
+        "diff": {
+          "file": "tile_diff.webp",
+          "px": 1024,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/floor_tiles_06/floor_tiles_06_diff_1k.jpg",
+          "bytes": 55864
+        },
+        "nor": {
+          "file": "tile_nor.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/floor_tiles_06/floor_tiles_06_nor_gl_1k.jpg",
+          "bytes": 2186
+        }
+      },
+      "modified": "1k JPG re-encoded to WebP (cwebp); diffuse 1024px, normal 512px; roughness/AO/displacement maps not used"
+    },
+    {
+      "id": "granite_tile",
+      "name": "stone",
+      "title": "Granite Tile",
+      "authors": [
+        "Charlotte Baglioni"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/granite_tile",
+      "tileMetres": 2.299999952316284,
+      "retrieved": "2026-09-25",
+      "maps": {
+        "diff": {
+          "file": "stone_diff.webp",
+          "px": 1024,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/granite_tile/granite_tile_diff_1k.jpg",
+          "bytes": 88944
+        },
+        "nor": {
+          "file": "stone_nor.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/granite_tile/granite_tile_nor_gl_1k.jpg",
+          "bytes": 6336
+        }
+      },
+      "modified": "1k JPG re-encoded to WebP (cwebp); diffuse 1024px, normal 512px; roughness/AO/displacement maps not used"
+    },
+    {
+      "id": "concrete_floor_worn_001",
+      "name": "cement",
+      "title": "Concrete Floor Worn 001",
+      "authors": [
+        "Dimitrios Savva",
+        "Rico Cilliers"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/concrete_floor_worn_001",
+      "tileMetres": 3,
+      "retrieved": "2026-09-25",
+      "maps": {
+        "diff": {
+          "file": "cement_diff.webp",
+          "px": 1024,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_floor_worn_001/concrete_floor_worn_001_diff_1k.jpg",
+          "bytes": 32564
+        },
+        "nor": {
+          "file": "cement_nor.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/concrete_floor_worn_001/concrete_floor_worn_001_nor_gl_1k.jpg",
+          "bytes": 6280
+        }
+      },
+      "modified": "1k JPG re-encoded to WebP (cwebp); diffuse 1024px, normal 512px; roughness/AO/displacement maps not used"
+    },
+    {
+      "id": "clay_floor_001",
+      "name": "clay",
+      "title": "Clay Floor 001",
+      "authors": [
+        "Dimitrios Savva",
+        "Rico Cilliers"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/clay_floor_001",
+      "tileMetres": 2,
+      "retrieved": "2026-09-25",
+      "maps": {
+        "diff": {
+          "file": "clay_diff.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_floor_001/clay_floor_001_diff_1k.jpg",
+          "bytes": 8398
+        },
+        "nor": {
+          "file": "clay_nor.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/clay_floor_001/clay_floor_001_nor_gl_1k.jpg",
+          "bytes": 3014
+        }
+      },
+      "modified": "1k JPG re-encoded to WebP (cwebp); diffuse 512px, normal 512px; roughness/AO/displacement maps not used"
+    },
+    {
+      "id": "cotton_jersey",
+      "name": "fabric",
+      "title": "Cotton Jersey",
+      "authors": [
+        "colormass",
+        "Rico Cilliers"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/cotton_jersey",
+      "tileMetres": 0.2636027473872483,
+      "retrieved": "2026-09-25",
+      "maps": {
+        "diff": {
+          "file": "fabric_diff.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cotton_jersey/cotton_jersey_diff_1k.jpg",
+          "bytes": 2128
+        },
+        "nor": {
+          "file": "fabric_nor.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/cotton_jersey/cotton_jersey_nor_gl_1k.jpg",
+          "bytes": 7610
+        }
+      },
+      "modified": "1k JPG re-encoded to WebP (cwebp); diffuse 512px, normal 512px; roughness/AO/displacement maps not used"
+    },
+    {
+      "id": "bamboo_veneer",
+      "name": "bamboo",
+      "title": "Bamboo Veneer",
+      "authors": [
+        "Jenelle van Heerden"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/bamboo_veneer",
+      "tileMetres": 1,
+      "retrieved": "2026-09-25",
+      "maps": {
+        "diff": {
+          "file": "bamboo_diff.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bamboo_veneer/bamboo_veneer_diff_1k.jpg",
+          "bytes": 7834
+        },
+        "nor": {
+          "file": "bamboo_nor.webp",
+          "px": 512,
+          "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bamboo_veneer/bamboo_veneer_nor_gl_1k.jpg",
+          "bytes": 712
+        }
+      },
+      "modified": "1k JPG re-encoded to WebP (cwebp); diffuse 512px, normal 512px; roughness/AO/displacement maps not used"
+    }
+  ]
+}

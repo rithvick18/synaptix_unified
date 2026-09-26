@@ -16,7 +16,6 @@
  * chip says what happened and vision-driven adaptation holds.
  */
 
-import type { MissionRunner } from '../Missions'
 import type { State } from '../State'
 import type { Event, Telemetry } from '../Telemetry'
 import type { ObservationBody } from './app'
@@ -24,7 +23,7 @@ import { AdaptationPolicy, type AdaptationConfig, type AdaptationRecord, type Ga
 import { CameraAdapter } from './CameraAdapter'
 import { CameraUI, describeSnapshot } from './CameraUI'
 import { buildSnapshot } from './snapshot'
-import type { CameraSnapshot } from './types'
+import type { AdaptableRunner, CameraSnapshot } from './types'
 import { InstructionHold, VisionBridge } from './VisionBridge'
 
 const DEFAULT_SERVICE_URL = 'http://127.0.0.1:8765'
@@ -84,10 +83,17 @@ export interface CameraIntegrationDeps {
 export interface CameraIntegration {
   /** Opens the setup sheet (level list button). */
   openSetup(): void
-  /** Called with each new MissionRunner, before `start()`. */
-  attach(runner: MissionRunner): void
+  /**
+   * Called with each new runner, before `start()`: a MissionRunner for a guided task, or a
+   * reminiscence activity's adapter (src/suite/). Null detaches, e.g. when an activity ends.
+   */
+  attach(runner: AdaptableRunner | null): void
   /** For the level list: whether the camera is on, and one short status line. */
   summary(): { on: boolean; status: string | null }
+  /** The latest camera snapshot (the "off" snapshot while the camera is off). */
+  snapshot(): CameraSnapshot
+  /** Every adaptation decision so far, applied or rejected, with its reason. */
+  adaptations(): readonly AdaptationRecord[]
   /** Debug handle (window.__memoria.camera). */
   debug: Record<string, unknown>
 }
@@ -99,7 +105,7 @@ export function createCameraIntegration(deps: CameraIntegrationDeps): CameraInte
     else console.info(`[memoria] camera · ${message}`, detail)
   }
 
-  let runner: MissionRunner | null = null
+  let runner: AdaptableRunner | null = null
   let missionId: string | null = null
   let adapter: CameraAdapter | null = null
   let bridge: VisionBridge | null = null
@@ -361,12 +367,15 @@ export function createCameraIntegration(deps: CameraIntegrationDeps): CameraInte
     openSetup(): void {
       ui.openSheet()
     },
-    attach(next: MissionRunner): void {
+    attach(next: AdaptableRunner | null): void {
+      if (runner && runner !== next) runner.instructionGate = null
       runner = next
       hold.cancel()
       policy.clearPending('level_changed', context(), snapshot())
-      if (adapter) runner.instructionGate = gate
+      if (adapter && runner) runner.instructionGate = gate
     },
+    snapshot,
+    adaptations: () => policy.records,
     summary() {
       const s = snapshot()
       return { on: s.phase !== 'off', status: s.phase === 'off' && !s.error ? null : describeSnapshot(s).text }

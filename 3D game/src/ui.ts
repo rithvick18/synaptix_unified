@@ -93,6 +93,10 @@ export interface LevelSelectView {
   keys?: string
   /** Optional camera support (src/camera/). Off unless someone turns it on from here. */
   camera?: CameraEntry
+  /** Back to the Reminiscence Therapy Suite (src/suite/), whose open-ended activities are
+   *  separate from these tasks with caregiver-set answers. */
+  onSuite?: () => void
+  suiteLabel?: string
 }
 
 /** The level-list entry for optional camera support. Plain words, no judgement. */
@@ -154,6 +158,9 @@ html, body { margin: 0; height: 100%; overflow: hidden; background: #0e0f11;
   color: #f2efe9; }
 canvas { display: block; }
 #hud { position: fixed; inset: 0; pointer-events: none; }
+/* The Reminiscence Therapy Suite (src/suite/) has the screen: the house HUD, answer card and
+   overlays step aside. Their state is untouched and returns with the guided tasks. */
+body.suite-active #hud, body.suite-active #answer, body.suite-active #overlay { display: none !important; }
 #crosshair { position: absolute; left: 50%; top: 50%; width: 6px; height: 6px;
   margin: -3px 0 0 -3px; border-radius: 50%; background: rgba(255,255,255,.75);
   box-shadow: 0 0 0 1px rgba(0,0,0,.45); transition: transform .12s ease, background .12s ease; }
@@ -488,6 +495,13 @@ export class UI {
       (view.demoNotice ? `<div class="demo">${escapeText(view.demoNotice)}</div>` : '') +
       (view.keys ? `<div class="keys">${view.keys}</div>` : '')
 
+    if (view.onSuite) {
+      const button = document.createElement('button')
+      button.dataset.act = 'suite'
+      button.textContent = view.suiteLabel ?? 'Back to the Reminiscence Therapy Suite'
+      button.onclick = e => { e.stopPropagation(); view.onSuite?.() }
+      this.overlayCard.querySelector('h1')?.after(button)
+    }
     if (view.onPersonalise) {
       const button = document.createElement('button')
       button.textContent = view.personalisationLabel ?? 'Personalise Home'

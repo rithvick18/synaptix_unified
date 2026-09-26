@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="/" />
+    <title>Suite app harness (dev only)</title>
+    <style>html,body{margin:0;height:100%;overflow:hidden;background:#0e0f11;font:14px/1.45 system-ui,sans-serif}
+      #camera-dock{position:fixed;right:14px;bottom:14px;z-index:41;padding:7px 12px;border-radius:999px;background:#1a1c20;color:#f2efe9}</style>
+  </head>
+  <body>
+    <div id="app"></div>
+    <!-- Stand-in for the camera chip dock, to check that nothing overlaps it. -->
+    <div id="camera-dock">● Camera</div>
+    <script type="module" src="/src/suite/app/dev/harness.ts"></script>
+  </body>
+</html>

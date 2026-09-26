@@ -1,4 +1,58 @@
-# Memoria Unified: Memoria 3D with optional camera support
+# Memoria Unified: Memoria 3D, the Reminiscence Therapy Suite, and optional camera support
+
+## Reminiscence Therapy Suite (new)
+
+Memoria 3D now opens on the **Reminiscence Therapy Suite**. "Reminiscence Therapy Suite" is product branding for an activity space where a person and a caregiver can explore familiar places, objects, photographs and sounds together. It is not a clinically validated treatment, it does not diagnose, and it makes no claim about medical outcomes.
+
+The flow:
+
+1. Choose a saved profile or the generic demo.
+2. Choose a content pack and an environment.
+3. Choose an activity.
+4. Explore, with optional prompts and caregiver notes.
+5. Read a factual summary.
+
+The suite has no timers, no scores, and no right or wrong answers.
+
+- **Content:** two packs.
+  - *Everyday home* is the default and is not tied to any region. Its environments are a living room, a kitchen with a dining area, and a courtyard with a veranda.
+  - *Northeast home* is optional and regional, with a living room and a veranda.
+  - Across the packs: 76 procedural assets with rendered thumbnails, CC0 textures vendored locally, synthesized sounds, and demo illustrations.
+- **Activities:** photo exploration, familiar objects, sound and memory, familiar space, and a guided sequence.
+- **Caregiver setup:**
+  - language, pack and environment;
+  - hide or rename objects;
+  - personal photographs with captions and caregiver-typed names;
+  - recorded prompts and familiar sounds;
+  - topics to include or avoid;
+  - open or guided mode, and a sequence.
+
+  Everything is stored in the existing IndexedDB profile. Nothing is inferred.
+- **Languages:** English, and Hindi. The Hindi is machine-generated and needs human review. Both have full UI coverage, and no other language is claimed.
+- **Camera support:** stays optional. In the suite it only affects presentation timing: it holds a new prompt's speech, and offers one gentle re-offer. Nothing is read as recall or as a clinical state.
+- **Guided tasks:** the existing three levels with caregiver-set answers are unchanged, and reachable from the suite's home screen or with `?start=tasks`.
+
+Documentation for adding a content pack, a language, an activity or an asset, the verification results and the known limitations are in [`3D game/docs/suite/README.md`](3D%20game/docs/suite/README.md).
+
+### Startup
+
+```sh
+npm run setup        # once
+npm run dev          # game at http://localhost:5173/ (the suite is the first screen), camera service on :8765
+# or, game only, no camera service:
+cd "3D game" && npm install && npm run dev
+```
+
+### Suite checks
+
+```sh
+cd "3D game"
+npm run check                           # 17 suites, including suite-assets, -activities, -profile and -app
+npm run build && node tools/suite/browser-check.mjs   # 60 browser assertions against the built app
+```
+
+---
+
 
 This workspace holds two projects that were built separately. They now run as one game:
 

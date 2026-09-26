@@ -212,7 +212,8 @@ async function runConfig(cdp, config) {
   consoleErrors.length = 0
   pageErrors.length = 0
 
-  const booted = await navigateAndBoot(cdp, `/?template=${encodeURIComponent(config.id)}&mirror=${config.mirror ? 1 : 0}`)
+  // `start=tasks` opens the guided tasks first; the default first screen is the suite.
+  const booted = await navigateAndBoot(cdp, `/?start=tasks&template=${encodeURIComponent(config.id)}&mirror=${config.mirror ? 1 : 0}`)
   ok(booted, 'the app boots with the network disabled', 'window.__memoria.debug never appeared')
 
   if (booted) {
@@ -354,7 +355,7 @@ async function runConfig(cdp, config) {
 
     // --- the level-selection screen ----------------------------------------
     const levelCard = await cdp.eval('document.querySelector("#overlay .card.levels")?.textContent ?? ""')
-    ok(levelCard.length > 0, 'the level-selection screen is the first thing shown')
+    ok(levelCard.length > 0, 'with ?start=tasks the level-selection screen is the first thing shown')
     for (const title of ['A glass of water', 'Morning walk', 'Familiar memories']) {
       ok(levelCard.includes(title), `the level list offers "${title}"`)
     }
@@ -611,7 +612,7 @@ try {
 
   // §11.5 — every registered template, both ways round. The registry is read from
   // the app itself, so this list cannot fall out of step with src/templates/index.ts.
-  const defaultBooted = await navigateAndBoot(cdp, '/')
+  const defaultBooted = await navigateAndBoot(cdp, '/?start=tasks')
   ok(defaultBooted, 'the app boots with the network disabled', 'window.__memoria.debug never appeared')
   const registry = defaultBooted ? await cdp.eval('window.__memoriaTemplates') : []
   const defaultHouse = defaultBooted ? await cdp.eval('JSON.stringify(window.__memoriaAssets.template)') : null

@@ -42,10 +42,10 @@
     "semantic_hash": ""
   },
   "src/Player.ts": {
-    "mtime": 1789854635.2466078,
-    "seen": 1789878520.435353,
-    "ast_hash": "8aa6950ab4e60156e617a64e1b7a5256",
-    "semantic_hash": "8aa6950ab4e60156e617a64e1b7a5256"
+    "mtime": 1790360517.1180308,
+    "seen": 1790389297.661831,
+    "ast_hash": "ad5a6dddb44186f3f8ed54eaf05129ca",
+    "semantic_hash": ""
   },
   "src/Renderer.ts": {
     "mtime": 1790014936.995617,
@@ -78,9 +78,9 @@
     "semantic_hash": ""
   },
   "src/main.ts": {
-    "mtime": 1790281622.5909114,
-    "seen": 1790283561.990454,
-    "ast_hash": "10f24e85d778b0c2b39a01eb31235eb9",
+    "mtime": 1790360975.392982,
+    "seen": 1790389297.6618502,
+    "ast_hash": "4b56df459d4cc71387517ce8baacfe19",
     "semantic_hash": ""
   },
   "src/proceduralHouse.ts": {
@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "src/ui.ts": {
-    "mtime": 1790281600.5826426,
-    "seen": 1790283561.990458,
-    "ast_hash": "a751eb2e579aebaf42d7b96e651a9758",
+    "mtime": 1790360868.984833,
+    "seen": 1790389297.661875,
+    "ast_hash": "a5e68430b46d34a5393434753c69ba58",
     "semantic_hash": ""
   },
   "tools/checks/pack.check.ts": {
@@ -132,9 +132,9 @@
     "semantic_hash": "ab36630a11986b0c18a7d92caf2cc0dc"
   },
   "tools/offline-check.mjs": {
-    "mtime": 1790113205.215855,
-    "seen": 1790113710.109353,
-    "ast_hash": "060928a06738612825dccfec05834cab",
+    "mtime": 1790360961.449328,
+    "seen": 1790389297.661886,
+    "ast_hash": "6ba92aa3a4a7a83e8e7b304dd0e87d5b",
     "semantic_hash": ""
   },
   "tsconfig.json": {
@@ -168,9 +168,9 @@
     "semantic_hash": ""
   },
   "index.html": {
-    "mtime": 1790092497.4803977,
-    "seen": 1790094388.2188091,
-    "ast_hash": "401bca290cf66bc83183e9eaea6e6145",
+    "mtime": 1790360975.39312,
+    "seen": 1790389297.6618938,
+    "ast_hash": "748f10c96147ba2898c08fc6c8fb90b7",
     "semantic_hash": ""
   },
   "public/packs/mira/ananya.jpg": {
@@ -258,9 +258,9 @@
     "semantic_hash": "95cfab9db802e37570ad288c56f14c15"
   },
   "src/LocalProfile.ts": {
-    "mtime": 1790103285.9701273,
-    "seen": 1790103744.935497,
-    "ast_hash": "757d6070dab2add86fe21da140d9a398",
+    "mtime": 1790361049.679352,
+    "seen": 1790389297.661828,
+    "ast_hash": "1761a9fdbba72cea650df38a9618f8d7",
     "semantic_hash": ""
   },
   "src/PhotoMedia.ts": {
@@ -270,9 +270,9 @@
     "semantic_hash": ""
   },
   "src/ProfileEditor.ts": {
-    "mtime": 1790103285.9702942,
-    "seen": 1790283561.9904351,
-    "ast_hash": "4f2470c12f6c2ce15013342f2cc9fba0",
+    "mtime": 1790361052.1900601,
+    "seen": 1790389297.661831,
+    "ast_hash": "81109af5a52cd4eb27652bcf5993d718",
     "semantic_hash": ""
   },
   "src/agent/__fixtures__/proposals.fixtures.ts": {
@@ -612,9 +612,9 @@
     "semantic_hash": ""
   },
   "src/camera/integration.ts": {
-    "mtime": 1790282405.2363198,
-    "seen": 1790283561.9904509,
-    "ast_hash": "b5d89f8214d378e08a540f0e693656c0",
+    "mtime": 1790360921.0056193,
+    "seen": 1790389297.661848,
+    "ast_hash": "41aa175f9ec98ef1a2e5d12b5f55361d",
     "semantic_hash": ""
   },
   "src/camera/runtime.ts": {
@@ -630,15 +630,735 @@
     "semantic_hash": ""
   },
   "src/camera/types.ts": {
-    "mtime": 1790282594.6844752,
-    "seen": 1790283561.990452,
-    "ast_hash": "7b8611842a1cdd5dea9ebe7721e6cc6c",
+    "mtime": 1790360261.3669157,
+    "seen": 1790389297.661849,
+    "ast_hash": "d6db3a7f06c35fb3af2eb607d05d0da3",
     "semantic_hash": ""
   },
   "tools/checks/camera.check.ts": {
     "mtime": 1790281832.2484746,
     "seen": 1790283561.990462,
     "ast_hash": "9deefe76b5b4d37ca7a1a4db8ae6dd8c",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/sources.json": {
+    "mtime": 1790360946.1456034,
+    "seen": 1790389297.661819,
+    "ast_hash": "ba991d839c2ea1f4299d36cffa643ca2",
+    "semantic_hash": ""
+  },
+  "public/suite/locales/en/activities.json": {
+    "mtime": 1790361718.7272208,
+    "seen": 1790389297.66182,
+    "ast_hash": "b0173caedb09c54e975b51dca0bfd2d5",
+    "semantic_hash": ""
+  },
+  "public/suite/locales/en/app.json": {
+    "mtime": 1790389009.564599,
+    "seen": 1790389297.661821,
+    "ast_hash": "25ffeb98dded7a4e82f7501c8e80a82d",
+    "semantic_hash": ""
+  },
+  "public/suite/locales/en/common.json": {
+    "mtime": 1790361488.3083026,
+    "seen": 1790389297.661821,
+    "ast_hash": "6e15c81222cb9fddd01a2b624474141e",
+    "semantic_hash": ""
+  },
+  "public/suite/locales/en/setup.json": {
+    "mtime": 1790361550.2774317,
+    "seen": 1790389297.6618218,
+    "ast_hash": "7102bd9409505a2da5e4305f1afce9b6",
+    "semantic_hash": ""
+  },
+  "public/suite/locales/hi/activities.json": {
+    "mtime": 1790361735.7238307,
+    "seen": 1790389297.6618218,
+    "ast_hash": "52f8021df1d89e6c0fd28df8764ac393",
+    "semantic_hash": ""
+  },
+  "public/suite/locales/hi/app.json": {
+    "mtime": 1790389053.4453864,
+    "seen": 1790389297.661823,
+    "ast_hash": "9b6c6d8bb9383369dcd0adc3d17f172b",
+    "semantic_hash": ""
+  },
+  "public/suite/locales/hi/common.json": {
+    "mtime": 1790361523.86154,
+    "seen": 1790389297.661823,
+    "ast_hash": "2d52e9cdafd5507e6c6bf3604ddec408",
+    "semantic_hash": ""
+  },
+  "public/suite/locales/hi/setup.json": {
+    "mtime": 1790361591.8041916,
+    "seen": 1790389297.661823,
+    "ast_hash": "073b0564dde2be9f6a558ce9dee85618",
+    "semantic_hash": ""
+  },
+  "public/suite/locales/index.json": {
+    "mtime": 1790389230.5925212,
+    "seen": 1790389297.661824,
+    "ast_hash": "741a4b6feccaefdd0be1f5a24a47eaec",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/content.json": {
+    "mtime": 1790361695.8141801,
+    "seen": 1790389297.661824,
+    "ast_hash": "8f9b865c35ab377f3989407a9322a706",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/pack.json": {
+    "mtime": 1790360511.8245106,
+    "seen": 1790389297.661825,
+    "ast_hash": "911ff546ceab913276f807149f36e904",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/index.json": {
+    "mtime": 1790360511.8221211,
+    "seen": 1790389297.661825,
+    "ast_hash": "1900ceecc11b7b43c6cb323c12f7eacf",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/northeast-home/content.json": {
+    "mtime": 1790361695.924911,
+    "seen": 1790389297.661825,
+    "ast_hash": "4d062c49d8e14268a07085e6436f12a7",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/northeast-home/pack.json": {
+    "mtime": 1790360511.8267295,
+    "seen": 1790389297.6618261,
+    "ast_hash": "a5990676ab4b99d2dbf0a16e22c7344e",
+    "semantic_hash": ""
+  },
+  "src/suite/activities/definitions.ts": {
+    "mtime": 1790389106.1610634,
+    "seen": 1790389297.661851,
+    "ast_hash": "ebd34df90851008045b22612859ce18a",
+    "semantic_hash": ""
+  },
+  "src/suite/activities/index.ts": {
+    "mtime": 1790389200.5519714,
+    "seen": 1790389297.661852,
+    "ast_hash": "0faa5a06ae5167af15f8679ec7d6d2ca",
+    "semantic_hash": ""
+  },
+  "src/suite/activities/session.ts": {
+    "mtime": 1790389211.0357485,
+    "seen": 1790389297.661852,
+    "ast_hash": "9686fd37acc713e816248b80311dd5f5",
+    "semantic_hash": ""
+  },
+  "src/suite/activities/summary.ts": {
+    "mtime": 1790389122.7328227,
+    "seen": 1790389297.661852,
+    "ast_hash": "dcbb6fe9d019958fa51b2f9856a36c54",
+    "semantic_hash": ""
+  },
+  "src/suite/app/app.ts": {
+    "mtime": 1790388901.9995186,
+    "seen": 1790389297.6618528,
+    "ast_hash": "519b0dbeb09bddf93e6a229a3d61f647",
+    "semantic_hash": ""
+  },
+  "src/suite/app/audio.ts": {
+    "mtime": 1790361173.187499,
+    "seen": 1790389297.6618528,
+    "ast_hash": "40dbff75529565fc68356d73eb7d60a6",
+    "semantic_hash": ""
+  },
+  "src/suite/app/deps.ts": {
+    "mtime": 1790361413.3053944,
+    "seen": 1790389297.6618528,
+    "ast_hash": "8ceeedc7db3368836102701b1ab7d285",
+    "semantic_hash": ""
+  },
+  "src/suite/app/dev/harness.ts": {
+    "mtime": 1790389192.1308734,
+    "seen": 1790389297.661854,
+    "ast_hash": "f691abeb9cd60a2a699b0cba214623eb",
+    "semantic_hash": ""
+  },
+  "src/suite/app/dom.ts": {
+    "mtime": 1790361273.7657096,
+    "seen": 1790389297.661854,
+    "ast_hash": "99f7270d390ae74e51f92620f6ba802f",
+    "semantic_hash": ""
+  },
+  "src/suite/app/explore.ts": {
+    "mtime": 1790388901.999349,
+    "seen": 1790389297.661855,
+    "ast_hash": "db792d7737e6b70e0e92ba425b910273",
+    "semantic_hash": ""
+  },
+  "src/suite/app/highlight.ts": {
+    "mtime": 1790361206.171594,
+    "seen": 1790389297.661855,
+    "ast_hash": "b595b40a3096c121d6da92d71411b040",
+    "semantic_hash": ""
+  },
+  "src/suite/app/index.ts": {
+    "mtime": 1790361765.8777199,
+    "seen": 1790389297.661855,
+    "ast_hash": "ceb26916652e1358a25864e0bb2f95ec",
+    "semantic_hash": ""
+  },
+  "src/suite/app/keyboard.ts": {
+    "mtime": 1790361123.7866654,
+    "seen": 1790389297.661856,
+    "ast_hash": "852fb78921a5a9a6d3b5a1bb78e1644e",
+    "semantic_hash": ""
+  },
+  "src/suite/app/navigator.ts": {
+    "mtime": 1790361109.0367546,
+    "seen": 1790389297.661856,
+    "ast_hash": "cf13916bb7516ad441d03653f23e60c3",
+    "semantic_hash": ""
+  },
+  "src/suite/app/screens.ts": {
+    "mtime": 1790361675.2673848,
+    "seen": 1790389297.6618571,
+    "ast_hash": "018161d3efb7976002a41bfd6506f2b7",
+    "semantic_hash": ""
+  },
+  "src/suite/app/settings.ts": {
+    "mtime": 1790361033.766886,
+    "seen": 1790389297.6618571,
+    "ast_hash": "2165eb7662aa16a752263db25c48824a",
+    "semantic_hash": ""
+  },
+  "src/suite/app/settingsPanel.ts": {
+    "mtime": 1790361612.497169,
+    "seen": 1790389297.6618571,
+    "ast_hash": "3490a9f112be9ada1d99ecb7cc5b8cd6",
+    "semantic_hash": ""
+  },
+  "src/suite/app/styles.ts": {
+    "mtime": 1790361314.1628976,
+    "seen": 1790389297.661858,
+    "ast_hash": "2caa75cd3aeea8c07297cb65251cfdd6",
+    "semantic_hash": ""
+  },
+  "src/suite/app/summary.ts": {
+    "mtime": 1790361422.5337362,
+    "seen": 1790389297.661858,
+    "ast_hash": "576f2a2a2baf3c0332b369da77fb120f",
+    "semantic_hash": ""
+  },
+  "src/suite/app/theme.ts": {
+    "mtime": 1790361052.1894777,
+    "seen": 1790389297.661859,
+    "ast_hash": "7d76fbad0bfe1615e119ec023f60d127",
+    "semantic_hash": ""
+  },
+  "src/suite/app/vision.ts": {
+    "mtime": 1790361184.298399,
+    "seen": 1790389297.661859,
+    "ast_hash": "e971abc449afd4b3b47e4beccdf2bc43",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/builders/common.ts": {
+    "mtime": 1790361619.2258868,
+    "seen": 1790389297.661859,
+    "ast_hash": "0430832b3ef642a266dedef3901a8cf0",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/builders/furniture.ts": {
+    "mtime": 1790361702.851884,
+    "seen": 1790389297.66186,
+    "ast_hash": "bff2273cede4cecd54f674cdbfb1a644",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/builders/index.ts": {
+    "mtime": 1790389196.8260174,
+    "seen": 1790389297.66186,
+    "ast_hash": "ade376459b70899e3c85d535e7276c65",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/builders/keepsakes.ts": {
+    "mtime": 1790361655.3414216,
+    "seen": 1790389297.66186,
+    "ast_hash": "74db0a9634f26385eb2d0eab770ce891",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/builders/kitchen.ts": {
+    "mtime": 1790388953.8140604,
+    "seen": 1790389297.6618612,
+    "ast_hash": "16f2c07754e254166b029d33b94af0d3",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/builders/media.ts": {
+    "mtime": 1790389056.6481912,
+    "seen": 1790389297.6618612,
+    "ast_hash": "40ce40c67ca83b037b7a2b80fc4ebc9e",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/builders/misc.ts": {
+    "mtime": 1790389183.5607605,
+    "seen": 1790389297.661862,
+    "ast_hash": "39811f19784acb939a8713f37fb25386",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/builders/plants.ts": {
+    "mtime": 1790388994.2996223,
+    "seen": 1790389297.661862,
+    "ast_hash": "1cc8d87b1a4bb63ccc789efd3a0c7f96",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/builders/school.ts": {
+    "mtime": 1790389099.152233,
+    "seen": 1790389297.661862,
+    "ast_hash": "69b5985ea5325de6e2ddedef6d5bea29",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/builders/storage.ts": {
+    "mtime": 1790361769.6778,
+    "seen": 1790389297.6618629,
+    "ast_hash": "e80302ce31ba1bd66bc3681e937a2404",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/builders/textiles.ts": {
+    "mtime": 1790361765.1208372,
+    "seen": 1790389297.6618629,
+    "ast_hash": "a04f2f19a546fa3b325c19d1f23af4c3",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/cache.ts": {
+    "mtime": 1790361434.2733545,
+    "seen": 1790389297.6618629,
+    "ast_hash": "2aff3e96d9eefea8fcf742b4f3faf1b0",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/kit.ts": {
+    "mtime": 1790361545.545266,
+    "seen": 1790389297.661864,
+    "ast_hash": "c8c369a050341e69c8bae4f101bddda5",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/materials.ts": {
+    "mtime": 1790361491.2268925,
+    "seen": 1790389297.661864,
+    "ast_hash": "803397cf890cb2a164a7b32738f1e2c2",
+    "semantic_hash": ""
+  },
+  "src/suite/assets/textures.ts": {
+    "mtime": 1790361454.6033762,
+    "seen": 1790389297.661865,
+    "ast_hash": "8adc37f5702385d5242feed179fb487b",
+    "semantic_hash": ""
+  },
+  "src/suite/content/index.ts": {
+    "mtime": 1790389013.1788707,
+    "seen": 1790389297.661865,
+    "ast_hash": "9d4512b14017c6315b513080bf0d3bc1",
+    "semantic_hash": ""
+  },
+  "src/suite/content/loader.ts": {
+    "mtime": 1790388902.4605157,
+    "seen": 1790389297.661865,
+    "ast_hash": "4a5343ed1f4b74533e0c135b54c7a7c2",
+    "semantic_hash": ""
+  },
+  "src/suite/content/media.ts": {
+    "mtime": 1790388963.0258818,
+    "seen": 1790389297.661866,
+    "ast_hash": "c7bcd898903b28be14b438265a609c58",
+    "semantic_hash": ""
+  },
+  "src/suite/content/prompts.ts": {
+    "mtime": 1790389070.0435708,
+    "seen": 1790389297.661866,
+    "ast_hash": "92254fee39f2a3122d2814ba5d4f4638",
+    "semantic_hash": ""
+  },
+  "src/suite/content/validate.ts": {
+    "mtime": 1790361787.1449494,
+    "seen": 1790389297.661866,
+    "ast_hash": "8dae2b8c6704ae1e9c779bdfe8946dce",
+    "semantic_hash": ""
+  },
+  "src/suite/contracts.ts": {
+    "mtime": 1790360490.064636,
+    "seen": 1790389297.661867,
+    "ast_hash": "9089148670d1b2e9d69bbfcfbff0cb5a",
+    "semantic_hash": ""
+  },
+  "src/suite/i18n/core.ts": {
+    "mtime": 1790360956.9578888,
+    "seen": 1790389297.661867,
+    "ast_hash": "96de78d7c0984e333f6dd108b61ce367",
+    "semantic_hash": ""
+  },
+  "src/suite/i18n/index.ts": {
+    "mtime": 1790360999.676313,
+    "seen": 1790389297.661868,
+    "ast_hash": "d46b718c13d3819bba068004e6801a4f",
+    "semantic_hash": ""
+  },
+  "src/suite/paths.ts": {
+    "mtime": 1790360490.0702367,
+    "seen": 1790389297.661868,
+    "ast_hash": "2fb9f7b3d9f58e94e7a53f489b5f28d1",
+    "semantic_hash": ""
+  },
+  "src/suite/profile/editor.ts": {
+    "mtime": 1790389149.087107,
+    "seen": 1790389297.661868,
+    "ast_hash": "8e48668061b5761093bdd3182b17fc37",
+    "semantic_hash": ""
+  },
+  "src/suite/profile/editorStyle.ts": {
+    "mtime": 1790389204.534733,
+    "seen": 1790389297.661869,
+    "ast_hash": "547560a8d61e57ffb21073485312b305",
+    "semantic_hash": ""
+  },
+  "src/suite/profile/index.ts": {
+    "mtime": 1790361461.1604357,
+    "seen": 1790389297.661869,
+    "ast_hash": "11a23ac62337dd18963b56778aefedfb",
+    "semantic_hash": ""
+  },
+  "src/suite/profile/media.ts": {
+    "mtime": 1790361163.8211818,
+    "seen": 1790389297.661869,
+    "ast_hash": "e11662bfbf695c59bdc69a60c05c03fd",
+    "semantic_hash": ""
+  },
+  "src/suite/profile/model.ts": {
+    "mtime": 1790361042.54209,
+    "seen": 1790389297.6618712,
+    "ast_hash": "8baad29034ab86d52812ac69d255ce37",
+    "semantic_hash": ""
+  },
+  "src/suite/profile/resolve.ts": {
+    "mtime": 1790361080.5607252,
+    "seen": 1790389297.6618712,
+    "ast_hash": "94600ccd54bfa471ed1498a6d4f3ba8b",
+    "semantic_hash": ""
+  },
+  "tools/checks/suite-app.check.ts": {
+    "mtime": 1790389113.4070363,
+    "seen": 1790389297.6618822,
+    "ast_hash": "f24a30b8f7de6beeebc93c343bea30c8",
+    "semantic_hash": ""
+  },
+  "tools/checks/suite-profile.check.ts": {
+    "mtime": 1790361752.0625288,
+    "seen": 1790389297.6618822,
+    "ast_hash": "7023a28e564aa0542fb9a98a247992df",
+    "semantic_hash": ""
+  },
+  "tools/suite/assets/fetch-textures.mjs": {
+    "mtime": 1790360927.0140138,
+    "seen": 1790389297.661887,
+    "ast_hash": "59752badb7c7585c210860435efa19f6",
+    "semantic_hash": ""
+  },
+  "tools/suite/content/build-content.mjs": {
+    "mtime": 1790361684.9528246,
+    "seen": 1790389297.661888,
+    "ast_hash": "1ea8a7b3c20260cc7d62efe8e645bcc7",
+    "semantic_hash": ""
+  },
+  "tools/suite/content/make-images.py": {
+    "mtime": 1790361209.826262,
+    "seen": 1790389297.661888,
+    "ast_hash": "3162512160d1dbe3e718768775813a52",
+    "semantic_hash": ""
+  },
+  "tools/suite/content/make-sounds.mjs": {
+    "mtime": 1790361695.603159,
+    "seen": 1790389297.661889,
+    "ast_hash": "5c3405ba573bf04412b9f9a64d23119d",
+    "semantic_hash": ""
+  },
+  "tools/suite/run-check.mjs": {
+    "mtime": 1790360511.828782,
+    "seen": 1790389297.661889,
+    "ast_hash": "8d675b450696181320dd0e326da8de13",
+    "semantic_hash": ""
+  },
+  "docs/suite/PLAN.md": {
+    "mtime": 1790360561.336416,
+    "seen": 1790389297.6618922,
+    "ast_hash": "a189ce4d8454a2761a45d999d716f5f4",
+    "semantic_hash": ""
+  },
+  "docs/suite/languages.md": {
+    "mtime": 1790389295.6050093,
+    "seen": 1790389297.6618922,
+    "ast_hash": "7a2dd8cf1230eaa587c51f02c1f37288",
+    "semantic_hash": ""
+  },
+  "docs/suite/personalization.md": {
+    "mtime": 1790389282.6519895,
+    "seen": 1790389297.6618931,
+    "ast_hash": "2ad7dfeaee4fa9f66d6bebe867d9f45a",
+    "semantic_hash": ""
+  },
+  "public/suite/fonts/ATTRIBUTION.md": {
+    "mtime": 1790361623.1777225,
+    "seen": 1790389297.6618938,
+    "ast_hash": "8676468eb8932f78734a5022ea3f75e6",
+    "semantic_hash": ""
+  },
+  "public/suite/fonts/OFL.txt": {
+    "mtime": 1790360825.2539086,
+    "seen": 1790389297.6618948,
+    "ast_hash": "e13edde515de034b8074223fadcff8a9",
+    "semantic_hash": ""
+  },
+  "src/suite/app/dev/harness.html": {
+    "mtime": 1790389192.129202,
+    "seen": 1790389297.6618948,
+    "ast_hash": "12404112459cda81f8f53c32241491a5",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/bamboo_diff.webp": {
+    "mtime": 1790360946.0578768,
+    "seen": 1790389297.661899,
+    "ast_hash": "22255cf960f02419c5f098d52d533491",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/bamboo_nor.webp": {
+    "mtime": 1790360946.1448238,
+    "seen": 1790389297.661899,
+    "ast_hash": "a474b8bd1a582112ac28d32aaacda112",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/cement_diff.webp": {
+    "mtime": 1790360943.6665902,
+    "seen": 1790389297.6619,
+    "ast_hash": "0470c6a3113f2f7d397a0caef17c4711",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/cement_nor.webp": {
+    "mtime": 1790360943.7513864,
+    "seen": 1790389297.6619,
+    "ast_hash": "967b9270d076540736c3758dbea1441e",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/clay_diff.webp": {
+    "mtime": 1790360944.5566943,
+    "seen": 1790389297.661901,
+    "ast_hash": "f63ab33434a15114cad336b4035dfc18",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/clay_nor.webp": {
+    "mtime": 1790360944.6439013,
+    "seen": 1790389297.661901,
+    "ast_hash": "6a45710ee24ca854f86762a072237562",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/fabric_diff.webp": {
+    "mtime": 1790360945.5086436,
+    "seen": 1790389297.661901,
+    "ast_hash": "2e8f52f41dd5a5918d8b9a86ea0e6eb0",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/fabric_nor.webp": {
+    "mtime": 1790360945.7094777,
+    "seen": 1790389297.6619022,
+    "ast_hash": "9ac89a0419492af6b6d39f3756087fec",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/floor-wood_diff.webp": {
+    "mtime": 1790360935.5406327,
+    "seen": 1790389297.6619022,
+    "ast_hash": "6bbbdf6f251178a5e0bcc12d53a839ba",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/floor-wood_nor.webp": {
+    "mtime": 1790360935.7169979,
+    "seen": 1790389297.6619022,
+    "ast_hash": "4e8bd49b242a99c0e2d09bd95879112f",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/plaster_diff.webp": {
+    "mtime": 1790360936.3986192,
+    "seen": 1790389297.6619031,
+    "ast_hash": "7aabc90154ba9b7d1b844dc5d14195fc",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/plaster_nor.webp": {
+    "mtime": 1790360936.690272,
+    "seen": 1790389297.6619031,
+    "ast_hash": "51e77602c9765bd50ad85111feb86b9d",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/stone_diff.webp": {
+    "mtime": 1790360942.9325879,
+    "seen": 1790389297.6619031,
+    "ast_hash": "61d145a1f47603d9a24317043a25b933",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/stone_nor.webp": {
+    "mtime": 1790360943.1252058,
+    "seen": 1790389297.6619039,
+    "ast_hash": "7b9acfc8cf9101e1f71840b12a7a71be",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/terrazzo_diff.webp": {
+    "mtime": 1790360937.6919596,
+    "seen": 1790389297.6619039,
+    "ast_hash": "7b19749ef0f1b36b8cc0812a6d948434",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/terrazzo_nor.webp": {
+    "mtime": 1790360940.5148854,
+    "seen": 1790389297.6619048,
+    "ast_hash": "4c8ea675e872c5a41f6eb905fd1f1ae7",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/tile_diff.webp": {
+    "mtime": 1790360941.814556,
+    "seen": 1790389297.6619048,
+    "ast_hash": "b401e4cd92999f99fd1c3070781438e2",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/tile_nor.webp": {
+    "mtime": 1790360941.8929188,
+    "seen": 1790389297.6619048,
+    "ast_hash": "a9da2bfb2465cb6aab7c2885bbabb126",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/wood_diff.webp": {
+    "mtime": 1790360934.4635985,
+    "seen": 1790389297.661906,
+    "ast_hash": "f75a817cba41aee6fb2e91318e6bdb85",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/textures/wood_nor.webp": {
+    "mtime": 1790360934.6342974,
+    "seen": 1790389297.661906,
+    "ast_hash": "97b1ef8324269aaacb1662d08e99fc68",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/images/pic-flowers.webp": {
+    "mtime": 1790361220.7408922,
+    "seen": 1790389297.661906,
+    "ast_hash": "a0b66f576cbdfb25699cb1eced85d1db",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/images/pic-fruit-bowl.webp": {
+    "mtime": 1790361220.9655898,
+    "seen": 1790389297.661907,
+    "ast_hash": "c7f04d029405d26e739e21af5f0c6b23",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/images/pic-hills-morning.webp": {
+    "mtime": 1790361220.2839608,
+    "seen": 1790389297.661907,
+    "ast_hash": "6fa047c13fc3222b2bc6331166acf001",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/images/pic-river-dusk.webp": {
+    "mtime": 1790361220.0746388,
+    "seen": 1790389297.661908,
+    "ast_hash": "0c683fe5f854cff983fb94bafcc1cf24",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/images/pic-seaside.webp": {
+    "mtime": 1790361220.4322577,
+    "seen": 1790389297.661908,
+    "ast_hash": "211e28e0b8e18ce3a51d45f6aa91dbee",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/images/pic-train-window.webp": {
+    "mtime": 1790361221.155863,
+    "seen": 1790389297.661908,
+    "ast_hash": "b2f987ae21904a53e805384028ae8065",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/northeast-home/images/pic-bamboo-grove.webp": {
+    "mtime": 1790361222.3438613,
+    "seen": 1790389297.661909,
+    "ast_hash": "c31629aef7eee3f3f2da5d728889b753",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/northeast-home/images/pic-hills-mist.webp": {
+    "mtime": 1790361221.5689905,
+    "seen": 1790389297.661909,
+    "ast_hash": "4cc6dba972ce4b77d4e6df9891a68177",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/northeast-home/images/pic-paddy-fields.webp": {
+    "mtime": 1790361222.8629763,
+    "seen": 1790389297.661909,
+    "ast_hash": "51ce73e200e8f8bb9c25140ca26653ad",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-bicycle-bell.mp3": {
+    "mtime": 1790361035.7544777,
+    "seen": 1790389297.6619132,
+    "ast_hash": "8b6d35962f6104f8639c108b351f5c40",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-birds-morning.mp3": {
+    "mtime": 1790361035.6054835,
+    "seen": 1790389297.6619132,
+    "ast_hash": "110bc6b48afcf0205c2e64daa8dd1313",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-ceiling-fan.mp3": {
+    "mtime": 1790361036.1814551,
+    "seen": 1790389297.661914,
+    "ast_hash": "0ca79f69b40a49b73059c8fc75e4784e",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-harmonium.mp3": {
+    "mtime": 1790361036.6177008,
+    "seen": 1790389297.661914,
+    "ast_hash": "0a23b9da8763cc069362e21852fc5192",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-pressure-cooker.mp3": {
+    "mtime": 1790361035.3509681,
+    "seen": 1790389297.661914,
+    "ast_hash": "5b7f923aaf1e6768f5be5cac3ea1154a",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-radio-tuning.mp3": {
+    "mtime": 1790361036.0537562,
+    "seen": 1790389297.6619148,
+    "ast_hash": "c11dc2f2c716f1a547a0c7c29f7c3b9d",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-rain-roof.mp3": {
+    "mtime": 1790361035.4767013,
+    "seen": 1790389297.6619148,
+    "ast_hash": "b564fdcfe02986da03ab095508aa032f",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-school-bell.mp3": {
+    "mtime": 1790361035.924111,
+    "seen": 1790389297.6619148,
+    "ast_hash": "914559e0340bc3b16eebc7cfa7bf0550",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-sewing-machine.mp3": {
+    "mtime": 1790361036.9105513,
+    "seen": 1790389297.661916,
+    "ast_hash": "bcae7ccc33ad79bd169f26aac5e0334e",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-train.mp3": {
+    "mtime": 1790361036.7881134,
+    "seen": 1790389297.661916,
+    "ast_hash": "57c5bf79cd8bbb9960bec0ac3f6b8eff",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-wall-clock.mp3": {
+    "mtime": 1790361035.2015262,
+    "seen": 1790389297.661917,
+    "ast_hash": "c71900c29424aa1d2f15937c7d50bee8",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/sounds/snd-water-pouring.mp3": {
+    "mtime": 1790361037.0383153,
+    "seen": 1790389297.661917,
+    "ast_hash": "f703ac8eb28ec89a83a95598a9fb6b41",
     "semantic_hash": ""
   }
 }

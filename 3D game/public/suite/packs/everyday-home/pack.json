@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "id": "everyday-home",
+  "name": { "en": "Everyday home", "hi": "रोज़मर्रा का घर" },
+  "description": {
+    "en": "A living room, a kitchen with a dining area, and a courtyard with a veranda, dressed with everyday objects found in many homes.",
+    "hi": "एक बैठक, खाने की जगह वाली रसोई, और बरामदे वाला आँगन — कई घरों में मिलने वाली रोज़मर्रा की चीज़ों के साथ।"
+  },
+  "status": "starter",
+  "regional": false,
+  "coverageNote": {
+    "en": "A general starting point, not a model of any one region, community or household. Homes across India differ widely; a caregiver can hide objects, rename them and add their own photographs and sounds.",
+    "hi": "यह एक सामान्य शुरुआत है, किसी एक क्षेत्र, समुदाय या घर का नमूना नहीं। भारत भर के घर बहुत अलग होते हैं; देखभालकर्ता चीज़ें छिपा सकते हैं, उनके नाम बदल सकते हैं और अपनी तस्वीरें व आवाज़ें जोड़ सकते हैं।"
+  },
+  "tags": { "contexts": ["home", "kitchen", "courtyard"] },
+  "files": { "environments": "environments.json", "content": "content.json" },
+  "authors": [
+    { "source": "project-generated", "author": "Memoria project", "license": "CC0-1.0" }
+  ]
+}
