@@ -1,772 +1,879 @@
-# Graph Report - synaptix_unified  (2026-09-25)
+# Graph Report - Memoria_Unified  (2026-09-26)
 
 ## Corpus Check
-- Large corpus: 418 files · ~1,259,460 words. Semantic extraction will be expensive (many Claude tokens). Consider running on a subfolder.
+- 253 files · ~417,538 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 10 file(s) not represented in the graph (top: (none) 4, .example 3, .woff2 1)
 
 ## Summary
-- 3569 nodes · 8217 edges · 158 communities (136 shown, 22 thin omitted)
-- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 261 edges (avg confidence: 0.85)
-- Token cost: 151,228 input · 0 output
+- 4122 nodes · 9388 edges · 183 communities (156 shown, 24 thin omitted)
+- Extraction: 94% EXTRACTED · 6% INFERRED · 0% AMBIGUOUS · INFERRED: 596 edges (avg confidence: 0.82)
+- Token cost: 0 input · 0 output
+
+## Graph Freshness
+- Built from commit: `cd9b5338`
+- Run `git rev-parse HEAD` and compare to check if the graph is stale.
+- Run `graphify update .` after code changes (no API cost).
 
 ## Community Hubs (Navigation)
-- 2D Daily Sequence Game
-- Unified Camera Integration Docs
-- 3D Procedural House Geometry
-- 3D Agent Gemini Provider
-- Camera Web App & Event Sink
-- 3D Boot, UI & Player
-- 3D Memory Pack & Missions Content
-- 3D Telemetry & Perf Checks
-- 3D Agent Authoring Pass
-- 3D Agent Consent & Provenance
-- Camera Service Session Engine
-- 3D Missions & Camera Hooks
-- 2D Memory Match Frontend
-- 2D Trail Trace Game
-- 3D Pack Checks
-- Camera GameAdapter (Consumer)
-- Synaptix App Shell & Navigation
-- Camera Integration Check Script
-- Camera ProducerConnection
-- 2D GameBridge & Number Challenge
-- 3D Agent Config & Setup Mode
-- Camera LocalCamera & Contracts
-- Camera Engine Tests
-- Camera API Tests
-- 2D Time-Place Anchor Logic
-- Synaptix Health Vitals UI
-- Synaptix Bottom Nav
-- Synaptix Backend API Router
-- 3D Agent Content Firewall
-- 3D Local Profile & Photos
-- 3D Adaptive Resolution
-- Camera Vision Measurements & Filters
-- Camera Transport Tests
-- 2D Games Package Deps
-- Synaptix Backend Patients API
-- Camera Service HTTP API
-- 2D Puzzle Fun & Northeast Assets
-- 2D Daily Sequence Logic
-- 3D Player Collision & World
-- 3D Template Mirroring
-- Camera Web Package Deps
-- Camera MediaPipe Landmarker
-- Camera E2E Script
-- Synaptix Game Select Screen
-- Synaptix Local DB & Sync Queue
-- Camera Producer Runtime & Protocol Msgs
-- Camera Signal Tests
-- 2D Time-Place Anchor UI
-- 3D CameraAdapter
-- 3D Interaction & Highlight
-- 3D Agent Image Pipeline
-- 3D CameraUI Panel
-- 3D Layout Constants & Templates
-- Root Dev/Setup Scripts & Vite Wiring
-- Camera Service Config & Policy
-- Camera Service Schemas
-- Camera Protocol Types
-- 3D AdaptationPolicy
-- Camera Simulated Face Source
-- Camera Message Validation
-- Memoria-3D Patch Bridge Checks
-- Camera Service Session Broadcast
-- Camera Demo Check Script
-- 2D Familiar Faces Content
-- 3D Package Deps
-- 3D Agent Prompts
-- 3D Offline Check Script
-- Camera FaceObserver Core
-- Synaptix Frontend Deps
-- 3D Agent Proposal Grammar
-- 3D VisionBridge
-- Memoria-3D Patch Observation Panel
-- Camera SignalProcessor
-- Synaptix Medicine Service
-- 3D Camera Types & Adapter API
-- 3D Camera Checks
-- Synaptix Backend App Init
-- 2D Familiar Faces UI
-- 3D Game State Machine
-- 2D Word Builder Game
-- 2D Games TSConfig
-- 3D Camera Integration Wiring
-- 3D Camera Snapshot & Live Adapter
-- Camera Gestures & Fakes
-- 3D World Snapshot Checks
-- 3D Profile Check Script
-- Pytest Conftest & Image Scraper
-- Camera Browser Check Script
-- Synaptix Health & Medicine UI
-- 2D Difficulty & Progress Types
-- 3D Photo Generator Script
-- Root Dev Orchestrator
-- Camera Demo Page
-- Camera FaceObserver Inference Loop
-- Camera Web TSConfig
-- Synaptix Frontend TSConfig
-- 3D Agent Audit Log
-- 3D Telemetry Events
-- 3D TSConfig
-- Synaptix Icons
-- Memoria 3D Docs & Deploy
-- Memoria-3D Patch VisionBridge
-- Synaptix Frontend Runtime Deps
-- 3D Check Runner
-- Camera Worker Backend Init
-- Camera Head-Pose Geometry
-- Camera Service Docs
-- Camera Reconnect Backoff
-- Root Package Scripts
-- Synaptix Auth Service
-- 3D Template Perf Script
-- Memoria-3D Patch Docs
-- Camera Service Measurement Models
-- Camera Verify Page
-- Synaptix Offline Sync Endpoint
-- Memoria 3D Spec Concepts
-- 3D Fake Observer (Checks)
-- Camera Engine Dedup & Errors
-- Camera Asset Setup Script
-- Memory Match Content Provider
-- 3D InstructionHold
-- Patch InstructionHold
-- 2D Memory Lane Logic
-- 3D Agent Provider Docs
-- Camera Heuristics & Calibration Docs
-- 3D Environment Validation
-- Camera Test Helpers
-- Camera FaceObserver API
-- Camera Frame Scheduling
-- 2D Memory Lane Screen
-- 2D Memory Lane/Match Exports
-- 3D Fake Producer (Checks)
-- 3D Agent Trust Boundary Docs
-- 3D UI View Types
-- Synaptix Frontend Dev Deps
-- Memory Lane Content Provider
-- Memory Lane Game States
-- 3D CameraUI Callbacks
-- 3D Floor Plan SVG
-- 3D Checks TSConfig
-- Camera WS Connection Queue
-- Camera Engine Test Scenarios
-- Synaptix Vite Configs
-- Synaptix Frontend Scripts
-- Memory Lane Card View
-- Patch VisionBridge Callbacks
-- 2D Games Web Entry
-- Memory Lane Flip Actions
-- Synaptix Backend Test Config
-- Synaptix Jest Config
-- Memory Lane Memorize Timer
-- 3D Agent Enable Flag
-- 3D Media Script
-- Patch Observation Toggle
-- Patch apply.sh
-- Patch unapply.sh
-- Synaptix Backend Schemas Pkg
+- test_engine.py
+- proceduralHouse.ts
+- boot
+- src/main.ts
+- MemoryPack.ts
+- SessionEngine
+- pack.check.ts
+- GameAdapter
+- LocalProfile.ts
+- transport.test.ts
+- camera.check.ts
+- ProducerConnection
+- agent-prompts.check.ts
+- integration-check.ts
+- ProducerConnection.ts
+- Kit
+- tools.ts
+- agent-gemini.check.ts
+- protocol/types.ts
+- MissionRunner
+- model_validator
+- create_app
+- signals.test.ts
+- landmarker.ts
+- templates/types.ts
+- world.check.ts
+- Quality.ts
+- agent-images.check.ts
+- templates/index.ts
+- CameraUI
+- Session
+- demo-check.mjs
+- suite-app.check.ts
+- FaceObserver
+- gestures.ts
+- review.ts
+- SuiteAudio
+- PolicyConfig
+- 3D game/package.json
+- gemini.ts
+- offline-check.mjs
+- FastAPI observation service (engine.py, sessions.py, main.py)
+- protocol/validate.ts
+- grammar.ts
+- agent-review.check.ts
+- State
+- worldSnapshot.ts
+- Memoria 3D
+- Memoria 3D Specification
+- agent-provider.check.ts
+- World.ts
+- profile-check.mjs
+- browser-check.mjs
+- demo/main.ts
+- app/app.ts
+- SuiteController
+- compilerOptions
+- Content firewall validateProposal (rules F-a to F-i)
+- CameraAdapter
+- harness.ts
+- Telemetry
+- make-photos.py
+- compilerOptions
+- observation.ts
+- FaceObserver.ts
+- CameraSnapshot
+- Privacy: offline default, online opt-in
+- .t
+- memoria-3d/VisionBridge.ts
+- VisionBridge
+- perf-templates.mjs
+- ObservationBody
+- suite-activities.check.ts
+- web/package.json
+- content/validate.ts
+- ui.ts
+- test_api.py
+- InstructionHold
+- setup-assets.mjs
+- House templates
+- run.mjs
+- scripts
+- FaceObserverApi
+- camera-e2e.mjs
+- definitions.ts
+- HintBeacon
+- proposals.fixtures.ts
+- createObservation
+- checks/tsconfig.json
+- Connection
+- devDependencies
+- .schedule
+- VisionBridge
+- Memoria 3D camera assistance patch
+- suite/contracts.ts
+- enabled.ts
+- make-media.sh
+- apply.sh
+- unapply.sh
+- 3D game/vite.config.ts
+- content/prompts.ts
+- dev.mjs
+- make-sounds.mjs
+- Memoria Unified: Memoria 3D, the Reminiscence Therapy Suite, and optional camera support
+- package.json
+- openCaregiverSetup
+- summary
+- InstructionHold
+- summary
+- Canvas
+- check.mjs
+- setup.mjs
+- CameraUI.ts
+- assets/index.ts
+- Agent-assisted caregiver setup (Checkpoint F)
+- environments/index.ts
+- VisionBridgeCallbacks
+- three
+- AdaptableRunner
+- editor.ts
+- settings
+- settings
+- explore
+- explore
+- ExploreView
+- resolve.ts
+- prototypes.ts
+- materials.ts
+- gltf.ts
+- caregiver
+- caregiver
+- i18n/index.ts
+- suite-profile.check.ts
+- ShellKit
+- model.ts
+- home
+- home
+- en/app.json
+- hi/app.json
+- integration.ts
+- ActivitySessionApi
+- ScenePhotoSurface
+- FakeUI
+- place
+- place
+- h
+- runtimeText.ts
+- Reminiscence Therapy Suite: controls, comfort and accessibility
+- activity
+- closeup
+- activity
+- closeup
+- errMsg
+- createCameraIntegration
+- Content packs
+- Personalization in the Reminiscence Therapy Suite
+- suite-assets.check.ts
+- vision
+- vision
+- render-thumbnails.mjs
+- suite/browser-check.mjs
+- Activities
+- Languages in the Reminiscence Therapy Suite
+- Reminiscence Therapy Suite — implementation plan and working agreement
+- Reminiscence Therapy Suite
+- who
+- who
+- SuiteTelemetryPort
+- _BoundedSet
+- Suite assets — provenance and attribution
+- pause
+- pause
+- Assets and environments
+- SuiteStatePort
+- fetch-textures.mjs
+- write-environments.py
+- run-check.mjs
+- .constructor
+- manifest.json
+- Fonts
 
 ## God Nodes (most connected - your core abstractions)
-1. `boot()` - 85 edges
-2. `FaceObserver` - 54 edges
-3. `GameAdapter` - 53 edges
-4. `ProducerConnection` - 53 edges
-5. `DementiaStage` - 51 edges
-6. `SessionEngine` - 43 edges
-7. `create_app()` - 41 edges
-8. `Harness` - 41 edges
-9. `ObservationBody` - 41 edges
-10. `DifficultyLevel` - 41 edges
+1. `Kit` - 102 edges
+2. `SuiteController` - 86 edges
+3. `boot()` - 78 edges
+4. `FaceObserver` - 54 edges
+5. `GameAdapter` - 53 edges
+6. `ProducerConnection` - 53 edges
+7. `openCaregiverSetup()` - 46 edges
+8. `three` - 44 edges
+9. `SessionEngine` - 43 edges
+10. `create_app()` - 43 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Hint ladder (three levels + skip)` --semantically_similar_to--> `Suggested actions: delay_instruction, gentle_cue, offer_hint, increase_difficulty`  [INFERRED] [semantically similar]
-  3D game/SPEC.md → CAMERA/README.md
-- `Offline setup mode (local llama-server over loopback)` --semantically_similar_to--> `MediaPipe Face Landmarker (tasks-vision 1.0.1)`  [INFERRED] [semantically similar]
-  3D game/SPEC.md → CAMERA/README.md
-- `memoria-3d.patch with apply.sh / unapply.sh` --references--> `Memoria 3D README`  [INFERRED]
-  CAMERA/integrations/memoria-3d/README.md → 3D game/README.md
-- `Simulation mode (labelled, not camera data)` --semantically_similar_to--> `Mira and Raju fictional demo packs`  [INFERRED] [semantically similar]
-  CAMERA/web/index.html → 3D game/README.md
-- `Synaptix backend FastAPI service (profiles, session logging, offline sync)` --semantically_similar_to--> `CAMERA/service player-observation service (FastAPI)`  [INFERRED] [semantically similar]
-  SYNAPTIX/README.md → README.md
+- `task_engagement_score heuristic` --semantically_similar_to--> `Telemetry event contract and summary`  [INFERRED] [semantically similar]
+  CAMERA/README.md → 3D game/SPEC.md
+- `Offline setup mode (llama-server, Gemma 3 4B)` --semantically_similar_to--> `Player observation service`  [INFERRED] [semantically similar]
+  3D game/README.md → CAMERA/README.md
+- `Content firewall validateProposal (rules F-a to F-i)` --semantically_similar_to--> `Actions are suggestions; game decides`  [INFERRED] [semantically similar]
+  3D game/SPEC.md → CAMERA/INTEGRATION.md
+- `LlamaCppProviderAdapter (llamaCpp.ts)` --semantically_similar_to--> `Security (loopback bind, origin allowlist, role-scoped tokens)`  [INFERRED] [semantically similar]
+  3D game/README.md → CAMERA/README.md
+- `Agent configuration (enabled false, setupMode, provider stub)` --semantically_similar_to--> `Camera assistance toggle (memoria-camera-assist-v1)`  [INFERRED] [semantically similar]
+  3D game/SPEC.md → CAMERA/integrations/memoria-3d/README.md
 
 ## Import Cycles
 - None detected.
 
 ## Hyperedges (group relationships)
-- **Camera observation pipeline (producer to service to game)** — camera_readme_faceobserver, camera_readme_producerconnection, camera_readme_observation_service, camera_readme_policy_engine, camera_readme_gameadapter [EXTRACTED 1.00]
-- **Agent-assisted setup trust boundary (propose, firewall, caregiver commit)** — 3d_game_spec_rule_f2_propose_never_commit, 3d_game_spec_content_firewall, 3d_game_readme_review_session, 3d_game_readme_agent_tool_schema, 3d_game_spec_rule_f1_no_model_in_session [EXTRACTED 1.00]
-- **Memoria 3D camera-assistance integration** — camera_integrations_memoria_3d_readme_visionbridge, camera_integrations_memoria_3d_readme_instructionhold, camera_integrations_memoria_3d_readme_observation_setup, camera_integrations_memoria_3d_readme_telemetry_mapping, camera_readme_gameadapter [INFERRED 0.85]
-- **Memoria in-page vision pipeline to observation service** — readme_faceobserver, readme_mediapipe_face_landmarker, readme_signalprocessor, readme_producerconnection, readme_sessionengine [EXTRACTED 1.00]
-- **Memoria camera adaptation rules** — readme_hold_new_instruction, readme_gentle_cue, readme_offer_hint, readme_increase_difficulty, readme_adaptationpolicy [EXTRACTED 1.00]
-- **Synaptix cognitive mini-games suite** — synaptix_readme_games_suite, synaptix_readme_daily_sequence, synaptix_readme_familiar_faces, synaptix_readme_memory_lane, synaptix_readme_memory_match, synaptix_readme_number_challenge, synaptix_readme_puzzle_fun, synaptix_readme_time_place_anchor, synaptix_readme_trail_trace, synaptix_readme_word_builder [EXTRACTED 1.00]
+- **Camera observation pipeline: producer, service, game adapter** — camera_readme_faceobserver, camera_readme_producerconnection, camera_readme_fastapi_service, camera_readme_gameadapter, camera_readme_derived_state, camera_readme_suggested_action [EXTRACTED 1.00]
+- **Measured world audits (clearance measured, never eyeballed)** — 3d_game_spec_auditdoorways, 3d_game_spec_auditreachability, 3d_game_spec_canfocus, 3d_game_spec_regression_snapshot, 3d_game_spec_four_templates [EXTRACTED 1.00]
+- **Agent trust boundary: model proposes, firewall and caregiver gate** — 3d_game_spec_rule_f1_no_model_in_session, 3d_game_spec_rule_f2_propose_never_commit, 3d_game_spec_agent_tool_contracts, 3d_game_spec_request_caregiver_input, 3d_game_spec_content_firewall, 3d_game_spec_prompt_injection, 3d_game_readme_review_session [INFERRED 0.85]
 
-## Communities (158 total, 22 thin omitted)
+## Communities (183 total, 24 thin omitted)
 
-### Community 0 - "2D Daily Sequence Game"
-Cohesion: 0.06
-Nodes (64): AccessibilityModal(), AccessibilityModalProps, styles, ActivityCard(), ActivityCardProps, styles, CaregiverConfigModal(), CaregiverConfigModalProps (+56 more)
-
-### Community 1 - "Unified Camera Integration Docs"
-Cohesion: 0.05
-Nodes (71): Memoria Unified README, Adaptation log (__memoria.camera.adaptations), AdaptationPolicy, camera.check.ts (130 headless assertions), camera-e2e end-to-end check (Scenarios A/B/C), Camera support optional and off by default, CAMERA/web camera app (MediaPipe face landmarks), CameraAdapter (+63 more)
-
-### Community 2 - "3D Procedural House Geometry"
-Cohesion: 0.07
-Nodes (53): EnvironmentStyle, colourFor(), styleAnisotropy(), styleMaterial(), stylesSurface(), addSkirting(), auditDoorways(), auditReachability() (+45 more)
-
-### Community 3 - "3D Agent Gemini Provider"
-Cohesion: 0.07
-Nodes (49): colors, ALLOWED_HOSTS, classifyStatus(), classifyThrown(), DEFAULT_GEMINI_MODEL, friendlyMessage(), GeminiConfig, GeminiProviderAdapter (+41 more)
-
-### Community 4 - "Camera Web App & Event Sink"
-Cohesion: 0.05
-Nodes (22): GameEventSink, FakeConsumer, DerivedState, GameEventInput, GameEventType, GestureEventMessage, Measurement, SCHEMA_VERSION (+14 more)
-
-### Community 5 - "3D Boot, UI & Player"
-Cohesion: 0.06
-Nodes (10): boot(), renderOnly(), standableIn(), PackVoices, MissionRunnerDeps, Player, Renderer, escapeText() (+2 more)
-
-### Community 6 - "3D Memory Pack & Missions Content"
-Cohesion: 0.06
-Nodes (42): applyNonLevelProposal(), AssetUrlResolver, buildPackFromProposals(), breakagesFromLocation(), CardStyle, fitToPlate(), injectAnchors(), isObject() (+34 more)
-
-### Community 7 - "3D Telemetry & Perf Checks"
-Cohesion: 0.05
-Nodes (34): describe(), FocusProbe, percentile(), PerfResult, QualityProfile, buildExport(), downloadJson(), DWELL_THRESHOLD_MS (+26 more)
-
-### Community 8 - "3D Agent Authoring Pass"
+### Community 0 - "test_engine.py"
 Cohesion: 0.09
-Nodes (36): AuthoringRun, construct(), matchesType(), missingArgument(), runAuthoringPass(), SkippedCall, toProposals(), baseContext() (+28 more)
+Nodes (40): IngestError, Exception, A message that is well-formed but must be rejected (ordering, conflicts)., ObservationMessage, gesture(), answer(), Harness, parametrize (+32 more)
 
-### Community 9 - "3D Agent Consent & Provenance"
-Cohesion: 0.08
-Nodes (26): ConsentPrompt, FirewallContext, FirewallResult, Violation, ProposalFixture, computeProvenance(), ProvenanceBlock, ProposalStatus (+18 more)
-
-### Community 10 - "Camera Service Session Engine"
-Cohesion: 0.09
-Nodes (28): _Answer, _BufferedEvent, _median(), _Producer, Per-session engine: ordering/dedup, derived state, and the deterministic…, Time-weight the previous observation over the interval up to this one., Freeze the inactivity clock while paused or in an expected idle period., Returns (vision, attention_state, attention_reason, usable_for_adaptation). (+20 more)
-
-### Community 11 - "3D Missions & Camera Hooks"
-Cohesion: 0.08
-Nodes (8): CameraIntegration, HintBeacon, instructionOf(), MissionRunner, speak(), stopSpeaking(), Outcome, ChoiceCard
-
-### Community 12 - "2D Memory Match Frontend"
+### Community 1 - "proceduralHouse.ts"
 Cohesion: 0.07
-Nodes (25): THEME, CompletionModalProps, styles, MemorizeTimerProps, styles, MemoryCardView, MemoryCardViewProps, styles (+17 more)
+Nodes (54): EnvironmentStyle, colourFor(), styleAnisotropy(), styleMaterial(), stylesSurface(), addSkirting(), auditDoorways(), auditReachability() (+46 more)
 
-### Community 13 - "2D Trail Trace Game"
-Cohesion: 0.10
-Nodes (24): ContentItem, styles, TrailCanvas(), TrailCanvasProps, styles, TrailNode(), TrailNodeProps, styles (+16 more)
-
-### Community 14 - "3D Pack Checks"
+### Community 2 - "boot"
 Cohesion: 0.07
-Nodes (17): failures, fakeCtx, fakeLoad(), FakePlayer, FakeState, FakeUI, FakeVoices, LoadFn (+9 more)
+Nodes (7): boot(), standableIn(), PackVoices, MissionRunnerDeps, Player, escapeText(), UI
 
-### Community 15 - "Camera GameAdapter (Consumer)"
-Cohesion: 0.12
-Nodes (5): GameEventMessage, ConnectionStatus, GameAdapterOptions, GameAdapter, randomId()
-
-### Community 16 - "Synaptix App Shell & Navigation"
-Cohesion: 0.11
-Nodes (20): App(), ScreenState, styles, NetworkStatusBar(), styles, CaregiverInfo, DEFAULT_CAREGIVER, ProfileUpdateModal() (+12 more)
-
-### Community 17 - "Camera Integration Check Script"
-Cohesion: 0.12
-Nodes (23): AdapterProbe, assert(), freePort(), m(), main(), makeProducer(), now(), originFetch (+15 more)
-
-### Community 18 - "Camera ProducerConnection"
-Cohesion: 0.15
-Nodes (3): fatalHttpReason(), noop(), ProducerConnection
-
-### Community 19 - "2D GameBridge & Number Challenge"
-Cohesion: 0.12
-Nodes (23): GameBridge, GameBridgeCallbacks, GameMetadata, GameSessionResult, calculateNumberScore(), CountingItem, getFiftyFiftyEliminated(), getNumberProblemsForLevel() (+15 more)
-
-### Community 20 - "3D Agent Config & Setup Mode"
-Cohesion: 0.10
-Nodes (29): AgentConfig, agentConfigStore, AgentProvider, applySetupMode(), consentPromptFor(), defaultModelForMode(), ensureConsent(), isAgentProvider() (+21 more)
-
-### Community 21 - "Camera LocalCamera & Contracts"
-Cohesion: 0.08
-Nodes (19): LocalCamera, VisionView, CalibrationStatus, TrackingStatus, DEFAULT_SIGNAL_CONFIG, ProcessorStatus, DetectedHeadGesture, HeadGestureConfig (+11 more)
-
-### Community 22 - "Camera Engine Tests"
-Cohesion: 0.11
-Nodes (33): ambiguous_python_import_14ff3aea793b, gesture(), answer(), Harness, parametrize, Engine tests: gating, staleness, ordering, and gameplay-driven policy., A producer whose clock runs far ahead or behind must not affect freshness., Drives one engine with a producer and a game on independent clocks. (+25 more)
-
-### Community 23 - "Camera API Tests"
-Cohesion: 0.15
-Nodes (31): ambiguous_python_import_f03edecda5e1, game_event(), observation(), auth(), create(), parametrize, HTTP and WebSocket tests through the real ASGI app., receive_until() (+23 more)
-
-### Community 24 - "2D Time-Place Anchor Logic"
-Cohesion: 0.11
-Nodes (13): SessionLog, RecallPreviewModalProps, DAYS_OF_WEEK, MONTHS_OF_YEAR, SeasonInfo, TimePlaceAnchorLogic, GameWorkflowStep, OrientationQuestion (+5 more)
-
-### Community 25 - "Synaptix Health Vitals UI"
-Cohesion: 0.12
-Nodes (25): ref_react, ActivityMode, GeneralHealthVitalsCard(), GeneralHealthVitalsCardProps, VitalDetailModalState, Avatar, AvatarFallback, AvatarImage (+17 more)
-
-### Community 26 - "Synaptix Bottom Nav"
-Cohesion: 0.16
-Nodes (23): framer-motion, lucide-react, BottomNavBar(), BottomNavBarProps, NAV_ITEMS, NavItemConfig, TabKey, STAGE_DEFINITIONS (+15 more)
-
-### Community 27 - "Synaptix Backend API Router"
-Cohesion: 0.12
-Nodes (26): Base, datetime, fastapi, sqlalchemy, sqlalchemy_ext_asyncio, sqlalchemy_orm, API v1 master router., list_sessions() (+18 more)
-
-### Community 28 - "3D Agent Content Firewall"
-Cohesion: 0.10
-Nodes (27): AssetRegistry, checkClinicalVocabulary(), checkHedgingAndForm(), checkHighlightTarget(), checkHints(), checkText(), checkTokensAgainstAllowlist(), CLINICAL_DENYLIST (+19 more)
-
-### Community 29 - "3D Local Profile & Photos"
-Cohesion: 0.18
-Nodes (22): Crop, LocalPerson, LocalProfile, newId(), newProfile(), openDatabase(), Photo, photosOf() (+14 more)
-
-### Community 30 - "3D Adaptive Resolution"
-Cohesion: 0.10
-Nodes (17): AdaptiveOptions, AdaptiveResolution, AdaptiveStep, clampRatio(), detectQuality(), detectTier(), DeviceInfo, isSmall() (+9 more)
-
-### Community 31 - "Camera Vision Measurements & Filters"
-Cohesion: 0.14
-Nodes (22): BoolMeasurement, DurationMeasurement, RatioMeasurement, VisionMeasurements, FaceData, clamp(), mean(), roundTo() (+14 more)
-
-### Community 32 - "Camera Transport Tests"
-Cohesion: 0.12
-Nodes (15): WebSocketLike, body(), derivedState(), FakeSocket, httpProducer(), m(), makeAdapter(), makeProducer() (+7 more)
-
-### Community 33 - "2D Games Package Deps"
+### Community 3 - "src/main.ts"
 Cohesion: 0.06
-Nodes (30): dependencies, react, react-dom, react-native, react-native-web, devDependencies, @types/react, @types/react-dom (+22 more)
+Nodes (34): samplePerf(), describe(), FocusProbe, percentile(), PerfResult, renderOnly(), breakagesFromLocation(), patientIdFromLocation() (+26 more)
 
-### Community 34 - "Synaptix Backend Patients API"
-Cohesion: 0.14
-Nodes (28): base64, delete, clear_patient_assets(), create_patient(), create_patient_asset(), delete_patient_asset(), get_patient_detail(), list_patient_assets() (+20 more)
+### Community 4 - "MemoryPack.ts"
+Cohesion: 0.07
+Nodes (35): CardStyle, fitToPlate(), injectAnchors(), isObject(), Json, loadAudio(), LoadedPack, loadImage() (+27 more)
 
-### Community 35 - "Camera Service HTTP API"
+### Community 5 - "SessionEngine"
+Cohesion: 0.07
+Nodes (38): _Answer, _BufferedEvent, _median(), _Producer, GestureEventMessage, Per-session engine: ordering/dedup, derived state, and the deterministic…, Time-weight the previous observation over the interval up to this one., Freeze the inactivity clock while paused or in an expected idle period. (+30 more)
+
+### Community 6 - "pack.check.ts"
+Cohesion: 0.05
+Nodes (20): PackProblem, FakeImage, failures, fakeCtx, FakeImage, fakeLoad(), FakePlayer, FakeState (+12 more)
+
+### Community 7 - "GameAdapter"
 Cohesion: 0.12
-Nodes (25): ApiError, create_app(), authorize(), bearer(), create_session(), delete_session(), get_state(), ingest_game_event() (+17 more)
+Nodes (6): GameEventMessage, ConnectionStatus, GameAdapterOptions, detach(), GameAdapter, randomId()
 
-### Community 36 - "2D Puzzle Fun & Northeast Assets"
-Cohesion: 0.16
-Nodes (24): getNortheastItemsByCategory(), NORTHEAST_ASSETS, NortheastThemeItem, GENERIC_ITEMS, getThemeItemsForRegion(), NORTHEAST_THEME_ITEMS, REGIONAL_ITEMS, ThemeItem (+16 more)
-
-### Community 38 - "3D Player Collision & World"
-Cohesion: 0.09
-Nodes (18): PLAYER_BODY_MAX_Y, PLAYER_BODY_MIN_Y, PLAYER_RADIUS, ANCHOR_PLATE, HouseWorld, templateFromLocation(), auditLines, cellIn() (+10 more)
-
-### Community 39 - "3D Template Mirroring"
+### Community 8 - "LocalProfile.ts"
 Cohesion: 0.13
-Nodes (27): extent(), FACING, mirrorTemplate(), mirrorYaw(), mount(), neg(), opening(), point2() (+19 more)
+Nodes (27): applySetupMode(), defaultModelForMode(), providerForMode(), Crop, LocalPerson, LocalProfile, newId(), newProfile() (+19 more)
 
-### Community 40 - "Camera Web Package Deps"
-Cohesion: 0.07
-Nodes (28): dependencies, @mediapipe/tasks-vision, devDependencies, @types/node, @types/ws, typescript, vite, vitest (+20 more)
+### Community 9 - "transport.test.ts"
+Cohesion: 0.08
+Nodes (22): Backoff, backoffDelay(), classifyClose(), CloseOutcome, DEFAULT_RECONNECT, finiteOr(), resolveReconnectOptions(), ReconnectOptions (+14 more)
 
-### Community 41 - "Camera MediaPipe Landmarker"
-Cohesion: 0.12
-Nodes (22): blendshape(), clamp01(), CreatedLandmarker, createLandmarker(), CreateLandmarkerOptions, errMsg(), extractFaces(), eyeAspectRatio() (+14 more)
+### Community 10 - "camera.check.ts"
+Cohesion: 0.04
+Nodes (31): GameEventSink, InstructionHoldOptions, OpenTask, OUTCOME_MAP, VisionBridgeOptions, adapterState(), away, body (+23 more)
 
-### Community 42 - "Camera E2E Script"
+### Community 11 - "ProducerConnection"
+Cohesion: 0.14
+Nodes (4): fatalHttpReason(), WebSocketLike, noop(), ProducerConnection
+
+### Community 12 - "agent-prompts.check.ts"
+Cohesion: 0.09
+Nodes (27): colors, ENVIRONMENT_TOOL, validateEnvironment(), anchorLines(), assetLines(), AUTHORING_REASONING, AuthoringContext, buildAuthoringSystemPrompt() (+19 more)
+
+### Community 13 - "integration-check.ts"
 Cohesion: 0.10
-Nodes (18): CDP, chrome, cleanup(), failed, freePort(), GAME, kill(), launch() (+10 more)
+Nodes (25): AdapterProbe, assert(), freePort(), m(), main(), makeProducer(), now(), originFetch (+17 more)
 
-### Community 43 - "Synaptix Game Select Screen"
-Cohesion: 0.14
-Nodes (13): HeritageBackground(), HeritageBackgroundProps, PhoneFrame(), PhoneFrameProps, GameCardConfig, GAMES_LIST, GameSelectScreen(), GameSelectScreenProps (+5 more)
+### Community 14 - "ProducerConnection.ts"
+Cohesion: 0.08
+Nodes (31): HelloMessage, SCHEMA_VERSION, ServerMessage, streamUrl(), toWebSocketUrl(), trimBaseUrl(), ProducerConnectionOptions, WebSocketFactory (+23 more)
 
-### Community 44 - "Synaptix Local DB & Sync Queue"
-Cohesion: 0.15
-Nodes (5): idbDeleteAsset(), idbGetAllAssets(), idbPutAsset(), LocalDatabase, openIndexedDB()
+### Community 15 - "Kit"
+Cohesion: 0.08
+Nodes (100): frameBars(), legs(), mat(), num(), Params, pivot(), runtimeText(), str() (+92 more)
 
-### Community 45 - "Camera Producer Runtime & Protocol Msgs"
-Cohesion: 0.13
-Nodes (21): HelloMessage, ObservationMessage, trimBaseUrl(), ProducerConnectionOptions, detach(), MAX_GESTURES_PER_OBSERVATION, MAX_PENDING_GESTURES, positive() (+13 more)
+### Community 16 - "tools.ts"
+Cohesion: 0.10
+Nodes (30): AuthoringRun, construct(), matchesType(), missingArgument(), runAuthoringPass(), SkippedCall, toProposals(), dispatch() (+22 more)
 
-### Community 46 - "Camera Signal Tests"
-Cohesion: 0.14
-Nodes (18): ObservationBody, assertBodyValid(), assertFinite(), assertMeasurement(), awayTransition(), Box, Driver, face() (+10 more)
+### Community 17 - "agent-gemini.check.ts"
+Cohesion: 0.08
+Nodes (32): AgentConfig, agentConfigStore, AgentProvider, consentPromptFor(), ensureConsent(), isAgentProvider(), isSetupMode(), needsSetup() (+24 more)
 
-### Community 47 - "2D Time-Place Anchor UI"
-Cohesion: 0.14
-Nodes (16): FaceFeedbackView(), FaceFeedbackViewProps, styles, OrientationCard(), OrientationCardProps, styles, RecallPreviewModal(), styles (+8 more)
+### Community 18 - "protocol/types.ts"
+Cohesion: 0.04
+Nodes (68): LocalCamera, VisionView, AckMessage, ActionType, AngleMeasurement, ApiErrorBody, BoolMeasurement, CalibrationInfo (+60 more)
 
-### Community 48 - "3D CameraAdapter"
-Cohesion: 0.17
-Nodes (4): CameraAdapter, errText(), CameraErrorCode, Unsubscribe
-
-### Community 49 - "3D Interaction & Highlight"
+### Community 19 - "MissionRunner"
 Cohesion: 0.11
-Nodes (15): Focus, Interaction, SwappedMaterial, StepContext, assertWorldContract(), InteractableMeta, readMeta(), REQUIRED_ANCHORS (+7 more)
+Nodes (6): instructionOf(), MissionRunner, speak(), stopSpeaking(), Outcome, ChoiceCard
 
-### Community 50 - "3D Agent Image Pipeline"
+### Community 21 - "create_app"
+Cohesion: 0.08
+Nodes (49): Player-observation service: ingests derived webcam measurements and gameplay…, ApiError, create_app(), authorize(), bearer(), create_session(), delete_session(), get_state() (+41 more)
+
+### Community 22 - "signals.test.ts"
+Cohesion: 0.12
+Nodes (19): faceMatrixFromRotation(), rotationFromEuler(), assertBodyValid(), assertFinite(), assertMeasurement(), awayTransition(), Box, Driver (+11 more)
+
+### Community 23 - "landmarker.ts"
+Cohesion: 0.11
+Nodes (23): blendshape(), clamp01(), CreatedLandmarker, createLandmarker(), CreateLandmarkerOptions, errMsg(), extractFaces(), eyeAspectRatio() (+15 more)
+
+### Community 24 - "templates/types.ts"
+Cohesion: 0.11
+Nodes (33): extent(), FACING, mirrorTemplate(), mirrorYaw(), mount(), neg(), opening(), point2() (+25 more)
+
+### Community 25 - "world.check.ts"
+Cohesion: 0.10
+Nodes (17): PLAYER_BODY_MAX_Y, PLAYER_BODY_MIN_Y, PLAYER_RADIUS, ANCHOR_PLATE, HouseWorld, auditLines, cellIn(), configs (+9 more)
+
+### Community 26 - "Quality.ts"
+Cohesion: 0.08
+Nodes (18): AdaptiveOptions, AdaptiveResolution, AdaptiveStep, clampRatio(), detectQuality(), detectTier(), DeviceInfo, isSmall() (+10 more)
+
+### Community 27 - "agent-images.check.ts"
 Cohesion: 0.11
 Nodes (16): ACCEPTED_MIME, dimensionsFor(), encode(), ImageDerivatives, ImagePipelineError, ImagePipelineErrorReason, nextPowerOfTwo(), receiveImage() (+8 more)
 
-### Community 51 - "3D CameraUI Panel"
-Cohesion: 0.15
-Nodes (7): CameraUI, describeError(), describeHold(), describeSnapshot(), StepState, writePref(), CameraGesture
-
-### Community 52 - "3D Layout Constants & Templates"
-Cohesion: 0.20
-Nodes (19): ARCH_HEIGHT, CEILING_HEIGHT, DOOR_HEIGHT, EXT_WALL_T, INT_WALL_T, courtyard, OPENINGS, hallway (+11 more)
-
-### Community 53 - "Root Dev/Setup Scripts & Vite Wiring"
-Cohesion: 0.09
-Nodes (21): CAMERA_ASSETS, CAMERA_PUBLIC, CAMERA_WEB, here, TYPES, ref_node_child_process, ref_node_path, ref_node_url (+13 more)
-
-### Community 54 - "Camera Service Config & Policy"
-Cohesion: 0.10
-Nodes (21): asyncio, BaseSettings, PolicyConfig, PolicyOverrides, BaseModel, Service settings and policy thresholds. Every threshold here is an initial,…, Thresholds for derived state and the suggestion policy. All durations are ms., Per-session overrides supplied at session creation. Same bounds as PolicyConfig. (+13 more)
-
-### Community 55 - "Camera Service Schemas"
-Cohesion: 0.16
-Nodes (23): Player-observation service: ingests derived webcam measurements and gameplay…, FastAPI application: HTTP endpoints, the WebSocket stream and the background…, AckMessage, CalibrationInfo, CreateSessionRequest, CreateSessionResponse, GameEventData, Gesture (+15 more)
-
-### Community 56 - "Camera Protocol Types"
-Cohesion: 0.08
-Nodes (23): AckMessage, AngleMeasurement, ApiErrorBody, CalibrationInfo, CloseCode, CreateSessionRequest, EngagementScore, ErrorMessage (+15 more)
-
-### Community 57 - "3D AdaptationPolicy"
-Cohesion: 0.15
-Nodes (10): AdaptationEffects, AdaptationPolicy, AdaptationRecord, DEFAULT_ADAPTATION_CONFIG, GameContext, Outcome, CameraSnapshot, CameraSuggestion (+2 more)
-
-### Community 58 - "Camera Simulated Face Source"
-Cohesion: 0.13
-Nodes (7): matrixFromPlayerAngles(), Motion, SimulatedFaceSource, SimulationControls, PerfInfo, FaceFrame, SignalProcessorApi
-
-### Community 59 - "Camera Message Validation"
+### Community 28 - "templates/index.ts"
 Cohesion: 0.18
-Nodes (24): ActionType, GestureType, ACTION_SOURCES, ACTION_TYPES, allNumbersFinite(), ATTENTION_STATES, GESTURE_TYPES, hasVersion() (+16 more)
+Nodes (21): ARCH_HEIGHT, CEILING_HEIGHT, DOOR_HEIGHT, EXT_WALL_T, INT_WALL_T, courtyard, OPENINGS, hallway (+13 more)
 
-### Community 60 - "Memoria-3D Patch Bridge Checks"
+### Community 30 - "Session"
 Cohesion: 0.13
-Nodes (17): eq(), FakeAdapter, ok(), setup(), CAMERA_ASSIST_STORAGE_KEY, DelayInstructionSuggestion, InstructionHoldOptions, OUTCOME_MAP (+9 more)
+Nodes (7): BaseModel, Run the engine, push state (throttled) and any new actions to consumers., Periodic work: expiry, staleness re-evaluation, heartbeats., Session, SessionStore, TokenBucket, StateMessage
 
-### Community 61 - "Camera Service Session Broadcast"
-Cohesion: 0.13
-Nodes (7): HeartbeatMessage, BaseModel, Run the engine, push state (throttled) and any new actions to consumers., Periodic work: expiry, staleness re-evaluation, heartbeats., Session, SessionStore, TokenBucket
-
-### Community 62 - "Camera Demo Check Script"
-Cohesion: 0.11
+### Community 31 - "demo-check.mjs"
+Cohesion: 0.10
 Nodes (21): cdp(), chrome, click(), clickEv(), ev(), page, pending, procs (+13 more)
 
-### Community 63 - "2D Familiar Faces Content"
-Cohesion: 0.16
-Nodes (7): RegionalState, BUNDLED_GENERIC_ITEMS, GenericContentProvider, GenericItem, NOTE: Does NOT reproduce copyrighted test stimuli. Tests confrontation naming…, FamiliarFacesGameScreen(), FamiliarFacesLogic
+### Community 32 - "suite-app.check.ts"
+Cohesion: 0.06
+Nodes (39): angleDelta(), BoxLike, clamp(), clampLook(), classifyGesture(), collides(), dampFactor(), DEG (+31 more)
 
-### Community 64 - "3D Package Deps"
+### Community 34 - "gestures.ts"
+Cohesion: 0.11
+Nodes (11): DetectedHeadGesture, HeadGestureConfig, HeadGestureDetector, HeadGestureType, Sample, SwingMatch, SwingParams, SwingPoint (+3 more)
+
+### Community 35 - "review.ts"
+Cohesion: 0.08
+Nodes (25): applyNonLevelProposal(), AssetUrlResolver, buildPackFromProposals(), ConsentPrompt, FirewallContext, Violation, ProposalFixture, computeProvenance() (+17 more)
+
+### Community 36 - "SuiteAudio"
+Cohesion: 0.08
+Nodes (12): channelLevel(), choosePromptRoute(), findVoice(), norm(), Playing, PromptRoute, SuiteAudio, SuiteAudioOptions (+4 more)
+
+### Community 37 - "PolicyConfig"
+Cohesion: 0.12
+Nodes (14): BaseSettings, PolicyConfig, PolicyOverrides, BaseModel, Service settings and policy thresholds. Every threshold here is an initial,…, Thresholds for derived state and the suggestion policy. All durations are ms., Per-session overrides supplied at session creation. Same bounds as PolicyConfig., Process settings. Read from environment variables prefixed OBS_ (see… (+6 more)
+
+### Community 38 - "3D game/package.json"
 Cohesion: 0.09
 Nodes (22): dependencies, three, devDependencies, @types/node, @types/three, typescript, vite, @types/node (+14 more)
 
-### Community 65 - "3D Agent Prompts"
-Cohesion: 0.13
-Nodes (19): anchorLines(), assetLines(), AUTHORING_REASONING, AuthoringContext, buildAuthoringSystemPrompt(), bullets(), ENVIRONMENT_REASONING, ENVIRONMENT_SYSTEM_PROMPT (+11 more)
+### Community 39 - "gemini.ts"
+Cohesion: 0.08
+Nodes (43): ALLOWED_HOSTS, classifyStatus(), classifyThrown(), DEFAULT_GEMINI_MODEL, friendlyMessage(), GeminiConfig, GeminiProviderAdapter, imagePart() (+35 more)
 
-### Community 66 - "3D Offline Check Script"
+### Community 40 - "offline-check.mjs"
 Cohesion: 0.11
 Nodes (16): args, CDP, chrome, consoleErrors, failures, navigateAndBoot(), ok(), originArg (+8 more)
 
-### Community 67 - "Camera FaceObserver Core"
-Cohesion: 0.19
-Nodes (3): FaceObserverOptions, FaceObserver, clearOverlay()
+### Community 41 - "FastAPI observation service (engine.py, sessions.py, main.py)"
+Cohesion: 0.11
+Nodes (34): Actions are suggestions; game decides, Connecting a game (integration guide), createSession / deleteSession, Game hooks for adapter outputs, apply.sh / unapply.sh, observation.ts createObservation, Calibration (neutral pose reference), DerivedState / attention_state (+26 more)
 
-### Community 68 - "Synaptix Frontend Deps"
+### Community 42 - "protocol/validate.ts"
+Cohesion: 0.23
+Nodes (20): ACTION_SOURCES, ACTION_TYPES, allNumbersFinite(), ATTENTION_STATES, GESTURE_TYPES, hasVersion(), isDerivedState(), isGesture() (+12 more)
+
+### Community 43 - "grammar.ts"
+Cohesion: 0.35
+Nodes (12): asNode(), buildProposalGrammar(), jsonKey(), kebab(), literal(), objectRule(), ParsedCall, parseProposalCalls() (+4 more)
+
+### Community 44 - "agent-review.check.ts"
 Cohesion: 0.09
-Nodes (22): class-variance-authority, clsx, jest, @radix-ui/react-avatar, @radix-ui/react-slot, tailwind-merge, tailwindcss, ts-jest (+14 more)
+Nodes (28): AssetRegistry, checkClinicalVocabulary(), checkHedgingAndForm(), checkHighlightTarget(), checkHints(), checkText(), checkTokensAgainstAllowlist(), CLINICAL_DENYLIST (+20 more)
 
-### Community 69 - "3D Agent Proposal Grammar"
-Cohesion: 0.16
-Nodes (18): DEFAULT_AGENT_CONFIG, ENVIRONMENT_TOOL, PROPOSAL_FIXTURES, asNode(), buildProposalGrammar(), jsonKey(), kebab(), literal() (+10 more)
-
-### Community 70 - "3D VisionBridge"
-Cohesion: 0.14
-Nodes (8): InstructionHoldOptions, OpenTask, OUTCOME_MAP, taskIdFor(), VisionBridge, VisionBridgeOptions, Event, TaskOutcome
-
-### Community 71 - "Memoria-3D Patch Observation Panel"
-Cohesion: 0.16
-Nodes (21): createObservation(), disable(), enable(), setEnabled(), teardown(), createPanel(), describeCalibration(), describeCameraError() (+13 more)
-
-### Community 72 - "Camera SignalProcessor"
-Cohesion: 0.18
-Nodes (4): SignalConfig, allUnavailable(), freshCalibration(), SignalProcessor
-
-### Community 73 - "Synaptix Medicine Service"
-Cohesion: 0.17
-Nodes (3): getStorage(), medicineService, LocalStorageMock
-
-### Community 74 - "3D Camera Types & Adapter API"
-Cohesion: 0.10
-Nodes (9): AttentionState, CameraAdapterApi, CameraPhase, EngagementView, GameplayView, Measured, PolicyView, ServiceLink (+1 more)
-
-### Community 75 - "3D Camera Checks"
-Cohesion: 0.12
-Nodes (14): adapterState(), away, body, derived(), failures, fakeRuntime, Listeners, m() (+6 more)
-
-### Community 76 - "Synaptix Backend App Init"
-Cohesion: 0.13
-Nodes (19): anyio, contextlib, fastapi_middleware_cors, fastapi_staticfiles, httpx, os, init_db(), Initializes the database schema. (+11 more)
-
-### Community 77 - "2D Familiar Faces UI"
-Cohesion: 0.20
-Nodes (14): ref_react_native, FaceCard(), FaceCardProps, styles, FamiliarFacesCompletion(), FamiliarFacesCompletionProps, styles, RelationshipRevealCard() (+6 more)
-
-### Community 78 - "3D Game State Machine"
+### Community 45 - "State"
 Cohesion: 0.10
 Nodes (6): GameState, MOVEMENT_ENABLED, POINTER_LOCK_WANTED, State, StateListener, TIMERS_RUN
 
-### Community 79 - "2D Word Builder Game"
-Cohesion: 0.19
-Nodes (17): BUILTIN_FAMILY_WORDS, calculateWordScore(), createTileLetterItems(), getWordChallengesForLevel(), LEVEL_1_WORDS, LEVEL_3_MYSTERY_WORDS, scrambleWord(), speakWordHint() (+9 more)
-
-### Community 80 - "2D Games TSConfig"
-Cohesion: 0.10
-Nodes (19): compilerOptions, allowJs, allowSyntheticDefaultImports, baseUrl, esModuleInterop, isolatedModules, jsx, lib (+11 more)
-
-### Community 81 - "3D Camera Integration Wiring"
-Cohesion: 0.17
-Nodes (15): AdaptationConfig, CameraIntegrationDeps, createCameraIntegration(), disable(), enable(), installInputListeners(), setAdaptation(), startCamera() (+7 more)
-
-### Community 82 - "3D Camera Snapshot & Live Adapter"
-Cohesion: 0.16
-Nodes (13): CameraAdapterOptions, Runtime, buildSnapshot(), copy(), localCamera(), observerError(), phaseOf(), SnapshotInputs (+5 more)
-
-### Community 83 - "Camera Gestures & Fakes"
-Cohesion: 0.11
-Nodes (9): FakeImage, FakeImage, Gesture, HeadOrientation, PendingGesture, emaAlpha(), TimeEma, Box (+1 more)
-
-### Community 84 - "3D World Snapshot Checks"
+### Community 46 - "worldSnapshot.ts"
 Cohesion: 0.18
-Nodes (16): out, snapshot, w, world, box(), canonicalQuaternion(), diffSnapshots(), Json (+8 more)
+Nodes (16): out, snapshot, w, world, snap(), box(), canonicalQuaternion(), Json (+8 more)
 
-### Community 85 - "3D Profile Check Script"
+### Community 47 - "Memoria 3D"
+Cohesion: 0.24
+Nodes (13): CSP allowances (dl.polyhaven.org, generativelanguage.googleapis.com), Memoria 3D Deployment (incomplete), Netlify deployment, Never set VITE_GEMINI_API_KEY for hosted builds, Vercel deployment, vite.config base './', Memoria 3D HTML shell (#app, /src/main.ts), npm run check:offline (+5 more)
+
+### Community 48 - "Memoria 3D Specification"
+Cohesion: 0.15
+Nodes (16): Adaptive resolution (texture upgrade, anisotropy, pixel-ratio ladder), window.__memoria debug handle, debug.canFocus reachability probe, Checkpoints A–G, glbHouse.ts (deferred), Highlight (emissive lift, cloned material), Interaction raycast with Box3 occlusion, Levels (water, morning-walk, familiar-memories) (+8 more)
+
+### Community 49 - "agent-provider.check.ts"
+Cohesion: 0.13
+Nodes (8): AuditEntry, AuditLog, AuditSink, consoleAuditSink, CONSENT_PROMPT, failures, REQUEST, WITH_IMAGE
+
+### Community 50 - "World.ts"
+Cohesion: 0.11
+Nodes (14): Focus, Interaction, SwappedMaterial, StepContext, assertWorldContract(), InteractableMeta, readMeta(), REQUIRED_ANCHORS (+6 more)
+
+### Community 51 - "profile-check.mjs"
 Cohesion: 0.12
 Nodes (12): args, CDP, chrome, originArg, profile, REPO, startServerIfNeeded(), wait() (+4 more)
 
-### Community 86 - "Pytest Conftest & Image Scraper"
-Cohesion: 0.15
-Nodes (15): json, pathlib, Pytest configuration for Memoria Backend test suite. Ensures repository root is…, download_image(), fetch_page_thumbnail(), main(), Downloads 77 authentic real photographs (non-AI) of Northeast India from…, Fetch thumbnail image URL for a Wikipedia page title using Wikipedia API. (+7 more)
-
-### Community 87 - "Camera Browser Check Script"
-Cohesion: 0.21
+### Community 52 - "browser-check.mjs"
+Cohesion: 0.22
 Nodes (12): Cdp, ensureVite(), freePort(), httpOk(), launchChrome(), log(), main(), openPage() (+4 more)
 
-### Community 88 - "Synaptix Health & Medicine UI"
-Cohesion: 0.20
-Nodes (14): MedicineSchedulerModal(), MedicineSchedulerModalProps, HealthScreen(), HealthScreenProps, MedicineScheduleItem, calculatePatientCognitiveProfile(), calculateSessionDScore(), CognitiveDomainScores (+6 more)
+### Community 53 - "demo/main.ts"
+Cohesion: 0.21
+Nodes (18): endSession(), fmt(), log(), onObservation(), renderAction(), renderGesture(), renderObserverStatus(), renderProcessorStatus() (+10 more)
 
-### Community 89 - "2D Difficulty & Progress Types"
-Cohesion: 0.18
-Nodes (14): DementiaStage, DifficultyLevel, ProgressIndicator(), ProgressIndicatorProps, STAGE_LABELS, styles, DailySequenceGameScreenProps, FamiliarFacesGameScreenProps (+6 more)
+### Community 54 - "app/app.ts"
+Cohesion: 0.07
+Nodes (30): Overlay, Run, Screen, isControl(), isTyping(), ARROWS, BLOCKING_SELECTORS, keyAction (+22 more)
 
-### Community 90 - "3D Photo Generator Script"
-Cohesion: 0.27
-Nodes (17): band(), blank(), disc(), ellipse(), glyph(), grain(), lerp(), over() (+9 more)
+### Community 55 - "SuiteController"
+Cohesion: 0.11
+Nodes (5): createSuiteAppWith(), SuiteController, focusFirst(), setText(), walkVector()
 
-### Community 91 - "Root Dev Orchestrator"
-Cohesion: 0.12
-Nodes (14): portBusy(), ref_node_net, busy, CAMERA_WEB, children, GAME, GAME_PORT, OBS_PORT (+6 more)
-
-### Community 92 - "Camera Demo Page"
-Cohesion: 0.23
-Nodes (17): endSession(), fmt(), log(), onObservation(), renderAction(), renderGesture(), renderObserverStatus(), renderProcessorStatus() (+9 more)
-
-### Community 93 - "Camera FaceObserver Inference Loop"
-Cohesion: 0.14
-Nodes (14): ErrorCode, INFERENCE_TIMEOUT_MS, InFlight, LandmarkerModule, MainLandmarker, mapCameraError(), MAX_CONSECUTIVE_FAILURES, round2() (+6 more)
-
-### Community 94 - "Camera Web TSConfig"
+### Community 56 - "compilerOptions"
 Cohesion: 0.11
 Nodes (17): compilerOptions, allowImportingTsExtensions, isolatedModules, lib, module, moduleResolution, noEmit, noFallthroughCasesInSwitch (+9 more)
 
-### Community 95 - "Synaptix Frontend TSConfig"
-Cohesion: 0.11
-Nodes (17): compilerOptions, allowJs, allowSyntheticDefaultImports, baseUrl, esModuleInterop, isolatedModules, jsx, lib (+9 more)
+### Community 57 - "Content firewall validateProposal (rules F-a to F-i)"
+Cohesion: 0.16
+Nodes (17): commitPack.ts draft pack folding, Demo memory packs (Mira, Raju), Generated pack media (make-media.sh, make-photos.py, say), ReviewSession (review.ts), Caregiver personalisation (local browser profile), Content firewall validateProposal (rules F-a to F-i), Image may license visual properties, never autobiographical facts, IndexedDB memoria-caregiver-v1 profile store (+9 more)
 
-### Community 96 - "3D Agent Audit Log"
-Cohesion: 0.15
-Nodes (8): AuditEntry, AuditLog, AuditSink, consoleAuditSink, CONSENT_PROMPT, failures, REQUEST, WITH_IMAGE
+### Community 58 - "CameraAdapter"
+Cohesion: 0.06
+Nodes (24): CameraAdapter, CameraAdapterOptions, errText(), Runtime, buildSnapshot(), copy(), localCamera(), observerError() (+16 more)
 
-### Community 98 - "3D TSConfig"
+### Community 59 - "harness.ts"
+Cohesion: 0.08
+Nodes (29): SummaryInput, ACTIVITIES, broken, buildScene(), camera, clock, d, demoPhoto (+21 more)
+
+### Community 61 - "make-photos.py"
+Cohesion: 0.29
+Nodes (16): band(), blank(), disc(), ellipse(), glyph(), grain(), lerp(), over() (+8 more)
+
+### Community 62 - "compilerOptions"
 Cohesion: 0.12
 Nodes (16): compilerOptions, allowImportingTsExtensions, isolatedModules, lib, module, moduleResolution, noEmit, noFallthroughCasesInSwitch (+8 more)
 
-### Community 100 - "Memoria 3D Docs & Deploy"
-Cohesion: 0.14
-Nodes (16): Memoria 3D Deployment (incomplete), Vercel / Netlify static deploy of dist/, Memoria 3D HTML entry page, Memoria 3D README, Adaptive resolution (texture upgrade, anisotropy, pixel-ratio ladder), window.__memoria debug handle, Generate home appearance from room photos, npm run check:offline (network-off headless check) (+8 more)
-
-### Community 101 - "Memoria-3D Patch VisionBridge"
+### Community 63 - "observation.ts"
 Cohesion: 0.19
-Nodes (3): Running, taskIdFor(), VisionBridge
+Nodes (14): enable(), teardown(), createPanel(), describeCalibration(), describeCameraError(), log(), LOOPBACK, Observation (+6 more)
 
-### Community 102 - "Synaptix Frontend Runtime Deps"
+### Community 64 - "FaceObserver.ts"
+Cohesion: 0.15
+Nodes (14): ErrorCode, INFERENCE_TIMEOUT_MS, InFlight, LandmarkerModule, MainLandmarker, mapCameraError(), MAX_CONSECUTIVE_FAILURES, VideoWithRvfc (+6 more)
+
+### Community 65 - "CameraSnapshot"
+Cohesion: 0.23
+Nodes (4): AdaptationEffects, AdaptationPolicy, CameraSnapshot, policyRig()
+
+### Community 66 - "Privacy: offline default, online opt-in"
+Cohesion: 0.21
+Nodes (12): AGENT_TOOL_SCHEMA constrained tool calls, Generate home appearance from room photos, GeminiProviderAdapter (gemini.ts), images.ts EXIF strip and derivatives, LlamaCppProviderAdapter (llamaCpp.ts), Prompt layer prompts.ts (version f-2, reasoning steps), agent-audit.jsonl audit log, D-1 Online setup mode deviation (+4 more)
+
+### Community 67 - ".t"
 Cohesion: 0.12
-Nodes (16): dependencies, class-variance-authority, clsx, framer-motion, lucide-react, @radix-ui/react-avatar, @radix-ui/react-slot, react (+8 more)
+Nodes (10): dispose(), activityCard(), badge(), durationText(), header(), renderActivity(), renderHome(), renderPlace() (+2 more)
 
-### Community 103 - "3D Check Runner"
-Cohesion: 0.13
-Nodes (12): nodeJsonlFileSink(), checks, esbuild, filter, here, out, root, three (+4 more)
+### Community 68 - "memoria-3d/VisionBridge.ts"
+Cohesion: 0.16
+Nodes (12): eq(), FakeAdapter, ok(), setup(), CAMERA_ASSIST_STORAGE_KEY, DelayInstructionSuggestion, InstructionHoldOptions, OUTCOME_MAP (+4 more)
 
-### Community 104 - "Camera Worker Backend Init"
-Cohesion: 0.24
-Nodes (5): Aborted, absoluteUrl(), errMsg(), ObserverError, Delegate
-
-### Community 105 - "Camera Head-Pose Geometry"
-Cohesion: 0.30
-Nodes (10): eulerFromFaceMatrix(), eulerFromMatrix(), eyeAspectRatioFromPoints(), faceMatrixFromRotation(), Mat3, mat3Multiply(), mat3Transpose(), relativeRotation() (+2 more)
-
-### Community 106 - "Camera Service Docs"
-Cohesion: 0.19
-Nodes (14): Treat actions as suggestions; stale means unknown, deleteSession, InstructionHold, Player Observation Service README, Attention state (HEAD_TOWARD_SCREEN / HEAD_AWAY / UNKNOWN ...), In-memory single-worker session store, Difficulty follows performance only (no lowering from vision), Null-with-reason measurements (+6 more)
-
-### Community 107 - "Camera Reconnect Backoff"
-Cohesion: 0.20
-Nodes (8): Backoff, backoffDelay(), classifyClose(), CloseOutcome, DEFAULT_RECONNECT, finiteOr(), resolveReconnectOptions(), ReconnectOptions
-
-### Community 108 - "Root Package Scripts"
-Cohesion: 0.14
-Nodes (13): description, engines, node, name, private, scripts, check, check:e2e (+5 more)
-
-### Community 110 - "3D Template Perf Script"
-Cohesion: 0.17
+### Community 70 - "perf-templates.mjs"
+Cohesion: 0.18
 Nodes (9): chrome, evaluate(), ONLY, pending, profile, REPO, rows, send() (+1 more)
 
-### Community 111 - "Memoria-3D Patch Docs"
-Cohesion: 0.22
-Nodes (13): Connecting a game (INTEGRATION.md), createSession (transport/session.ts), Gameplay event reporting (sendGameEvent), Memoria 3D camera-assistance patch README, bridge.check.ts (62 assertions), Camera assistance toggle (off by default), memoria-3d.patch with apply.sh / unapply.sh, observation.ts (createObservation setup/teardown) (+5 more)
+### Community 71 - "ObservationBody"
+Cohesion: 0.05
+Nodes (28): SnapshotInputs, FakeObserver, FakeProducer, matrixFromPlayerAngles(), Motion, SimulatedFaceSource, SimulationControls, ObservationBody (+20 more)
 
-### Community 112 - "Camera Service Measurement Models"
-Cohesion: 0.18
-Nodes (9): blank(), AngleMeasurement, BoolMeasurement, _Measurement, OrientationMeasurement, Any, RatioMeasurement, unavailable() (+1 more)
+### Community 72 - "suite-activities.check.ts"
+Cohesion: 0.11
+Nodes (32): ACTIVITIES, createActivitySession(), EventInput, gentleCueShown(), buildSummary(), loadContentPacks, packDisplayMedia, ActivitySessionOptions (+24 more)
 
-### Community 113 - "Camera Verify Page"
+### Community 73 - "web/package.json"
 Cohesion: 0.17
-Nodes (11): observer, out, overlay, params, real, record(), recording, round1() (+3 more)
+Nodes (11): dependencies, @mediapipe/tasks-vision, @types/node, typescript, vite, name, private, type (+3 more)
 
-### Community 114 - "Synaptix Offline Sync Endpoint"
-Cohesion: 0.22
-Nodes (12): Helper to save base64 image data to disk in backend/uploads directory., save_base64_to_disk(), process_sync_batch(), AsyncSession, post, Drains a batch of offline operations sent from React Native mobile client.…, BaseModel, Schemas for offline synchronization protocol. (+4 more)
+### Community 74 - "content/validate.ts"
+Cohesion: 0.16
+Nodes (32): LoadContentOptions, loadContentPacks(), loadOne(), message(), ASSET_CATEGORIES, AssetLookup, checkActivities(), checkProvenance() (+24 more)
 
-### Community 115 - "Memoria 3D Spec Concepts"
-Cohesion: 0.23
-Nodes (12): Memoria 3D Specification, Completion outcomes: independent / cued / revealed / skipped, Hint ladder (three levels + skip), Three levels (§4.5), Memory pack (caregiver content contract), Navigate steps use containment, not entry events, Pack validation reporting all problems at once, Restart (Checkpoint B) (+4 more)
-
-### Community 117 - "Camera Engine Dedup & Errors"
-Cohesion: 0.17
-Nodes (7): _BoundedSet, IngestError, Exception, A message that is well-formed but must be rejected (ordering, conflicts)., Insertion-ordered set that forgets the oldest entries beyond ``capacity``., test_second_producer_cannot_take_over_while_first_is_active(), test_session_mismatch_rejected()
-
-### Community 118 - "Camera Asset Setup Script"
-Cohesion: 0.29
-Nodes (11): copyWasm(), exists(), fail(), installModel(), modelDst, sha256(), verify(), wasmDst (+3 more)
-
-### Community 119 - "Memory Match Content Provider"
-Cohesion: 0.27
-Nodes (5): BUNDLED_ASSET_REGISTRY, BundledAssetInfo, ContentItem, MemoryCardContentProvider, PatientMemoryAsset
-
-### Community 123 - "3D Agent Provider Docs"
-Cohesion: 0.27
-Nodes (10): Do not set VITE_GEMINI_API_KEY for hosted builds, AGENT_TOOL_SCHEMA grammar-constrained tool calls, GeminiProviderAdapter (src/agent/gemini.ts), LlamaCppProviderAdapter (src/agent/llamaCpp.ts), Reasoning-before-calls prompt form (prompts.ts, version f-2), Setup mode screen (src/agent/setupModeUI.ts), Offline setup mode (local llama-server over loopback), Online setup mode (D-1, hosted Gemini inference) (+2 more)
-
-### Community 124 - "Camera Heuristics & Calibration Docs"
-Cohesion: 0.22
-Nodes (10): Mira and Raju fictional demo packs, Hard product rule: never invent autobiographical memory, Neutral-pose calibration, FaceObserver, head_facing_score head-pose heuristic, Nod and head-shake gesture detection, tracking_quality heuristic, Player Observation Demo page (+2 more)
-
-### Community 125 - "3D Environment Validation"
-Cohesion: 0.22
-Nodes (8): describeEnvironment(), validateEnvironment(), image, material, provider, stored, style, ref_node_assert
-
-### Community 126 - "Camera Test Helpers"
-Cohesion: 0.20
-Nodes (5): FakeClock, m(), Any, Builders for well-formed messages, so each test only states what it cares about., itertools
-
-### Community 129 - "2D Memory Lane Screen"
-Cohesion: 0.27
-Nodes (8): getStageConfig(), CompletionModal(), COGNITIVE_LEVELS, MemoryLaneGameScreen(), MemoryLaneGameScreenProps, styles, synaptix_games_memory_lane_types_dementiastage, synaptix_games_memory_lane_types_difficultylevel
-
-### Community 130 - "2D Memory Lane/Match Exports"
-Cohesion: 0.33
-Nodes (4): CompletionModalProps, styles, FlipResult, SessionMetrics
-
-### Community 132 - "3D Agent Trust Boundary Docs"
-Cohesion: 0.29
-Nodes (8): agent-audit.jsonl audit log, EXIF-stripping image pipeline (src/agent/images.ts), ReviewSession caregiver review and commit (src/agent/review.ts), Content firewall (validateProposal, rules F-a to F-i), Agent may infer only visual, not autobiographical, image properties, Prompt injection defence via caregiver allow-list, Provenance block (§10.8), Rule F-2: the agent proposes, never commits
-
-### Community 133 - "3D UI View Types"
+### Community 75 - "ui.ts"
 Cohesion: 0.25
 Nodes (7): AnswerCardOptions, CameraEntry, LevelChoice, LevelSelectView, LoadStage, RenderedProblem, SummaryView
 
-### Community 134 - "Synaptix Frontend Dev Deps"
-Cohesion: 0.25
-Nodes (8): devDependencies, jest, ts-jest, @types/jest, @types/react, @types/react-dom, @types/react-native, typescript
+### Community 76 - "test_api.py"
+Cohesion: 0.15
+Nodes (30): game_event(), m(), observation(), Any, Builders for well-formed messages, so each test only states what it cares about., auth(), create(), parametrize (+22 more)
 
-### Community 135 - "Memory Lane Content Provider"
+### Community 78 - "setup-assets.mjs"
+Cohesion: 0.33
+Nodes (10): copyWasm(), exists(), fail(), installModel(), modelDst, sha256(), verify(), wasmDst (+2 more)
+
+### Community 79 - "House templates"
+Cohesion: 0.29
+Nodes (10): Five-room house with fenced garden, auditDoorways, auditReachability, Templates hallway, row, openPlan, courtyard, House templates, Poly Haven texture sets (surfaces and detail), proceduralHouse.ts / buildHouse generator, Determinism and hallway regression snapshot (+2 more)
+
+### Community 80 - "run.mjs"
+Cohesion: 0.20
+Nodes (9): checks, esbuild, filter, here, out, root, three, threeExamples (+1 more)
+
+### Community 81 - "scripts"
+Cohesion: 0.20
+Nodes (10): scripts, build, check:browser, check:demo, dev, integration, preview, setup:assets (+2 more)
+
+### Community 83 - "camera-e2e.mjs"
+Cohesion: 0.06
+Nodes (32): ffprobeDurationMs(), GENERATED, imageDefs(), IMAGES, NORTHEAST_PROMPTS, NORTHEAST_SOUND_IDS, NOTICE, p() (+24 more)
+
+### Community 84 - "definitions.ts"
+Cohesion: 0.13
+Nodes (28): assignPhotos(), Availability, avoidOf(), define(), DEMO_SEQUENCE_OBJECTS, demoSequence(), highlighted(), isAlbum() (+20 more)
+
+### Community 86 - "proposals.fixtures.ts"
+Cohesion: 0.16
+Nodes (14): DEFAULT_AGENT_CONFIG, baseContext(), CAREGIVER_FIELDS, CAREGIVER_TEXTS, makeAssets(), makeWorld(), PROPOSAL_FIXTURES, sparseContext() (+6 more)
+
+### Community 87 - "createObservation"
 Cohesion: 0.36
-Nodes (4): BUNDLED_ASSET_REGISTRY, BundledAssetInfo, MemoryCardContentProvider, synaptix_games_memory_lane_types_regionalstate
+Nodes (6): createObservation(), disable(), setEnabled(), readCameraAssist(), StorageLike, writeCameraAssist()
 
-### Community 136 - "Memory Lane Game States"
-Cohesion: 0.25
-Nodes (8): GameState, ABANDONED, COMPLETED, EVALUATING, MEMORIZING, NOT_STARTED, WAITING_FIRST_CARD, WAITING_SECOND_CARD
-
-### Community 138 - "3D Floor Plan SVG"
-Cohesion: 0.52
-Nodes (6): band(), cutsWall(), FLOOR, n(), planSvg(), rect()
-
-### Community 139 - "3D Checks TSConfig"
+### Community 88 - "checks/tsconfig.json"
 Cohesion: 0.29
 Nodes (6): compilerOptions, noEmit, types, extends, include, ../../tsconfig.json
 
-### Community 140 - "Camera WS Connection Queue"
+### Community 89 - "Connection"
 Cohesion: 0.33
 Nodes (3): Connection, Any, One WebSocket client. Outgoing messages go through a bounded queue so a slow…
 
-### Community 142 - "Synaptix Vite Configs"
-Cohesion: 0.47
-Nodes (4): ref_path, @tailwindcss/vite, ref_vite, ref_vitejs_plugin_react
+### Community 90 - "devDependencies"
+Cohesion: 0.29
+Nodes (7): devDependencies, @types/node, @types/ws, typescript, vite, vitest, ws
 
-### Community 143 - "Synaptix Frontend Scripts"
+### Community 92 - "VisionBridge"
+Cohesion: 0.21
+Nodes (3): taskIdFor(), VisionBridge, Event
+
+### Community 93 - "Memoria 3D camera assistance patch"
+Cohesion: 0.19
+Nodes (13): Stub model (stubModel.ts), Agent configuration (enabled false, setupMode, provider stub), Completion outcomes (independent, cued, revealed, skipped), Hint ladder (repeat, highlight, guide/reveal), Recorder.beginAttempt (one attempt per export), Telemetry event contract and summary, bridge.check.ts (62 assertions), Camera assistance toggle (memoria-camera-assist-v1) (+5 more)
+
+### Community 94 - "suite/contracts.ts"
+Cohesion: 0.10
+Nodes (25): Prepared, SuiteDeps, ActivityContext, ActivityRegistry, AssetSource, AssignPhotos, AudioRef, BuildSceneOptions (+17 more)
+
+### Community 99 - "3D game/vite.config.ts"
+Cohesion: 0.29
+Nodes (5): CAMERA_ASSETS, CAMERA_PUBLIC, CAMERA_WEB, here, TYPES
+
+### Community 102 - "content/prompts.ts"
+Cohesion: 0.08
+Nodes (19): ContentState, DEMO_TEXTURE_MAX, demoPhoto(), packDisplayMedia(), packSound(), allows(), GENERIC_PROMPT_COUNTS, ItemKind (+11 more)
+
+### Community 103 - "dev.mjs"
+Cohesion: 0.13
+Nodes (12): busy, CAMERA_WEB, children, GAME, GAME_PORT, OBS_PORT, problems, PYTHON (+4 more)
+
+### Community 104 - "make-sounds.mjs"
+Cohesion: 0.09
+Nodes (25): biquad(), buf(), burst(), durationMs(), fades(), FFMPEG, filter(), LAME (+17 more)
+
+### Community 105 - "Memoria Unified: Memoria 3D, the Reminiscence Therapy Suite, and optional camera support"
+Cohesion: 0.11
+Nodes (17): Adaptation rules, Architecture as built, Environment, Field mapping: camera app to game, Files that connect the projects, Gameplay telemetry to service events, Known limitations, Manual webcam check (about 5 minutes) (+9 more)
+
+### Community 106 - "package.json"
+Cohesion: 0.14
+Nodes (13): description, engines, node, name, private, scripts, check, check:e2e (+5 more)
+
+### Community 107 - "openCaregiverSetup"
+Cohesion: 0.25
+Nodes (31): openCaregiverSetup(), addPhotos(), addSounds(), applyLanguage(), audioFrom(), audioPreview(), button(), checkField() (+23 more)
+
+### Community 108 - "summary"
+Cohesion: 0.07
+Nodes (30): one, other, one, other, summary, activity, another, closeups (+22 more)
+
+### Community 110 - "summary"
+Cohesion: 0.07
+Nodes (30): one, other, one, other, summary, activity, another, closeups (+22 more)
+
+### Community 111 - "Canvas"
+Cohesion: 0.14
+Nodes (17): bamboo_grove(), Canvas, flowers(), fruit_bowl(), hexrgb(), hills_mist(), hills_morning(), paddy_fields() (+9 more)
+
+### Community 112 - "check.mjs"
+Cohesion: 0.25
+Nodes (7): full, GAME, results, ROOT, SERVICE, steps, WEB
+
+### Community 113 - "setup.mjs"
+Cohesion: 0.25
+Nodes (6): CAMERA_WEB, force, GAME, ROOT, SERVICE, venvPython
+
+### Community 114 - "CameraUI.ts"
+Cohesion: 0.16
+Nodes (6): CameraUICallbacks, describeError(), describeHold(), describeSnapshot(), StepState, writePref()
+
+### Community 115 - "assets/index.ts"
+Cohesion: 0.13
+Nodes (20): hasBuilder(), createAssetLibrary(), Library, loadAssetLibrary(), MANIFEST_PATH, ACCEPTED_LICENSES, CATEGORIES, hasEn() (+12 more)
+
+### Community 116 - "Agent-assisted caregiver setup (Checkpoint F)"
+Cohesion: 0.50
+Nodes (5): Agent-assisted caregiver setup (Checkpoint F), Agent tool contracts (read and proposal tools), request_caregiver_input escape hatch, Rule F-1: no model call during a patient session, Rule F-2: agent proposes, never commits
+
+### Community 117 - "environments/index.ts"
+Cohesion: 0.13
+Nodes (26): createCanvas(), ObjectOverrides, Placement, SceneReport, buildSuiteScene(), Built, downscale(), FLOOR_SETS (+18 more)
+
+### Community 119 - "three"
+Cohesion: 0.13
+Nodes (20): ShellInfo, ShellMaterials, ShellSlot, courtyardVeranda, POSTS, slots, LIGHT_COLOUR, Opening (+12 more)
+
+### Community 120 - "AdaptableRunner"
+Cohesion: 0.14
+Nodes (3): CameraIntegration, AdaptableRunner, SuiteCameraPort
+
+### Community 121 - "editor.ts"
+Cohesion: 0.10
+Nodes (16): CaregiverAudio, CaregiverPrompt, SequenceRef, SuitePhoto, SuiteSound, SectionName, SECTIONS, Vars (+8 more)
+
+### Community 122 - "settings"
+Cohesion: 0.08
+Nodes (26): settings, caregiverAssist, caregiverAssistHint, done, highContrast, master, muted, navigation (+18 more)
+
+### Community 123 - "settings"
+Cohesion: 0.08
+Nodes (26): settings, caregiverAssist, caregiverAssistHint, done, highContrast, master, muted, navigation (+18 more)
+
+### Community 124 - "explore"
+Cohesion: 0.09
+Nodes (23): explore, backToRoom, building, closeup, demoPicture, exit, finish, freeHint (+15 more)
+
+### Community 125 - "explore"
+Cohesion: 0.09
+Nodes (23): explore, backToRoom, building, closeup, demoPicture, exit, finish, freeHint (+15 more)
+
+### Community 127 - "resolve.ts"
+Cohesion: 0.22
+Nodes (13): createSuiteApp(), SuiteMediaApi, envKey(), objectPromptKey(), suiteOf(), close(), displayPhoto(), fitWithin() (+5 more)
+
+### Community 128 - "prototypes.ts"
+Cohesion: 0.12
+Nodes (15): BUILDERS, BuilderContext, FLAT_ENV, MaterialLease, acquireProcedural(), envSignature(), Prototype, prototypes (+7 more)
+
+### Community 129 - "materials.ts"
+Cohesion: 0.15
+Nodes (15): cache, create(), MaterialEnv, MatSpec, PALETTE, signature(), tintFor(), weaveTexture() (+7 more)
+
+### Community 130 - "gltf.ts"
+Cohesion: 0.13
+Nodes (9): Disposable, RefCache, acquireGltf(), cache, GltfPrototype, load(), pending, releaseGltf() (+1 more)
+
+### Community 131 - "caregiver"
+Cohesion: 0.11
+Nodes (19): addNote, failed, hide, hint, homeHint, homeOpen, homeTitle, items (+11 more)
+
+### Community 132 - "caregiver"
+Cohesion: 0.11
+Nodes (19): addNote, failed, hide, hint, homeHint, homeOpen, homeTitle, items (+11 more)
+
+### Community 133 - "i18n/index.ts"
+Cohesion: 0.26
+Nodes (17): LanguageInfo, flattenEntries(), flattenKeys(), formatNumber(), interpolate(), isTree(), lookup(), pluralCategory() (+9 more)
+
+### Community 134 - "suite-profile.check.ts"
+Cohesion: 0.18
+Nodes (18): LocaleIndex, placeholders(), resolveText(), audioMime(), defaultSuiteProfile(), mb(), validateAudioFile(), validatePhotoFile() (+10 more)
+
+### Community 136 - "model.ts"
+Cohesion: 0.21
+Nodes (17): audio(), AUDIO_ALIASES, AUDIO_EXTENSIONS, isBlob(), isObject(), language(), Loose, MediaCheck (+9 more)
+
+### Community 137 - "home"
+Cohesion: 0.11
+Nodes (18): hint, open, title, hint, open, title, hint, open (+10 more)
+
+### Community 138 - "home"
+Cohesion: 0.11
+Nodes (18): hint, open, title, hint, open, title, hint, open (+10 more)
+
+### Community 139 - "en/app.json"
+Cohesion: 0.12
+Nodes (16): back, badge, demo, general, personal, brand, camera, off (+8 more)
+
+### Community 140 - "hi/app.json"
+Cohesion: 0.12
+Nodes (16): back, badge, demo, general, personal, brand, camera, off (+8 more)
+
+### Community 141 - "integration.ts"
+Cohesion: 0.16
+Nodes (13): AdaptationConfig, AdaptationRecord, DEFAULT_ADAPTATION_CONFIG, GameContext, Outcome, CameraIntegrationDeps, Env, LOOPBACK (+5 more)
+
+### Community 143 - "ScenePhotoSurface"
+Cohesion: 0.17
+Nodes (6): PhotoSurface, DecorativeLoader, FACING, fitInside(), MAT_MARGIN, ScenePhotoSurface
+
+### Community 144 - "FakeUI"
+Cohesion: 0.13
+Nodes (4): endToEnd(), FakeState, FakeUI, makeWorld()
+
+### Community 145 - "place"
+Cohesion: 0.13
+Nodes (15): place, continue, coverage, failed, general, intro, loading, none (+7 more)
+
+### Community 146 - "place"
+Cohesion: 0.13
+Nodes (15): place, continue, coverage, failed, general, intro, loading, none (+7 more)
+
+### Community 147 - "h"
+Cohesion: 0.29
+Nodes (9): append(), AttrValue, button(), Child, clear(), h(), trapFocus(), ActionName (+1 more)
+
+### Community 148 - "runtimeText.ts"
+Cohesion: 0.22
+Nodes (9): drawCalendar(), drawRuntimeText(), drawSpines(), fitFont(), RuntimeTextInput, RuntimeTextSpec, RuntimeTextSurface, safeFormat() (+1 more)
+
+### Community 149 - "Reminiscence Therapy Suite: controls, comfort and accessibility"
+Cohesion: 0.15
+Nodes (13): Camera movement, Camera support wording, Checks, Comfort choices, Comfort settings, Controls, Keyboard, Languages (+5 more)
+
+### Community 150 - "activity"
+Cohesion: 0.17
+Nodes (12): activity, failed, guidedFirst, note, otherPlace, place, preparing, retry (+4 more)
+
+### Community 151 - "closeup"
+Cohesion: 0.17
+Nodes (12): closeup, alt, altNone, back, close, demoNotice, fit, people (+4 more)
+
+### Community 152 - "activity"
+Cohesion: 0.17
+Nodes (12): activity, failed, guidedFirst, note, otherPlace, place, preparing, retry (+4 more)
+
+### Community 153 - "closeup"
+Cohesion: 0.17
+Nodes (12): closeup, alt, altNone, back, close, demoNotice, fit, people (+4 more)
+
+### Community 154 - "errMsg"
+Cohesion: 0.30
+Nodes (5): Aborted, absoluteUrl(), errMsg(), ObserverError, Delegate
+
+### Community 155 - "createCameraIntegration"
+Cohesion: 0.38
+Nodes (7): createCameraIntegration(), disable(), enable(), installInputListeners(), setAdaptation(), startCamera(), syncTick()
+
+### Community 156 - "Content packs"
+Cohesion: 0.20
+Nodes (10): content.json, Content packs, Demo pictures, Files, How `appliesTo` is matched, Regenerating, Sounds, To add a pack (+2 more)
+
+### Community 157 - "Personalization in the Reminiscence Therapy Suite"
+Cohesion: 0.20
+Nodes (9): Limits, Media that cannot be shown, Personalization in the Reminiscence Therapy Suite, Privacy, Prompts, Storage, The "no inference" rules, Verification (+1 more)
+
+### Community 158 - "suite-assets.check.ts"
+Cohesion: 0.20
+Nodes (7): SHELLS, SHELL_DEFS, errors, failures, packErrors, shells, SUITE
+
+### Community 159 - "vision"
+Cohesion: 0.25
+Nodes (8): vision, cues, held, label, samples, title, tracking, unmeasured
+
+### Community 160 - "vision"
+Cohesion: 0.25
+Nodes (8): vision, cues, held, label, samples, title, tracking, unmeasured
+
+### Community 161 - "render-thumbnails.mjs"
+Cohesion: 0.25
+Nodes (6): chrome, out, profile, root, vite, work
+
+### Community 162 - "suite/browser-check.mjs"
+Cohesion: 0.25
+Nodes (5): chrome, failures, profile, root, server
+
+### Community 163 - "Activities"
+Cohesion: 0.29
+Nodes (7): Activities, Adding an activity, How camera timing interacts, Prompt order, The five activities, The no-scoring rule, The session
+
+### Community 164 - "Languages in the Reminiscence Therapy Suite"
+Cohesion: 0.29
+Nodes (6): About the Hindi, Adding a language (example: Bengali, `bn`), Current coverage, How it works, Languages in the Reminiscence Therapy Suite, Longest strings
+
+### Community 165 - "Reminiscence Therapy Suite — implementation plan and working agreement"
+Cohesion: 0.29
+Nodes (7): Architecture, Conventions, File ownership, Fixed ids (so parallel work lines up), Flow, Reminiscence Therapy Suite — implementation plan and working agreement, Sequencing
+
+### Community 166 - "Reminiscence Therapy Suite"
+Cohesion: 0.29
+Nodes (7): Guides, Known limitations, Language coverage, Not verified here, Reminiscence Therapy Suite, Verification (2026-09-26, macOS, Node 26, headless Chrome with the SwiftShader software renderer), What it is
+
+### Community 167 - "who"
+Cohesion: 0.29
+Nodes (7): who, demo, demoHint, none, savedHint, title, unnamed
+
+### Community 168 - "who"
+Cohesion: 0.29
+Nodes (7): who, demo, demoHint, none, savedHint, title, unnamed
+
+### Community 171 - "Suite assets — provenance and attribution"
 Cohesion: 0.33
-Nodes (6): scripts, android, build, desktop, start, test
+Nodes (5): Fonts, pictures and sounds, Models, Suite assets — provenance and attribution, Textures (Poly Haven, CC0-1.0), Thumbnails
 
-### Community 144 - "Memory Lane Card View"
+### Community 172 - "pause"
+Cohesion: 0.33
+Nodes (6): pause, body, end, resume, settings, title
+
+### Community 173 - "pause"
+Cohesion: 0.33
+Nodes (6): pause, body, end, resume, settings, title
+
+### Community 175 - "Assets and environments"
 Cohesion: 0.40
-Nodes (4): MemoryCardView, MemoryCardViewProps, styles, MemoryCard
+Nodes (4): Add an asset, Add or change an environment, Assets and environments, Budgets
 
-### Community 146 - "2D Games Web Entry"
+### Community 177 - "fetch-textures.mjs"
 Cohesion: 0.40
-Nodes (3): ref_react_dom, synaptix_games_memory_match_index_memorymatchgame, rootElement
+Nodes (3): OUT, ROOT, SETS
 
-### Community 147 - "Memory Lane Flip Actions"
-Cohesion: 0.40
-Nodes (5): FlipAction, IGNORED, MATCH, MISMATCH, REVEAL_FIRST
-
-### Community 148 - "Synaptix Backend Test Config"
+### Community 178 - "write-environments.py"
 Cohesion: 0.50
-Nodes (3): pytest, anyio_backend(), fixture
+Nodes (3): env(), Writes public/suite/packs/*/environments.json (the environment dressing…, slots()
 
-### Community 149 - "Synaptix Jest Config"
+### Community 179 - "run-check.mjs"
 Cohesion: 0.50
-Nodes (4): jest, preset, testEnvironment, testMatch
+Nodes (3): bundle, out, root
 
 ## Knowledge Gaps
-- **712 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+707 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1225 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **22 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **1008 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+1003 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1541 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **24 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `@tailwindcss/vite` connect `Synaptix Vite Configs` to `Synaptix Frontend Deps`?**
-  _High betweenness centrality (0.256) - this node is a cross-community bridge._
-- **Why does `lucide-react` connect `Synaptix Bottom Nav` to `Synaptix Frontend Deps`, `Synaptix Game Select Screen`, `Synaptix App Shell & Navigation`, `Synaptix Health & Medicine UI`, `Synaptix Health Vitals UI`?**
-  _High betweenness centrality (0.119) - this node is a cross-community bridge._
-- **Why does `framer-motion` connect `Synaptix Bottom Nav` to `Synaptix Frontend Deps`, `Synaptix Game Select Screen`, `Synaptix App Shell & Navigation`, `Synaptix Health & Medicine UI`, `Synaptix Health Vitals UI`?**
-  _High betweenness centrality (0.109) - this node is a cross-community bridge._
-- **Are the 43 inferred relationships involving `boot()` (e.g. with `.activate()` and `.clear()`) actually correct?**
-  _`boot()` has 43 INFERRED edges - model-reasoned connections that need verification._
+- **Why does `three` connect `three` to `prototypes.ts`, `proceduralHouse.ts`, `gltf.ts`, `src/main.ts`, `MemoryPack.ts`, `materials.ts`, `pack.check.ts`, `LocalProfile.ts`, `agent-prompts.check.ts`, `Kit`, `ScenePhotoSurface`, `runtimeText.ts`, `world.check.ts`, `Quality.ts`, `suite-assets.check.ts`, `suite-app.check.ts`, `3D game/package.json`, `agent-review.check.ts`, `worldSnapshot.ts`, `World.ts`, `harness.ts`, `suite-activities.check.ts`, `suite/contracts.ts`, `content/prompts.ts`, `environments/index.ts`, `resolve.ts`?**
+  _High betweenness centrality (0.105) - this node is a cross-community bridge._
+- **Why does `ObservationBody` connect `ObservationBody` to `FaceObserver.ts`, `FaceObserver`, `transport.test.ts`, `camera.check.ts`, `ProducerConnection`, `integration-check.ts`, `integration.ts`, `ProducerConnection.ts`, `protocol/types.ts`, `FaceObserverApi`, `demo/main.ts`, `signals.test.ts`, `CameraAdapter`?**
+  _High betweenness centrality (0.100) - this node is a cross-community bridge._
+- **Why does `ProducerConnection` connect `ProducerConnection` to `ObservationBody`, `GameAdapter`, `transport.test.ts`, `camera.check.ts`, `integration-check.ts`, `ProducerConnection.ts`, `demo/main.ts`?**
+  _High betweenness centrality (0.031) - this node is a cross-community bridge._
+- **Are the 36 inferred relationships involving `boot()` (e.g. with `.activate()` and `.clear()`) actually correct?**
+  _`boot()` has 36 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _712 weakly-connected nodes found - possible documentation gaps or missing edges._
-- **Should `2D Daily Sequence Game` be split into smaller, more focused modules?**
-  _Cohesion score 0.055822466254861584 - nodes in this community are weakly interconnected._
-- **Should `Unified Camera Integration Docs` be split into smaller, more focused modules?**
-  _Cohesion score 0.051106639839034206 - nodes in this community are weakly interconnected._
+  _1008 weakly-connected nodes found - possible documentation gaps or missing edges._
+- **Should `test_engine.py` be split into smaller, more focused modules?**
+  _Cohesion score 0.08880666049953746 - nodes in this community are weakly interconnected._
+- **Should `proceduralHouse.ts` be split into smaller, more focused modules?**
+  _Cohesion score 0.0697980684811238 - nodes in this community are weakly interconnected._

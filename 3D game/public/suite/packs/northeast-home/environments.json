@@ -1,0 +1,307 @@
+{
+ "schema": 1,
+ "environments": [
+  {
+   "id": "ne-living-room",
+   "shell": "livingRoom",
+   "name": {
+    "en": "Living room (Northeast pack)",
+    "hi": "बैठक (पूर्वोत्तर पैक)"
+   },
+   "description": {
+    "en": "A sitting room with photographs and everyday things, a xorai on the low table and a bamboo basket.",
+    "hi": "तस्वीरों और रोज़ की चीज़ों वाला बैठक का कमरा, नीची मेज़ पर सराई और एक बाँस की टोकरी।"
+   },
+   "materials": {
+    "wall": "#e6d8bd",
+    "trim": "#6b4f2e",
+    "floor": "wood",
+    "light": "warm"
+   },
+   "placements": [
+    {
+     "id": "sofa",
+     "asset": "sofa-wood",
+     "slot": "sofa"
+    },
+    {
+     "id": "photo-album",
+     "asset": "photo-album",
+     "slot": "sofa-seat",
+     "highlight": true
+    },
+    {
+     "id": "frame-large",
+     "asset": "frame-wall-large",
+     "slot": "above-sofa",
+     "image": "pic-hills-mist",
+     "highlight": true
+    },
+    {
+     "id": "frame-left",
+     "asset": "frame-wall-small",
+     "slot": "above-sofa-left",
+     "image": "pic-bamboo-grove"
+    },
+    {
+     "id": "frame-right",
+     "asset": "frame-wall-small",
+     "slot": "above-sofa-right",
+     "image": "pic-paddy-fields"
+    },
+    {
+     "id": "almirah",
+     "asset": "almirah-steel",
+     "slot": "back-left"
+    },
+    {
+     "id": "clock",
+     "asset": "clock-wall",
+     "slot": "back-left-high",
+     "highlight": true
+    },
+    {
+     "id": "bookshelf",
+     "asset": "bookshelf",
+     "slot": "back-right"
+    },
+    {
+     "id": "harmonium",
+     "asset": "harmonium",
+     "slot": "back-gap-right",
+     "highlight": true
+    },
+    {
+     "id": "rug",
+     "asset": "floor-mat-woven",
+     "slot": "rug"
+    },
+    {
+     "id": "coffee-table",
+     "asset": "coffee-table",
+     "slot": "centre"
+    },
+    {
+     "id": "centre-left",
+     "asset": "xorai",
+     "slot": "centre-top-left",
+     "highlight": true
+    },
+    {
+     "id": "newspaper",
+     "asset": "newspaper-folded",
+     "slot": "centre-top-right"
+    },
+    {
+     "id": "armchair",
+     "asset": "armchair-cane",
+     "slot": "armchair-left"
+    },
+    {
+     "id": "side-table",
+     "asset": "side-table",
+     "slot": "side-left"
+    },
+    {
+     "id": "frame-table",
+     "asset": "frame-table",
+     "slot": "side-left-top"
+    },
+    {
+     "id": "calendar",
+     "asset": "calendar-wall",
+     "slot": "left-wall-front"
+    },
+    {
+     "id": "sewing-machine",
+     "asset": "sewing-machine",
+     "slot": "left-floor-front",
+     "highlight": true
+    },
+    {
+     "id": "trunk",
+     "asset": "trunk-tin",
+     "slot": "right-mid"
+    },
+    {
+     "id": "frame-high",
+     "asset": "frame-wall-small",
+     "slot": "right-wall-high"
+    },
+    {
+     "id": "mirror",
+     "asset": "wall-mirror",
+     "slot": "right-wall-front"
+    },
+    {
+     "id": "suitcase",
+     "asset": "suitcase-old",
+     "slot": "front-left"
+    },
+    {
+     "id": "kite",
+     "asset": "kite-spool",
+     "slot": "front-wall-left"
+    },
+    {
+     "id": "front-right",
+     "asset": "bamboo-basket",
+     "slot": "front-right"
+    },
+    {
+     "id": "ceiling-fan",
+     "asset": "ceiling-fan",
+     "slot": "ceiling"
+    }
+   ]
+  },
+  {
+   "id": "ne-veranda",
+   "shell": "courtyardVeranda",
+   "name": {
+    "en": "Veranda (Northeast pack)",
+    "hi": "बरामदा (पूर्वोत्तर पैक)"
+   },
+   "description": {
+    "en": "A veranda around an open courtyard, with a jaapi and a gamosa on the wall and a bamboo basket.",
+    "hi": "खुले आँगन के चारों ओर बरामदा, दीवार पर जापी और गामोसा, और एक बाँस की टोकरी।"
+   },
+   "materials": {
+    "wall": "#e3d3b3",
+    "trim": "#5d4a30",
+    "floor": "cement",
+    "light": "warm"
+   },
+   "placements": [
+    {
+     "id": "jaapi",
+     "asset": "jaapi",
+     "slot": "house-wall-a",
+     "highlight": true
+    },
+    {
+     "id": "clock",
+     "asset": "clock-wall",
+     "slot": "house-wall-b"
+    },
+    {
+     "id": "frame-large",
+     "asset": "frame-wall-large",
+     "slot": "house-wall-c",
+     "image": "pic-hills-mist",
+     "highlight": true
+    },
+    {
+     "id": "mirror",
+     "asset": "wall-mirror",
+     "slot": "house-wall-d"
+    },
+    {
+     "id": "frame-small",
+     "asset": "frame-wall-small",
+     "slot": "house-wall-high",
+     "image": "pic-paddy-fields"
+    },
+    {
+     "id": "bench",
+     "asset": "bench-veranda",
+     "slot": "veranda-bench"
+    },
+    {
+     "id": "xorai",
+     "asset": "xorai",
+     "slot": "bench-top-left",
+     "highlight": true
+    },
+    {
+     "id": "tumblers",
+     "asset": "steel-tumbler-set",
+     "slot": "bench-top-right"
+    },
+    {
+     "id": "side-table",
+     "asset": "side-table",
+     "slot": "veranda-right"
+    },
+    {
+     "id": "lantern",
+     "asset": "hurricane-lantern",
+     "slot": "veranda-right-top"
+    },
+    {
+     "id": "armchair",
+     "asset": "armchair-cane",
+     "slot": "veranda-seat-left"
+    },
+    {
+     "id": "stool",
+     "asset": "stool-low",
+     "slot": "veranda-seat-right"
+    },
+    {
+     "id": "mat",
+     "asset": "floor-mat-woven",
+     "slot": "veranda-mat"
+    },
+    {
+     "id": "hanging-plant-1",
+     "asset": "hanging-plant",
+     "slot": "veranda-hang-left"
+    },
+    {
+     "id": "hanging-plant-2",
+     "asset": "hanging-plant",
+     "slot": "veranda-hang-right"
+    },
+    {
+     "id": "clothesline",
+     "asset": "clothesline",
+     "slot": "clothesline"
+    },
+    {
+     "id": "flower-pots",
+     "asset": "flower-pots-row",
+     "slot": "pots-front"
+    },
+    {
+     "id": "big-plant",
+     "asset": "potted-plant-large",
+     "slot": "corner-front-right"
+    },
+    {
+     "id": "bicycle",
+     "asset": "bicycle",
+     "slot": "right-wall-floor",
+     "highlight": true
+    },
+    {
+     "id": "bucket",
+     "asset": "bucket-mug",
+     "slot": "tap-floor"
+    },
+    {
+     "id": "basket",
+     "asset": "bamboo-basket",
+     "slot": "left-wall-floor",
+     "highlight": true
+    },
+    {
+     "id": "gamosa",
+     "asset": "gamosa",
+     "slot": "right-wall-hang",
+     "highlight": true
+    },
+    {
+     "id": "umbrella",
+     "asset": "umbrella",
+     "slot": "left-wall-hang"
+    },
+    {
+     "id": "carrom",
+     "asset": "carrom-board",
+     "slot": "courtyard-centre"
+    }
+   ]
+  }
+ ]
+}

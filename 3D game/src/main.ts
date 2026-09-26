@@ -37,6 +37,8 @@ import { describeSetup, openSetupScreen } from './agent/setupModeUI'
 import { assertWorldContract } from './World'
 import { createProceduralHouse } from './proceduralHouse'
 import { TEMPLATES, houseFor } from './templates'
+import { createSuiteApp } from './suite/app'
+import type { SuiteAppApi, SuiteHost } from './suite/contracts'
 
 /**
  * SPEC.md §3 — entry and game loop.
@@ -106,6 +108,8 @@ const CONTROLS_DONE =
 async function boot(): Promise<void> {
   const app = document.getElementById('app')!
   const ui = new UI(app)
+  /** True while the Reminiscence Therapy Suite (src/suite/) has the screen. */
+  let suiteActive = false
 
   // §6 Checkpoint C: `?patient=raju` changes photos, audible voice and name. The id is
   // a path segment, so MemoryPack validates its shape before interpolating it.
@@ -267,6 +271,10 @@ async function boot(): Promise<void> {
   const recorder = new Recorder()
 
   telemetry.onEvent = (event: Event) => {
+    // A reminiscence activity (src/suite/) sends its own events through this Telemetry so
+    // the optional camera service hears them (the camera layer chains after this
+    // listener). They are not guided-task events: no recording, no log, no summary.
+    if (suiteActive) return
     // Checkpoint D plugs into the seam B left. The `restart` event is what clears the
     // log (§5.6); `Recorder` handles that, so nothing here has to remember to.
     recorder.record(event)
@@ -286,7 +294,9 @@ async function boot(): Promise<void> {
     state,
     telemetry,
     attemptId: () => attemptId,
-    onPlay: () => { if (!runner?.active) startLevel(levelIndex >= 0 ? levelIndex : 0) },
+    // "Start playing" on the camera sheet starts a guided task only from the guided-task
+    // screens; inside the suite it just closes the sheet and the activity carries on.
+    onPlay: () => { if (!suiteActive && !runner?.active) startLevel(levelIndex >= 0 ? levelIndex : 0) },
     onStatusChange: () => { if (overlayMode === 'levels') showLevels() },
     injectMode: (env as { DEV?: unknown }).DEV === true && new URLSearchParams(location.search).get('camera') === 'inject'
   })
@@ -432,6 +442,14 @@ async function boot(): Promise<void> {
     overlayMode = 'summary'
   }
 
+  /** The existing Personalise Home editor, opened on the freshest stored profile so an
+   *  edit made in the suite's caregiver setup since boot is never overwritten. */
+  const openHomePersonalisation = (): void => {
+    const open = (profile: LocalProfile | undefined): void =>
+      openProfileEditor(profile, renderer.renderer.capabilities.maxTextureSize, () => player.clearInput())
+    profileStore.read().then(({ profile }) => open(profile ?? savedProfile), () => open(savedProfile))
+  }
+
   /**
    * The level-selection screen. Reached at start-up, from the summary, and with `L`.
    *
@@ -456,14 +474,16 @@ async function boot(): Promise<void> {
     player.releaseLock()
 
     ui.showLevelSelect({
-      onPersonalise: () => openProfileEditor(savedProfile, renderer.renderer.capabilities.maxTextureSize, () => player.clearInput()),
+      onSuite: () => suite.showHome(),
+      onPersonalise: openHomePersonalisation,
       personalisationLabel: activeProfile ? 'Edit Profile' : 'Personalise Home',
       onSetup: () => openSetup(() => player.clearInput()),
       setupLabel: describeSetup(agentConfig),
       storageWarning,
       title: `Memoria — ${pack.patient.name}`,
       subtitle:
-        `Three levels from the memory pack "${loaded.patientId}". ` +
+        `Guided tasks from the memory pack "${loaded.patientId}". These tasks have answers set by a ` +
+        'caregiver, and are separate from the open-ended activities in the Reminiscence Therapy Suite. ' +
         'Walk with W A S D, look with the mouse, press E to open doors and to look at things.',
       levels: levels.map((mission, index) => ({
         ordinal: `Level ${index + 1}`,
@@ -491,6 +511,9 @@ async function boot(): Promise<void> {
   player.onUnexpectedUnlock = () => state.pause()
 
   state.onChange((next, previous) => {
+    // The suite pauses and resumes its own session (and tells the camera service itself);
+    // the house's pause screen and audio are not involved.
+    if (suiteActive) return
     if (next === 'paused') {
       telemetry.pause()
       stopSpeaking()
@@ -549,6 +572,8 @@ async function boot(): Promise<void> {
       console.warn(`[memoria] no level at index ${index}`)
       return
     }
+    // A guided task always has the screen to itself.
+    if (suiteActive) setSuiteActive(false)
     // Unpause first, so `resume` lands before the boundary the log is cleared on.
     if (state.current === 'paused') state.resume()
 
@@ -605,6 +630,8 @@ async function boot(): Promise<void> {
   const onClick = (): void => {
     // Browsers start an AudioContext suspended until a gesture. This is that gesture.
     voices.unlock()
+    // The suite handles its own pointer, touch and keyboard input, without pointer lock.
+    if (suiteActive) return
     if (state.current === 'paused') {
       state.resume()
       if (state.pointerLockWanted) player.requestLock()
@@ -619,6 +646,7 @@ async function boot(): Promise<void> {
 
   document.addEventListener('keydown', (e) => {
     if (document.querySelector('#profile-editor')) return
+    if (suiteActive) return
     if (e.code === 'Escape') {
       // While `exploring` the browser exits pointer lock and the pointerlockchange
       // handler pauses. In `answering` the pointer is *already* unlocked — no such
@@ -658,11 +686,88 @@ async function boot(): Promise<void> {
     }
   })
 
-  // The first thing the player sees once the pack is in: which levels there are.
-  showLevels()
+  // --- Reminiscence Therapy Suite (src/suite/) --------------------------------------
+  //
+  // The suite builds its own small scenes and screens. While it has the screen the house
+  // is hidden and frozen, the player takes no pointer lock, and the keys above are off.
+  // Guided tasks (the levels above) stay exactly as they were and are one button away.
+
+  /**
+   * Hands the screen to the suite or back. Going in, everything a guided task could have
+   * left running stops — speech, pack voices, focus, the answer card — and the house is
+   * hidden rather than torn down, so the guided tasks come back exactly as they were.
+   */
+  const setSuiteActive = (active: boolean): void => {
+    if (active === suiteActive) return
+    if (active) {
+      if (state.current === 'paused') state.resume()
+      runner?.reset()
+      stopSpeaking()
+      voices.stop()
+      interaction.clear()
+      dropDwell()
+      ui.hideAnswerCard()
+      ui.hideInstruction()
+      ui.setHint(null)
+      ui.setPrompt(null)
+      ui.setControls(null)
+      ui.hideOverlay()
+      overlayMode = 'none'
+      state.set('completed')
+      player.releaseLock()
+      player.clearInput()
+    }
+    suiteActive = active
+    document.title = active ? 'Memoria — Reminiscence Therapy Suite' : `Memoria — ${pack.patient.name}`
+    player.suspended = active
+    world.root.visible = !active
+    document.body.classList.toggle('suite-active', active)
+    renderer.refreshShadows()
+  }
+
+  const suiteHost: SuiteHost = {
+    root: app,
+    three: {
+      scene: renderer.scene,
+      camera: renderer.camera,
+      renderer: renderer.renderer,
+      refreshShadows: () => renderer.refreshShadows()
+    },
+    listener,
+    state,
+    telemetry,
+    camera: {
+      attach: (next) => cameraSupport.attach(next),
+      openSetup: () => cameraSupport.openSetup(),
+      summary: () => cameraSupport.summary(),
+      snapshot: () => cameraSupport.snapshot(),
+      adaptations: () => cameraSupport.adaptations()
+    },
+    quality: {
+      tier: quality.tier,
+      anisotropy: quality.anisotropy,
+      maxTextureSize: renderer.renderer.capabilities.maxTextureSize
+    },
+    profile: { saved: savedProfile, storageWarning },
+    setActive: (active) => setSuiteActive(active),
+    openGuidedTasks: () => {
+      setSuiteActive(false)
+      showLevels()
+    },
+    openHomePersonalisation
+  }
+  const suite: SuiteAppApi = createSuiteApp(suiteHost)
+
+  // Which screen comes first. The suite, unless the URL names a guided-task demo
+  // (`?patient=`), asks for the task list (`?start=tasks`), or a caregiver's own profile
+  // asked to play its first task straight after saving (`?play=1`, below).
+  const params = new URLSearchParams(location.search)
+  const playProfileNow = !!activeProfile && params.get('play') === '1'
+  if (params.has('patient') || params.get('start') === 'tasks' || playProfileNow) showLevels()
+  else suite.showHome()
   window.addEventListener('pageshow', e => { if (e.persisted) location.reload() })
   window.addEventListener('pagehide', () => { voices.stop(); loaded.media.dispose() }, { once: true })
-  if (activeProfile && new URLSearchParams(location.search).get('play') === '1') {
+  if (playProfileNow) {
     history.replaceState(null, '', location.pathname)
     startLevel(0)
   }
@@ -710,6 +815,14 @@ async function boot(): Promise<void> {
     last = now
 
     const dt = Math.min(clock.getDelta(), 0.05)
+    if (suiteActive) {
+      // The suite moves its own camera and animates its own scene; the house is hidden.
+      suite.update(dt)
+      renderer.render()
+      adaptive.sample(frameMs)
+      samplePerf(frameMs)
+      return
+    }
     // Worlds with moving parts (doors) advance first, so collision and the raycast this
     // frame both see where the door actually is. Shadow maps are static otherwise.
     if (world.update?.(dt)) renderer.refreshShadows()
@@ -742,33 +855,7 @@ async function boot(): Promise<void> {
     renderer.render()
 
     adaptive.sample(frameMs)
-
-    if (perf === null && adaptive.settled && !adaptive.waiting) {
-      if (warmup < FRAME_WARMUP) {
-        warmup++
-      } else if (samples.length < FRAME_SAMPLES) {
-        samples.push(frameMs)
-      } else {
-        const sorted = [...samples].sort((a, b) => a - b)
-        const info = renderer.renderer.info
-        perf = {
-          medianMs: +percentile(sorted, 50).toFixed(2),
-          p95Ms: +percentile(sorted, 95).toFixed(2),
-          frames: sorted.length,
-          drawCalls: info.render.calls,
-          triangles: info.render.triangles,
-          programs: info.programs?.length ?? 0,
-          resolution: `${renderer.renderer.domElement.width}x${renderer.renderer.domElement.height}`,
-          pixelRatio: renderer.renderer.getPixelRatio(),
-          tier: quality.tier,
-          anisotropy: quality.anisotropy,
-          textureResolution: houseTextures,
-          userAgent: navigator.userAgent
-        }
-        console.log('[memoria] perf', perf)
-        ;(window as unknown as { __memoriaPerf: PerfResult }).__memoriaPerf = perf
-      }
-    }
+    samplePerf(frameMs)
 
     const info = renderer.renderer.info
     ui.setPerf(
@@ -796,6 +883,36 @@ async function boot(): Promise<void> {
           : '') +
         (focus ? ` · focus <b>${focus.meta.id}</b>` : '')
     )
+  }
+
+  /** §7's sample, taken once per page-load on whichever screen is up when it settles. */
+  function samplePerf(frameMs: number): void {
+    if (perf === null && adaptive.settled && !adaptive.waiting) {
+      if (warmup < FRAME_WARMUP) {
+        warmup++
+      } else if (samples.length < FRAME_SAMPLES) {
+        samples.push(frameMs)
+      } else {
+        const sorted = [...samples].sort((a, b) => a - b)
+        const info = renderer.renderer.info
+        perf = {
+          medianMs: +percentile(sorted, 50).toFixed(2),
+          p95Ms: +percentile(sorted, 95).toFixed(2),
+          frames: sorted.length,
+          drawCalls: info.render.calls,
+          triangles: info.render.triangles,
+          programs: info.programs?.length ?? 0,
+          resolution: `${renderer.renderer.domElement.width}x${renderer.renderer.domElement.height}`,
+          pixelRatio: renderer.renderer.getPixelRatio(),
+          tier: quality.tier,
+          anisotropy: quality.anisotropy,
+          textureResolution: houseTextures,
+          userAgent: navigator.userAgent
+        }
+        console.log('[memoria] perf', perf)
+        ;(window as unknown as { __memoriaPerf: PerfResult }).__memoriaPerf = perf
+      }
+    }
   }
 
   /**
@@ -880,6 +997,13 @@ async function boot(): Promise<void> {
     pack, media, voices, warnings, patientId: loaded.patientId,
     recorder,
     camera: cameraSupport.debug,
+    /** The Reminiscence Therapy Suite's own debug handle (src/suite/app). */
+    get suite(): Record<string, unknown> {
+      return suite.debug
+    },
+    get suiteActive(): boolean {
+      return suiteActive
+    },
     get runner(): MissionRunner | null {
       return runner
     },
@@ -893,6 +1017,7 @@ async function boot(): Promise<void> {
       download: exportSession,
       showSummary,
       showLevels,
+      showSuite: () => suite.showHome(),
       startLevel,
       /** Replays whichever level is selected — what `R` and the Replay button do. */
       restart: () => startLevel(levelIndex),

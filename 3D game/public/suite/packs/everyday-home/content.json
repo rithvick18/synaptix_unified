@@ -1,0 +1,2095 @@
+{
+  "schema": 1,
+  "prompts": [
+    {
+      "id": "cat-keepsakes-1",
+      "appliesTo": {
+        "categories": [
+          "photos-keepsakes"
+        ]
+      },
+      "text": {
+        "en": "Would you like to tell us about this?",
+        "hi": "क्या आप इसके बारे में कुछ बताना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-keepsakes-2",
+      "appliesTo": {
+        "categories": [
+          "photos-keepsakes"
+        ]
+      },
+      "text": {
+        "en": "Keepsakes can mean many different things. Is there anything you would like to say about this one?",
+        "hi": "यादगार चीज़ों के कई अलग-अलग मतलब हो सकते हैं। क्या आप इसके बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-keepsakes-3",
+      "appliesTo": {
+        "categories": [
+          "photos-keepsakes"
+        ]
+      },
+      "text": {
+        "en": "Does this bring anything to mind? There is no hurry.",
+        "hi": "क्या इससे मन में कुछ आता है? कोई जल्दी नहीं है।"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-keepsakes-4",
+      "appliesTo": {
+        "categories": [
+          "photos-keepsakes"
+        ],
+        "activities": [
+          "object",
+          "sequence"
+        ]
+      },
+      "text": {
+        "en": "We can look at this together for as long as you like. Is there anything you would like to share?",
+        "hi": "हम इसे जितनी देर चाहें साथ देख सकते हैं। क्या आप कुछ साझा करना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-furniture-1",
+      "appliesTo": {
+        "categories": [
+          "furniture"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this?",
+        "hi": "क्या आप इसके बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-furniture-2",
+      "appliesTo": {
+        "categories": [
+          "furniture"
+        ]
+      },
+      "text": {
+        "en": "Does this piece of furniture bring any place to mind?",
+        "hi": "क्या यह फ़र्नीचर मन में किसी जगह का ख़याल लाता है?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-furniture-3",
+      "appliesTo": {
+        "categories": [
+          "furniture"
+        ],
+        "activities": [
+          "object",
+          "space",
+          "sequence"
+        ]
+      },
+      "text": {
+        "en": "If anything comes to mind, would you like to talk about places to sit and rest?",
+        "hi": "अगर मन में कुछ आए, तो क्या आप बैठने और आराम करने की जगहों के बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-storage-1",
+      "appliesTo": {
+        "categories": [
+          "storage"
+        ]
+      },
+      "text": {
+        "en": "Cupboards and boxes hold all kinds of things. Would you like to say anything about this one?",
+        "hi": "अलमारियों और बक्सों में तरह-तरह की चीज़ें रहती हैं। क्या आप इसके बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-storage-2",
+      "appliesTo": {
+        "categories": [
+          "storage"
+        ]
+      },
+      "text": {
+        "en": "Does this bring anything to mind? You can share as much or as little as you like.",
+        "hi": "क्या इससे मन में कुछ आता है? आप जितना चाहें, उतना बताएँ।"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-storage-3",
+      "appliesTo": {
+        "categories": [
+          "storage"
+        ]
+      },
+      "text": {
+        "en": "What would you like to say about this?",
+        "hi": "आप इसके बारे में क्या कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-textiles-1",
+      "appliesTo": {
+        "categories": [
+          "textiles"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about the colours or the feel of this?",
+        "hi": "क्या आप इसके रंगों या इसे छूने के एहसास के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-textiles-2",
+      "appliesTo": {
+        "categories": [
+          "textiles"
+        ]
+      },
+      "text": {
+        "en": "Is there a pattern or a cloth you would like to talk about?",
+        "hi": "क्या कोई नमूना या कपड़ा है जिसके बारे में आप बात करना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-textiles-3",
+      "appliesTo": {
+        "categories": [
+          "textiles"
+        ]
+      },
+      "text": {
+        "en": "Does this bring anything to mind? Take your time.",
+        "hi": "क्या इससे मन में कुछ आता है? आराम से सोचिए।"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-kitchen-1",
+      "appliesTo": {
+        "categories": [
+          "kitchen-food"
+        ]
+      },
+      "text": {
+        "en": "Would you like to tell us about this?",
+        "hi": "क्या आप इसके बारे में कुछ बताना चाहेंगे?"
+      },
+      "topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "cat-kitchen-2",
+      "appliesTo": {
+        "categories": [
+          "kitchen-food"
+        ]
+      },
+      "text": {
+        "en": "Does this bring any smells or tastes to mind? Only if you would like to share.",
+        "hi": "क्या इससे कोई ख़ुशबू या स्वाद मन में आता है? अगर आप बताना चाहें तो।"
+      },
+      "topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "cat-kitchen-3",
+      "appliesTo": {
+        "categories": [
+          "kitchen-food"
+        ]
+      },
+      "text": {
+        "en": "Kitchens are different in every home. Is there anything you would like to say about this one?",
+        "hi": "हर घर की रसोई अलग होती है। क्या आप इसके बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "food",
+        "home"
+      ]
+    },
+    {
+      "id": "cat-kitchen-4",
+      "appliesTo": {
+        "categories": [
+          "kitchen-food"
+        ]
+      },
+      "text": {
+        "en": "Is there a meal or a drink you would like to talk about?",
+        "hi": "क्या कोई खाना या पेय है जिसके बारे में आप बात करना चाहेंगे?"
+      },
+      "topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "cat-kitchen-5",
+      "appliesTo": {
+        "categories": [
+          "kitchen-food"
+        ]
+      },
+      "text": {
+        "en": "Some meals are for every day and some are for special days. Would you like to talk about either?",
+        "hi": "कुछ खाना रोज़ का होता है और कुछ ख़ास दिनों का। क्या आप किसी के बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "food",
+        "festivals"
+      ]
+    },
+    {
+      "id": "cat-outdoor-1",
+      "appliesTo": {
+        "categories": [
+          "plants-outdoor"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about plants or gardens?",
+        "hi": "क्या आप पौधों या बगीचों के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "nature"
+      ]
+    },
+    {
+      "id": "cat-outdoor-2",
+      "appliesTo": {
+        "categories": [
+          "plants-outdoor"
+        ]
+      },
+      "text": {
+        "en": "Does this bring any time of year or any weather to mind?",
+        "hi": "क्या इससे साल का कोई समय या कोई मौसम मन में आता है?"
+      },
+      "topics": [
+        "nature",
+        "weather"
+      ]
+    },
+    {
+      "id": "cat-outdoor-3",
+      "appliesTo": {
+        "categories": [
+          "plants-outdoor"
+        ]
+      },
+      "text": {
+        "en": "Is there anything about being outdoors you would like to talk about?",
+        "hi": "क्या बाहर खुले में होने के बारे में आप कुछ बात करना चाहेंगे?"
+      },
+      "topics": [
+        "nature"
+      ]
+    },
+    {
+      "id": "cat-music-1",
+      "appliesTo": {
+        "categories": [
+          "music-media"
+        ]
+      },
+      "text": {
+        "en": "Is there a sound or a song you would like to talk about?",
+        "hi": "क्या कोई आवाज़ या गीत है जिसके बारे में आप बात करना चाहेंगे?"
+      },
+      "topics": [
+        "music"
+      ]
+    },
+    {
+      "id": "cat-music-2",
+      "appliesTo": {
+        "categories": [
+          "music-media"
+        ]
+      },
+      "text": {
+        "en": "Does this bring any music or voices to mind? We can listen together if you like.",
+        "hi": "क्या इससे कोई संगीत या आवाज़ें मन में आती हैं? आप चाहें तो हम साथ सुन सकते हैं।"
+      },
+      "topics": [
+        "music"
+      ]
+    },
+    {
+      "id": "cat-music-3",
+      "appliesTo": {
+        "categories": [
+          "music-media"
+        ]
+      },
+      "text": {
+        "en": "Would you like to tell us about this?",
+        "hi": "क्या आप इसके बारे में कुछ बताना चाहेंगे?"
+      },
+      "topics": [
+        "music"
+      ]
+    },
+    {
+      "id": "cat-music-4",
+      "appliesTo": {
+        "categories": [
+          "music-media"
+        ]
+      },
+      "text": {
+        "en": "Music is part of many gatherings, celebrations and prayers. Would you like to talk about any music at all?",
+        "hi": "संगीत कई मेल-मिलापों, उत्सवों और प्रार्थनाओं का हिस्सा होता है। क्या आप किसी भी तरह के संगीत के बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "music",
+        "festivals",
+        "faith"
+      ]
+    },
+    {
+      "id": "cat-work-1",
+      "appliesTo": {
+        "categories": [
+          "school-work"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this?",
+        "hi": "क्या आप इसके बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "work"
+      ]
+    },
+    {
+      "id": "cat-work-2",
+      "appliesTo": {
+        "categories": [
+          "school-work"
+        ]
+      },
+      "text": {
+        "en": "Is there any kind of work or learning you would like to talk about?",
+        "hi": "क्या किसी काम या सीखने के बारे में आप बात करना चाहेंगे?"
+      },
+      "topics": [
+        "work",
+        "school"
+      ]
+    },
+    {
+      "id": "cat-work-3",
+      "appliesTo": {
+        "categories": [
+          "school-work"
+        ]
+      },
+      "text": {
+        "en": "Does this bring anything to mind? Whatever you would like to share is welcome.",
+        "hi": "क्या इससे मन में कुछ आता है? आप जो भी बताना चाहें, उसका स्वागत है।"
+      },
+      "topics": [
+        "work"
+      ]
+    },
+    {
+      "id": "cat-travel-1",
+      "appliesTo": {
+        "categories": [
+          "travel"
+        ]
+      },
+      "text": {
+        "en": "Is there a journey, short or long, you would like to talk about?",
+        "hi": "क्या कोई छोटी या लंबी यात्रा है जिसके बारे में आप बात करना चाहेंगे?"
+      },
+      "topics": [
+        "travel"
+      ]
+    },
+    {
+      "id": "cat-travel-2",
+      "appliesTo": {
+        "categories": [
+          "travel"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about getting from one place to another?",
+        "hi": "क्या आप एक जगह से दूसरी जगह आने-जाने के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "travel"
+      ]
+    },
+    {
+      "id": "cat-travel-3",
+      "appliesTo": {
+        "categories": [
+          "travel"
+        ]
+      },
+      "text": {
+        "en": "Does this bring any place to mind?",
+        "hi": "क्या इससे कोई जगह मन में आती है?"
+      },
+      "topics": [
+        "travel"
+      ]
+    },
+    {
+      "id": "cat-games-1",
+      "appliesTo": {
+        "categories": [
+          "hobbies-games"
+        ]
+      },
+      "text": {
+        "en": "Would you like to talk about games, or things you enjoy doing?",
+        "hi": "क्या आप खेलों के बारे में, या जो काम आपको अच्छे लगते हैं उनके बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "games"
+      ]
+    },
+    {
+      "id": "cat-games-2",
+      "appliesTo": {
+        "categories": [
+          "hobbies-games"
+        ]
+      },
+      "text": {
+        "en": "Is there anything this brings to mind?",
+        "hi": "क्या यह मन में कुछ लाता है?"
+      },
+      "topics": [
+        "games"
+      ]
+    },
+    {
+      "id": "cat-games-3",
+      "appliesTo": {
+        "categories": [
+          "hobbies-games"
+        ]
+      },
+      "text": {
+        "en": "Would you like to tell us about this?",
+        "hi": "क्या आप इसके बारे में कुछ बताना चाहेंगे?"
+      },
+      "topics": [
+        "games"
+      ]
+    },
+    {
+      "id": "cat-community-1",
+      "appliesTo": {
+        "categories": [
+          "community"
+        ]
+      },
+      "text": {
+        "en": "Would you like to talk about the news, or anything happening around you?",
+        "hi": "क्या आप ख़बरों के बारे में, या आसपास जो हो रहा है उसके बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "community"
+      ]
+    },
+    {
+      "id": "cat-community-2",
+      "appliesTo": {
+        "categories": [
+          "community"
+        ]
+      },
+      "text": {
+        "en": "Is there anything this brings to mind?",
+        "hi": "क्या यह मन में कुछ लाता है?"
+      },
+      "topics": [
+        "community"
+      ]
+    },
+    {
+      "id": "cat-community-3",
+      "appliesTo": {
+        "categories": [
+          "community"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about people and places nearby?",
+        "hi": "क्या आप आसपास के लोगों और जगहों के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "community"
+      ]
+    },
+    {
+      "id": "cat-lighting-1",
+      "appliesTo": {
+        "categories": [
+          "lighting"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this light?",
+        "hi": "क्या आप इस रोशनी के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-lighting-2",
+      "appliesTo": {
+        "categories": [
+          "lighting"
+        ]
+      },
+      "text": {
+        "en": "Does this bring a time of day to mind?",
+        "hi": "क्या इससे दिन का कोई समय मन में आता है?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-lighting-3",
+      "appliesTo": {
+        "categories": [
+          "lighting"
+        ]
+      },
+      "text": {
+        "en": "Lamps and lights are part of quiet evenings and of many celebrations. Is there anything you would like to share?",
+        "hi": "लैंप और रोशनियाँ शांत शामों और कई उत्सवों का हिस्सा होती हैं। क्या आप कुछ साझा करना चाहेंगे?"
+      },
+      "topics": [
+        "home",
+        "festivals"
+      ]
+    },
+    {
+      "id": "cat-decor-1",
+      "appliesTo": {
+        "categories": [
+          "decor"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about how this looks?",
+        "hi": "क्या आप इसके दिखने के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-decor-2",
+      "appliesTo": {
+        "categories": [
+          "decor"
+        ]
+      },
+      "text": {
+        "en": "Is there something about this you like, or do not like?",
+        "hi": "क्या इसमें कुछ है जो आपको अच्छा लगता है, या अच्छा नहीं लगता?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "cat-decor-3",
+      "appliesTo": {
+        "categories": [
+          "decor"
+        ]
+      },
+      "text": {
+        "en": "Does this bring anything to mind?",
+        "hi": "क्या इससे मन में कुछ आता है?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "act-photo-1",
+      "appliesTo": {
+        "activities": [
+          "photo"
+        ]
+      },
+      "text": {
+        "en": "What would you like to say about this picture?",
+        "hi": "आप इस तस्वीर के बारे में क्या कहना चाहेंगे?"
+      },
+      "topics": []
+    },
+    {
+      "id": "act-photo-2",
+      "appliesTo": {
+        "activities": [
+          "photo"
+        ]
+      },
+      "text": {
+        "en": "Does this picture bring anything to mind?",
+        "hi": "क्या यह तस्वीर मन में कुछ लाती है?"
+      },
+      "topics": []
+    },
+    {
+      "id": "act-photo-3",
+      "appliesTo": {
+        "activities": [
+          "photo"
+        ]
+      },
+      "text": {
+        "en": "Would you like to tell us about this picture? There is no hurry.",
+        "hi": "क्या आप इस तस्वीर के बारे में कुछ बताना चाहेंगे? कोई जल्दी नहीं है।"
+      },
+      "topics": []
+    },
+    {
+      "id": "act-photo-4",
+      "appliesTo": {
+        "activities": [
+          "photo"
+        ]
+      },
+      "text": {
+        "en": "Is there a colour or a detail in this picture you would like to talk about?",
+        "hi": "क्या इस तस्वीर में कोई रंग या बारीकी है जिसके बारे में आप बात करना चाहेंगे?"
+      },
+      "topics": []
+    },
+    {
+      "id": "act-photo-5",
+      "appliesTo": {
+        "activities": [
+          "photo"
+        ]
+      },
+      "text": {
+        "en": "Would you like to describe what you see, or anything it makes you think of?",
+        "hi": "क्या आप बताना चाहेंगे कि आपको क्या दिखता है, या इससे आपको क्या ख़याल आता है?"
+      },
+      "topics": []
+    },
+    {
+      "id": "act-sound-1",
+      "appliesTo": {
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Is there a sound you would like to talk about?",
+        "hi": "क्या कोई आवाज़ है जिसके बारे में आप बात करना चाहेंगे?"
+      },
+      "topics": []
+    },
+    {
+      "id": "act-sound-2",
+      "appliesTo": {
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Does this sound bring anything to mind?",
+        "hi": "क्या यह आवाज़ मन में कुछ लाती है?"
+      },
+      "topics": []
+    },
+    {
+      "id": "act-sound-3",
+      "appliesTo": {
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Would you like to listen again, or say anything about it?",
+        "hi": "क्या आप इसे फिर से सुनना चाहेंगे, या इसके बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": []
+    },
+    {
+      "id": "act-sound-weather",
+      "appliesTo": {
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Would you like to talk about the weather, or any time of year this brings to mind?",
+        "hi": "क्या आप मौसम के बारे में, या साल के किसी ऐसे समय के बारे में बात करना चाहेंगे जो इससे मन में आता है?"
+      },
+      "topics": [
+        "weather"
+      ]
+    },
+    {
+      "id": "act-sound-music",
+      "appliesTo": {
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Is there any music you would like to talk about?",
+        "hi": "क्या कोई संगीत है जिसके बारे में आप बात करना चाहेंगे?"
+      },
+      "topics": [
+        "music"
+      ]
+    },
+    {
+      "id": "act-sound-travel",
+      "appliesTo": {
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Does this sound bring any journey or any road to mind?",
+        "hi": "क्या यह आवाज़ किसी यात्रा या किसी रास्ते को मन में लाती है?"
+      },
+      "topics": [
+        "travel"
+      ]
+    },
+    {
+      "id": "act-sound-food",
+      "appliesTo": {
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Does this sound bring any kitchen or any meal to mind?",
+        "hi": "क्या यह आवाज़ किसी रसोई या किसी खाने को मन में लाती है?"
+      },
+      "topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "act-sound-nature",
+      "appliesTo": {
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about birds, trees or being outdoors?",
+        "hi": "क्या आप पक्षियों, पेड़ों या बाहर खुले में होने के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "nature"
+      ]
+    },
+    {
+      "id": "act-sound-home",
+      "appliesTo": {
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Is there a sound from around a home you would like to talk about?",
+        "hi": "क्या घर के आसपास की कोई आवाज़ है जिसके बारे में आप बात करना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "act-sound-school",
+      "appliesTo": {
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Does this sound bring any place or any time of day to mind?",
+        "hi": "क्या यह आवाज़ कोई जगह या दिन का कोई समय मन में लाती है?"
+      },
+      "topics": [
+        "school",
+        "childhood"
+      ]
+    },
+    {
+      "id": "act-sound-work",
+      "appliesTo": {
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about work done by hand, if anything comes to mind?",
+        "hi": "अगर मन में कुछ आए, तो क्या आप हाथ से किए जाने वाले काम के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "work"
+      ]
+    },
+    {
+      "id": "act-space-1",
+      "appliesTo": {
+        "activities": [
+          "space"
+        ]
+      },
+      "text": {
+        "en": "Would you like to look around this room together? You can choose anything that catches your eye.",
+        "hi": "क्या आप साथ मिलकर इस कमरे को देखना चाहेंगे? जो भी चीज़ आपका ध्यान खींचे, आप उसे चुन सकते हैं।"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "act-space-2",
+      "appliesTo": {
+        "activities": [
+          "space"
+        ]
+      },
+      "text": {
+        "en": "Is there anything here you would like to look at more closely?",
+        "hi": "क्या यहाँ कुछ है जिसे आप और पास से देखना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "act-space-3",
+      "appliesTo": {
+        "activities": [
+          "space"
+        ]
+      },
+      "text": {
+        "en": "Does this place bring anything to mind? Take your time.",
+        "hi": "क्या यह जगह मन में कुछ लाती है? आराम से देखिए।"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-pressure-cooker",
+      "appliesTo": {
+        "assets": [
+          "pressure-cooker"
+        ]
+      },
+      "text": {
+        "en": "Some kitchens have a pressure cooker like this. Is there anything you would like to say about it?",
+        "hi": "कुछ रसोइयों में ऐसा प्रेशर कुकर होता है। क्या आप इसके बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "food",
+        "home"
+      ]
+    },
+    {
+      "id": "a-pressure-cooker-sound",
+      "appliesTo": {
+        "assets": [
+          "pressure-cooker"
+        ],
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Does the sound of a pressure cooker bring anything to mind?",
+        "hi": "क्या प्रेशर कुकर की आवाज़ मन में कुछ लाती है?"
+      },
+      "topics": [
+        "food",
+        "home"
+      ]
+    },
+    {
+      "id": "a-radio",
+      "appliesTo": {
+        "assets": [
+          "radio-transistor",
+          "radio-valve",
+          "cassette-player"
+        ]
+      },
+      "text": {
+        "en": "Would you like to talk about radios, or anything you enjoy listening to?",
+        "hi": "क्या आप रेडियो के बारे में, या जो कुछ आपको सुनना अच्छा लगता है उसके बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "music"
+      ]
+    },
+    {
+      "id": "a-radio-sound",
+      "appliesTo": {
+        "assets": [
+          "radio-transistor",
+          "radio-valve"
+        ],
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Is there a programme, a voice or a song this sound brings to mind?",
+        "hi": "क्या यह आवाज़ कोई कार्यक्रम, कोई आवाज़ या कोई गीत मन में लाती है?"
+      },
+      "topics": [
+        "music"
+      ]
+    },
+    {
+      "id": "a-harmonium",
+      "appliesTo": {
+        "assets": [
+          "harmonium"
+        ]
+      },
+      "text": {
+        "en": "Would you like to talk about this instrument, or any music it brings to mind?",
+        "hi": "क्या आप इस वाद्य के बारे में, या इससे मन में आने वाले किसी संगीत के बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "music"
+      ]
+    },
+    {
+      "id": "a-sewing-machine",
+      "appliesTo": {
+        "assets": [
+          "sewing-machine"
+        ]
+      },
+      "text": {
+        "en": "Does this sewing machine bring anything to mind?",
+        "hi": "क्या यह सिलाई मशीन मन में कुछ लाती है?"
+      },
+      "topics": [
+        "work",
+        "home"
+      ]
+    },
+    {
+      "id": "a-bicycle",
+      "appliesTo": {
+        "assets": [
+          "bicycle"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this bicycle, or about getting around?",
+        "hi": "क्या आप इस साइकिल के बारे में, या आने-जाने के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "travel"
+      ]
+    },
+    {
+      "id": "a-bicycle-sound",
+      "appliesTo": {
+        "assets": [
+          "bicycle"
+        ],
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Does a bicycle bell bring any street or any road to mind?",
+        "hi": "क्या साइकिल की घंटी किसी गली या रास्ते को मन में लाती है?"
+      },
+      "topics": [
+        "travel",
+        "community"
+      ]
+    },
+    {
+      "id": "a-carrom",
+      "appliesTo": {
+        "assets": [
+          "carrom-board"
+        ]
+      },
+      "text": {
+        "en": "Would you like to tell us about this game, or any games you enjoy?",
+        "hi": "क्या आप इस खेल के बारे में, या आपको अच्छे लगने वाले किसी खेल के बारे में बताना चाहेंगे?"
+      },
+      "topics": [
+        "games"
+      ]
+    },
+    {
+      "id": "a-board-games",
+      "appliesTo": {
+        "assets": [
+          "carrom-board",
+          "chess-set"
+        ]
+      },
+      "text": {
+        "en": "Board games can be quiet or lively. Would you like to say anything about this one?",
+        "hi": "बोर्ड वाले खेल शांत भी हो सकते हैं और जोशीले भी। क्या आप इसके बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "games"
+      ]
+    },
+    {
+      "id": "a-cricket",
+      "appliesTo": {
+        "assets": [
+          "cricket-bat-ball"
+        ]
+      },
+      "text": {
+        "en": "Would you like to talk about cricket, or any other game, whether playing or watching?",
+        "hi": "क्या आप क्रिकेट के बारे में, या किसी और खेल के बारे में — खेलने या देखने के बारे में — बात करना चाहेंगे?"
+      },
+      "topics": [
+        "games"
+      ]
+    },
+    {
+      "id": "a-kite",
+      "appliesTo": {
+        "assets": [
+          "kite-spool"
+        ]
+      },
+      "text": {
+        "en": "Kites are flown on many different days in different places. Would you like to say anything about kites?",
+        "hi": "अलग-अलग जगहों पर अलग-अलग दिनों में पतंगें उड़ाई जाती हैं। क्या आप पतंगों के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "games",
+        "festivals"
+      ]
+    },
+    {
+      "id": "a-knitting",
+      "appliesTo": {
+        "assets": [
+          "knitting-basket"
+        ]
+      },
+      "text": {
+        "en": "Would you like to tell us about this knitting basket, or anything you like making?",
+        "hi": "क्या आप इस बुनाई की टोकरी के बारे में, या जो कुछ आपको बनाना अच्छा लगता है उसके बारे में बताना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-slate",
+      "appliesTo": {
+        "assets": [
+          "school-slate"
+        ]
+      },
+      "text": {
+        "en": "Does this slate bring anything to mind? Share whatever you like.",
+        "hi": "क्या यह स्लेट मन में कुछ लाती है? जो चाहें, बताइए।"
+      },
+      "topics": [
+        "school",
+        "childhood"
+      ]
+    },
+    {
+      "id": "a-school-bag",
+      "appliesTo": {
+        "assets": [
+          "school-bag"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this bag?",
+        "hi": "क्या आप इस बस्ते के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "school",
+        "childhood"
+      ]
+    },
+    {
+      "id": "a-clock",
+      "appliesTo": {
+        "assets": [
+          "clock-wall",
+          "clock-table"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say something about this clock?",
+        "hi": "क्या आप इस घड़ी के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-clock-sound",
+      "appliesTo": {
+        "assets": [
+          "clock-wall",
+          "clock-table"
+        ],
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Is there anything the ticking of a clock brings to mind?",
+        "hi": "क्या घड़ी की टिक-टिक मन में कुछ लाती है?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-calendar",
+      "appliesTo": {
+        "assets": [
+          "calendar-wall"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this calendar, or the pictures calendars sometimes have?",
+        "hi": "क्या आप इस कैलेंडर के बारे में, या कैलेंडरों पर कभी-कभी बनी तस्वीरों के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-album",
+      "appliesTo": {
+        "assets": [
+          "photo-album"
+        ]
+      },
+      "text": {
+        "en": "Would you like to look through this album together?",
+        "hi": "क्या आप यह एल्बम साथ मिलकर देखना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-frames",
+      "appliesTo": {
+        "assets": [
+          "frame-wall-large",
+          "frame-wall-small",
+          "frame-table"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this frame, or what it shows?",
+        "hi": "क्या आप इस फ़्रेम के बारे में, या इसमें जो दिख रहा है उसके बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-letters",
+      "appliesTo": {
+        "assets": [
+          "letters-bundle"
+        ]
+      },
+      "text": {
+        "en": "Letters can hold many things. Would you like to talk about letters, or anything they bring to mind?",
+        "hi": "चिट्ठियों में बहुत कुछ हो सकता है। क्या आप चिट्ठियों के बारे में, या उनसे मन में आने वाली किसी बात के बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "family",
+        "community"
+      ]
+    },
+    {
+      "id": "a-tiffin",
+      "appliesTo": {
+        "assets": [
+          "tiffin-carrier"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this tiffin carrier?",
+        "hi": "क्या आप इस टिफ़िन के डिब्बे के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "food",
+        "work"
+      ]
+    },
+    {
+      "id": "a-spice-box",
+      "appliesTo": {
+        "assets": [
+          "spice-box"
+        ]
+      },
+      "text": {
+        "en": "Does this spice box bring any colours or smells to mind? Only if you would like to share.",
+        "hi": "क्या यह मसालेदानी कोई रंग या ख़ुशबू मन में लाती है? अगर आप बताना चाहें तो।"
+      },
+      "topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "a-steel",
+      "appliesTo": {
+        "assets": [
+          "steel-tumbler-set",
+          "steel-plate"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about these?",
+        "hi": "क्या आप इनके बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "a-rolling",
+      "appliesTo": {
+        "assets": [
+          "rolling-board-pin"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this rolling board and pin?",
+        "hi": "क्या आप इस चकले-बेलन के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "a-cooking",
+      "appliesTo": {
+        "assets": [
+          "kadai",
+          "tawa",
+          "gas-stove"
+        ]
+      },
+      "text": {
+        "en": "If anything comes to mind, would you like to talk about cooking or eating?",
+        "hi": "अगर मन में कुछ आए, तो क्या आप खाना बनाने या खाने के बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "a-water-pot",
+      "appliesTo": {
+        "assets": [
+          "clay-water-pot"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this water pot?",
+        "hi": "क्या आप इस पानी के घड़े के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home",
+        "weather"
+      ]
+    },
+    {
+      "id": "a-water-sound",
+      "appliesTo": {
+        "assets": [
+          "clay-water-pot",
+          "bucket-mug"
+        ],
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Does the sound of water bring anything to mind?",
+        "hi": "क्या पानी की आवाज़ मन में कुछ लाती है?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-vessel",
+      "appliesTo": {
+        "assets": [
+          "brass-vessel",
+          "kettle"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this vessel?",
+        "hi": "क्या आप इस बर्तन के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home",
+        "food"
+      ]
+    },
+    {
+      "id": "a-pickle",
+      "appliesTo": {
+        "assets": [
+          "jar-pickle"
+        ]
+      },
+      "text": {
+        "en": "Would you like to talk about this jar, or anything kept in jars like it?",
+        "hi": "क्या आप इस मर्तबान के बारे में, या ऐसे मर्तबानों में रखी जाने वाली चीज़ों के बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "a-mortar",
+      "appliesTo": {
+        "assets": [
+          "mortar-pestle"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this mortar and pestle?",
+        "hi": "क्या आप इस इमामदस्ते के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "food"
+      ]
+    },
+    {
+      "id": "a-lantern",
+      "appliesTo": {
+        "assets": [
+          "hurricane-lantern"
+        ]
+      },
+      "text": {
+        "en": "Does this lantern bring any evening or any place to mind?",
+        "hi": "क्या यह लालटेन कोई शाम या कोई जगह मन में लाती है?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-fan",
+      "appliesTo": {
+        "assets": [
+          "ceiling-fan"
+        ]
+      },
+      "text": {
+        "en": "Is there anything you would like to say about the fan, or about warm or cool days?",
+        "hi": "क्या आप पंखे के बारे में, या गर्म या ठंडे दिनों के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home",
+        "weather"
+      ]
+    },
+    {
+      "id": "a-fan-sound",
+      "appliesTo": {
+        "assets": [
+          "ceiling-fan"
+        ],
+        "activities": [
+          "sound"
+        ]
+      },
+      "text": {
+        "en": "Does this steady hum bring any room or any season to mind?",
+        "hi": "क्या यह धीमी भनभनाहट कोई कमरा या कोई मौसम मन में लाती है?"
+      },
+      "topics": [
+        "home",
+        "weather"
+      ]
+    },
+    {
+      "id": "a-tv",
+      "appliesTo": {
+        "assets": [
+          "television-crt"
+        ]
+      },
+      "text": {
+        "en": "Would you like to talk about this television, or anything you enjoy watching?",
+        "hi": "क्या आप इस टेलीविज़न के बारे में, या जो कुछ आपको देखना अच्छा लगता है उसके बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-newspaper",
+      "appliesTo": {
+        "assets": [
+          "newspaper-folded"
+        ]
+      },
+      "text": {
+        "en": "Would you like to talk about the news, or anything you enjoy hearing about?",
+        "hi": "क्या आप ख़बरों के बारे में, या जिन बातों के बारे में सुनना आपको अच्छा लगता है उनके बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "community"
+      ]
+    },
+    {
+      "id": "a-typewriter",
+      "appliesTo": {
+        "assets": [
+          "typewriter",
+          "ledger-pen"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this, or about any kind of work?",
+        "hi": "क्या आप इसके बारे में, या किसी भी तरह के काम के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "work"
+      ]
+    },
+    {
+      "id": "a-books",
+      "appliesTo": {
+        "assets": [
+          "books-stack",
+          "bookshelf"
+        ]
+      },
+      "text": {
+        "en": "Would you like to talk about books, stories, or anything you enjoy hearing?",
+        "hi": "क्या आप किताबों, कहानियों, या जो कुछ आपको सुनना अच्छा लगता है उसके बारे में बात करना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-luggage",
+      "appliesTo": {
+        "assets": [
+          "suitcase-old",
+          "trunk-tin"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this, or about packing for a trip?",
+        "hi": "क्या आप इसके बारे में, या किसी सफ़र के लिए सामान बाँधने के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "travel"
+      ]
+    },
+    {
+      "id": "a-umbrella",
+      "appliesTo": {
+        "assets": [
+          "umbrella"
+        ]
+      },
+      "text": {
+        "en": "Does this umbrella bring any kind of weather to mind?",
+        "hi": "क्या यह छाता किसी तरह का मौसम मन में लाता है?"
+      },
+      "topics": [
+        "weather"
+      ]
+    },
+    {
+      "id": "a-chores",
+      "appliesTo": {
+        "assets": [
+          "clothesline",
+          "bucket-mug"
+        ]
+      },
+      "text": {
+        "en": "If anything comes to mind, would you like to say anything about everyday chores?",
+        "hi": "अगर मन में कुछ आए, तो क्या आप रोज़ के घरेलू कामों के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home",
+        "work"
+      ]
+    },
+    {
+      "id": "a-plants",
+      "appliesTo": {
+        "assets": [
+          "potted-plant-large",
+          "potted-plant-small",
+          "hanging-plant",
+          "flower-pots-row"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about these plants, or any plants you like?",
+        "hi": "क्या आप इन पौधों के बारे में, या आपको पसंद आने वाले किसी पौधे के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "nature"
+      ]
+    },
+    {
+      "id": "a-cupboard",
+      "appliesTo": {
+        "assets": [
+          "almirah-steel",
+          "cupboard-wood"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this cupboard?",
+        "hi": "क्या आप इस अलमारी के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-seating",
+      "appliesTo": {
+        "assets": [
+          "sofa-wood",
+          "armchair-cane",
+          "bench-veranda"
+        ]
+      },
+      "text": {
+        "en": "Does this seat bring any conversation or any quiet moment to mind?",
+        "hi": "क्या यह बैठने की जगह कोई बातचीत या कोई शांत पल मन में लाती है?"
+      },
+      "topics": [
+        "home"
+      ]
+    },
+    {
+      "id": "a-mats",
+      "appliesTo": {
+        "assets": [
+          "rug-durrie",
+          "floor-mat-woven"
+        ]
+      },
+      "text": {
+        "en": "Would you like to say anything about this mat, its colours or its pattern?",
+        "hi": "क्या आप इस दरी, इसके रंगों या इसके नमूने के बारे में कुछ कहना चाहेंगे?"
+      },
+      "topics": [
+        "home"
+      ]
+    }
+  ],
+  "sounds": [
+    {
+      "id": "snd-wall-clock",
+      "label": {
+        "en": "Wall clock",
+        "hi": "दीवार घड़ी"
+      },
+      "description": {
+        "en": "A clock ticking in a quiet room.",
+        "hi": "शांत कमरे में टिक-टिक करती घड़ी।"
+      },
+      "path": "sounds/snd-wall-clock.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 10056,
+      "topics": [
+        "home"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      }
+    },
+    {
+      "id": "snd-pressure-cooker",
+      "label": {
+        "en": "Pressure cooker",
+        "hi": "प्रेशर कुकर"
+      },
+      "description": {
+        "en": "A pressure cooker on a low flame, then whistling twice.",
+        "hi": "धीमी आँच पर प्रेशर कुकर, फिर दो सीटियाँ।"
+      },
+      "path": "sounds/snd-pressure-cooker.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 12048,
+      "topics": [
+        "food",
+        "home"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      }
+    },
+    {
+      "id": "snd-rain-roof",
+      "label": {
+        "en": "Rain on a roof",
+        "hi": "छत पर बारिश"
+      },
+      "description": {
+        "en": "Steady rain on a roof, with a few heavier drops.",
+        "hi": "छत पर लगातार बारिश, कुछ भारी बूँदों के साथ।"
+      },
+      "path": "sounds/snd-rain-roof.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 12048,
+      "topics": [
+        "weather",
+        "nature",
+        "home"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      },
+      "loop": true
+    },
+    {
+      "id": "snd-birds-morning",
+      "label": {
+        "en": "Morning birds",
+        "hi": "सुबह के पक्षी"
+      },
+      "description": {
+        "en": "Birds chirping and calling in the morning.",
+        "hi": "सुबह चहचहाते और पुकारते पक्षी।"
+      },
+      "path": "sounds/snd-birds-morning.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 12048,
+      "topics": [
+        "nature"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      }
+    },
+    {
+      "id": "snd-bicycle-bell",
+      "label": {
+        "en": "Bicycle bell",
+        "hi": "साइकिल की घंटी"
+      },
+      "description": {
+        "en": "A bicycle bell ringing twice.",
+        "hi": "दो बार बजती साइकिल की घंटी।"
+      },
+      "path": "sounds/snd-bicycle-bell.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 6048,
+      "topics": [
+        "travel",
+        "community"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      }
+    },
+    {
+      "id": "snd-school-bell",
+      "label": {
+        "en": "Hand bell",
+        "hi": "हाथ की घंटी"
+      },
+      "description": {
+        "en": "A brass hand bell, like a school bell, rung a few times and heard across a yard.",
+        "hi": "स्कूल की घंटी जैसी पीतल की हाथ की घंटी, जो कुछ बार बजाई गई और आँगन के पार से सुनाई देती है।"
+      },
+      "path": "sounds/snd-school-bell.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 8064,
+      "topics": [
+        "school",
+        "childhood"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      }
+    },
+    {
+      "id": "snd-radio-tuning",
+      "label": {
+        "en": "Radio tuning",
+        "hi": "रेडियो ट्यून करना"
+      },
+      "description": {
+        "en": "A radio dial turned through static until a soft tune comes in.",
+        "hi": "रेडियो की सुई घुमाने पर खरखराहट, फिर एक धीमी धुन।"
+      },
+      "path": "sounds/snd-radio-tuning.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 10056,
+      "topics": [
+        "music",
+        "home"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      }
+    },
+    {
+      "id": "snd-ceiling-fan",
+      "label": {
+        "en": "Ceiling fan",
+        "hi": "छत का पंखा"
+      },
+      "description": {
+        "en": "A ceiling fan turning with a steady hum.",
+        "hi": "धीमी भनभनाहट के साथ घूमता छत का पंखा।"
+      },
+      "path": "sounds/snd-ceiling-fan.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 12048,
+      "topics": [
+        "home",
+        "weather"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      },
+      "loop": true
+    },
+    {
+      "id": "snd-harmonium",
+      "label": {
+        "en": "Harmonium",
+        "hi": "हारमोनियम"
+      },
+      "description": {
+        "en": "A harmonium playing a held note and a short, simple phrase.",
+        "hi": "हारमोनियम पर एक लंबा स्वर और एक छोटी, सरल धुन।"
+      },
+      "path": "sounds/snd-harmonium.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 12048,
+      "topics": [
+        "music"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      }
+    },
+    {
+      "id": "snd-train",
+      "label": {
+        "en": "Train",
+        "hi": "रेलगाड़ी"
+      },
+      "description": {
+        "en": "A train running over the rails, with a distant horn.",
+        "hi": "पटरियों पर चलती रेलगाड़ी, दूर से आती हॉर्न की आवाज़ के साथ।"
+      },
+      "path": "sounds/snd-train.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 14064,
+      "topics": [
+        "travel"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      }
+    },
+    {
+      "id": "snd-sewing-machine",
+      "label": {
+        "en": "Sewing machine",
+        "hi": "सिलाई मशीन"
+      },
+      "description": {
+        "en": "A sewing machine stitching in two short runs.",
+        "hi": "दो छोटे दौर में सिलाई करती सिलाई मशीन।"
+      },
+      "path": "sounds/snd-sewing-machine.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 10056,
+      "topics": [
+        "work",
+        "home"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      }
+    },
+    {
+      "id": "snd-water-pouring",
+      "label": {
+        "en": "Water pouring",
+        "hi": "पानी डालना"
+      },
+      "description": {
+        "en": "Water poured into a vessel as it fills, then a few drips.",
+        "hi": "बर्तन में डाला जाता पानी, भरते हुए, फिर कुछ बूँदें।"
+      },
+      "path": "sounds/snd-water-pouring.mp3",
+      "mime": "audio/mpeg",
+      "durationMs": 8064,
+      "topics": [
+        "home"
+      ],
+      "synthesized": true,
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Synthesized by tools/suite/content/make-sounds.mjs (2026-09-25); mono MP3, 24 kHz, 48 kbit/s, normalised to about -18 LUFS."
+      }
+    }
+  ],
+  "images": [
+    {
+      "id": "pic-river-dusk",
+      "path": "images/pic-river-dusk.webp",
+      "width": 1200,
+      "height": 675,
+      "alt": {
+        "en": "An illustration of a river at dusk, with trees on the bank and a small boat.",
+        "hi": "शाम के समय एक नदी का चित्र, जिसके किनारे पेड़ हैं और एक छोटी नाव है।"
+      },
+      "kind": "decorative-generated",
+      "notice": {
+        "en": "Demo picture — an illustration, not a real place or memory",
+        "hi": "डेमो चित्र — यह एक चित्रण है, कोई असली जगह या याद नहीं"
+      },
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Drawn by tools/suite/content/make-images.py (2026-09-25); flat illustration, WebP."
+      }
+    },
+    {
+      "id": "pic-hills-morning",
+      "path": "images/pic-hills-morning.webp",
+      "width": 1200,
+      "height": 900,
+      "alt": {
+        "en": "An illustration of green hills in the morning, with a path and a small house.",
+        "hi": "सुबह के समय हरी पहाड़ियों का चित्र, जिसमें एक रास्ता और एक छोटा घर है।"
+      },
+      "kind": "decorative-generated",
+      "notice": {
+        "en": "Demo picture — an illustration, not a real place or memory",
+        "hi": "डेमो चित्र — यह एक चित्रण है, कोई असली जगह या याद नहीं"
+      },
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Drawn by tools/suite/content/make-images.py (2026-09-25); flat illustration, WebP."
+      }
+    },
+    {
+      "id": "pic-seaside",
+      "path": "images/pic-seaside.webp",
+      "width": 1200,
+      "height": 675,
+      "alt": {
+        "en": "An illustration of a beach with palm trees and a distant sail.",
+        "hi": "ताड़ के पेड़ों और दूर एक पाल वाली नाव के साथ समुद्र तट का चित्र।"
+      },
+      "kind": "decorative-generated",
+      "notice": {
+        "en": "Demo picture — an illustration, not a real place or memory",
+        "hi": "डेमो चित्र — यह एक चित्रण है, कोई असली जगह या याद नहीं"
+      },
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Drawn by tools/suite/content/make-images.py (2026-09-25); flat illustration, WebP."
+      }
+    },
+    {
+      "id": "pic-flowers",
+      "path": "images/pic-flowers.webp",
+      "width": 900,
+      "height": 1200,
+      "alt": {
+        "en": "An illustration of garden flowers in soft colours.",
+        "hi": "हल्के रंगों में बगीचे के फूलों का चित्र।"
+      },
+      "kind": "decorative-generated",
+      "notice": {
+        "en": "Demo picture — an illustration, not a real place or memory",
+        "hi": "डेमो चित्र — यह एक चित्रण है, कोई असली जगह या याद नहीं"
+      },
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Drawn by tools/suite/content/make-images.py (2026-09-25); flat illustration, WebP."
+      }
+    },
+    {
+      "id": "pic-fruit-bowl",
+      "path": "images/pic-fruit-bowl.webp",
+      "width": 1100,
+      "height": 1100,
+      "alt": {
+        "en": "An illustration of a bowl of fruit on a striped cloth.",
+        "hi": "धारीदार कपड़े पर रखे फलों के कटोरे का चित्र।"
+      },
+      "kind": "decorative-generated",
+      "notice": {
+        "en": "Demo picture — an illustration, not a real place or memory",
+        "hi": "डेमो चित्र — यह एक चित्रण है, कोई असली जगह या याद नहीं"
+      },
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Drawn by tools/suite/content/make-images.py (2026-09-25); flat illustration, WebP."
+      }
+    },
+    {
+      "id": "pic-train-window",
+      "path": "images/pic-train-window.webp",
+      "width": 900,
+      "height": 1200,
+      "alt": {
+        "en": "An illustration of fields and trees seen through a train window.",
+        "hi": "रेलगाड़ी की खिड़की से दिखते खेतों और पेड़ों का चित्र।"
+      },
+      "kind": "decorative-generated",
+      "notice": {
+        "en": "Demo picture — an illustration, not a real place or memory",
+        "hi": "डेमो चित्र — यह एक चित्रण है, कोई असली जगह या याद नहीं"
+      },
+      "provenance": {
+        "source": "project-generated",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "modified": "Drawn by tools/suite/content/make-images.py (2026-09-25); flat illustration, WebP."
+      }
+    }
+  ]
+}

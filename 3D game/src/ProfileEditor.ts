@@ -142,6 +142,9 @@ export function openProfileEditor(saved: LocalProfile | undefined, maxTextureSiz
     if (profile.wall) profile.wall = await importPhoto(profile.wall.original, profile.quality, maxTextureSize, profile.wall)
     if (profile.event) profile.event = await importPhoto(profile.event.original, profile.quality, maxTextureSize, profile.event)
     for (const person of profile.people) if (person.photo) person.photo = await importPhoto(person.photo.original, profile.quality, maxTextureSize, person.photo)
+    // Suite setup is edited elsewhere: keep the freshest stored copy of it, never drop it.
+    const stored = (await profileStore.read().catch(() => ({ profile: undefined }))).profile
+    if (stored?.id === profile.id && stored.suite) profile.suite = stored.suite
     try { await profileStore.save(profile) } catch { throw new Error('Could not save to browser storage. Your last successfully saved profile is unchanged. Free some storage or allow storage, then retry.') }
     release(); const url = new URL(location.href); url.search = '?play=1'; location.assign(url)
   })).className = 'primary'

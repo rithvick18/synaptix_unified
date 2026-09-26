@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "id": "northeast-home",
+  "name": { "en": "Northeast home (optional)", "hi": "पूर्वोत्तर का घर (वैकल्पिक)" },
+  "description": {
+    "en": "Rooms and a veranda that include a few objects associated with Northeast India, such as the gamosa, the jaapi and the xorai, alongside everyday objects.",
+    "hi": "कमरे और बरामदा, जिनमें रोज़मर्रा की चीज़ों के साथ पूर्वोत्तर भारत से जुड़ी कुछ चीज़ें हैं, जैसे गामोसा, जापी और सराई।"
+  },
+  "status": "starter",
+  "regional": true,
+  "coverageNote": {
+    "en": "An optional regional pack. It includes a small number of objects with checked descriptions; it does not represent every community, state or home in Northeast India, and it is never chosen automatically.",
+    "hi": "यह एक वैकल्पिक क्षेत्रीय पैक है। इसमें जाँचे गए विवरणों वाली कुछ ही चीज़ें हैं; यह पूर्वोत्तर भारत के हर समुदाय, राज्य या घर का प्रतिनिधित्व नहीं करता, और इसे कभी अपने-आप नहीं चुना जाता।"
+  },
+  "tags": { "regions": ["northeast"], "contexts": ["home", "courtyard"] },
+  "files": { "environments": "environments.json", "content": "content.json" },
+  "authors": [
+    { "source": "project-generated", "author": "Memoria project", "license": "CC0-1.0" }
+  ]
+}

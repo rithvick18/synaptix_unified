@@ -315,7 +315,7 @@ try {
   // ── A ────────────────────────────────────────────────────────────────────────────────
   if (want('A')) {
     console.log('\nA. Camera OFF — the game as it was')
-    const cdp = await openPage(`${GAME_ORIGIN}/`)
+    const cdp = await openPage(`${GAME_ORIGIN}/?start=tasks`)
     ok((await cdp.eval('__memoria.camera.state.phase')) === 'off', 'camera support is off by default')
     ok(await cdp.eval(`!!document.querySelector('#overlay button[data-act="camera"]')`), 'level list offers "Camera support (optional)"')
     await cdp.eval('__memoria.debug.startLevel(0)')
@@ -332,7 +332,7 @@ try {
   // ── B ────────────────────────────────────────────────────────────────────────────────
   if (want('B')) {
     console.log('\nB. INJECTED OBSERVATIONS (synthetic, labelled simulated) through the real service')
-    const cdp = await openPage(`${GAME_ORIGIN}/?camera=inject`)
+    const cdp = await openPage(`${GAME_ORIGIN}/?camera=inject&start=tasks`)
     await cdp.eval(INJECTOR)
     await cdp.eval('__memoria.camera.policy.config.allowSimulatedVision = true') // explicit test opt-in
     await cdp.eval('__memoria.camera.enable()')
@@ -473,7 +473,7 @@ try {
   // ── C ────────────────────────────────────────────────────────────────────────────────
   if (want('C')) {
     console.log('\nC. FAKE CAMERA DEVICE through the real FaceObserver / MediaPipe worker (no face in the test pattern)')
-    const cdp = await openPage(`${GAME_ORIGIN}/`)
+    const cdp = await openPage(`${GAME_ORIGIN}/?start=tasks`)
     await cdp.eval(`document.querySelector('#overlay button[data-act="camera"]').click()`)
     ok(await cdp.eval(`!document.querySelector('#camera-setup').hidden`), 'the level-list button opens the camera setup sheet')
     await cdp.eval(`document.querySelector('#camera-setup button[data-act="enable"]').click()`)

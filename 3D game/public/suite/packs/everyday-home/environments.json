@@ -1,0 +1,472 @@
+{
+ "schema": 1,
+ "environments": [
+  {
+   "id": "living-room",
+   "shell": "livingRoom",
+   "name": {
+    "en": "Living room",
+    "hi": "बैठक"
+   },
+   "description": {
+    "en": "A sitting room with a sofa, family photographs, a clock, a radio and a few keepsakes.",
+    "hi": "सोफ़ा, पारिवारिक तस्वीरों, घड़ी, रेडियो और कुछ यादगार चीज़ों वाला बैठक का कमरा।"
+   },
+   "materials": {
+    "wall": "#efe4d2",
+    "trim": "#8a6a4a",
+    "floor": "terrazzo",
+    "light": "warm"
+   },
+   "placements": [
+    {
+     "id": "sofa",
+     "asset": "sofa-wood",
+     "slot": "sofa"
+    },
+    {
+     "id": "photo-album",
+     "asset": "photo-album",
+     "slot": "sofa-seat",
+     "highlight": true
+    },
+    {
+     "id": "frame-large",
+     "asset": "frame-wall-large",
+     "slot": "above-sofa",
+     "image": "pic-river-dusk",
+     "highlight": true
+    },
+    {
+     "id": "frame-left",
+     "asset": "frame-wall-small",
+     "slot": "above-sofa-left",
+     "image": "pic-flowers"
+    },
+    {
+     "id": "frame-right",
+     "asset": "frame-wall-small",
+     "slot": "above-sofa-right",
+     "image": "pic-hills-morning"
+    },
+    {
+     "id": "almirah",
+     "asset": "almirah-steel",
+     "slot": "back-left"
+    },
+    {
+     "id": "clock",
+     "asset": "clock-wall",
+     "slot": "back-left-high",
+     "highlight": true
+    },
+    {
+     "id": "bookshelf",
+     "asset": "bookshelf",
+     "slot": "back-right"
+    },
+    {
+     "id": "harmonium",
+     "asset": "harmonium",
+     "slot": "back-gap-right",
+     "highlight": true
+    },
+    {
+     "id": "rug",
+     "asset": "rug-durrie",
+     "slot": "rug"
+    },
+    {
+     "id": "coffee-table",
+     "asset": "coffee-table",
+     "slot": "centre"
+    },
+    {
+     "id": "centre-left",
+     "asset": "radio-transistor",
+     "slot": "centre-top-left",
+     "highlight": true
+    },
+    {
+     "id": "newspaper",
+     "asset": "newspaper-folded",
+     "slot": "centre-top-right"
+    },
+    {
+     "id": "armchair",
+     "asset": "armchair-cane",
+     "slot": "armchair-left"
+    },
+    {
+     "id": "side-table",
+     "asset": "side-table",
+     "slot": "side-left"
+    },
+    {
+     "id": "frame-table",
+     "asset": "frame-table",
+     "slot": "side-left-top"
+    },
+    {
+     "id": "calendar",
+     "asset": "calendar-wall",
+     "slot": "left-wall-front"
+    },
+    {
+     "id": "sewing-machine",
+     "asset": "sewing-machine",
+     "slot": "left-floor-front",
+     "highlight": true
+    },
+    {
+     "id": "trunk",
+     "asset": "trunk-tin",
+     "slot": "right-mid"
+    },
+    {
+     "id": "frame-high",
+     "asset": "frame-wall-small",
+     "slot": "right-wall-high"
+    },
+    {
+     "id": "mirror",
+     "asset": "wall-mirror",
+     "slot": "right-wall-front"
+    },
+    {
+     "id": "suitcase",
+     "asset": "suitcase-old",
+     "slot": "front-left"
+    },
+    {
+     "id": "kite",
+     "asset": "kite-spool",
+     "slot": "front-wall-left"
+    },
+    {
+     "id": "front-right",
+     "asset": "cricket-bat-ball",
+     "slot": "front-right"
+    },
+    {
+     "id": "ceiling-fan",
+     "asset": "ceiling-fan",
+     "slot": "ceiling"
+    }
+   ]
+  },
+  {
+   "id": "kitchen-dining",
+   "shell": "kitchenDining",
+   "name": {
+    "en": "Kitchen and dining area",
+    "hi": "रसोई और खाने की जगह"
+   },
+   "description": {
+    "en": "A kitchen with a cooking platform, everyday utensils and a dining table set for a meal.",
+    "hi": "खाना बनाने के चबूतरे, रोज़ के बर्तनों और भोजन के लिए सजी मेज़ वाली रसोई।"
+   },
+   "materials": {
+    "wall": "#f1ede4",
+    "trim": "#6f7a70",
+    "floor": "tile",
+    "light": "neutral"
+   },
+   "placements": [
+    {
+     "id": "gas-stove",
+     "asset": "gas-stove",
+     "slot": "counter-stove"
+    },
+    {
+     "id": "pressure-cooker",
+     "asset": "pressure-cooker",
+     "slot": "counter-2",
+     "highlight": true
+    },
+    {
+     "id": "spice-box",
+     "asset": "spice-box",
+     "slot": "counter-3",
+     "highlight": true
+    },
+    {
+     "id": "tumblers",
+     "asset": "steel-tumbler-set",
+     "slot": "counter-4"
+    },
+    {
+     "id": "rolling-board",
+     "asset": "rolling-board-pin",
+     "slot": "counter-5"
+    },
+    {
+     "id": "wall-shelf",
+     "asset": "wall-shelf",
+     "slot": "wall-above-stove"
+    },
+    {
+     "id": "kitchen-rack",
+     "asset": "kitchen-rack",
+     "slot": "wall-rack"
+    },
+    {
+     "id": "cupboard",
+     "asset": "cupboard-wood",
+     "slot": "back-right"
+    },
+    {
+     "id": "water-pot",
+     "asset": "clay-water-pot",
+     "slot": "pot-corner",
+     "highlight": true
+    },
+    {
+     "id": "calendar",
+     "asset": "calendar-wall",
+     "slot": "left-wall"
+    },
+    {
+     "id": "stool",
+     "asset": "stool-low",
+     "slot": "left-floor"
+    },
+    {
+     "id": "clock",
+     "asset": "clock-wall",
+     "slot": "left-wall-2"
+    },
+    {
+     "id": "plastic-chair",
+     "asset": "chair-plastic",
+     "slot": "left-floor-2"
+    },
+    {
+     "id": "dining-table",
+     "asset": "dining-table",
+     "slot": "dining"
+    },
+    {
+     "id": "table-cloth",
+     "asset": "table-cloth",
+     "slot": "dining-cloth"
+    },
+    {
+     "id": "plate",
+     "asset": "steel-plate",
+     "slot": "table-1"
+    },
+    {
+     "id": "tiffin",
+     "asset": "tiffin-carrier",
+     "slot": "table-2",
+     "highlight": true
+    },
+    {
+     "id": "pickle-jar",
+     "asset": "jar-pickle",
+     "slot": "table-3"
+    },
+    {
+     "id": "chair-1",
+     "asset": "chair-wood",
+     "slot": "chair-back-1"
+    },
+    {
+     "id": "chair-2",
+     "asset": "chair-wood",
+     "slot": "chair-back-2"
+    },
+    {
+     "id": "chair-3",
+     "asset": "chair-wood",
+     "slot": "chair-front-1"
+    },
+    {
+     "id": "chair-4",
+     "asset": "chair-wood",
+     "slot": "chair-front-2"
+    },
+    {
+     "id": "frame",
+     "asset": "frame-wall-small",
+     "slot": "right-wall",
+     "image": "pic-fruit-bowl"
+    },
+    {
+     "id": "side-table",
+     "asset": "side-table",
+     "slot": "right-floor"
+    },
+    {
+     "id": "radio",
+     "asset": "radio-transistor",
+     "slot": "right-floor-top"
+    },
+    {
+     "id": "bucket",
+     "asset": "bucket-mug",
+     "slot": "front-floor"
+    },
+    {
+     "id": "frame-front",
+     "asset": "frame-wall-small",
+     "slot": "front-wall",
+     "image": "pic-train-window"
+    },
+    {
+     "id": "ceiling-fan",
+     "asset": "ceiling-fan",
+     "slot": "ceiling"
+    }
+   ]
+  },
+  {
+   "id": "courtyard-veranda",
+   "shell": "courtyardVeranda",
+   "name": {
+    "en": "Courtyard and veranda",
+    "hi": "आँगन और बरामदा"
+   },
+   "description": {
+    "en": "An open courtyard with a covered veranda, plants, a bicycle and a place to sit.",
+    "hi": "ढके बरामदे, पौधों, साइकिल और बैठने की जगह वाला खुला आँगन।"
+   },
+   "materials": {
+    "wall": "#eadcc3",
+    "trim": "#7a5a3a",
+    "floor": "red-oxide",
+    "light": "warm"
+   },
+   "placements": [
+    {
+     "id": "frame-large",
+     "asset": "frame-wall-large",
+     "slot": "house-wall-a",
+     "image": "pic-seaside",
+     "highlight": true
+    },
+    {
+     "id": "clock",
+     "asset": "clock-wall",
+     "slot": "house-wall-b"
+    },
+    {
+     "id": "kite",
+     "asset": "kite-spool",
+     "slot": "house-wall-c",
+     "highlight": true
+    },
+    {
+     "id": "mirror",
+     "asset": "wall-mirror",
+     "slot": "house-wall-d"
+    },
+    {
+     "id": "frame-small",
+     "asset": "frame-wall-small",
+     "slot": "house-wall-high"
+    },
+    {
+     "id": "bench",
+     "asset": "bench-veranda",
+     "slot": "veranda-bench"
+    },
+    {
+     "id": "newspaper",
+     "asset": "newspaper-folded",
+     "slot": "bench-top-left"
+    },
+    {
+     "id": "tumblers",
+     "asset": "steel-tumbler-set",
+     "slot": "bench-top-right"
+    },
+    {
+     "id": "side-table",
+     "asset": "side-table",
+     "slot": "veranda-right"
+    },
+    {
+     "id": "lantern",
+     "asset": "hurricane-lantern",
+     "slot": "veranda-right-top",
+     "highlight": true
+    },
+    {
+     "id": "armchair",
+     "asset": "armchair-cane",
+     "slot": "veranda-seat-left"
+    },
+    {
+     "id": "plastic-chair",
+     "asset": "chair-plastic",
+     "slot": "veranda-seat-right"
+    },
+    {
+     "id": "mat",
+     "asset": "floor-mat-woven",
+     "slot": "veranda-mat"
+    },
+    {
+     "id": "hanging-plant-1",
+     "asset": "hanging-plant",
+     "slot": "veranda-hang-left"
+    },
+    {
+     "id": "hanging-plant-2",
+     "asset": "hanging-plant",
+     "slot": "veranda-hang-right"
+    },
+    {
+     "id": "clothesline",
+     "asset": "clothesline",
+     "slot": "clothesline"
+    },
+    {
+     "id": "flower-pots",
+     "asset": "flower-pots-row",
+     "slot": "pots-front",
+     "highlight": true
+    },
+    {
+     "id": "big-plant",
+     "asset": "potted-plant-large",
+     "slot": "corner-front-right"
+    },
+    {
+     "id": "bicycle",
+     "asset": "bicycle",
+     "slot": "right-wall-floor",
+     "highlight": true
+    },
+    {
+     "id": "bucket",
+     "asset": "bucket-mug",
+     "slot": "tap-floor"
+    },
+    {
+     "id": "water-pot",
+     "asset": "clay-water-pot",
+     "slot": "left-wall-floor"
+    },
+    {
+     "id": "umbrella",
+     "asset": "umbrella",
+     "slot": "right-wall-hang"
+    },
+    {
+     "id": "calendar",
+     "asset": "calendar-wall",
+     "slot": "left-wall-hang"
+    },
+    {
+     "id": "carrom",
+     "asset": "carrom-board",
+     "slot": "courtyard-centre",
+     "highlight": true
+    }
+   ]
+  }
+ ]
+}

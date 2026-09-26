@@ -1,0 +1,86 @@
+{
+  "names": {
+    "photo": "Photo exploration",
+    "object": "Familiar objects",
+    "sound": "Sound and memory",
+    "space": "Familiar space",
+    "sequence": "Guided sequence"
+  },
+  "descriptions": {
+    "photo": "Look at pictures together, one at a time, and talk about anything they bring to mind.",
+    "object": "Visit everyday objects in the room, one at a time, and talk about them if you like.",
+    "sound": "Listen to familiar sounds, and talk about anything they bring to mind.",
+    "space": "Look around the whole room at your own pace. Choose anything that catches your eye.",
+    "sequence": "A short, gentle tour of pictures, objects and sounds, in an order set up in advance."
+  },
+  "unavailable": {
+    "noPhotos": "No photographs have been added yet. A caregiver can add some in caregiver setup.",
+    "noDemoPictures": "This place has no pictures to show.",
+    "photosAvoided": "The photographs added are set to be left out by the topics chosen in caregiver setup.",
+    "noObjects": "This room has no objects set up for this activity.",
+    "noSounds": "There are no sounds to play here. A caregiver can add some in caregiver setup.",
+    "noSequence": "No guided sequence has been set up yet. A caregiver can create one in caregiver setup.",
+    "sequenceUnresolved": "The items in the guided sequence are not in this room. A caregiver can change the sequence in caregiver setup."
+  },
+  "generic": {
+    "object": {
+      "1": "Would you like to tell us about this?",
+      "2": "Does this bring anything to mind?",
+      "3": "What would you like to say about this?",
+      "4": "Is there anything about this you would like to share? There is no hurry."
+    },
+    "photo": {
+      "1": "What would you like to say about this picture?",
+      "2": "Does this picture bring anything to mind?",
+      "3": "Would you like to tell us about this picture?",
+      "4": "Is there anything in this picture you would like to talk about?"
+    },
+    "sound": {
+      "1": "Is there a sound you would like to talk about?",
+      "2": "Does this sound bring anything to mind?",
+      "3": "Would you like to listen again, or say anything about it?",
+      "4": "What would you like to say about this sound?"
+    },
+    "space": {
+      "1": "Would you like to look around together? You can choose anything that catches your eye.",
+      "2": "Is there anything here you would like to look at more closely?",
+      "3": "Does this place bring anything to mind? Take your time."
+    },
+    "voiceMessage": {
+      "1": "Would you like to say anything about this message?",
+      "2": "We can listen to this again whenever you like."
+    }
+  },
+  "gentleCue": "Take your time — there's no hurry.",
+  "comeBack": "We can come back to this whenever you like.",
+  "optional": "Talking is always optional. You can move on whenever you like.",
+  "kinds": {
+    "personalPhoto": "Your photo",
+    "demoPhoto": "Demo picture",
+    "packSound": "Sound from this pack (synthesized)",
+    "caregiverRecording": "Caregiver recording",
+    "voiceMessage": "Voice message",
+    "object": "Object in the room",
+    "space": "The whole room"
+  },
+  "space": {
+    "overviewTitle": "The whole room"
+  },
+  "summary": {
+    "title": "What we did",
+    "itemsLookedAt": "Items looked at",
+    "objectsVisited": "Objects visited",
+    "promptsPlayed": "Prompts played",
+    "promptsReplayed": "Prompts replayed",
+    "soundsPlayed": "Sounds played",
+    "closeups": "Close-up views",
+    "skipped": "Skipped",
+    "timeSpent": "Time spent",
+    "pausedTime": "Time paused (not counted)",
+    "caregiverNotes": "Caregiver notes",
+    "noNotes": "No notes were added.",
+    "finished": "Went through every item",
+    "endedEarly": "Ended before the last item",
+    "neutralNote": "This is a record of what was looked at and played. It is not a measure of anything."
+  }
+}

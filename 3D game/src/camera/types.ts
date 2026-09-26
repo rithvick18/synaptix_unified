@@ -224,3 +224,23 @@ export interface CameraAdapterApi {
   /** Stop everything, close sockets, delete the service session. Idempotent. */
   dispose(): Promise<void>
 }
+
+/**
+ * The narrow surface the camera layer drives. `MissionRunner` (guided tasks) satisfies it
+ * structurally; a reminiscence activity (src/suite/) supplies an adapter whose
+ * `requestHint()` always refuses, because open-ended reminiscence has no hints or answers.
+ */
+export interface AdaptableRunner {
+  readonly active: boolean
+  /** The current step or item, or null. `type` names its kind for the service's task. */
+  readonly current: { readonly type: string } | null
+  readonly stepIndex: number
+  /** Running time since the current step began (paused time excluded), or null. */
+  readonly stepAgeMs: number | null
+  /** Hint-ladder level; always 0 where there is no ladder. */
+  readonly level: number
+  /** Holds a new instruction's speech until `speakNow` is called. Null speaks at once. */
+  instructionGate: ((speakNow: () => void) => void) | null
+  requestHint(): boolean
+  gentleCue(): boolean
+}

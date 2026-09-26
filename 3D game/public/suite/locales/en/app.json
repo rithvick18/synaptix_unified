@@ -1,0 +1,208 @@
+{
+  "brand": "Reminiscence Therapy Suite",
+  "disclaimer": "An activity space for looking at familiar places, objects, photographs and sounds together. It is not a medical treatment.",
+  "back": "Back",
+  "badge": {
+    "personal": "Personal",
+    "demo": "Demo",
+    "general": "General content"
+  },
+  "camera": {
+    "off": "Camera support is off",
+    "on": "Camera support is on",
+    "status": "Camera support: {status}"
+  },
+  "home": {
+    "start": "Choose a place",
+    "storage": "About this device:",
+    "who": {
+      "title": "Who is this session for?",
+      "savedHint": "Uses the photographs, sounds and words a caregiver saved on this device.",
+      "unnamed": "Saved profile",
+      "demo": "Generic demo",
+      "demoHint": "Demo content only. No personal information.",
+      "none": "No personal profile is saved on this device yet. A caregiver can make one in Caregiver setup."
+    },
+    "language": {
+      "title": "Language",
+      "machine": "This translation was machine-generated and has not yet been reviewed by a fluent speaker."
+    },
+    "comfort": {
+      "title": "Comfort settings",
+      "hint": "Text size, contrast, motion, sound and subtitles.",
+      "open": "Open comfort settings"
+    },
+    "caregiver": {
+      "title": "Caregiver area",
+      "hint": "Add photographs, sounds and your own prompts, and choose topics to leave out.",
+      "setup": "Caregiver setup",
+      "loading": "Getting caregiver setup ready…",
+      "failed": "Caregiver setup could not open just now.",
+      "saved": "Caregiver setup saved.",
+      "homeTitle": "Home personalisation",
+      "homeHint": "Portraits, layout and questions for the 3D house used by the guided tasks.",
+      "homeOpen": "Personalise the house"
+    },
+    "camera": {
+      "title": "Camera support (optional)",
+      "hint": "It can wait to speak a new prompt, or offer the same prompt once more. Everything works without it.",
+      "open": "Camera support"
+    },
+    "guided": {
+      "title": "Guided tasks — tasks with answers set by a caregiver",
+      "hint": "The house tasks, where a caregiver set the answers. They are separate from the open-ended activities above.",
+      "open": "Open guided tasks"
+    }
+  },
+  "place": {
+    "title": "Choose a place",
+    "intro": "Pick a room to explore. You can change it later.",
+    "loading": "Loading places…",
+    "failed": "The places could not be loaded just now.",
+    "retry": "Load again",
+    "none": "No places are available.",
+    "general": "Places",
+    "regional": {
+      "title": "Optional regional packs",
+      "intro": "These packs focus on one region. They are never chosen automatically."
+    },
+    "coverage": "What this pack covers: {note}",
+    "preview": "Preview: this pack is not complete yet.",
+    "unavailable": "Some content could not be loaded and is not offered: {names}. Details are in the browser console.",
+    "continue": "Choose an activity"
+  },
+  "activity": {
+    "title": "Choose an activity",
+    "note": "No scores, no timers, no right or wrong answers.",
+    "place": "Place: {name}",
+    "preparing": "Getting the room ready…",
+    "failed": "This room could not be prepared just now.",
+    "retry": "Prepare it again",
+    "otherPlace": "Choose another place",
+    "guidedFirst": "The caregiver's sequence is shown first.",
+    "start": "Start",
+    "unavailable": "Not available yet",
+    "setupHint": "A caregiver can add content for this in Caregiver setup."
+  },
+  "explore": {
+    "building": "Preparing the room…",
+    "freeTitle": "Look around",
+    "freeHint": "Choose anything in the room to look at it more closely.",
+    "replay": "Replay prompt",
+    "previous": "Previous",
+    "next": "Next",
+    "finish": "Finish",
+    "skip": "Skip",
+    "closeup": "Close-up",
+    "playSound": "Play sound",
+    "stopSound": "Stop sound",
+    "pause": "Pause",
+    "resume": "Resume",
+    "exit": "Exit",
+    "objects": "Things in this room",
+    "backToRoom": "Back to the room view",
+    "gentleCue": "Take your time. Here it is again, whenever you are ready.",
+    "demoPicture": "Demo picture",
+    "synthesized": "This sound was made with a sound synthesiser, not recorded.",
+    "subtitlesOff": "Prompt text is hidden because subtitles are off.",
+    "lookHint": "Drag to look around. Tap or click something to look at it.",
+    "walkHint": "Walk slowly with W, A, S, D or the arrow keys. Drag to turn.",
+    "caregiver": {
+      "title": "Caregiver panel",
+      "show": "Show caregiver panel",
+      "hide": "Hide caregiver panel",
+      "tip": "Follow their lead. Silence is fine, and there is no need to hurry.",
+      "notes": "Notes",
+      "notePlaceholder": "What was shared, in your own words",
+      "addNote": "Add note",
+      "noteAdded": "Note added.",
+      "items": "Go to an item"
+    }
+  },
+  "pause": {
+    "title": "Paused",
+    "body": "Take your time. Everything will be here when you come back.",
+    "resume": "Resume",
+    "settings": "Comfort settings",
+    "end": "End activity"
+  },
+  "exit": {
+    "title": "Would you like to end this activity?",
+    "body": "You will see a short record of what was looked at.",
+    "stay": "Keep exploring",
+    "confirm": "End activity"
+  },
+  "closeup": {
+    "title": "Close-up",
+    "close": "Close",
+    "back": "Step back",
+    "zoomIn": "Zoom in",
+    "zoomOut": "Zoom out",
+    "fit": "Fit to screen",
+    "people": "People named by the caregiver",
+    "person": "{name} — {relationship}",
+    "demoNotice": "Demo picture: an illustration, not a real memory",
+    "alt": "Picture: {caption}",
+    "altNone": "Picture"
+  },
+  "summary": {
+    "title": "Session summary",
+    "intro": "A factual record of this session. There are no scores.",
+    "activity": "Activity",
+    "place": "Place",
+    "content": "Content",
+    "time": "Time spent",
+    "paused": "Time paused",
+    "minutes": { "one": "{count} minute", "other": "{count} minutes" },
+    "seconds": { "one": "{count} second", "other": "{count} seconds" },
+    "minutesSeconds": "{minutes} {seconds}",
+    "promptsPlayed": "Prompts played",
+    "promptsReplayed": "Prompts replayed",
+    "skips": "Items moved past",
+    "sounds": "Sounds played",
+    "closeups": "Close-ups opened",
+    "itemsShown": "Items looked at",
+    "objectsVisited": "Objects visited",
+    "notes": "Caregiver notes",
+    "none": "None",
+    "endedFinished": "The activity went through every item.",
+    "endedExited": "The activity was ended before the last item.",
+    "vision": {
+      "title": "Camera support (kept separate)",
+      "label": "These numbers describe how the camera's tracking worked during the session, not the person. They are heuristic and are not a clinical measure.",
+      "tracking": "Sampled seconds with usable tracking",
+      "samples": "Seconds sampled",
+      "cues": "Gentle re-offers shown",
+      "held": "Times a new prompt's speech was held",
+      "unmeasured": "Not measured"
+    },
+    "download": "Download summary (JSON)",
+    "another": "Another activity",
+    "home": "Home",
+    "exportNote": "Observable activity only. Not a clinical measure, and not a record of anyone's memory."
+  },
+  "settings": {
+    "title": "Comfort settings",
+    "textSize": "Text size",
+    "textSizes": { "standard": "Standard", "larger": "Larger", "largest": "Largest" },
+    "highContrast": "High contrast",
+    "reducedMotion": "Reduce motion (views change without gliding)",
+    "navigation": "Moving around",
+    "seated": "Seated (recommended)",
+    "walk": "Walk with the keyboard",
+    "seatedHint": "The view stays in one comfortable place and moves gently to what you choose.",
+    "walkHint": "Walk slowly with W, A, S, D or the arrow keys. Drag to turn.",
+    "subtitles": "Show prompt text",
+    "speech": "Read prompts aloud when there is no recording",
+    "speechMissing": "This device has no voice installed for this language, so prompts are shown as text.",
+    "volume": "Volume",
+    "master": "Overall",
+    "voice": "Voice",
+    "sounds": "Sounds",
+    "muted": "Mute all sound",
+    "caregiverAssist": "Show the caregiver panel",
+    "caregiverAssistHint": "A saved profile's own choice applies at the start of each activity.",
+    "notSaved": "These settings could not be saved on this device. They apply until the page is closed.",
+    "done": "Done"
+  }
+}

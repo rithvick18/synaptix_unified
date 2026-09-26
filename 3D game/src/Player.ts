@@ -19,6 +19,11 @@ const LOOK_SENSITIVITY = 0.0022
 
 export class Player {
   readonly position = new THREE.Vector3()
+  /**
+   * Set while the Reminiscence Suite has the screen (src/suite/): a click must not take
+   * pointer lock, because the suite is driven by pointer, touch and keyboard without it.
+   */
+  suspended = false
   yaw = 0
   pitch = 0
 
@@ -157,6 +162,7 @@ export class Player {
   }
 
   private onClick = (): void => {
+    if (this.suspended) return
     if (this.state.pointerLockWanted) this.requestLock()
   }
 

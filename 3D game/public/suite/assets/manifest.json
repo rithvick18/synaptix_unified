@@ -1,0 +1,3775 @@
+{
+  "schema": 1,
+  "assets": [
+    {
+      "id": "frame-wall-large",
+      "category": "photos-keepsakes",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "frameWall",
+        "params": {
+          "w": 0.62,
+          "h": 0.48,
+          "d": 0.03,
+          "border": 0.05,
+          "mat": "woodDark"
+        }
+      },
+      "thumbnail": "thumbs/frame-wall-large.webp",
+      "label": {
+        "en": "Large picture frame",
+        "hi": "बड़ा चित्र फ़्रेम"
+      },
+      "description": {
+        "en": "A wooden frame for a picture or photograph, hung on the wall.",
+        "hi": "दीवार पर टंगा, किसी चित्र या तस्वीर के लिए लकड़ी का फ़्रेम।"
+      },
+      "tags": {
+        "topics": [
+          "family",
+          "home"
+        ]
+      },
+      "size": [
+        0.62,
+        0.48,
+        0.03
+      ],
+      "collision": false,
+      "viewDistance": 1.3,
+      "activities": [
+        "photo",
+        "object",
+        "space",
+        "sequence"
+      ],
+      "photoSurface": {
+        "width": 0.52,
+        "height": 0.38,
+        "at": [
+          0,
+          0.24,
+          0.004
+        ],
+        "facing": "+z"
+      },
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 700,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "frame-wall-small",
+      "category": "photos-keepsakes",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "frameWall",
+        "params": {
+          "w": 0.3,
+          "h": 0.38,
+          "d": 0.025,
+          "border": 0.035,
+          "mat": "wood",
+          "fillet": false
+        }
+      },
+      "thumbnail": "thumbs/frame-wall-small.webp",
+      "label": {
+        "en": "Small picture frame",
+        "hi": "छोटा चित्र फ़्रेम"
+      },
+      "description": {
+        "en": "A small frame for a picture or photograph, hung on the wall.",
+        "hi": "दीवार पर टंगा, किसी चित्र या तस्वीर के लिए छोटा फ़्रेम।"
+      },
+      "tags": {
+        "topics": [
+          "family",
+          "home"
+        ]
+      },
+      "size": [
+        0.3,
+        0.38,
+        0.025
+      ],
+      "collision": false,
+      "viewDistance": 1.0,
+      "activities": [
+        "photo",
+        "object",
+        "space",
+        "sequence"
+      ],
+      "photoSurface": {
+        "width": 0.23,
+        "height": 0.31,
+        "at": [
+          0,
+          0.19,
+          0.004
+        ],
+        "facing": "+z"
+      },
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 600,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "frame-table",
+      "category": "photos-keepsakes",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "frameTable"
+      },
+      "thumbnail": "thumbs/frame-table.webp",
+      "label": {
+        "en": "Photo frame on a stand",
+        "hi": "स्टैंड वाला फ़ोटो फ़्रेम"
+      },
+      "description": {
+        "en": "A small standing frame for a photograph, kept on a table or shelf.",
+        "hi": "मेज़ या शेल्फ़ पर रखा, तस्वीर के लिए छोटा खड़ा फ़्रेम।"
+      },
+      "tags": {
+        "topics": [
+          "family",
+          "home"
+        ]
+      },
+      "size": [
+        0.2,
+        0.26,
+        0.1
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "photo",
+        "object",
+        "space",
+        "sequence"
+      ],
+      "photoSurface": {
+        "width": 0.15,
+        "height": 0.2,
+        "at": [
+          0,
+          0.135,
+          0.036
+        ],
+        "facing": "+z"
+      },
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 700,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "photo-album",
+      "category": "photos-keepsakes",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "photoAlbum"
+      },
+      "thumbnail": "thumbs/photo-album.webp",
+      "label": {
+        "en": "Photo album",
+        "hi": "फ़ोटो एल्बम"
+      },
+      "description": {
+        "en": "An album with cloth covers, lying open, for keeping photographs.",
+        "hi": "कपड़े के कवर वाला खुला एल्बम, तस्वीरें रखने के लिए।"
+      },
+      "tags": {
+        "topics": [
+          "family",
+          "home"
+        ]
+      },
+      "size": [
+        0.56,
+        0.04,
+        0.3
+      ],
+      "collision": false,
+      "viewDistance": 0.9,
+      "activities": [
+        "photo",
+        "object",
+        "space",
+        "sequence"
+      ],
+      "photoSurface": {
+        "width": 0.2,
+        "height": 0.24,
+        "at": [
+          0.136,
+          0.032,
+          0
+        ],
+        "facing": "+y"
+      },
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 800,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "letters-bundle",
+      "category": "photos-keepsakes",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "lettersBundle"
+      },
+      "thumbnail": "thumbs/letters-bundle.webp",
+      "label": {
+        "en": "Bundle of letters",
+        "hi": "चिट्ठियों का बंडल"
+      },
+      "description": {
+        "en": "A few envelopes tied together with string.",
+        "hi": "धागे से बँधे कुछ लिफ़ाफ़े।"
+      },
+      "tags": {
+        "topics": [
+          "family",
+          "community"
+        ]
+      },
+      "size": [
+        0.22,
+        0.064,
+        0.14
+      ],
+      "collision": false,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 300,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "calendar-wall",
+      "category": "photos-keepsakes",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "calendarWall"
+      },
+      "thumbnail": "thumbs/calendar-wall.webp",
+      "label": {
+        "en": "Wall calendar",
+        "hi": "दीवार कैलेंडर"
+      },
+      "description": {
+        "en": "A hanging paper calendar with a picture and the days of the month.",
+        "hi": "चित्र और महीने के दिनों वाला टंगा हुआ काग़ज़ का कैलेंडर।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.35,
+        0.55,
+        0.02
+      ],
+      "collision": false,
+      "viewDistance": 1.1,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "runtimeText": [
+        {
+          "slot": "month",
+          "text": "@month"
+        }
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 200,
+        "textureKB": 460
+      }
+    },
+    {
+      "id": "clock-wall",
+      "category": "photos-keepsakes",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "clockWall"
+      },
+      "thumbnail": "thumbs/clock-wall.webp",
+      "label": {
+        "en": "Wall clock",
+        "hi": "दीवार घड़ी"
+      },
+      "description": {
+        "en": "A round clock with hands, hung on the wall.",
+        "hi": "दीवार पर टंगी, सुइयों वाली गोल घड़ी।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.37,
+        0.37,
+        0.055
+      ],
+      "collision": false,
+      "viewDistance": 1.3,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-wall-clock",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1400,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "clock-table",
+      "category": "photos-keepsakes",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "clockTable"
+      },
+      "thumbnail": "thumbs/clock-table.webp",
+      "label": {
+        "en": "Alarm clock",
+        "hi": "अलार्म घड़ी"
+      },
+      "description": {
+        "en": "A small clock with two bells on top.",
+        "hi": "ऊपर दो घंटियों वाली छोटी घड़ी।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.14,
+        0.22,
+        0.07
+      ],
+      "collision": false,
+      "viewDistance": 0.8,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-wall-clock",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2000,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "sofa-wood",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "sofaWood"
+      },
+      "thumbnail": "thumbs/sofa-wood.webp",
+      "label": {
+        "en": "Sofa",
+        "hi": "सोफ़ा"
+      },
+      "description": {
+        "en": "A three-seat sofa with a wooden frame and cloth cushions.",
+        "hi": "लकड़ी के ढाँचे और कपड़े की गद्दियों वाला तीन सीटों का सोफ़ा।"
+      },
+      "tags": {
+        "topics": [
+          "home",
+          "family"
+        ]
+      },
+      "size": [
+        1.9,
+        0.85,
+        0.81
+      ],
+      "collision": true,
+      "viewDistance": 2.0,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 5900,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "armchair-cane",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "armchairCane"
+      },
+      "thumbnail": "thumbs/armchair-cane.webp",
+      "label": {
+        "en": "Cane armchair",
+        "hi": "बेंत की आरामकुर्सी"
+      },
+      "description": {
+        "en": "A wooden armchair with a woven cane seat and back.",
+        "hi": "बुनी हुई बेंत की सीट और पीठ वाली लकड़ी की कुर्सी।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.72,
+        0.89,
+        0.76
+      ],
+      "collision": true,
+      "viewDistance": 1.5,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "chair-wood",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "chairWood"
+      },
+      "thumbnail": "thumbs/chair-wood.webp",
+      "label": {
+        "en": "Wooden chair",
+        "hi": "लकड़ी की कुर्सी"
+      },
+      "description": {
+        "en": "A plain wooden chair with a slatted back.",
+        "hi": "पट्टियों वाली पीठ की सादी लकड़ी की कुर्सी।"
+      },
+      "tags": {
+        "topics": [
+          "home",
+          "food"
+        ]
+      },
+      "size": [
+        0.46,
+        0.9,
+        0.47
+      ],
+      "collision": true,
+      "viewDistance": 1.3,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "chair-plastic",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "chairPlastic",
+        "params": {
+          "colour": "#efeae0"
+        }
+      },
+      "thumbnail": "thumbs/chair-plastic.webp",
+      "label": {
+        "en": "Plastic chair",
+        "hi": "प्लास्टिक की कुर्सी"
+      },
+      "description": {
+        "en": "A moulded plastic chair with arms.",
+        "hi": "हत्थों वाली, साँचे में ढली प्लास्टिक की कुर्सी।"
+      },
+      "tags": {
+        "topics": [
+          "home",
+          "community"
+        ]
+      },
+      "size": [
+        0.56,
+        0.82,
+        0.53
+      ],
+      "collision": true,
+      "viewDistance": 1.3,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1100,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "stool-low",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "stoolLow"
+      },
+      "thumbnail": "thumbs/stool-low.webp",
+      "label": {
+        "en": "Low stool",
+        "hi": "नीची चौकी"
+      },
+      "description": {
+        "en": "A low wooden stool for sitting close to the floor.",
+        "hi": "ज़मीन के पास बैठने के लिए लकड़ी की नीची चौकी।"
+      },
+      "tags": {
+        "topics": [
+          "home",
+          "food"
+        ]
+      },
+      "size": [
+        0.36,
+        0.22,
+        0.36
+      ],
+      "collision": true,
+      "viewDistance": 1.0,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1000,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "dining-table",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "diningTable"
+      },
+      "thumbnail": "thumbs/dining-table.webp",
+      "label": {
+        "en": "Dining table",
+        "hi": "खाने की मेज़"
+      },
+      "description": {
+        "en": "A wooden table for meals.",
+        "hi": "खाना खाने के लिए लकड़ी की मेज़।"
+      },
+      "tags": {
+        "topics": [
+          "food",
+          "family"
+        ]
+      },
+      "size": [
+        1.4,
+        0.75,
+        0.85
+      ],
+      "collision": true,
+      "viewDistance": 1.8,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1300,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "coffee-table",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "coffeeTable"
+      },
+      "thumbnail": "thumbs/coffee-table.webp",
+      "label": {
+        "en": "Low table",
+        "hi": "नीची मेज़"
+      },
+      "description": {
+        "en": "A low wooden table with a shelf underneath.",
+        "hi": "नीचे शेल्फ़ वाली लकड़ी की नीची मेज़।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        1.0,
+        0.42,
+        0.55
+      ],
+      "collision": true,
+      "viewDistance": 1.4,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1400,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "side-table",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "sideTable"
+      },
+      "thumbnail": "thumbs/side-table.webp",
+      "label": {
+        "en": "Side table",
+        "hi": "छोटी मेज़"
+      },
+      "description": {
+        "en": "A small wooden table with a drawer.",
+        "hi": "दराज़ वाली छोटी लकड़ी की मेज़।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.45,
+        0.6,
+        0.45
+      ],
+      "collision": true,
+      "viewDistance": 1.2,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1600,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "bookshelf",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "bookshelf"
+      },
+      "thumbnail": "thumbs/bookshelf.webp",
+      "label": {
+        "en": "Bookshelf",
+        "hi": "किताबों की अलमारी"
+      },
+      "description": {
+        "en": "An open wooden shelf with rows of books.",
+        "hi": "किताबों की कतारों वाली खुली लकड़ी की अलमारी।"
+      },
+      "tags": {
+        "topics": [
+          "school",
+          "home"
+        ]
+      },
+      "size": [
+        0.9,
+        1.8,
+        0.33
+      ],
+      "collision": true,
+      "viewDistance": 1.8,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "wall-shelf",
+      "category": "furniture",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "wallShelf"
+      },
+      "thumbnail": "thumbs/wall-shelf.webp",
+      "label": {
+        "en": "Wall shelf",
+        "hi": "दीवार की शेल्फ़"
+      },
+      "description": {
+        "en": "A wooden shelf on brackets with a few small things on it.",
+        "hi": "ब्रैकेट पर लगी लकड़ी की शेल्फ़, जिस पर कुछ छोटी चीज़ें रखी हैं।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.9,
+        0.25,
+        0.22
+      ],
+      "collision": false,
+      "viewDistance": 1.3,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1100,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "bench-veranda",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "benchVeranda"
+      },
+      "thumbnail": "thumbs/bench-veranda.webp",
+      "label": {
+        "en": "Wooden bench",
+        "hi": "लकड़ी की बेंच"
+      },
+      "description": {
+        "en": "A long plank bench for sitting outside.",
+        "hi": "बाहर बैठने के लिए लंबी तख़्ते वाली बेंच।"
+      },
+      "tags": {
+        "topics": [
+          "home",
+          "community"
+        ]
+      },
+      "size": [
+        1.6,
+        0.45,
+        0.4
+      ],
+      "collision": true,
+      "viewDistance": 1.7,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 600,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "almirah-steel",
+      "category": "storage",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "almirahSteel"
+      },
+      "thumbnail": "thumbs/almirah-steel.webp",
+      "label": {
+        "en": "Steel almirah",
+        "hi": "स्टील की अलमारी"
+      },
+      "description": {
+        "en": "A tall painted steel cupboard with two doors and a lock.",
+        "hi": "दो दरवाज़ों और ताले वाली ऊँची, रंगी हुई स्टील की अलमारी।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.9,
+        1.95,
+        0.53
+      ],
+      "collision": true,
+      "viewDistance": 1.9,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1000,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "cupboard-wood",
+      "category": "storage",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "cupboardWood"
+      },
+      "thumbnail": "thumbs/cupboard-wood.webp",
+      "label": {
+        "en": "Wooden cupboard",
+        "hi": "लकड़ी की अलमारी"
+      },
+      "description": {
+        "en": "A wooden cupboard with glass doors above, where plates can be seen, and panelled doors below.",
+        "hi": "ऊपर काँच के दरवाज़ों (जिनमें थालियाँ दिखती हैं) और नीचे पैनल वाले दरवाज़ों वाली लकड़ी की अलमारी।"
+      },
+      "tags": {
+        "topics": [
+          "home",
+          "food"
+        ]
+      },
+      "size": [
+        1.06,
+        1.8,
+        0.49
+      ],
+      "collision": true,
+      "viewDistance": 1.9,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1900,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "trunk-tin",
+      "category": "storage",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "trunkTin"
+      },
+      "thumbnail": "thumbs/trunk-tin.webp",
+      "label": {
+        "en": "Tin trunk",
+        "hi": "टीन का बक्सा"
+      },
+      "description": {
+        "en": "A painted metal trunk with a hasp and handles, for storing things.",
+        "hi": "कुंडी और हत्थों वाला रंगा हुआ धातु का बक्सा, सामान रखने के लिए।"
+      },
+      "tags": {
+        "topics": [
+          "travel",
+          "home"
+        ]
+      },
+      "size": [
+        0.83,
+        0.46,
+        0.54
+      ],
+      "collision": true,
+      "viewDistance": 1.3,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2100,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "kitchen-rack",
+      "category": "storage",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "kitchenRack"
+      },
+      "thumbnail": "thumbs/kitchen-rack.webp",
+      "label": {
+        "en": "Steel plate rack",
+        "hi": "स्टील का बर्तन स्टैंड"
+      },
+      "description": {
+        "en": "A steel wall rack holding plates, bowls and tumblers.",
+        "hi": "थालियाँ, कटोरियाँ और गिलास रखने वाला दीवार पर लगा स्टील का स्टैंड।"
+      },
+      "tags": {
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.82,
+        0.71,
+        0.23
+      ],
+      "collision": false,
+      "viewDistance": 1.3,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2400,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "bamboo-basket",
+      "category": "storage",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "bambooBasket"
+      },
+      "thumbnail": "thumbs/bamboo-basket.webp",
+      "label": {
+        "en": "Bamboo basket",
+        "hi": "बाँस की टोकरी"
+      },
+      "description": {
+        "en": "A round basket woven from bamboo or cane. Baskets like this are made in many shapes in Assam and elsewhere in Northeast India, for carrying things and for storing things such as grain.",
+        "hi": "बाँस या बेंत से बुनी गोल टोकरी। असम और पूर्वोत्तर भारत के दूसरे हिस्सों में ऐसी टोकरियाँ कई आकारों में बनती हैं — चीज़ें ढोने और अनाज जैसी चीज़ें रखने के लिए।"
+      },
+      "tags": {
+        "regions": [
+          "northeast",
+          "assam"
+        ],
+        "topics": [
+          "home",
+          "food"
+        ]
+      },
+      "descriptionSources": [
+        "https://assam.gov.in/citizen/428",
+        "https://www.asiainch.org/craft/cane-bamboo-of-assam/"
+      ],
+      "size": [
+        0.47,
+        0.39,
+        0.47
+      ],
+      "collision": false,
+      "viewDistance": 1.2,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2400,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "rug-durrie",
+      "category": "textiles",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "rugDurrie"
+      },
+      "thumbnail": "thumbs/rug-durrie.webp",
+      "label": {
+        "en": "Cotton durrie",
+        "hi": "सूती दरी"
+      },
+      "description": {
+        "en": "A flat-woven cotton floor rug with coloured bands and fringes.",
+        "hi": "रंगीन पट्टियों और झालर वाली, सपाट बुनी सूती दरी।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        2.0,
+        0.01,
+        1.4
+      ],
+      "collision": false,
+      "focus": [
+        0,
+        0.01,
+        0.2
+      ],
+      "viewDistance": 1.8,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 600,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "floor-mat-woven",
+      "category": "textiles",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "floorMatWoven"
+      },
+      "thumbnail": "thumbs/floor-mat-woven.webp",
+      "label": {
+        "en": "Woven floor mat",
+        "hi": "बुनी हुई चटाई"
+      },
+      "description": {
+        "en": "A mat woven from reed or grass, with a cloth border, for sitting on the floor.",
+        "hi": "ज़मीन पर बैठने के लिए सरकंडे या घास से बुनी, कपड़े की किनारी वाली चटाई।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        1.2,
+        0.01,
+        0.8
+      ],
+      "collision": false,
+      "viewDistance": 1.4,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 200,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "cushion-set",
+      "category": "textiles",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "cushionSet"
+      },
+      "thumbnail": "thumbs/cushion-set.webp",
+      "label": {
+        "en": "Cushions",
+        "hi": "गद्दियाँ"
+      },
+      "description": {
+        "en": "Two cloth cushions.",
+        "hi": "कपड़े की दो गद्दियाँ।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.91,
+        0.42,
+        0.21
+      ],
+      "collision": false,
+      "viewDistance": 1.2,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1700,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "table-cloth",
+      "category": "textiles",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "tableCloth"
+      },
+      "thumbnail": "thumbs/table-cloth.webp",
+      "label": {
+        "en": "Table cloth",
+        "hi": "मेज़पोश"
+      },
+      "description": {
+        "en": "A cotton cloth with an embroidered border, spread on a table.",
+        "hi": "कढ़ाई वाली किनारी का सूती कपड़ा, मेज़ पर बिछा हुआ।"
+      },
+      "tags": {
+        "topics": [
+          "home",
+          "food"
+        ]
+      },
+      "size": [
+        1.2,
+        0.007,
+        0.75
+      ],
+      "collision": false,
+      "viewDistance": 1.3,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 400,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "gamosa",
+      "category": "textiles",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "gamosa"
+      },
+      "thumbnail": "thumbs/gamosa.webp",
+      "label": {
+        "en": "Gamosa",
+        "hi": "गामोसा"
+      },
+      "description": {
+        "en": "A woven cotton cloth, commonly white with red borders and a woven red band at the ends, widely used in Assam — as a towel or scarf, and offered to guests as a mark of respect.",
+        "hi": "बुना हुआ सूती कपड़ा, आम तौर पर सफ़ेद, लाल किनारों और सिरों पर बुनी लाल पट्टी वाला, असम में बहुत इस्तेमाल होता है — तौलिये या दुपट्टे की तरह, और मेहमानों को सम्मान में भेंट किया जाता है।"
+      },
+      "tags": {
+        "regions": [
+          "northeast",
+          "assam"
+        ],
+        "topics": [
+          "home",
+          "community"
+        ]
+      },
+      "descriptionSources": [
+        "https://en.wikipedia.org/wiki/Gamosa",
+        "https://www.dailypioneer.com/2023/columnists/gamosa--cultural-symbol-of-assam--gets-gi-tag.html"
+      ],
+      "size": [
+        0.6,
+        0.91,
+        0.05
+      ],
+      "collision": false,
+      "viewDistance": 1.2,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 700,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "pressure-cooker",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "pressureCooker"
+      },
+      "thumbnail": "thumbs/pressure-cooker.webp",
+      "label": {
+        "en": "Pressure cooker",
+        "hi": "प्रेशर कुकर"
+      },
+      "description": {
+        "en": "An aluminium cooker with a locking lid, a whistle and a long handle.",
+        "hi": "ताले वाले ढक्कन, सीटी और लंबे हत्थे वाला एल्युमिनियम का कुकर।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.44,
+        0.26,
+        0.23
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-pressure-cooker",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1400,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "steel-tumbler-set",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "steelTumblerSet"
+      },
+      "thumbnail": "thumbs/steel-tumbler-set.webp",
+      "label": {
+        "en": "Steel tumblers",
+        "hi": "स्टील के गिलास"
+      },
+      "description": {
+        "en": "Three steel drinking tumblers.",
+        "hi": "पीने के तीन स्टील के गिलास।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.22,
+        0.12,
+        0.15
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 800,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "steel-plate",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "steelPlate"
+      },
+      "thumbnail": "thumbs/steel-plate.webp",
+      "label": {
+        "en": "Steel plate and bowls",
+        "hi": "स्टील की थाली और कटोरियाँ"
+      },
+      "description": {
+        "en": "A round steel plate with two small bowls on it.",
+        "hi": "दो छोटी कटोरियों वाली गोल स्टील की थाली।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.3,
+        0.046,
+        0.3
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1300,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "tiffin-carrier",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "tiffinCarrier"
+      },
+      "thumbnail": "thumbs/tiffin-carrier.webp",
+      "label": {
+        "en": "Tiffin carrier",
+        "hi": "टिफ़िन डिब्बा"
+      },
+      "description": {
+        "en": "A stacked steel lunch carrier with a clamp and handle.",
+        "hi": "क्लैंप और हत्थे वाला, एक के ऊपर एक रखे डिब्बों का स्टील टिफ़िन।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food",
+          "work",
+          "school"
+        ]
+      },
+      "size": [
+        0.16,
+        0.37,
+        0.13
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "spice-box",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "spiceBox"
+      },
+      "thumbnail": "thumbs/spice-box.webp",
+      "label": {
+        "en": "Spice box",
+        "hi": "मसालदानी"
+      },
+      "description": {
+        "en": "A round steel box, open, with small bowls of different spices.",
+        "hi": "खुली गोल स्टील की डिब्बी, जिसमें अलग-अलग मसालों की छोटी कटोरियाँ हैं।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.24,
+        0.074,
+        0.24
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 3200,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "rolling-board-pin",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "rollingBoardPin"
+      },
+      "thumbnail": "thumbs/rolling-board-pin.webp",
+      "label": {
+        "en": "Rolling board and pin",
+        "hi": "चकला-बेलन"
+      },
+      "description": {
+        "en": "A round wooden board on short legs and a rolling pin.",
+        "hi": "छोटे पायों वाला गोल लकड़ी का चकला और बेलन।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.33,
+        0.08,
+        0.27
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "kadai",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "kadai"
+      },
+      "thumbnail": "thumbs/kadai.webp",
+      "label": {
+        "en": "Kadai",
+        "hi": "कड़ाही"
+      },
+      "description": {
+        "en": "A deep, round iron pan with two loop handles.",
+        "hi": "दो कड़ों वाली गहरी, गोल लोहे की कड़ाही।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.45,
+        0.13,
+        0.34
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1200,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "tawa",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "tawa"
+      },
+      "thumbnail": "thumbs/tawa.webp",
+      "label": {
+        "en": "Tawa",
+        "hi": "तवा"
+      },
+      "description": {
+        "en": "A flat iron griddle with a handle.",
+        "hi": "हत्थे वाला चपटा लोहे का तवा।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.46,
+        0.047,
+        0.28
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 700,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "brass-vessel",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "brassVessel"
+      },
+      "thumbnail": "thumbs/brass-vessel.webp",
+      "label": {
+        "en": "Brass pot",
+        "hi": "पीतल का लोटा"
+      },
+      "description": {
+        "en": "A small round brass pot with a narrow neck.",
+        "hi": "पतली गर्दन वाला छोटा गोल पीतल का लोटा।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.18,
+        0.22,
+        0.18
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 800,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "kettle",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "kettle"
+      },
+      "thumbnail": "thumbs/kettle.webp",
+      "label": {
+        "en": "Kettle",
+        "hi": "केतली"
+      },
+      "description": {
+        "en": "An aluminium kettle with a spout and handle.",
+        "hi": "टोंटी और हत्थे वाली एल्युमिनियम की केतली।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.24,
+        0.24,
+        0.18
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1000,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "jar-pickle",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "jarPickle"
+      },
+      "thumbnail": "thumbs/jar-pickle.webp",
+      "label": {
+        "en": "Pickle jar",
+        "hi": "अचार का मर्तबान"
+      },
+      "description": {
+        "en": "A glazed ceramic jar with a lid, tied with cloth.",
+        "hi": "ढक्कन वाला, कपड़े से बँधा चमकदार चीनी मिट्टी का मर्तबान।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.165,
+        0.25,
+        0.165
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 900,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "gas-stove",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "gasStove"
+      },
+      "thumbnail": "thumbs/gas-stove.webp",
+      "label": {
+        "en": "Gas stove",
+        "hi": "गैस चूल्हा"
+      },
+      "description": {
+        "en": "A two-burner steel gas stove.",
+        "hi": "दो बर्नर वाला स्टील का गैस चूल्हा।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.68,
+        0.13,
+        0.4
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1100,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "mortar-pestle",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "mortarPestle"
+      },
+      "thumbnail": "thumbs/mortar-pestle.webp",
+      "label": {
+        "en": "Mortar and pestle",
+        "hi": "खरल और मूसल"
+      },
+      "description": {
+        "en": "A stone bowl and pestle for grinding.",
+        "hi": "पीसने के लिए पत्थर की खरल और मूसल।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food"
+        ]
+      },
+      "size": [
+        0.2,
+        0.21,
+        0.2
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "clay-water-pot",
+      "category": "kitchen-food",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "clayWaterPot"
+      },
+      "thumbnail": "thumbs/clay-water-pot.webp",
+      "label": {
+        "en": "Clay water pot",
+        "hi": "मिट्टी का घड़ा"
+      },
+      "description": {
+        "en": "A round clay pot for keeping drinking water, on a small iron stand, with a lid and a cup.",
+        "hi": "पीने का पानी रखने का मिट्टी का गोल घड़ा, छोटे लोहे के स्टैंड पर, ढक्कन और गिलास के साथ।"
+      },
+      "tags": {
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "food",
+          "home",
+          "weather"
+        ]
+      },
+      "size": [
+        0.38,
+        0.6,
+        0.38
+      ],
+      "collision": true,
+      "viewDistance": 1.1,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-water-pouring",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2100,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "xorai",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "xorai"
+      },
+      "thumbnail": "thumbs/xorai.webp",
+      "label": {
+        "en": "Xorai",
+        "hi": "सराई"
+      },
+      "description": {
+        "en": "A tray on a stand, usually of bell metal or brass, with a domed cover, associated with Assam. It is used to offer areca nut and betel leaf (tamul-paan) to guests, and also in ceremonies, including religious ones.",
+        "hi": "स्टैंड पर बनी थाली, आम तौर पर काँसे या पीतल की, गुंबद जैसे ढक्कन के साथ, असम से जुड़ी हुई। इसमें मेहमानों को सुपारी और पान (तामुल-पान) दिया जाता है, और इसका उपयोग धार्मिक सहित कई समारोहों में भी होता है।"
+      },
+      "tags": {
+        "regions": [
+          "northeast",
+          "assam"
+        ],
+        "contexts": [
+          "kitchen"
+        ],
+        "topics": [
+          "community",
+          "food",
+          "faith"
+        ]
+      },
+      "descriptionSources": [
+        "https://en.wikipedia.org/wiki/Xorai",
+        "https://asiainch.org/craft/xorai-offering-tray-of-assam/",
+        "https://www.outlooktraveller.com/experiences/heritage/traditional-bell-metal-industry-in-sarthebari-assam"
+      ],
+      "size": [
+        0.29,
+        0.43,
+        0.29
+      ],
+      "collision": false,
+      "viewDistance": 0.95,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2400,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "potted-plant-large",
+      "category": "plants-outdoor",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "pottedPlantLarge"
+      },
+      "thumbnail": "thumbs/potted-plant-large.webp",
+      "label": {
+        "en": "Large potted plant",
+        "hi": "गमले में बड़ा पौधा"
+      },
+      "description": {
+        "en": "A leafy plant in a large clay pot.",
+        "hi": "मिट्टी के बड़े गमले में पत्तेदार पौधा।"
+      },
+      "tags": {
+        "contexts": [
+          "courtyard"
+        ],
+        "topics": [
+          "nature",
+          "home"
+        ]
+      },
+      "size": [
+        0.73,
+        1.17,
+        0.74
+      ],
+      "collision": true,
+      "viewDistance": 1.4,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2900,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "potted-plant-small",
+      "category": "plants-outdoor",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "pottedPlantSmall"
+      },
+      "thumbnail": "thumbs/potted-plant-small.webp",
+      "label": {
+        "en": "Small potted plant",
+        "hi": "गमले में छोटा पौधा"
+      },
+      "description": {
+        "en": "A small plant with round leaves in a clay pot.",
+        "hi": "मिट्टी के गमले में गोल पत्तियों वाला छोटा पौधा।"
+      },
+      "tags": {
+        "contexts": [
+          "courtyard"
+        ],
+        "topics": [
+          "nature",
+          "home"
+        ]
+      },
+      "size": [
+        0.25,
+        0.35,
+        0.22
+      ],
+      "collision": false,
+      "viewDistance": 0.9,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1100,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "hanging-plant",
+      "category": "plants-outdoor",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "hangingPlant"
+      },
+      "thumbnail": "thumbs/hanging-plant.webp",
+      "label": {
+        "en": "Hanging plant",
+        "hi": "लटकता पौधा"
+      },
+      "description": {
+        "en": "A trailing plant in a clay pot, hung from cords.",
+        "hi": "रस्सियों से लटके मिट्टी के गमले में फैलने वाला पौधा।"
+      },
+      "tags": {
+        "contexts": [
+          "hanging",
+          "courtyard"
+        ],
+        "topics": [
+          "nature",
+          "home"
+        ]
+      },
+      "size": [
+        0.4,
+        0.77,
+        0.4
+      ],
+      "collision": false,
+      "viewDistance": 1.4,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-birds-morning",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2700,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "flower-pots-row",
+      "category": "plants-outdoor",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "flowerPotsRow"
+      },
+      "thumbnail": "thumbs/flower-pots-row.webp",
+      "label": {
+        "en": "Flower pots",
+        "hi": "फूलों के गमले"
+      },
+      "description": {
+        "en": "A row of clay pots with flowering plants.",
+        "hi": "फूलों वाले पौधों के मिट्टी के गमलों की कतार।"
+      },
+      "tags": {
+        "contexts": [
+          "courtyard"
+        ],
+        "topics": [
+          "nature",
+          "home"
+        ]
+      },
+      "size": [
+        1.36,
+        0.48,
+        0.33
+      ],
+      "collision": true,
+      "viewDistance": 1.5,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-birds-morning",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 5500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "bucket-mug",
+      "category": "plants-outdoor",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "bucketMug",
+        "params": {
+          "colour": "#2f6fa8"
+        }
+      },
+      "thumbnail": "thumbs/bucket-mug.webp",
+      "label": {
+        "en": "Bucket and mug",
+        "hi": "बाल्टी और मग"
+      },
+      "description": {
+        "en": "A plastic bucket of water with a mug beside it.",
+        "hi": "पानी से भरी प्लास्टिक की बाल्टी और पास में मग।"
+      },
+      "tags": {
+        "contexts": [
+          "courtyard"
+        ],
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.46,
+        0.46,
+        0.32
+      ],
+      "collision": false,
+      "viewDistance": 1.1,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-water-pouring",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1300,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "clothesline",
+      "category": "plants-outdoor",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "clothesline"
+      },
+      "thumbnail": "thumbs/clothesline.webp",
+      "label": {
+        "en": "Clothesline",
+        "hi": "कपड़े सुखाने की रस्सी"
+      },
+      "description": {
+        "en": "A line between two posts with washing hung out to dry.",
+        "hi": "दो खंभों के बीच की रस्सी, जिस पर धुले कपड़े सूख रहे हैं।"
+      },
+      "tags": {
+        "contexts": [
+          "courtyard"
+        ],
+        "topics": [
+          "home",
+          "weather"
+        ]
+      },
+      "size": [
+        2.74,
+        1.9,
+        0.2
+      ],
+      "collision": true,
+      "viewDistance": 2.2,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 400,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "radio-transistor",
+      "category": "music-media",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "radioTransistor"
+      },
+      "thumbnail": "thumbs/radio-transistor.webp",
+      "label": {
+        "en": "Transistor radio",
+        "hi": "ट्रांज़िस्टर रेडियो"
+      },
+      "description": {
+        "en": "A small radio in a leather case, with a tuning dial and a strap.",
+        "hi": "चमड़े के खोल में छोटा रेडियो, ट्यूनिंग डायल और पट्टे के साथ।"
+      },
+      "tags": {
+        "contexts": [
+          "music"
+        ],
+        "topics": [
+          "music",
+          "community"
+        ]
+      },
+      "size": [
+        0.3,
+        0.25,
+        0.1
+      ],
+      "collision": false,
+      "viewDistance": 0.9,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-radio-tuning",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 900,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "radio-valve",
+      "category": "music-media",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "radioValve"
+      },
+      "thumbnail": "thumbs/radio-valve.webp",
+      "label": {
+        "en": "Valve radio",
+        "hi": "वाल्व रेडियो"
+      },
+      "description": {
+        "en": "A wooden table radio with a cloth speaker panel, a dial window and knobs.",
+        "hi": "कपड़े के स्पीकर पैनल, डायल की खिड़की और घुंडियों वाला लकड़ी का रेडियो।"
+      },
+      "tags": {
+        "contexts": [
+          "music"
+        ],
+        "topics": [
+          "music",
+          "community"
+        ]
+      },
+      "size": [
+        0.52,
+        0.32,
+        0.26
+      ],
+      "collision": false,
+      "viewDistance": 1.0,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-radio-tuning",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "fallback": "radio-transistor",
+      "budget": {
+        "triangles": 1300,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "cassette-player",
+      "category": "music-media",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "cassettePlayer"
+      },
+      "thumbnail": "thumbs/cassette-player.webp",
+      "label": {
+        "en": "Cassette player",
+        "hi": "कैसेट प्लेयर"
+      },
+      "description": {
+        "en": "A portable player with two speakers and a cassette deck.",
+        "hi": "दो स्पीकर और कैसेट डेक वाला पोर्टेबल प्लेयर।"
+      },
+      "tags": {
+        "contexts": [
+          "music"
+        ],
+        "topics": [
+          "music"
+        ]
+      },
+      "size": [
+        0.44,
+        0.23,
+        0.12
+      ],
+      "collision": false,
+      "viewDistance": 0.95,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2000,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "harmonium",
+      "category": "music-media",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "harmonium"
+      },
+      "thumbnail": "thumbs/harmonium.webp",
+      "label": {
+        "en": "Harmonium",
+        "hi": "हारमोनियम"
+      },
+      "description": {
+        "en": "A hand-pumped reed keyboard in a wooden box, with bellows at the back.",
+        "hi": "लकड़ी के बक्से में हाथ से चलने वाला बाजा, पीछे धौंकनी के साथ।"
+      },
+      "tags": {
+        "contexts": [
+          "music"
+        ],
+        "topics": [
+          "music"
+        ]
+      },
+      "size": [
+        0.62,
+        0.3,
+        0.38
+      ],
+      "collision": false,
+      "viewDistance": 1.1,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-harmonium",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 4500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "television-crt",
+      "category": "music-media",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "televisionCrt"
+      },
+      "thumbnail": "thumbs/television-crt.webp",
+      "label": {
+        "en": "Television",
+        "hi": "टेलीविज़न"
+      },
+      "description": {
+        "en": "An older television set with a curved screen, on a wooden cabinet.",
+        "hi": "घुमावदार स्क्रीन वाला पुराना टेलीविज़न, लकड़ी की कैबिनेट पर।"
+      },
+      "tags": {
+        "contexts": [
+          "music"
+        ],
+        "topics": [
+          "community",
+          "family"
+        ]
+      },
+      "size": [
+        0.8,
+        1.17,
+        0.55
+      ],
+      "collision": true,
+      "viewDistance": 1.7,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1600,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "books-stack",
+      "category": "school-work",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "booksStack"
+      },
+      "thumbnail": "thumbs/books-stack.webp",
+      "label": {
+        "en": "Books",
+        "hi": "किताबें"
+      },
+      "description": {
+        "en": "A small stack of cloth-bound books.",
+        "hi": "कपड़े की जिल्द वाली किताबों का छोटा ढेर।"
+      },
+      "tags": {
+        "contexts": [
+          "school",
+          "work"
+        ],
+        "topics": [
+          "school"
+        ]
+      },
+      "size": [
+        0.24,
+        0.16,
+        0.2
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "runtimeText": [
+        {
+          "slot": "spine-0",
+          "text": {
+            "en": "Stories",
+            "hi": "कहानियाँ"
+          }
+        },
+        {
+          "slot": "spine-1",
+          "text": {
+            "en": "Poems",
+            "hi": "कविताएँ"
+          }
+        },
+        {
+          "slot": "spine-2",
+          "text": {
+            "en": "Atlas",
+            "hi": "एटलस"
+          }
+        },
+        {
+          "slot": "spine-3",
+          "text": {
+            "en": "Recipes",
+            "hi": "व्यंजन"
+          }
+        }
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 700,
+        "textureKB": 230
+      }
+    },
+    {
+      "id": "school-slate",
+      "category": "school-work",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "schoolSlate"
+      },
+      "thumbnail": "thumbs/school-slate.webp",
+      "label": {
+        "en": "Writing slate",
+        "hi": "स्लेट"
+      },
+      "description": {
+        "en": "A wooden-framed slate with a piece of chalk.",
+        "hi": "लकड़ी के फ़्रेम वाली स्लेट और चॉक का टुकड़ा।"
+      },
+      "tags": {
+        "contexts": [
+          "school",
+          "work"
+        ],
+        "topics": [
+          "school",
+          "childhood"
+        ]
+      },
+      "size": [
+        0.32,
+        0.027,
+        0.26
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-school-bell",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 900,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "school-bag",
+      "category": "school-work",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "schoolBag"
+      },
+      "thumbnail": "thumbs/school-bag.webp",
+      "label": {
+        "en": "School bag",
+        "hi": "बस्ता"
+      },
+      "description": {
+        "en": "A cloth satchel with a flap, buckles and a shoulder strap.",
+        "hi": "ढक्कन, बकल और कंधे के पट्टे वाला कपड़े का बस्ता।"
+      },
+      "tags": {
+        "contexts": [
+          "school",
+          "work"
+        ],
+        "topics": [
+          "school",
+          "childhood"
+        ]
+      },
+      "size": [
+        0.35,
+        0.44,
+        0.14
+      ],
+      "collision": false,
+      "viewDistance": 1.0,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-school-bell",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1200,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "sewing-machine",
+      "category": "school-work",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "sewingMachine"
+      },
+      "thumbnail": "thumbs/sewing-machine.webp",
+      "label": {
+        "en": "Sewing machine",
+        "hi": "सिलाई मशीन"
+      },
+      "description": {
+        "en": "A treadle sewing machine on an iron stand with a wooden top.",
+        "hi": "लोहे के स्टैंड और लकड़ी की ऊपरी सतह वाली पैर से चलने वाली सिलाई मशीन।"
+      },
+      "tags": {
+        "contexts": [
+          "school",
+          "work"
+        ],
+        "topics": [
+          "work",
+          "home"
+        ]
+      },
+      "size": [
+        0.9,
+        1.04,
+        0.44
+      ],
+      "collision": true,
+      "viewDistance": 1.3,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-sewing-machine",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "typewriter",
+      "category": "school-work",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "typewriter"
+      },
+      "thumbnail": "thumbs/typewriter.webp",
+      "label": {
+        "en": "Typewriter",
+        "hi": "टाइपराइटर"
+      },
+      "description": {
+        "en": "A manual typewriter with a sheet of paper in the roller.",
+        "hi": "रोलर में लगे काग़ज़ वाला हाथ से चलने वाला टाइपराइटर।"
+      },
+      "tags": {
+        "contexts": [
+          "school",
+          "work"
+        ],
+        "topics": [
+          "work"
+        ]
+      },
+      "size": [
+        0.51,
+        0.26,
+        0.33
+      ],
+      "collision": false,
+      "viewDistance": 0.95,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 4700,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "ledger-pen",
+      "category": "school-work",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "ledgerPen"
+      },
+      "thumbnail": "thumbs/ledger-pen.webp",
+      "label": {
+        "en": "Ledger and pen",
+        "hi": "बही-खाता और क़लम"
+      },
+      "description": {
+        "en": "An open account book with ruled pages and a fountain pen.",
+        "hi": "रेखाओं वाले पन्नों का खुला बही-खाता और फ़ाउंटेन पेन।"
+      },
+      "tags": {
+        "contexts": [
+          "school",
+          "work"
+        ],
+        "topics": [
+          "work"
+        ]
+      },
+      "size": [
+        0.4,
+        0.045,
+        0.29
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 900,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "suitcase-old",
+      "category": "travel",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "suitcaseOld"
+      },
+      "thumbnail": "thumbs/suitcase-old.webp",
+      "label": {
+        "en": "Old suitcase",
+        "hi": "पुराना सूटकेस"
+      },
+      "description": {
+        "en": "A hard suitcase with a handle, latches and brass corners.",
+        "hi": "हत्थे, कुंडियों और पीतल के कोनों वाला सख़्त सूटकेस।"
+      },
+      "tags": {
+        "contexts": [
+          "travel"
+        ],
+        "topics": [
+          "travel"
+        ]
+      },
+      "size": [
+        0.65,
+        0.51,
+        0.21
+      ],
+      "collision": true,
+      "viewDistance": 1.1,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-train",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1300,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "bicycle",
+      "category": "travel",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "bicycle"
+      },
+      "thumbnail": "thumbs/bicycle.webp",
+      "label": {
+        "en": "Bicycle",
+        "hi": "साइकिल"
+      },
+      "description": {
+        "en": "A black bicycle with a carrier, standing on its stand.",
+        "hi": "कैरियर वाली काली साइकिल, अपने स्टैंड पर खड़ी।"
+      },
+      "tags": {
+        "contexts": [
+          "travel"
+        ],
+        "topics": [
+          "travel",
+          "childhood",
+          "work"
+        ]
+      },
+      "size": [
+        1.84,
+        1.03,
+        0.62
+      ],
+      "collision": true,
+      "viewDistance": 2.0,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-bicycle-bell",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 5300,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "umbrella",
+      "category": "travel",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "umbrella"
+      },
+      "thumbnail": "thumbs/umbrella.webp",
+      "label": {
+        "en": "Umbrella",
+        "hi": "छाता"
+      },
+      "description": {
+        "en": "A black umbrella hanging by its curved handle.",
+        "hi": "अपने मुड़े हुए हत्थे से टंगा काला छाता।"
+      },
+      "tags": {
+        "contexts": [
+          "travel"
+        ],
+        "topics": [
+          "weather",
+          "travel"
+        ]
+      },
+      "size": [
+        0.16,
+        0.94,
+        0.1
+      ],
+      "collision": false,
+      "viewDistance": 1.1,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-rain-roof",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "carrom-board",
+      "category": "hobbies-games",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "carromBoard"
+      },
+      "thumbnail": "thumbs/carrom-board.webp",
+      "label": {
+        "en": "Carrom board",
+        "hi": "कैरम बोर्ड"
+      },
+      "description": {
+        "en": "A square wooden board with corner pockets, coins and a striker.",
+        "hi": "कोनों में जेबों, गोटियों और स्ट्राइकर वाला चौकोर लकड़ी का बोर्ड।"
+      },
+      "tags": {
+        "contexts": [
+          "home"
+        ],
+        "topics": [
+          "games",
+          "family"
+        ]
+      },
+      "size": [
+        0.9,
+        0.045,
+        0.9
+      ],
+      "collision": false,
+      "viewDistance": 1.3,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 3200,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "chess-set",
+      "category": "hobbies-games",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "chessSet"
+      },
+      "thumbnail": "thumbs/chess-set.webp",
+      "label": {
+        "en": "Chess set",
+        "hi": "शतरंज"
+      },
+      "description": {
+        "en": "A chessboard with its pieces set out.",
+        "hi": "मोहरे सजाए हुए शतरंज की बिसात।"
+      },
+      "tags": {
+        "contexts": [
+          "home"
+        ],
+        "topics": [
+          "games"
+        ]
+      },
+      "size": [
+        0.42,
+        0.1,
+        0.42
+      ],
+      "collision": false,
+      "viewDistance": 0.9,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 6500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "cricket-bat-ball",
+      "category": "hobbies-games",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "cricketBatBall"
+      },
+      "thumbnail": "thumbs/cricket-bat-ball.webp",
+      "label": {
+        "en": "Cricket bat and ball",
+        "hi": "क्रिकेट बल्ला और गेंद"
+      },
+      "description": {
+        "en": "A wooden bat leaning against the wall, with a leather ball.",
+        "hi": "दीवार से टिका लकड़ी का बल्ला और चमड़े की गेंद।"
+      },
+      "tags": {
+        "contexts": [
+          "home"
+        ],
+        "topics": [
+          "games",
+          "childhood"
+        ]
+      },
+      "size": [
+        0.15,
+        0.83,
+        0.28
+      ],
+      "collision": false,
+      "viewDistance": 1.1,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 900,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "kite-spool",
+      "category": "hobbies-games",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "kiteSpool"
+      },
+      "thumbnail": "thumbs/kite-spool.webp",
+      "label": {
+        "en": "Kite and spool",
+        "hi": "पतंग और चरखी"
+      },
+      "description": {
+        "en": "A paper kite and a wooden spool of string, hung on the wall.",
+        "hi": "दीवार पर टंगी काग़ज़ की पतंग और धागे की लकड़ी की चरखी।"
+      },
+      "tags": {
+        "contexts": [
+          "home"
+        ],
+        "topics": [
+          "games",
+          "childhood"
+        ]
+      },
+      "size": [
+        0.42,
+        0.76,
+        0.08
+      ],
+      "collision": false,
+      "viewDistance": 1.1,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 500,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "knitting-basket",
+      "category": "hobbies-games",
+      "mount": "floor",
+      "source": {
+        "kind": "procedural",
+        "builder": "knittingBasket"
+      },
+      "thumbnail": "thumbs/knitting-basket.webp",
+      "label": {
+        "en": "Knitting basket",
+        "hi": "बुनाई की टोकरी"
+      },
+      "description": {
+        "en": "A cane basket with balls of wool and knitting needles.",
+        "hi": "ऊन के गोलों और सलाइयों वाली बेंत की टोकरी।"
+      },
+      "tags": {
+        "contexts": [
+          "home"
+        ],
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.37,
+        0.42,
+        0.32
+      ],
+      "collision": false,
+      "viewDistance": 1.0,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1800,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "newspaper-folded",
+      "category": "community",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "newspaperFolded"
+      },
+      "thumbnail": "thumbs/newspaper-folded.webp",
+      "label": {
+        "en": "Newspaper",
+        "hi": "अख़बार"
+      },
+      "description": {
+        "en": "A folded newspaper.",
+        "hi": "मुड़ा हुआ अख़बार।"
+      },
+      "tags": {
+        "contexts": [
+          "community"
+        ],
+        "topics": [
+          "community"
+        ]
+      },
+      "size": [
+        0.31,
+        0.017,
+        0.21
+      ],
+      "collision": false,
+      "viewDistance": 0.85,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 900,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "ceiling-fan",
+      "category": "lighting",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "ceilingFan"
+      },
+      "thumbnail": "thumbs/ceiling-fan.webp",
+      "label": {
+        "en": "Ceiling fan",
+        "hi": "छत का पंखा"
+      },
+      "description": {
+        "en": "A three-blade fan hanging from the ceiling.",
+        "hi": "छत से लटका तीन पंखुड़ियों वाला पंखा।"
+      },
+      "tags": {
+        "contexts": [
+          "hanging"
+        ],
+        "topics": [
+          "home",
+          "weather"
+        ]
+      },
+      "size": [
+        1.1,
+        0.45,
+        1.1
+      ],
+      "collision": false,
+      "viewDistance": 1.6,
+      "activities": [
+        "object",
+        "sound",
+        "space",
+        "sequence"
+      ],
+      "soundId": "snd-ceiling-fan",
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 800,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "table-lamp",
+      "category": "lighting",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "tableLamp"
+      },
+      "thumbnail": "thumbs/table-lamp.webp",
+      "label": {
+        "en": "Table lamp",
+        "hi": "टेबल लैंप"
+      },
+      "description": {
+        "en": "A lamp with a brass base and a cloth shade.",
+        "hi": "पीतल के आधार और कपड़े की छतरी वाला लैंप।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.3,
+        0.45,
+        0.3
+      ],
+      "collision": false,
+      "viewDistance": 1.0,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 800,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "hurricane-lantern",
+      "category": "lighting",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "hurricaneLantern"
+      },
+      "thumbnail": "thumbs/hurricane-lantern.webp",
+      "label": {
+        "en": "Hurricane lantern",
+        "hi": "लालटेन"
+      },
+      "description": {
+        "en": "A kerosene lantern with a glass globe and a wire handle.",
+        "hi": "काँच की चिमनी और तार के हत्थे वाली मिट्टी के तेल की लालटेन।"
+      },
+      "tags": {
+        "topics": [
+          "home",
+          "weather"
+        ]
+      },
+      "size": [
+        0.17,
+        0.34,
+        0.16
+      ],
+      "collision": false,
+      "viewDistance": 0.9,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1200,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "wall-mirror",
+      "category": "decor",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "wallMirror"
+      },
+      "thumbnail": "thumbs/wall-mirror.webp",
+      "label": {
+        "en": "Wall mirror",
+        "hi": "दीवार का आईना"
+      },
+      "description": {
+        "en": "An oval mirror in a wooden frame.",
+        "hi": "लकड़ी के फ़्रेम में अंडाकार आईना।"
+      },
+      "tags": {
+        "topics": [
+          "home"
+        ]
+      },
+      "size": [
+        0.51,
+        0.71,
+        0.04
+      ],
+      "collision": false,
+      "viewDistance": 1.2,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 600,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "vase-flowers",
+      "category": "decor",
+      "mount": "surface",
+      "source": {
+        "kind": "procedural",
+        "builder": "vaseFlowers"
+      },
+      "thumbnail": "thumbs/vase-flowers.webp",
+      "label": {
+        "en": "Vase of flowers",
+        "hi": "फूलदान"
+      },
+      "description": {
+        "en": "A ceramic vase with a few flowers.",
+        "hi": "कुछ फूलों वाला चीनी मिट्टी का फूलदान।"
+      },
+      "tags": {
+        "topics": [
+          "nature",
+          "home"
+        ]
+      },
+      "size": [
+        0.19,
+        0.47,
+        0.2
+      ],
+      "collision": false,
+      "viewDistance": 0.9,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 1800,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "jaapi",
+      "category": "decor",
+      "mount": "wall",
+      "source": {
+        "kind": "procedural",
+        "builder": "jaapi"
+      },
+      "thumbnail": "thumbs/jaapi.webp",
+      "label": {
+        "en": "Jaapi",
+        "hi": "जापी"
+      },
+      "description": {
+        "en": "A broad conical hat woven from bamboo or cane and palm leaves, associated with Assam. Plain ones have been worn by farmers against the sun; decorated ones are often hung on walls.",
+        "hi": "बाँस या बेंत और ताड़ के पत्तों से बुनी चौड़ी शंकु आकार की टोपी, असम से जुड़ी हुई। सादी जापी किसान धूप से बचने के लिए पहनते रहे हैं; सजी हुई जापी अक्सर दीवारों पर टाँगी जाती है।"
+      },
+      "tags": {
+        "regions": [
+          "northeast",
+          "assam"
+        ],
+        "topics": [
+          "community",
+          "home"
+        ]
+      },
+      "descriptionSources": [
+        "https://en.wikipedia.org/wiki/Jaapi",
+        "https://assam.gov.in/citizen/428"
+      ],
+      "size": [
+        0.64,
+        0.64,
+        0.19
+      ],
+      "collision": false,
+      "viewDistance": 1.2,
+      "activities": [
+        "object",
+        "space",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "procedural",
+        "author": "Memoria project",
+        "license": "CC0-1.0",
+        "attribution": "Original procedural model written for this project (src/suite/assets/builders/)."
+      },
+      "budget": {
+        "triangles": 2100,
+        "textureKB": 0
+      }
+    }
+  ]
+}

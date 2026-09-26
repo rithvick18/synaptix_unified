@@ -1,0 +1,101 @@
+{
+  "brand": {
+    "name": "Reminiscence Therapy Suite",
+    "tagline": "Familiar places, objects, photographs and sounds, explored together at your own pace."
+  },
+  "disclaimer": "An activity space for looking at familiar places, objects, photographs and sounds together. It is not a medical treatment and does not assess memory or health.",
+  "privacy": "Everything you add stays in this browser on this device. Nothing is uploaded. Clearing this browser's data removes it.",
+  "labels": {
+    "demo": "Demo",
+    "demoNotice": "Demo picture: an illustration, not a real memory",
+    "demoProfile": "Demo (no personal content)",
+    "personal": "Personal",
+    "personalNotice": "Added by a caregiver",
+    "caregiverWords": "In the caregiver's own words",
+    "synthesized": "Made with a sound synthesiser",
+    "optional": "Optional",
+    "required": "Required",
+    "none": "None"
+  },
+  "actions": {
+    "ok": "OK",
+    "cancel": "Cancel",
+    "close": "Close",
+    "save": "Save",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "skip": "Skip",
+    "pause": "Pause",
+    "resume": "Resume",
+    "replay": "Play again",
+    "play": "Play",
+    "stop": "Stop",
+    "add": "Add",
+    "remove": "Remove",
+    "replace": "Replace",
+    "moveUp": "Move up",
+    "moveDown": "Move down",
+    "continue": "Continue",
+    "done": "Done",
+    "exit": "Exit",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "status": {
+    "loading": "Loading…",
+    "saving": "Saving…",
+    "saved": "Saved",
+    "takeYourTime": "Take your time."
+  },
+  "time": {
+    "seconds": { "one": "{count} second", "other": "{count} seconds" },
+    "minutes": { "one": "{count} minute", "other": "{count} minutes" }
+  },
+  "items": {
+    "photos": { "one": "{count} photograph", "other": "{count} photographs" },
+    "sounds": { "one": "{count} sound", "other": "{count} sounds" },
+    "objects": { "one": "{count} object", "other": "{count} objects" }
+  },
+  "languages": {
+    "en": "English",
+    "hi": "Hindi"
+  },
+  "translation": {
+    "source": "Original text",
+    "human-reviewed": "Translation reviewed by a fluent speaker",
+    "machine-generated-needs-review": "This translation was machine-generated and has not yet been reviewed by a fluent speaker."
+  },
+  "topics": {
+    "family": "Family",
+    "home": "Home",
+    "food": "Food",
+    "childhood": "Childhood",
+    "school": "School",
+    "work": "Work",
+    "travel": "Travel",
+    "music": "Music",
+    "games": "Games",
+    "nature": "Nature",
+    "weather": "Weather",
+    "community": "Community",
+    "festivals": "Festivals",
+    "faith": "Faith"
+  },
+  "media": {
+    "photoType": "This file is not a JPEG, PNG or WebP photograph.",
+    "photoTooLarge": "This photograph is larger than {max} MB.",
+    "audioType": "This file is not a supported sound. Use MP3, M4A, WAV, OGG or WebM.",
+    "audioTooLarge": "This sound file is larger than {max} MB.",
+    "audioTooLong": "This sound is longer than {max} minutes.",
+    "empty": "This file is empty.",
+    "decodeFailed": "This file could not be opened. It may be damaged, or in a format this browser cannot read.",
+    "notShown": "This could not be shown. Replace or remove it.",
+    "notPlayed": "This could not be played. Replace or remove it.",
+    "tooManyPhotos": "You can add up to {max} photographs.",
+    "tooManySounds": "You can add up to {max} sounds.",
+    "micUnavailable": "The microphone is not available. That is fine: you can add a sound file instead.",
+    "micUnsupported": "Recording is not available in this browser. You can add a sound file instead.",
+    "storageFailed": "This could not be saved to browser storage. Your last saved profile is unchanged. Free some space or allow storage, then save once more."
+  }
+}
