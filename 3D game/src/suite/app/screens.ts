@@ -1,4 +1,12 @@
-/** Home, Place, Activity and Summary screens. Plain DOM; every string from i18n. */
+/**
+ * Home, Summary screens. Plain DOM; every string from i18n.
+ *
+ * Home is the single master screen: who this is for, language, comfort/camera/caregiver
+ * setup (collapsed), then the place picker and the activity picker right on the same
+ * page. There is no separate "Choose a place" or "Choose an activity" screen to navigate
+ * to — picking a place prepares it in the background so the activity list underneath is
+ * usually ready by the time it scrolls into view.
+ */
 import type { ActivityKind, EnvironmentPreset, LoadedContentPack, SessionSummary } from '../contracts'
 import { resolveUnder } from '../paths'
 import type { SuiteController } from './app'
@@ -40,7 +48,10 @@ export function renderHome(c: SuiteController): HTMLElement {
         h('span', { class: 's-muted s-small', text: c.t('app.home.who.demoHint') }))),
     saved ? null : h('p', { class: 's-muted', text: c.t('app.home.who.none') }),
     h('div', { class: 's-row' },
-      h('button', { type: 'button', class: 's-primary', 'data-k': 'to-place', onclick: () => c.go('place') }, c.t('app.home.start'))))
+      h('button', {
+        type: 'button', class: 's-primary', 'data-k': 'to-place',
+        onclick: () => document.getElementById('s-place-title')?.scrollIntoView({ behavior: c.settings.reducedMotion ? 'auto' : 'smooth', block: 'start' })
+      }, c.t('app.home.start'))))
 
   const info = i18n.info()
   const language = h('section', { class: 's-card', 'aria-labelledby': 's-lang' },
@@ -52,21 +63,23 @@ export function renderHome(c: SuiteController): HTMLElement {
           l.nativeName === l.name ? l.name : `${l.nativeName} · ${l.name}`))),
     info.translation === 'machine-generated-needs-review' ? h('p', { class: 's-notice s-small', text: c.t('app.home.language.machine') }) : null)
 
-  const comfort = h('section', { class: 's-card', 'aria-labelledby': 's-comfort' },
-    h('h2', { id: 's-comfort', text: c.t('app.home.comfort.title') }),
+  // Setup and caregiver-only controls: not needed to start a session, so they stay collapsed
+  // behind one disclosure rather than competing with "Who" and "Language" for attention.
+  const comfort = h('section', { 'aria-labelledby': 's-comfort' },
+    h('h3', { id: 's-comfort', text: c.t('app.home.comfort.title') }),
     h('p', { class: 's-muted', text: c.t('app.home.comfort.hint') }),
     h('div', { class: 's-row' },
       h('button', { type: 'button', 'data-k': 'open-settings', onclick: () => c.openSettings() }, c.t('app.home.comfort.open'))))
 
-  const camera = h('section', { class: 's-card', 'aria-labelledby': 's-camera' },
-    h('h2', { id: 's-camera', text: c.t('app.home.camera.title') }),
+  const camera = h('section', { 'aria-labelledby': 's-camera' },
+    h('h3', { id: 's-camera', text: c.t('app.home.camera.title') }),
     h('p', { class: 's-muted', text: c.t('app.home.camera.hint') }),
     h('p', { 'data-camera-line': 'always', role: 'status', text: c.cameraLine() }),
     h('div', { class: 's-row' },
       h('button', { type: 'button', 'data-k': 'camera', onclick: () => c.openCamera() }, c.t('app.home.camera.open'))))
 
-  const caregiver = h('section', { class: 's-card', 'aria-labelledby': 's-caregiver' },
-    h('h2', { id: 's-caregiver', text: c.t('app.home.caregiver.title') }),
+  const caregiver = h('section', { 'aria-labelledby': 's-caregiver' },
+    h('h3', { id: 's-caregiver', text: c.t('app.home.caregiver.title') }),
     h('p', { class: 's-muted', text: c.t('app.home.caregiver.hint') }),
     c.flash ? h('p', { class: 's-notice', role: 'status', text: c.flash }) : null,
     h('div', { class: 's-row' },
@@ -75,56 +88,77 @@ export function renderHome(c: SuiteController): HTMLElement {
     h('h3', { text: c.t('app.home.caregiver.homeTitle') }),
     h('p', { class: 's-muted', text: c.t('app.home.caregiver.homeHint') }),
     h('div', { class: 's-row' },
-      h('button', { type: 'button', 'data-k': 'home-personalise', onclick: () => c.openHomePersonalisation() }, c.t('app.home.caregiver.homeOpen'))),
-    warning ? h('p', { class: 's-notice', role: 'status' }, h('strong', { text: c.t('app.home.storage') + ' ' }), h('span', { lang: 'en', text: warning })) : null)
+      h('button', { type: 'button', 'data-k': 'home-personalise', onclick: () => c.openHomePersonalisation() }, c.t('app.home.caregiver.homeOpen'))))
 
-  const guided = h('section', { class: 's-card s-separate', 'aria-labelledby': 's-guided' },
-    h('h2', { id: 's-guided', text: c.t('app.home.guided.title') }),
+  const guided = h('section', { 'aria-labelledby': 's-guided' },
+    h('h3', { id: 's-guided', text: c.t('app.home.guided.title') }),
     h('p', { class: 's-muted', text: c.t('app.home.guided.hint') }),
     h('div', { class: 's-row' },
       h('button', { type: 'button', 'data-k': 'guided', onclick: () => c.openGuidedTasks() }, c.t('app.home.guided.open'))))
+
+  const more = h('details', { class: 's-card s-more', 'data-k': 'more' },
+    h('summary', { class: 's-more-summary' }, c.t('app.home.more.title')),
+    h('div', { class: 's-more-body' },
+      comfort, h('hr', { class: 's-divider' }),
+      camera, h('hr', { class: 's-divider' }),
+      caregiver, h('hr', { class: 's-divider' }),
+      guided))
 
   const disclaimer = c.tOr('common.disclaimer', 'app.disclaimer')
   return h('div', { class: 's-page' },
     h('header', { class: 's-brand' },
       h('h1', { tabindex: -1, text: c.t('app.brand') }),
       h('p', { class: 's-muted', text: disclaimer })),
-    who, language, comfort, caregiver, camera,
+    who, language,
+    // Kept outside the disclosure: storage state matters even before a caregiver opens setup.
+    warning ? h('p', { class: 's-notice', role: 'status' }, h('strong', { text: c.t('app.home.storage') + ' ' }), h('span', { lang: 'en', text: warning })) : null,
     h('hr', { class: 's-divider' }),
-    guided)
+    ...renderPlaceSection(c),
+    more)
 }
 
-// ---------------------------------------------------------------------------------------- Place
+// ---------------------------------------------------------------------------------------- Place + Activity
+//
+// Part of the Home page, not a screen of its own: picking a place prepares it in the
+// background immediately, so the activity list right underneath is usually ready by the
+// time it scrolls into view.
 
-export function renderPlace(c: SuiteController): HTMLElement {
-  const page = h('div', { class: 's-page' }, header(c, 'app.place.title', () => c.go('home'), c.t('app.place.intro')))
+function renderPlaceSection(c: SuiteController): (HTMLElement | null)[] {
+  const nodes: (HTMLElement | null)[] = [
+    h('h2', { id: 's-place-title', tabindex: -1, text: c.t('app.place.title') }),
+    h('p', { class: 's-muted', text: c.t('app.place.intro') })
+  ]
   const content = c.content
   if (!content) {
     if (c.contentError) {
-      page.append(h('div', { class: 's-card', role: 'status' },
+      nodes.push(h('div', { class: 's-card', role: 'status' },
         h('p', { text: c.t('app.place.failed') }),
         h('div', { class: 's-row' }, h('button', { type: 'button', 'data-k': 'retry', onclick: () => { c.contentError = false; c.render() } }, c.t('app.place.retry')))))
     } else {
-      page.append(h('div', { class: 's-card s-progress', role: 'status', 'aria-live': 'polite' }, h('p', { text: c.t('app.place.loading') })))
-      c.ensureContent().then(() => { if (c.screen === 'place') c.render() }, () => { if (c.screen === 'place') c.render() })
+      nodes.push(h('div', { class: 's-card s-progress', role: 'status', 'aria-live': 'polite' }, h('p', { text: c.t('app.place.loading') })))
+      c.ensureContent().then(() => { if (c.screen === 'home') c.render() }, () => { if (c.screen === 'home') c.render() })
     }
-    return page
+    return nodes
   }
   if (!c.choice || !content.ok.some((p) => p.meta.id === c.choice!.packId && p.environments.some((e) => e.id === c.choice!.environmentId))) {
     c.choice = c.defaultChoice(content)
+    c.rememberChoice(c.choice)
   }
   const i18n = c.i18n!
   const general = content.ok.filter((p) => !p.meta.regional)
   const regional = content.ok.filter((p) => p.meta.regional)
 
   if (content.failed.length) {
-    page.append(h('p', { class: 's-notice', role: 'status',
+    nodes.push(h('p', { class: 's-notice', role: 'status',
       text: c.t('app.place.unavailable', { names: content.failed.map((p) => i18n.text(p.meta.name, p.meta.id)).join(', ') }) }))
   }
-  if (content.ok.length === 0) page.append(h('div', { class: 's-card' }, h('p', { text: c.t('app.place.none') })))
+  if (content.ok.length === 0) nodes.push(h('div', { class: 's-card' }, h('p', { text: c.t('app.place.none') })))
 
+  // Each group (general/regional) shows its own last pick as chosen, even while the other
+  // group is the one actually active (c.choice) — see rememberChoice().
   const envCard = (pack: LoadedContentPack, env: EnvironmentPreset): HTMLElement => {
-    const chosen = c.choice?.packId === pack.meta.id && c.choice.environmentId === env.id
+    const group = pack.meta.regional ? c.lastRegionalChoice : c.lastGeneralChoice
+    const chosen = group?.packId === pack.meta.id && group.environmentId === env.id
     return h('button', { type: 'button', class: 's-choice', 'aria-pressed': String(chosen), 'data-k': `env-${pack.meta.id}-${env.id}`,
       onclick: () => c.choose(pack.meta.id, env.id) },
       env.thumbnail ? h('img', { class: 's-thumb', src: resolveUnder(pack.baseUrl, env.thumbnail), alt: '', loading: 'lazy', decoding: 'async' }) : null,
@@ -139,58 +173,55 @@ export function renderPlace(c: SuiteController): HTMLElement {
       pack.meta.status === 'preview' ? h('p', { class: 's-notice s-small', text: c.t('app.place.preview') }) : null,
       h('div', { class: 's-grid' }, pack.environments.map((env) => envCard(pack, env))))
 
-  if (general.length) page.append(h('h2', { text: c.t('app.place.general') }), ...general.map((p) => packSection(p, false)))
+  if (general.length) nodes.push(h('h3', { text: c.t('app.place.general') }), ...general.map((p) => packSection(p, false)))
   if (regional.length) {
-    page.append(
+    nodes.push(
       h('hr', { class: 's-divider' }),
-      h('h2', { text: c.t('app.place.regional.title') }),
+      h('h3', { text: c.t('app.place.regional.title') }),
       h('p', { class: 's-muted', text: c.t('app.place.regional.intro') }),
       ...regional.map((p) => packSection(p, true)))
   }
-  page.append(h('div', { class: 's-row' },
-    h('button', { type: 'button', class: 's-primary', 'data-k': 'to-activity', disabled: !c.choice, onclick: () => c.go('activity') }, c.t('app.place.continue'))))
-  return page
+
+  nodes.push(h('hr', { class: 's-divider' }), renderActivityPicker(c))
+  return nodes
 }
 
-// ---------------------------------------------------------------------------------------- Activity
+/** The activity list, shown right under the place picker once a place is chosen. */
+function renderActivityPicker(c: SuiteController): HTMLElement {
+  const section = h('section', { 'aria-labelledby': 's-activity-title' },
+    h('h2', { id: 's-activity-title', text: c.t('app.activity.title') }),
+    h('p', { class: 's-notice', text: c.t('app.activity.note') }))
+  if (!c.choice) return section
 
-export function renderActivity(c: SuiteController): HTMLElement {
-  const page = h('div', { class: 's-page' }, header(c, 'app.activity.title', () => c.go('place')))
-  page.append(h('p', { class: 's-notice', text: c.t('app.activity.note') }))
-  if (!c.choice) {
-    queueMicrotask(() => { if (c.screen === 'activity' && !c.choice) c.go('place') })
-    return page
-  }
   const content = c.content
   const pack = content?.ok.find((p) => p.meta.id === c.choice!.packId)
   const env = pack?.environments.find((e) => e.id === c.choice!.environmentId)
-  if (pack && env) page.append(h('p', { class: 's-muted', text: c.t('app.activity.place', { name: c.i18n!.text(env.name, env.id) }) }))
+  if (pack && env) section.append(h('p', { class: 's-muted', text: c.t('app.activity.place', { name: c.i18n!.text(env.name, env.id) }) }))
 
   if (c.prepareError) {
-    page.append(h('div', { class: 's-card', role: 'status' },
+    section.append(h('div', { class: 's-card', role: 'status' },
       h('p', { text: c.t('app.activity.failed') }),
       h('div', { class: 's-row' },
-        h('button', { type: 'button', 'data-k': 'retry', onclick: () => { c.prepareError = false; c.render() } }, c.t('app.activity.retry')),
-        h('button', { type: 'button', 'data-k': 'to-place', onclick: () => c.go('place') }, c.t('app.activity.otherPlace')))))
-    return page
+        h('button', { type: 'button', 'data-k': 'retry', onclick: () => { c.prepareError = false; c.render() } }, c.t('app.activity.retry')))))
+    return section
   }
   if (!c.prepared) {
     c.prepare().catch(() => undefined)
     const p = c.prepareProgress
     const pct = p && p.total > 0 ? Math.round((p.done / p.total) * 100) : 0
-    page.append(h('div', { class: 's-card s-progress', role: 'status', 'aria-live': 'polite' },
+    section.append(h('div', { class: 's-card s-progress', role: 'status', 'aria-live': 'polite' },
       h('p', { text: c.t('app.activity.preparing') }),
       h('div', { class: 's-bar', role: 'progressbar', 'aria-valuemin': 0, 'aria-valuemax': 100, 'aria-valuenow': pct, 'data-progress': true,
         'aria-label': c.t('app.activity.preparing') }, h('span', { style: `width: ${pct}%` }))))
-    return page
+    return section
   }
 
   const guided = c.profileMode === 'saved' && c.prepared.resolved?.mode === 'guided'
-  if (guided) page.append(h('p', { class: 's-muted', text: c.t('app.activity.guidedFirst') }))
+  if (guided) section.append(h('p', { class: 's-muted', text: c.t('app.activity.guidedFirst') }))
   const list = h('div', { class: 's-grid' })
   for (const kind of c.activityOrder()) list.append(activityCard(c, kind))
-  page.append(list)
-  return page
+  section.append(list)
+  return section
 }
 
 function activityCard(c: SuiteController, kind: ActivityKind): HTMLElement {
@@ -271,7 +302,7 @@ export function renderSummary(c: SuiteController): HTMLElement {
 
   page.append(h('div', { class: 's-row' },
     h('button', { type: 'button', 'data-k': 'download', onclick: () => c.downloadSummary() }, c.t('app.summary.download')),
-    h('button', { type: 'button', class: 's-primary', 'data-k': 'another', onclick: () => c.go('activity') }, c.t('app.summary.another')),
+    h('button', { type: 'button', class: 's-primary', 'data-k': 'another', onclick: () => c.go('home') }, c.t('app.summary.another')),
     h('button', { type: 'button', 'data-k': 'home', onclick: () => c.go('home') }, c.t('app.summary.home'))))
   return page
 }

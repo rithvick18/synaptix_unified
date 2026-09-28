@@ -177,7 +177,8 @@ const wait = (ms: number) => new Promise((r) => setTimeout(r, ms))
   while (!(suite.debug as { language: string | null }).language) await wait(20)
   if (q.get('lang')) await d.setLanguage(q.get('lang'))
   const screen = q.get('screen') ?? 'home'
-  if (screen === 'place' || screen === 'activity') { d.go('place'); await wait(100); if (screen === 'activity') { d.go('activity'); await wait(200) } }
+  // 'place' and 'activity' kept as aliases: everything lives on the Home screen now.
+  if (screen === 'place' || screen === 'activity') { d.go('home'); await wait(200) }
   if (screen === 'settings') d.openSettings()
   if (['explore', 'closeup', 'pause', 'summary', 'objcloseup'].includes(screen)) {
     await d.start('everyday-home', 'living-room', screen === 'closeup' ? 'photo' : 'object', 'demo')
