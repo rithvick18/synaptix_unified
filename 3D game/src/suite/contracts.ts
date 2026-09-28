@@ -181,8 +181,9 @@ export type MountKind = 'floor' | 'wall' | 'surface'
 export type AssetSource =
   /** `builder` is a key in the procedural builder registry (src/suite/assets/). */
   | { kind: 'procedural'; builder: string; params?: Record<string, number | string | boolean> }
-  /** A packaged .glb, path relative to the manifest's directory. */
-  | { kind: 'gltf'; path: string; scale?: number; yaw?: number }
+  /** A packaged .glb, path relative to the manifest's directory. `scale` is uniform, or
+   *  per axis to meet a host height exactly (at most a few percent off uniform). */
+  | { kind: 'gltf'; path: string; scale?: number | [number, number, number]; yaw?: number }
 
 export interface AssetDef {
   id: string
@@ -869,6 +870,9 @@ export interface SuiteHost {
     camera: THREE.PerspectiveCamera
     renderer: THREE.WebGLRenderer
     refreshShadows(): void
+    /** Lights reflections from the room now on screen, seen from `at` (Renderer.ts).
+     *  Optional: without it, reflections come from the house's HDRI. */
+    captureEnvironment?(at: THREE.Vector3): void
   }
   listener: THREE.AudioListener
   state: SuiteStatePort

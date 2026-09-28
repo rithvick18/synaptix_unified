@@ -17,7 +17,7 @@ The suite has no timers, no scores, and no right or wrong answers.
 - **Content:** two packs.
   - *Everyday home* is the default and is not tied to any region. Its environments are a living room, a kitchen with a dining area, and a courtyard with a veranda.
   - *Northeast home* is optional and regional, with a living room and a veranda.
-  - Across the packs: 76 procedural assets with rendered thumbnails, CC0 textures vendored locally, synthesized sounds, and demo illustrations.
+  - Across the packs: 81 assets (76 procedural, 5 CC0 photo-scanned models from Poly Haven, each with a procedural fallback) with rendered thumbnails, CC0 textures vendored locally, synthesized sounds, and demo illustrations.
 - **Activities:** photo exploration, familiar objects, sound and memory, familiar space, and a guided sequence.
 - **Caregiver setup:**
   - language, pack and environment;

@@ -22,7 +22,7 @@ async function load(url: string): Promise<THREE.Group> {
 }
 
 /** Loads (once) and shares a glTF scene, normalised so its base centre is the origin. */
-export async function acquireGltf(url: string, scale = 1, yaw = 0): Promise<{ key: string; object: THREE.Group; triangles: number }> {
+export async function acquireGltf(url: string, scale: number | [number, number, number] = 1, yaw = 0): Promise<{ key: string; object: THREE.Group; triangles: number }> {
   const key = `${url}|${scale}|${yaw}`
   const existing = cache.peek(key)
   if (existing) return { key, ...cache.acquire(key, () => existing) }
@@ -39,7 +39,8 @@ export async function acquireGltf(url: string, scale = 1, yaw = 0): Promise<{ ke
   }
   const proto = cache.acquire(key, () => {
     const object = new THREE.Group()
-    scene.scale.setScalar(scale)
+    if (typeof scale === 'number') scene.scale.setScalar(scale)
+    else scene.scale.set(...scale)
     scene.rotation.y = yaw
     scene.updateMatrixWorld(true)
     const box = new THREE.Box3().setFromObject(scene)
@@ -52,6 +53,10 @@ export async function acquireGltf(url: string, scale = 1, yaw = 0): Promise<{ ke
     object.traverse((node) => {
       const mesh = node as THREE.Mesh
       if (!mesh.isMesh) return
+      // As a procedural part marked `shadow`: the scene builder still decides, per
+      // placement, whether this tier and this kind of object casts at all.
+      mesh.castShadow = true
+      mesh.receiveShadow = true
       geometries.add(mesh.geometry)
       triangles += mesh.geometry.index ? mesh.geometry.index.count / 3 : mesh.geometry.attributes.position.count / 3
       for (const m of Array.isArray(mesh.material) ? mesh.material : [mesh.material]) materials.add(m)

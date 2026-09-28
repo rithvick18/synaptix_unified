@@ -91,7 +91,7 @@ export const kitchenDining: ShellDef = {
     k.box(k.m('black', '#2a2a2c'), [sx - 0.28, TOP + 0.001, z0 + 0.1], [sx + 0.28, TOP + 0.003, z0 + 0.5])
     k.tubeLight([-0.6, 2.5, -Z + 0.035], 'x')
     const centre = new THREE.Vector3(0, 0, -0.1)
-    k.interiorLights(centre, { x: X, z: Z }, H, [2.0, 6, 2.0])
+    k.interiorLights(centre, { x: X, z: Z }, H, [1.6, 3.4, 4.4])
     const geometries = k.finish()
     return {
       group: k.group,

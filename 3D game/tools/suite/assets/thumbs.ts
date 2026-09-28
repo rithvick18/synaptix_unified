@@ -1,10 +1,11 @@
 /**
- * Dev-only harness for render-thumbnails.mjs: renders one procedural asset, with its real
- * builder and the flat palette, to a 256 × 256 PNG data URL. Served by `vite` from the
- * project root; never part of the app build.
+ * Dev-only harness for render-thumbnails.mjs: renders one asset — a procedural one with
+ * its real builder and the flat palette, a glTF one as packaged — to a 256 × 256 PNG data
+ * URL. Served by `vite` from the project root; never part of the app build.
  */
 import * as THREE from 'three'
 import type { AssetDef } from '../../../src/suite/contracts'
+import { acquireGltf } from '../../../src/suite/assets/gltf'
 import { acquireProcedural } from '../../../src/suite/assets/prototypes'
 import { FLAT_ENV } from '../../../src/suite/assets/materials'
 
@@ -30,8 +31,9 @@ async function renderThumb(id: string): Promise<string> {
   await ready
   const def = defs.find((d) => d.id === id)
   if (!def) throw new Error(`no asset ${id}`)
-  const proto = acquireProcedural(def, FLAT_ENV, 'standard')
-  const object = proto.object.clone()
+  const object = def.source.kind === 'gltf'
+    ? (await acquireGltf(`/suite/assets/${def.source.path}`, def.source.scale ?? 1, def.source.yaw ?? 0)).object.clone()
+    : acquireProcedural(def, FLAT_ENV, 'standard').object.clone()
   scene.add(object)
   const box = new THREE.Box3().setFromObject(object)
   const centre = box.getCenter(new THREE.Vector3())

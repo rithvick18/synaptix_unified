@@ -706,6 +706,8 @@ export class SuiteController {
     this.nav.mode = this.settings.navigation
     this.nav.setScene(scene)
     this.host.three.refreshShadows()
+    // After setActive: the house is hidden, so only this room is in the capture.
+    this.host.three.captureEnvironment?.(scene.seat.position)
     try {
       await this.applyPhotos(prep)
     } catch (err) {

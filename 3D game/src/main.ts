@@ -193,6 +193,7 @@ async function boot(): Promise<void> {
    */
   const quality = detectQuality(renderer.deviceInfo(), qualityOverrideFromLocation(location.search))
   console.log('[memoria] quality', quality)
+  if (quality.ambientOcclusion) renderer.enableAmbientOcclusion()
 
   // §11.7 — which house. A local profile is played in the layout its caregiver chose;
   // the Mira and Raju demos are always on the default template. `?template=<id>&mirror=1`
@@ -721,6 +722,8 @@ async function boot(): Promise<void> {
     document.title = active ? 'Memoria — Reminiscence Therapy Suite' : `Memoria — ${pack.patient.name}`
     player.suspended = active
     world.root.visible = !active
+    // The suite captures each room's own reflections; the house goes back to its HDRI.
+    if (!active) renderer.releaseLocalEnvironment()
     document.body.classList.toggle('suite-active', active)
     renderer.refreshShadows()
   }
@@ -731,7 +734,8 @@ async function boot(): Promise<void> {
       scene: renderer.scene,
       camera: renderer.camera,
       renderer: renderer.renderer,
-      refreshShadows: () => renderer.refreshShadows()
+      refreshShadows: () => renderer.refreshShadows(),
+      captureEnvironment: (at) => renderer.captureLocalEnvironment(at)
     },
     listener,
     state,

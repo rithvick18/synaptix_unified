@@ -49,6 +49,9 @@ export function validateAssets(defs: readonly AssetDef[], file: string, known: R
       if (!hasBuilder(source.builder)) error(id, `no procedural builder "${source.builder}" in the registry`)
     } else {
       if (!isLocalPath(source.path) || !/\.(glb|gltf)$/i.test(source.path)) error(id, `glTF path "${source.path}" must be a local .glb/.gltf`)
+      const scale = source.scale ?? 1
+      const axes = typeof scale === 'number' ? [scale] : Array.isArray(scale) && scale.length === 3 ? scale : []
+      if (axes.length === 0 || axes.some((v) => !(typeof v === 'number' && v > 0))) error(id, 'glTF scale must be a positive number or three positive numbers')
       if (!def.fallback) error(id, 'a glTF asset needs a procedural fallback')
     }
     if (typeof def.thumbnail !== 'string' || !def.thumbnail) error(id, 'thumbnail path is required')
