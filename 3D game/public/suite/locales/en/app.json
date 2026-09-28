@@ -27,6 +27,9 @@
       "title": "Language",
       "machine": "This translation was machine-generated and has not yet been reviewed by a fluent speaker."
     },
+    "more": {
+      "title": "Caregiver area & settings"
+    },
     "comfort": {
       "title": "Comfort settings",
       "hint": "Text size, contrast, motion, sound and subtitles.",

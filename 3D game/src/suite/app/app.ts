@@ -33,14 +33,14 @@ import { ExploreView } from './explore'
 import { Highlighter, pickObject } from './highlight'
 import { keyAction, keysBlocked, type KeyContext } from './keyboard'
 import { Navigator, classifyGesture, walkVector } from './navigator'
-import { renderActivity, renderHome, renderPlace, renderSummary } from './screens'
+import { renderHome, renderSummary } from './screens'
 import { browserStorage, loadSettings, prefersReducedMotion, saveSettings, type SuiteSettings } from './settings'
 import { renderSettingsDialog } from './settingsPanel'
 import { SUITE_CSS } from './styles'
 import { summaryFromLog } from './summary'
 import { VisionSampler, computeVisionNote } from './vision'
 
-export type Screen = 'home' | 'place' | 'activity' | 'explore' | 'summary' | 'hidden'
+export type Screen = 'home' | 'explore' | 'summary' | 'hidden'
 
 export interface ContentState {
   library: AssetLibrary
@@ -107,6 +107,12 @@ export class SuiteController {
   contentError = false
   private contentPromise: Promise<ContentState> | null = null
   choice: { packId: string; environmentId: string } | null = null
+  /** The place picker's own memory per group, so General and Regional each keep their card
+   * highlighted while the other is being browsed — only one can be prepared at a time
+   * (that's `choice`, whichever was picked most recently), but the picker itself doesn't
+   * forget the other group's pick just because it isn't the active one. */
+  lastGeneralChoice: { packId: string; environmentId: string } | null = null
+  lastRegionalChoice: { packId: string; environmentId: string } | null = null
   prepared: Prepared | null = null
   prepareError = false
   prepareProgress: { done: number; total: number } | null = null
@@ -318,8 +324,6 @@ export class SuiteController {
     this.screenEl.dataset.screen = this.screen
     const page =
       this.screen === 'home' ? renderHome(this)
-      : this.screen === 'place' ? renderPlace(this)
-      : this.screen === 'activity' ? renderActivity(this)
       : this.screen === 'summary' ? renderSummary(this)
       : null
     if (page) this.screenEl.append(page)
@@ -495,8 +499,19 @@ export class SuiteController {
   choose(packId: string, environmentId: string): void {
     if (this.choice?.packId === packId && this.choice.environmentId === environmentId) return
     this.choice = { packId, environmentId }
+    this.rememberChoice(this.choice)
     this.disposePrepared()
     this.render()
+  }
+
+  /** Records a choice under its own group (general/regional) so the picker can show each
+   * group's own last pick without disturbing the other's. */
+  rememberChoice(choice: { packId: string; environmentId: string } | null): void {
+    if (!choice || !this.content) return
+    const pack = this.content.ok.find((p) => p.meta.id === choice.packId)
+    if (!pack) return
+    if (pack.meta.regional) this.lastRegionalChoice = choice
+    else this.lastGeneralChoice = choice
   }
 
   // ------------------------------------------------------------------ prepare
@@ -586,7 +601,7 @@ export class SuiteController {
         if (p.scene.report.missingAssets.length || p.scene.report.rejectedPlacements.length) {
           console.info('[suite] scene report', p.scene.report)
         }
-        if (this.screen === 'activity') this.render()
+        if (this.screen === 'home') this.render()
       },
       (err) => {
         if (this.preparing?.promise !== promise) return
@@ -594,7 +609,7 @@ export class SuiteController {
         this.prepareProgress = null
         this.prepareError = true
         console.error('[suite] the room could not be prepared', err)
-        if (this.screen === 'activity') this.render()
+        if (this.screen === 'home') this.render()
       }
     )
     return promise
@@ -664,13 +679,13 @@ export class SuiteController {
       this.closeOverlay('progress')
       this.prepareError = true
       this.lastError = String(err)
-      this.go('activity')
+      this.go('home')
       return
     }
     const avail = this.availability(kind)
     if (!avail || !avail.ok) {
       this.closeOverlay('progress')
-      this.go('activity')
+      this.go('home')
       return
     }
     const { scene } = prep
@@ -715,7 +730,7 @@ export class SuiteController {
       audio.dispose()
       this.closeOverlay('progress')
       this.lastError = String(err)
-      this.go('activity')
+      this.go('home')
       return
     }
     const assist = this.profileMode === 'saved' && prep.resolved ? prep.resolved.caregiverAssist : this.settings.caregiverAssist
@@ -1420,7 +1435,7 @@ export class SuiteController {
         const content = await self.ensureContent()
         if (!content.ok.some((p) => p.meta.id === packId)) throw new Error(`pack not offered: ${packId}`)
         self.choice = { packId, environmentId }
-        self.screen = 'activity'
+        self.screen = 'home'
         await self.startActivity(activity)
         if (!self.run) throw new Error(self.lastError ?? `activity "${activity}" could not start`)
         return self.debug.session

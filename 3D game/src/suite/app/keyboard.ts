@@ -26,7 +26,7 @@ export interface KeyInput {
 }
 
 export interface KeyContext {
-  screen: 'home' | 'place' | 'activity' | 'explore' | 'summary' | 'hidden'
+  screen: 'home' | 'explore' | 'summary' | 'hidden'
   /** Focus is in a text field, select or contenteditable. */
   typing: boolean
   /** Focus is on a button, link or other control that handles Enter/Space itself. */

@@ -85,6 +85,18 @@ export const SUITE_CSS = `
 #suite .s-brand { display: flex; flex-direction: column; gap: 0.35em; }
 #suite .s-back { align-self: flex-start; }
 
+/* Home screen: secondary/caregiver-only controls collapse behind one disclosure so the
+   patient-facing "Who" and "Language" sections are what's seen first. */
+#suite .s-more { padding: 0; }
+#suite .s-more-summary { display: flex; align-items: center; min-height: 48px; padding: 0.8em 1em;
+  font-weight: 650; cursor: pointer; list-style: none; }
+#suite .s-more-summary::-webkit-details-marker { display: none; }
+#suite .s-more-summary::before { content: '▸'; display: inline-block; margin-inline-end: 0.5em;
+  transition: transform .15s ease; }
+#suite .s-more[open] .s-more-summary::before { transform: rotate(90deg); }
+#suite .s-more-body { display: flex; flex-direction: column; gap: var(--s-gap); padding: 0 1em 1em; }
+#suite .s-more-body h3 { margin-bottom: 0.2em; }
+
 #suite .s-switch { display: flex; align-items: center; justify-content: space-between; gap: 1em; min-height: 48px; cursor: pointer; }
 #suite .s-switch input { width: 28px; height: 28px; accent-color: var(--s-accent); flex: none; }
 #suite fieldset { border: 0; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5em; min-width: 0; }
