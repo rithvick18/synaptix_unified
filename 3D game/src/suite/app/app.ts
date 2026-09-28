@@ -305,7 +305,15 @@ export class SuiteController {
     }
     if (!this.i18n) {
       clear(this.screenEl)
-      this.screenEl.append(h('div', { class: 's-page', 'aria-busy': 'true' }))
+      // Its own strings aren't in yet, so this is the one screen with hardcoded English —
+      // the same brand line that appears (translated) a moment later, so nothing visibly
+      // changes when it does. No spinner or motion: see SUITE_CSS's "no animations" rule.
+      this.screenEl.append(
+        h('div', { class: 's-page', 'aria-busy': 'true' },
+          h('div', { class: 's-launch' },
+            h('p', { lang: 'en', class: 's-muted s-small' }, 'Loading…'),
+            h('h1', { lang: 'en' }, 'Reminiscence Therapy Suite')))
+      )
       return
     }
     if (explore) {

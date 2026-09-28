@@ -756,9 +756,9 @@
     "semantic_hash": ""
   },
   "src/suite/app/app.ts": {
-    "mtime": 1790620972.5444856,
-    "seen": 1790621018.349099,
-    "ast_hash": "ff372102fc18c60badb037f32b40f509",
+    "mtime": 1790624027.51027,
+    "seen": 1790624083.667051,
+    "ast_hash": "cf29ad4d475e051654e1251547cb806b",
     "semantic_hash": ""
   },
   "src/suite/app/audio.ts": {
@@ -816,9 +816,9 @@
     "semantic_hash": ""
   },
   "src/suite/app/screens.ts": {
-    "mtime": 1790620948.1373563,
-    "seen": 1790621018.3491042,
-    "ast_hash": "f9f7e81d79ec37933e341626b44344ca",
+    "mtime": 1790624041.770777,
+    "seen": 1790624083.667056,
+    "ast_hash": "0d2eae2205708f16a03b26756bb9be57",
     "semantic_hash": ""
   },
   "src/suite/app/settings.ts": {

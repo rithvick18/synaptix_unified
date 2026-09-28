@@ -111,6 +111,13 @@ export const SUITE_CSS = `
 #suite .s-bar > span { display: block; height: 100%; background: var(--s-accent); border-radius: 999px; width: 0; transition: width .3s ease; }
 #suite.s-rm .s-bar > span { transition: none; }
 
+/* First launch, before strings are in: a calm, centered, on-brand placeholder rather
+   than a blank screen. No animation (nothing here ever spins, pulses or flashes — see
+   the suite-app check "css: no animations"), so this is typography and stillness, not
+   a spinner. */
+#suite .s-launch { min-height: 40vh; display: flex; flex-direction: column; align-items: center;
+  justify-content: center; gap: 0.35em; text-align: center; }
+
 /* Overlays (pause, settings, exit question, loading) */
 #suite .s-layer { position: absolute; inset: 0; pointer-events: auto; display: grid; place-items: center;
   padding: 16px 16px calc(var(--s-dock-clear) + 8px); background: rgba(43, 38, 32, .45); overflow: auto; }
