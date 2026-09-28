@@ -99,7 +99,7 @@ try {
   // --- every environment builds in the browser -----------------------------------------
   const envs = [
     ['everyday-home', 'living-room'], ['everyday-home', 'kitchen-dining'], ['everyday-home', 'courtyard-veranda'],
-    ['northeast-home', 'ne-living-room'], ['northeast-home', 'ne-veranda']
+    ['everyday-home', 'photo-living-demo'], ['northeast-home', 'ne-living-room'], ['northeast-home', 'ne-veranda']
   ]
   const memory = () => evaluate('JSON.stringify(window.__memoria.renderer.renderer.info.memory)').then(JSON.parse)
   const baseline = await memory()
@@ -115,7 +115,7 @@ try {
   await sleep(500)
   const after = await memory()
   ok(after.geometries <= baseline.geometries + 5 && after.textures <= baseline.textures + 5,
-    'five scene builds and exits release their geometries and textures', `before ${JSON.stringify(baseline)} after ${JSON.stringify(after)}`)
+    `${envs.length} scene builds and exits release their geometries and textures`, `before ${JSON.stringify(baseline)} after ${JSON.stringify(after)}`)
 
   // --- every activity in the generic demo --------------------------------------------
   for (const activity of ['photo', 'object', 'sound', 'space', 'sequence']) {

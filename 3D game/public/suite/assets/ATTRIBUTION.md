@@ -33,6 +33,20 @@ Five assets are photo-scanned models from Poly Haven, packed by `tools/suite/ass
 
 The other 76 assets, including the `-simple` procedural fallbacks of the five above, are procedural geometry built in `src/suite/assets/builders/` (original work for this project, CC0-1.0).
 
+## Panoramas (Poly Haven, CC0-1.0)
+
+Photo rooms (`src/suite/environments/shells/photo.ts`) are drawn on a 360° photograph and lit by the same place's HDR. `tools/suite/assets/fetch-panoramas.mjs` vendors them and records each source in `panoramas/sources.json`. Poly Haven publishes these under CC0 1.0 (public domain dedication). Attribution is not required but is given. Retrieved 2026-09-28.
+
+| File(s) | Poly Haven asset | Authors | Licence | Source | Modifications |
+|---|---|---|---|---|---|
+| `panoramas/lythwood-room.webp`, `panoramas/lythwood-room_1k.hdr` | [Lythwood Room](https://polyhaven.com/a/lythwood_room) | Greg Zaal | CC0-1.0 | https://polyhaven.com/a/lythwood_room | Tonemapped JPG resized to 3840×1920 and re-encoded to WebP; 1k .hdr retained. |
+| `panoramas/combination-room.webp`, `panoramas/combination-room_1k.hdr` | [Combination Room](https://polyhaven.com/a/combination_room) | Sergej Majboroda | CC0-1.0 | https://polyhaven.com/a/combination_room | Tonemapped JPG resized to 3840×1920 and re-encoded to WebP; 1k .hdr retained. |
+| `panoramas/kiara-interior.webp`, `panoramas/kiara-interior_1k.hdr` | [Kiara Interior](https://polyhaven.com/a/kiara_interior) | Greg Zaal | CC0-1.0 | https://polyhaven.com/a/kiara_interior | Tonemapped JPG resized to 3840×1920 and re-encoded to WebP; 1k .hdr retained. |
+| `panoramas/lebombo-living.webp`, `panoramas/lebombo-living_1k.hdr` | [Lebombo](https://polyhaven.com/a/lebombo) | Greg Zaal | CC0-1.0 | https://polyhaven.com/a/lebombo | Tonemapped JPG resized to 3840×1920 and re-encoded to WebP; 1k .hdr retained for future room configuration. |
+| `panoramas/chinese-garden.webp`, `panoramas/chinese-garden_1k.hdr` | [Chinese Garden](https://polyhaven.com/a/chinese_garden) | Andreas Mischok | CC0-1.0 | https://polyhaven.com/a/chinese_garden | Tonemapped JPG resized to 3840×1920 and re-encoded to WebP; 1k .hdr retained. |
+| `panoramas/green-point-park.webp`, `panoramas/green-point-park_1k.hdr` | [Green Point Park](https://polyhaven.com/a/green_point_park) | Greg Zaal, Rico Cilliers | CC0-1.0 | https://polyhaven.com/a/green_point_park | Tonemapped JPG resized to 3840×1920 and re-encoded to WebP; 1k .hdr retained. |
+| `panoramas/mondello-beach.webp`, `panoramas/mondello-beach_1k.hdr` | [Spiaggia di Mondello](https://polyhaven.com/a/spiaggia_di_mondello) | Andreas Mischok | CC0-1.0 | https://polyhaven.com/a/spiaggia_di_mondello | Tonemapped JPG resized to 3840×1920 and re-encoded to WebP; 1k .hdr retained. |
+
 ## Thumbnails
 
 `thumbs/<id>.webp` are rendered from the procedural builders and the packed models by `tools/suite/assets/render-thumbnails.mjs` (project-generated, CC0-1.0).

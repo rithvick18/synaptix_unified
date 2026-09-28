@@ -348,7 +348,7 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
           if (pack.meta.regional || pack.meta.status === 'preview') fs.append(h('p', { class: 'scs-hint', text: i18n.text(pack.meta.coverageNote) }))
           if (pack.meta.status === 'preview') fs.append(h('p', { class: 'scs-problem', text: t('place.preview') }))
           const grid = h('div', { class: 'scs-grid' })
-          for (const env of pack.environments) {
+          for (const env of pack.environments.filter((e) => e.shell.startsWith('photo'))) {
             grid.append(option(`${pack.meta.id}/${env.id}`, i18n.text(env.name, env.id), i18n.text(env.description),
               env.thumbnail ? resolveUnder(pack.baseUrl, env.thumbnail) : ''))
           }
@@ -356,8 +356,8 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
           s.append(fs)
         }
       }
-      group(t('place.everyday'), packs.filter(p => !p.meta.regional))
-      group(t('place.regional'), packs.filter(p => p.meta.regional), t('place.regionalNote'))
+      group(t('place.everyday'), packs.filter(p => !p.meta.regional && p.environments.some(e => e.shell.startsWith('photo'))))
+      group(t('place.regional'), packs.filter(p => p.meta.regional && p.environments.some(e => e.shell.startsWith('photo'))), t('place.regionalNote'))
     },
 
     mode() {

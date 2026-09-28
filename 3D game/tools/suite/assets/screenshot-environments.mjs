@@ -3,7 +3,14 @@
  * Dev-only: screenshots every starter environment (and optionally some close-ups) through
  * tools/suite/assets/preview.html, for a person to compare looks before and after a change.
  *
- *   node tools/suite/assets/screenshot-environments.mjs <out-dir> [pack/env ...] [--views=a,b] [--quality=low] [--ao=0]
+ *   node tools/suite/assets/screenshot-environments.mjs <out-dir> [pack/env | shell:<shellId> ...]
+ *        [--views=seat,<placement id>,look:<yaw>,<pitch>[,<fov>],all] [--quality=low] [--ao=0]
+ *        [--grid=1] [--slots=1] [--probe=1] [--yaw=<deg>] [--pitch=<deg>] [--fov=<deg>]
+ *
+ * `shell:<id>` previews a bare shell with no placements (a new panorama with no preset
+ * yet). `look:yaw,pitch[,fov]` (degrees) points the camera from the seat; `all` is the seat
+ * and every object's viewpoint. The overlay flags are preview.ts's own (see its comment):
+ * for placing a photo room's slots, `--grid=1 --slots=1 --views=look:0,-25,look:90,-25,…`.
  *
  * Uses the machine's GPU; set SWIFTSHADER=1 to render on the CPU like the checks do.
  */
@@ -23,10 +30,13 @@ const out = path.resolve(args.find((a) => !a.startsWith('--')) ?? mkdtempSync(pa
 const flags = Object.fromEntries(args.filter((a) => a.startsWith('--')).map((a) => a.slice(2).split('=')))
 const wanted = args.filter((a) => !a.startsWith('--')).slice(1)
 const ENVS = wanted.length ? wanted : [
-  'everyday-home/living-room', 'everyday-home/kitchen-dining', 'everyday-home/courtyard-veranda',
-  'northeast-home/ne-living-room', 'northeast-home/ne-veranda'
+  'everyday-home/photo-living-demo', 'everyday-home/photo-combination', 'everyday-home/photo-kiara',
+  'everyday-home/photo-chinese-garden', 'everyday-home/photo-green-point-park', 'everyday-home/photo-mondello-beach'
 ]
-const views = (flags.views ?? 'seat').split(',')
+// look:yaw,pitch[,fov] carries commas of its own: split only before a new view name.
+const views = (flags.views ?? 'seat').split(/,(?=[a-z])/i)
+/** Flags handed to preview.html unchanged. */
+const PASSED = ['quality', 'ao', 'grid', 'slots', 'probe', 'yaw', 'pitch', 'fov', 'reflect']
 mkdirSync(out, { recursive: true })
 
 const vite = spawn(path.join(root, 'node_modules', '.bin', 'vite'), ['--port', String(PORT), '--strictPort'], { cwd: root, stdio: 'ignore' })
@@ -54,8 +64,10 @@ try {
   await send('Emulation.setDeviceMetricsOverride', { width: 1280, height: 800, deviceScaleFactor: 1, mobile: false })
   for (let i = 0; i < 40; i++) { try { await fetch(`http://localhost:${PORT}/`); break } catch { await sleep(250) } }
   for (const entry of ENVS) {
-    const [pack, env] = entry.split('/')
-    const q = new URLSearchParams({ pack, env, ...(flags.quality ? { quality: flags.quality } : {}), ...(flags.ao ? { ao: flags.ao } : {}) })
+    const shell = entry.startsWith('shell:') ? entry.slice(6) : null
+    const [pack, env] = shell ? ['shell', shell] : entry.split('/')
+    const passed = Object.fromEntries(PASSED.filter((k) => flags[k] !== undefined).map((k) => [k, flags[k]]))
+    const q = new URLSearchParams({ ...(shell ? { shell } : { pack, env }), ...passed })
     await send('Page.navigate', { url: `http://localhost:${PORT}/tools/suite/assets/preview.html?${q}` })
     let ready = false
     for (let i = 0; i < 240 && !ready; i++) {
@@ -67,15 +79,18 @@ try {
     if (!ready) throw new Error(`${entry}: preview never became ready`)
     const report = await evaluate('window.previewReport()')
     const ids = await evaluate('window.previewObjects()')
-    for (const v of views) {
-      if (v !== 'seat' && !ids.includes(v)) continue
+    const shots = views.flatMap((v) => (v === 'all' ? ['seat', ...ids] : [v]))
+    for (const v of shots) {
+      if (v !== 'seat' && !v.startsWith('look:') && !ids.includes(v)) continue
       await evaluate(`window.previewView(${JSON.stringify(v)})`)
       await sleep(300)
       const shot = await send('Page.captureScreenshot', { format: 'png' })
-      const file = path.join(out, `${pack}__${env}__${v}.png`)
+      const file = path.join(out, `${pack}__${env}__${v.replace(/[:,]/g, '_')}.png`)
       writeFileSync(file, Buffer.from(shot.result.data, 'base64'))
     }
-    console.log(`  ${entry.padEnd(34)} tris ${String(report.triangles).padStart(7)}  meshes ${String(report.meshes).padStart(4)}  calls ${String(report.calls).padStart(4)}  texKB ${String(report.textureKB).padStart(6)}  fallbacks ${report.fallbacksUsed.length}  hdri ${report.hdri}`)
+    console.log(`  ${entry.padEnd(34)} tris ${String(report.triangles).padStart(7)}  meshes ${String(report.meshes).padStart(4)}  calls ${String(report.calls).padStart(4)}  texKB ${String(report.textureKB).padStart(6)}  fallbacks ${report.fallbacksUsed.length}  hdri ${report.hdri}${report.photo ? '  photo room' : ''}`)
+    for (const w of report.warnings ?? []) console.log(`    ${w.severity}: ${w.message}`)
+    for (const r of report.rejectedPlacements ?? []) console.log(`    rejected ${r.placement}: ${r.reason}`)
   }
   console.log(`screenshots: ${out}`)
   ws.close()

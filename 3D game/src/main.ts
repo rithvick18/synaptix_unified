@@ -735,7 +735,8 @@ async function boot(): Promise<void> {
       camera: renderer.camera,
       renderer: renderer.renderer,
       refreshShadows: () => renderer.refreshShadows(),
-      captureEnvironment: (at) => renderer.captureLocalEnvironment(at)
+      captureEnvironment: (at) => renderer.captureLocalEnvironment(at),
+      useEnvironment: (env) => renderer.useLocalEnvironment(env.map, env.intensity, env.rotation)
     },
     listener,
     state,

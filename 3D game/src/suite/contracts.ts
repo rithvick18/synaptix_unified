@@ -179,6 +179,8 @@ export type AssetCategory =
 export type MountKind = 'floor' | 'wall' | 'surface'
 
 export type AssetSource =
+  /** An object already present in a captured room; its shell supplies an interaction hotspot. */
+  | { kind: 'photograph' }
   /** `builder` is a key in the procedural builder registry (src/suite/assets/). */
   | { kind: 'procedural'; builder: string; params?: Record<string, number | string | boolean> }
   /** A packaged .glb, path relative to the manifest's directory. `scale` is uniform, or
@@ -292,7 +294,7 @@ export interface ContentPackMeta {
   authors: Provenance[]
 }
 
-export type ShellId = 'livingRoom' | 'kitchenDining' | 'courtyardVeranda'
+export type ShellId = 'livingRoom' | 'kitchenDining' | 'courtyardVeranda' | 'photoLivingDemo' | 'photoCombination' | 'photoKiara' | 'photoChineseGarden' | 'photoGreenPointPark' | 'photoMondelloBeach'
 
 export type FloorFinish = 'wood' | 'tile' | 'stone' | 'terrazzo' | 'red-oxide' | 'mud-plaster' | 'cement'
 
@@ -455,8 +457,10 @@ export interface SceneObject {
   object: THREE.Object3D
   /** World-space point to look at. */
   focus: THREE.Vector3
-  /** A reachable, unobstructed place to view it from (eye height ~1.2 m seated, 1.6 m standing). */
-  viewpoint: { position: THREE.Vector3; target: THREE.Vector3 }
+  /** A reachable, unobstructed place to view it from (eye height ~1.2 m seated, 1.6 m standing).
+   *  `fov` (vertical degrees) is set in a photo room, which cannot be walked into: a closer
+   *  look there is a narrower view from near the seat. Absent, the camera's own is used. */
+  viewpoint: { position: THREE.Vector3; target: THREE.Vector3; fov?: number }
   activities: ActivityKind[]
   photoSurface: PhotoSurface | null
   /** The DecorativeImageDef id the placement shows by default, if any. */
@@ -493,10 +497,15 @@ export interface SuiteScene {
   walkable: THREE.Box3
   spawn: { position: THREE.Vector3; yaw: number }
   /** Seated overview: a restful default view. */
-  seat: { position: THREE.Vector3; target: THREE.Vector3 }
+  seat: { position: THREE.Vector3; target: THREE.Vector3; fov?: number }
   objects: SceneObject[]
   /** Where non-positional audio would come from if spatialised (the radio, if any). */
   audioAnchor: THREE.Object3D
+  /**
+   * The light a photo room's objects are lit by: its own photograph in linear radiance.
+   * Absent for the modelled rooms, whose reflections are captured from the room instead.
+   */
+  environment?: SceneEnvironment
   report: SceneReport
   /** Re-resolves labels and runtime text after a language change. */
   relabel(i18n: I18n, overrides?: ObjectOverrides): void
@@ -505,6 +514,17 @@ export interface SuiteScene {
   /** Frees every GPU resource this scene created. Shared cached resources are released
    *  by reference count, so building the same environment again does not refetch. */
   dispose(): void
+}
+
+/** An equirectangular HDR image that lights a scene (see SuiteHost.three.useEnvironment). */
+export interface SceneEnvironment {
+  /** Linear radiance, EquirectangularReflectionMapping. Owned by the scene; the host
+   *  prefilters it and must not keep it. */
+  map: THREE.Texture
+  /** scene.environmentIntensity while the scene is on screen. */
+  intensity: number
+  /** Radians about +Y, the same turn as the photograph on screen. */
+  rotation: number
 }
 
 /** Caregiver edits to one environment's objects, keyed by placement id. */
@@ -873,6 +893,10 @@ export interface SuiteHost {
     /** Lights reflections from the room now on screen, seen from `at` (Renderer.ts).
      *  Optional: without it, reflections come from the house's HDRI. */
     captureEnvironment?(at: THREE.Vector3): void
+    /** Lights the scene with `environment` alone while the room is on screen: the house's
+     *  own lights step aside, because the photograph already holds all of the room's light.
+     *  Optional: without it, a photo room falls back to `captureEnvironment`. */
+    useEnvironment?(environment: SceneEnvironment): void
   }
   listener: THREE.AudioListener
   state: SuiteStatePort

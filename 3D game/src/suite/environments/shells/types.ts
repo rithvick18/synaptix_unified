@@ -1,6 +1,7 @@
 import type * as THREE from 'three'
-import type { LocalizedText, ShellInfo, ShellMaterials, ShellSlot } from '../../contracts'
+import type { LocalizedText, SceneEnvironment, ShellInfo, ShellMaterials, ShellSlot } from '../../contracts'
 import type { MaterialLease } from '../../assets/materials'
+import type { PhotoShellConfig } from './photo'
 
 /**
  * A slot as the shells declare it. The extra fields are this module's own; the exported
@@ -23,6 +24,8 @@ export interface SlotDef extends ShellSlot {
   align?: 'back'
   hang?: boolean
   host?: { slot: string; height: number }
+  /** Invisible interaction target on a photographed object, in panorama UV coordinates. */
+  photoHotspot?: { u: number; v: number; width: number; height: number }
 }
 
 export interface ResolvedMaterials extends Required<Omit<ShellMaterials, 'floorColour' | 'accent'>> {
@@ -34,6 +37,9 @@ export interface ShellBuildContext {
   mats: MaterialLease
   materials: ResolvedMaterials
   quality: 'low' | 'standard'
+  /** False under node checks: a shell must not fetch anything (see BuildSceneOptions). */
+  loadTextures: boolean
+  maxTextureSize: number
 }
 
 export interface ShellBuild {
@@ -43,14 +49,38 @@ export interface ShellBuild {
   lights: THREE.Light[]
   blockers: THREE.Box3[]
   walkable: THREE.Box3
-  seat: { position: THREE.Vector3; target: THREE.Vector3 }
+  seat: { position: THREE.Vector3; target: THREE.Vector3; fov?: number }
   spawn: { position: THREE.Vector3; yaw: number }
   centre: THREE.Vector3
+  /**
+   * Set by a photo room, which is correct only near where its photograph was taken: every
+   * object is then looked at from the seat, moved at most `radius` metres toward it,
+   * instead of from a viewpoint searched for around the room.
+   */
+  fixedViewpoint?: { radius: number }
+  /**
+   * Lay a soft dark patch under every floor object. Light from a whole ceiling or an
+   * overcast window casts no crisp shadow, but it leaves the floor darker under and around
+   * a chair; without that, an object standing on a photograph looks pasted on.
+   */
+  contactShadows?: boolean
+  /** Settles when whatever the shell loads in the background has arrived or failed. */
+  ready?: Promise<void>
+  /** The light the room's objects should be lit by, once `ready` has settled (photo rooms). */
+  environment?: SceneEnvironment | null
+  /** Warnings from background loads, read once `ready` has settled. */
+  problems?: string[]
+  /** GPU memory (KB) the shell holds that is not a material's map, such as its lighting. */
+  extraTextureKB?(): number
+  /** Frees what the shell made outside the material lease and `geometries`. */
+  dispose?(): void
 }
 
 export interface ShellDef extends ShellInfo {
   slots: readonly SlotDef[]
   defaults: ResolvedMaterials
+  /** Set for a photo room (shells/photo.ts): what it was made from. */
+  photo?: Readonly<PhotoShellConfig>
   build(ctx: ShellBuildContext): ShellBuild
 }
 

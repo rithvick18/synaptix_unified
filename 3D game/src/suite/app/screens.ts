@@ -83,26 +83,14 @@ export function renderHome(c: SuiteController): HTMLElement {
     h('p', { class: 's-muted', text: c.t('app.home.caregiver.hint') }),
     c.flash ? h('p', { class: 's-notice', role: 'status', text: c.flash }) : null,
     h('div', { class: 's-row' },
-      h('button', { type: 'button', 'data-k': 'caregiver-setup', onclick: () => void c.openCaregiverSetup() }, c.t('app.home.caregiver.setup'))),
-    h('hr', { class: 's-divider' }),
-    h('h3', { text: c.t('app.home.caregiver.homeTitle') }),
-    h('p', { class: 's-muted', text: c.t('app.home.caregiver.homeHint') }),
-    h('div', { class: 's-row' },
-      h('button', { type: 'button', 'data-k': 'home-personalise', onclick: () => c.openHomePersonalisation() }, c.t('app.home.caregiver.homeOpen'))))
-
-  const guided = h('section', { 'aria-labelledby': 's-guided' },
-    h('h3', { id: 's-guided', text: c.t('app.home.guided.title') }),
-    h('p', { class: 's-muted', text: c.t('app.home.guided.hint') }),
-    h('div', { class: 's-row' },
-      h('button', { type: 'button', 'data-k': 'guided', onclick: () => c.openGuidedTasks() }, c.t('app.home.guided.open'))))
+      h('button', { type: 'button', 'data-k': 'caregiver-setup', onclick: () => void c.openCaregiverSetup() }, c.t('app.home.caregiver.setup'))))
 
   const more = h('details', { class: 's-card s-more', 'data-k': 'more' },
     h('summary', { class: 's-more-summary' }, c.t('app.home.more.title')),
     h('div', { class: 's-more-body' },
       comfort, h('hr', { class: 's-divider' }),
       camera, h('hr', { class: 's-divider' }),
-      caregiver, h('hr', { class: 's-divider' }),
-      guided))
+      caregiver))
 
   const disclaimer = c.tOr('common.disclaimer', 'app.disclaimer')
   return h('div', { class: 's-page' },
@@ -140,13 +128,15 @@ function renderPlaceSection(c: SuiteController): (HTMLElement | null)[] {
     }
     return nodes
   }
-  if (!c.choice || !content.ok.some((p) => p.meta.id === c.choice!.packId && p.environments.some((e) => e.id === c.choice!.environmentId))) {
+  if (!c.choice || !content.ok.some((p) => p.meta.id === c.choice!.packId && p.environments.some((e) => e.id === c.choice!.environmentId && e.shell.startsWith('photo')))) {
     c.choice = c.defaultChoice(content)
     c.rememberChoice(c.choice)
   }
   const i18n = c.i18n!
-  const general = content.ok.filter((p) => !p.meta.regional)
-  const regional = content.ok.filter((p) => p.meta.regional)
+  const captured = content.ok.map((p) => ({ ...p, environments: p.environments.filter((e) => e.shell.startsWith('photo')) }))
+    .filter((p) => p.environments.length > 0)
+  const general = captured.filter((p) => !p.meta.regional)
+  const regional = captured.filter((p) => p.meta.regional)
 
   if (content.failed.length) {
     nodes.push(h('p', { class: 's-notice', role: 'status',

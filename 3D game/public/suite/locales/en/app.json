@@ -59,12 +59,12 @@
   },
   "place": {
     "title": "Choose a place",
-    "intro": "Pick a room to explore. You can change it later.",
+    "intro": "Pick a place to explore. You can change it later.",
     "loading": "Loading places…",
     "failed": "The places could not be loaded just now.",
     "retry": "Load again",
     "none": "No places are available.",
-    "general": "Places",
+    "general": "Photographed places",
     "regional": {
       "title": "Optional regional packs",
       "intro": "These packs focus on one region. They are never chosen automatically."

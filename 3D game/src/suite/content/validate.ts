@@ -28,7 +28,7 @@ export const ASSET_CATEGORIES: readonly AssetCategory[] = [
   'school-work', 'travel', 'hobbies-games', 'community', 'lighting', 'decor'
 ]
 
-export const SHELL_IDS: readonly ShellId[] = ['livingRoom', 'kitchenDining', 'courtyardVeranda']
+export const SHELL_IDS: readonly ShellId[] = ['livingRoom', 'kitchenDining', 'courtyardVeranda', 'photoLivingDemo', 'photoCombination', 'photoKiara', 'photoChineseGarden', 'photoGreenPointPark', 'photoMondelloBeach']
 
 /**
  * SPDX licence identifiers accepted for packaged content (https://spdx.org/licenses/).

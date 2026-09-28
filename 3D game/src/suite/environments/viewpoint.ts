@@ -86,3 +86,44 @@ export function findViewpoint(req: ViewRequest): { position: THREE.Vector3; targ
   }
   return null
 }
+
+export interface SeatViewRequest {
+  seat: THREE.Vector3
+  focus: THREE.Vector3
+  /** At most this far (m) from the seat: a photo room's parallax radius. */
+  radius: number
+  /** The object's largest dimension (m), which the view is zoomed to frame. */
+  size: number
+  blockers: readonly THREE.Box3[]
+  walkable: THREE.Box3
+}
+
+/** The narrowest and widest zoom a photo room's viewpoint uses (vertical degrees). Below
+ *  about 28° the photograph, seen at one texel per pixel at 70°, turns visibly soft. */
+export const SEAT_FOV = { min: 28, max: 60 } as const
+
+/**
+ * A viewpoint for a photo room, where the photograph is right only from where it was
+ * taken: the seat, moved toward the object by at most `radius` (and never closer than
+ * MIN_DISTANCE to it), at the seat's own height, looking at the focus. Steps back toward
+ * the seat until the eye is clear of every blocker; the seat itself is the last resort.
+ * Instead of walking up to the object, the view narrows (`fov`) until the object fills
+ * about half its height, within SEAT_FOV.
+ */
+export function seatViewpoint(req: SeatViewRequest): { position: THREE.Vector3; target: THREE.Vector3; fov: number } {
+  const framed = (eye: THREE.Vector3): { position: THREE.Vector3; target: THREE.Vector3; fov: number } => {
+    const distance = Math.max(0.3, eye.distanceTo(req.focus))
+    const fov = 2 * Math.atan(req.size / 0.5 / 2 / distance) * (180 / Math.PI)
+    return { position: eye, target: req.focus.clone(), fov: Math.round(Math.min(SEAT_FOV.max, Math.max(SEAT_FOV.min, fov))) }
+  }
+  const toward = new THREE.Vector3(req.focus.x - req.seat.x, 0, req.focus.z - req.seat.z)
+  const across = toward.length()
+  const reach = Math.max(0, Math.min(req.radius, across - MIN_DISTANCE))
+  if (across > 1e-6) toward.divideScalar(across)
+  for (const f of [1, 0.75, 0.5, 0.25]) {
+    const eye = req.seat.clone().addScaledVector(toward, reach * f)
+    if (reach * f < 0.01) break
+    if (insideWalkable(req.walkable, eye.x, eye.z) && clearOfBlockers(req.blockers, eye.x, eye.z)) return framed(eye)
+  }
+  return framed(req.seat.clone())
+}

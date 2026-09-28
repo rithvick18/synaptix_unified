@@ -493,15 +493,16 @@ export class SuiteController {
         const sp = this.deps.suiteOf(this.savedProfile)
         const pack = content.ok.find((p) => p.meta.id === sp.packId)
         if (pack) {
-          const env = pack.environments.find((e) => e.id === sp.environmentId) ?? pack.environments[0]
+          const env = pack.environments.find((e) => e.id === sp.environmentId && e.shell.startsWith('photo'))
           if (env) return { packId: pack.meta.id, environmentId: env.id }
         }
       } catch {
         /* fall through to the general default */
       }
     }
-    const general = content.ok.find((p) => !p.meta.regional && p.environments.length > 0)
-    return general ? { packId: general.meta.id, environmentId: general.environments[0].id } : null
+    const general = content.ok.find((p) => !p.meta.regional && p.environments.some((e) => e.shell.startsWith('photo')))
+    const env = general?.environments.find((e) => e.shell.startsWith('photo'))
+    return general && env ? { packId: general.meta.id, environmentId: env.id } : null
   }
 
   choose(packId: string, environmentId: string): void {
@@ -706,8 +707,10 @@ export class SuiteController {
     this.nav.mode = this.settings.navigation
     this.nav.setScene(scene)
     this.host.three.refreshShadows()
-    // After setActive: the house is hidden, so only this room is in the capture.
-    this.host.three.captureEnvironment?.(scene.seat.position)
+    // A photo room brings its own light (its photograph as an HDR). Otherwise, after
+    // setActive, the house is hidden, so only this room is in the capture.
+    if (scene.environment && this.host.three.useEnvironment) this.host.three.useEnvironment(scene.environment)
+    else this.host.three.captureEnvironment?.(scene.seat.position)
     try {
       await this.applyPhotos(prep)
     } catch (err) {
@@ -924,8 +927,10 @@ export class SuiteController {
     if (!obj) return
     run.objectCloseup = obj
     const vp = obj.viewpoint
-    const closer = vp.position.clone().lerp(vp.target, 0.3)
-    this.nav.goTo({ position: closer, target: vp.target.clone() })
+    // A photo room's viewpoint carries a field of view: there a closer look is a narrower
+    // one from the same place, since the photograph is right only from where it was taken.
+    if (vp.fov !== undefined) this.nav.goTo({ position: vp.position.clone(), target: vp.target.clone(), fov: vp.fov * 0.7 })
+    else this.nav.goTo({ position: vp.position.clone().lerp(vp.target, 0.3), target: vp.target.clone() })
     run.session.noteCloseup(true)
     this.explore?.update()
     this.explore?.focusCloseup()

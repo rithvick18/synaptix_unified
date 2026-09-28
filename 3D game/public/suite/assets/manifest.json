@@ -4039,6 +4039,908 @@
         "triangles": 2100,
         "textureKB": 0
       }
+    },
+    {
+      "id": "lythwood-television",
+      "category": "music-media",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/lythwood-television.webp",
+      "label": {
+        "en": "Television",
+        "hi": "टेलीविज़न"
+      },
+      "description": {
+        "en": "A television in the photographed room.",
+        "hi": "तस्वीर में टेलीविज़न।"
+      },
+      "size": [
+        0.8,
+        1.17,
+        0.55
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/lythwood_room",
+        "attribution": "Lythwood Room by Greg Zaal, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "lythwood-lamp",
+      "category": "lighting",
+      "mount": "surface",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/lythwood-lamp.webp",
+      "label": {
+        "en": "Table lamp",
+        "hi": "मेज़ का लैंप"
+      },
+      "description": {
+        "en": "A lamp on the dressing table.",
+        "hi": "तस्वीर में मेज़ का लैंप।"
+      },
+      "size": [
+        0.3,
+        0.45,
+        0.3
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/lythwood_room",
+        "attribution": "Lythwood Room by Greg Zaal, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "lythwood-mirror",
+      "category": "decor",
+      "mount": "wall",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/lythwood-mirror.webp",
+      "label": {
+        "en": "Mirror",
+        "hi": "आईना"
+      },
+      "description": {
+        "en": "A mirror above the dressing table.",
+        "hi": "तस्वीर में आईना।"
+      },
+      "size": [
+        0.51,
+        0.71,
+        0.04
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/lythwood_room",
+        "attribution": "Lythwood Room by Greg Zaal, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "lythwood-picture",
+      "category": "decor",
+      "mount": "wall",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/lythwood-picture.webp",
+      "label": {
+        "en": "Framed picture",
+        "hi": "फ़्रेम में चित्र"
+      },
+      "description": {
+        "en": "A framed picture on the wall.",
+        "hi": "तस्वीर में फ़्रेम में चित्र।"
+      },
+      "size": [
+        0.3,
+        0.38,
+        0.025
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/lythwood_room",
+        "attribution": "Lythwood Room by Greg Zaal, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "lythwood-tea-table",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/lythwood-tea-table.webp",
+      "label": {
+        "en": "Tea table",
+        "hi": "चाय की मेज़"
+      },
+      "description": {
+        "en": "A table with a tea tray and cups.",
+        "hi": "तस्वीर में चाय की मेज़।"
+      },
+      "size": [
+        1,
+        0.42,
+        0.55
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/lythwood_room",
+        "attribution": "Lythwood Room by Greg Zaal, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "combination-sofa",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/combination-sofa.webp",
+      "label": {
+        "en": "Sofa",
+        "hi": "सोफ़ा"
+      },
+      "description": {
+        "en": "An upholstered sofa in the sitting room.",
+        "hi": "तस्वीर में सोफ़ा।"
+      },
+      "size": [
+        2.1,
+        0.9,
+        0.9
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Sergej Majboroda",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/combination_room",
+        "attribution": "Combination Room by Sergej Majboroda, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "combination-lamp",
+      "category": "lighting",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/combination-lamp.webp",
+      "label": {
+        "en": "Standing lamp",
+        "hi": "खड़ा लैंप"
+      },
+      "description": {
+        "en": "A standing lamp beside the sofa.",
+        "hi": "तस्वीर में खड़ा लैंप।"
+      },
+      "size": [
+        0.55,
+        1.6,
+        0.55
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Sergej Majboroda",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/combination_room",
+        "attribution": "Combination Room by Sergej Majboroda, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "combination-armchair",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/combination-armchair.webp",
+      "label": {
+        "en": "Armchair",
+        "hi": "आरामकुर्सी"
+      },
+      "description": {
+        "en": "An upholstered armchair beside a small table.",
+        "hi": "तस्वीर में आरामकुर्सी।"
+      },
+      "size": [
+        0.85,
+        1,
+        0.85
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Sergej Majboroda",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/combination_room",
+        "attribution": "Combination Room by Sergej Majboroda, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "combination-picture",
+      "category": "decor",
+      "mount": "wall",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/combination-picture.webp",
+      "label": {
+        "en": "Framed landscape",
+        "hi": "फ़्रेम में प्राकृतिक दृश्य"
+      },
+      "description": {
+        "en": "A landscape picture on the wall.",
+        "hi": "तस्वीर में फ़्रेम में प्राकृतिक दृश्य।"
+      },
+      "size": [
+        0.7,
+        0.55,
+        0.08
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Sergej Majboroda",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/combination_room",
+        "attribution": "Combination Room by Sergej Majboroda, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "kiara-sofa",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/kiara-sofa.webp",
+      "label": {
+        "en": "Sofa",
+        "hi": "सोफ़ा"
+      },
+      "description": {
+        "en": "A sofa in the photographed lounge.",
+        "hi": "तस्वीर में सोफ़ा।"
+      },
+      "size": [
+        2.1,
+        0.95,
+        0.9
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/kiara_interior",
+        "attribution": "Kiara Interior by Greg Zaal, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "kiara-television",
+      "category": "music-media",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/kiara-television.webp",
+      "label": {
+        "en": "Television",
+        "hi": "टेलीविज़न"
+      },
+      "description": {
+        "en": "A television beside the doorway.",
+        "hi": "तस्वीर में टेलीविज़न।"
+      },
+      "size": [
+        0.8,
+        1.17,
+        0.55
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/kiara_interior",
+        "attribution": "Kiara Interior by Greg Zaal, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "kiara-fridge",
+      "category": "storage",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/kiara-fridge.webp",
+      "label": {
+        "en": "Refrigerator",
+        "hi": "फ़्रिज"
+      },
+      "description": {
+        "en": "A refrigerator beside the kitchen.",
+        "hi": "तस्वीर में फ़्रिज।"
+      },
+      "size": [
+        0.9,
+        1.9,
+        0.8
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/kiara_interior",
+        "attribution": "Kiara Interior by Greg Zaal, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "kiara-chair",
+      "category": "furniture",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/kiara-chair.webp",
+      "label": {
+        "en": "Chair",
+        "hi": "कुर्सी"
+      },
+      "description": {
+        "en": "A chair at the kitchen counter.",
+        "hi": "तस्वीर में कुर्सी।"
+      },
+      "size": [
+        0.85,
+        1,
+        0.85
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/kiara_interior",
+        "attribution": "Kiara Interior by Greg Zaal, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "kiara-mug",
+      "category": "kitchen-food",
+      "mount": "surface",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/kiara-mug.webp",
+      "label": {
+        "en": "Mug",
+        "hi": "मग"
+      },
+      "description": {
+        "en": "A mug on the table in front of the camera.",
+        "hi": "तस्वीर में मग।"
+      },
+      "size": [
+        0.12,
+        0.12,
+        0.12
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/kiara_interior",
+        "attribution": "Kiara Interior by Greg Zaal, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "garden-pond",
+      "category": "plants-outdoor",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/garden-pond.webp",
+      "label": {
+        "en": "Garden pond",
+        "hi": "बगीचे का तालाब"
+      },
+      "description": {
+        "en": "A pond and stone fountain in a photographed Chinese garden.",
+        "hi": "तस्वीर में बगीचे का तालाब।"
+      },
+      "size": [
+        2.0,
+        0.5,
+        2.0
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Andreas Mischok",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/chinese_garden",
+        "attribution": "Chinese Garden by Andreas Mischok, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "garden-pavilion",
+      "category": "community",
+      "mount": "wall",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/garden-pavilion.webp",
+      "label": {
+        "en": "Garden pavilion",
+        "hi": "बगीचे का मंडप"
+      },
+      "description": {
+        "en": "A traditional pavilion beside the garden pond.",
+        "hi": "तस्वीर में बगीचे का मंडप।"
+      },
+      "size": [
+        1.5,
+        2.0,
+        0.2
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Andreas Mischok",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/chinese_garden",
+        "attribution": "Chinese Garden by Andreas Mischok, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "garden-trees",
+      "category": "plants-outdoor",
+      "mount": "wall",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/garden-trees.webp",
+      "label": {
+        "en": "Garden trees",
+        "hi": "बगीचे के पेड़"
+      },
+      "description": {
+        "en": "Trees and leafy canopy around the garden.",
+        "hi": "तस्वीर में बगीचे के पेड़।"
+      },
+      "size": [
+        1.5,
+        2.0,
+        0.2
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Andreas Mischok",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/chinese_garden",
+        "attribution": "Chinese Garden by Andreas Mischok, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "park-lawn",
+      "category": "plants-outdoor",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/park-lawn.webp",
+      "label": {
+        "en": "Open park lawn",
+        "hi": "पार्क का खुला मैदान"
+      },
+      "description": {
+        "en": "Open grass in Green Point Park.",
+        "hi": "तस्वीर में पार्क का खुला मैदान।"
+      },
+      "size": [
+        2.0,
+        0.5,
+        2.0
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal, Rico Cilliers",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/green_point_park",
+        "attribution": "Green Point Park by Greg Zaal, Rico Cilliers, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "park-mountains",
+      "category": "travel",
+      "mount": "wall",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/park-mountains.webp",
+      "label": {
+        "en": "Distant mountains",
+        "hi": "दूर के पहाड़"
+      },
+      "description": {
+        "en": "Mountains on the horizon beyond Cape Town.",
+        "hi": "तस्वीर में दूर के पहाड़।"
+      },
+      "size": [
+        1.5,
+        1.0,
+        0.1
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Greg Zaal, Rico Cilliers",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/green_point_park",
+        "attribution": "Green Point Park by Greg Zaal, Rico Cilliers, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "beach-shore",
+      "category": "travel",
+      "mount": "floor",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/beach-shore.webp",
+      "label": {
+        "en": "Sandy shoreline",
+        "hi": "रेतीला किनारा"
+      },
+      "description": {
+        "en": "Sunlit sand at Mondello Beach in Sicily.",
+        "hi": "तस्वीर में रेतीला किनारा।"
+      },
+      "size": [
+        2.0,
+        0.5,
+        2.0
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Andreas Mischok",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/spiaggia_di_mondello",
+        "attribution": "Spiaggia di Mondello by Andreas Mischok, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "beach-water",
+      "category": "travel",
+      "mount": "wall",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/beach-water.webp",
+      "label": {
+        "en": "Sea",
+        "hi": "समुद्र"
+      },
+      "description": {
+        "en": "Clear water along the Mediterranean coast.",
+        "hi": "तस्वीर में समुद्र।"
+      },
+      "size": [
+        1.5,
+        1.0,
+        0.1
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Andreas Mischok",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/spiaggia_di_mondello",
+        "attribution": "Spiaggia di Mondello by Andreas Mischok, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
+    },
+    {
+      "id": "beach-pines",
+      "category": "plants-outdoor",
+      "mount": "wall",
+      "source": {
+        "kind": "photograph"
+      },
+      "thumbnail": "thumbs/beach-pines.webp",
+      "label": {
+        "en": "Coastal pines",
+        "hi": "तटीय चीड़ के पेड़"
+      },
+      "description": {
+        "en": "Umbrella pines behind the beach.",
+        "hi": "तस्वीर में तटीय चीड़ के पेड़।"
+      },
+      "size": [
+        1.5,
+        1.0,
+        0.1
+      ],
+      "collision": false,
+      "activities": [
+        "space",
+        "object",
+        "sequence"
+      ],
+      "provenance": {
+        "source": "Poly Haven",
+        "author": "Andreas Mischok",
+        "license": "CC0-1.0",
+        "url": "https://polyhaven.com/a/spiaggia_di_mondello",
+        "attribution": "Spiaggia di Mondello by Andreas Mischok, Poly Haven, CC0 1.0.",
+        "retrieved": "2026-09-28",
+        "modified": "Hotspot and thumbnail identified in the original photograph"
+      },
+      "budget": {
+        "triangles": 2,
+        "textureKB": 0
+      }
     }
   ]
 }

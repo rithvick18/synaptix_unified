@@ -40,7 +40,7 @@ export class Renderer {
   private composer: EffectComposer | null = null
   /** What `setupEnvironment` settled on, restored by `releaseLocalEnvironment`. */
   private baseEnvironment: { map: THREE.Texture | null; intensity: number } = { map: null, intensity: 1 }
-  /** Set by `captureLocalEnvironment` while a suite room is on screen. */
+  /** Set by `captureLocalEnvironment` or `useLocalEnvironment` while a suite room is on screen. */
   private localEnvironment: THREE.WebGLRenderTarget | null = null
   private hemi: THREE.HemisphereLight
   private sun: THREE.DirectionalLight
@@ -236,12 +236,36 @@ export class Renderer {
    */
   captureLocalEnvironment(at: THREE.Vector3): void {
     this.localEnvironment?.dispose()
+    this.houseLights(true)
+    this.scene.environmentRotation.set(0, 0, 0)
     this.scene.environment = null
     this.localEnvironment = this.pmrem.fromScene(this.scene, 0.02, 0.05, 40, { size: 128, position: at })
     this.scene.environment = this.localEnvironment.texture
     // The room's lights already carry direct light and the hemisphere fill carries the
     // bounce, so the capture adds only part of itself: enough for reflections to read.
     this.scene.environmentIntensity = 0.45
+  }
+
+  /**
+   * Lights the scene with a photo room's own HDR photograph, turned by `rotation` about +Y
+   * to match the photograph on screen. That image already holds all of the room's light —
+   * its window, its lamps, the bounce off its walls — so the house's hemisphere and sun step
+   * aside until the room is released: added on top, they would light the objects twice and
+   * the sun would lay the house's shadows on the photograph's floor. `map` stays the
+   * caller's; only its prefiltered copy is kept.
+   */
+  useLocalEnvironment(map: THREE.Texture, intensity: number, rotation: number): void {
+    this.localEnvironment?.dispose()
+    this.localEnvironment = this.pmrem.fromEquirectangular(map)
+    this.scene.environment = this.localEnvironment.texture
+    this.scene.environmentIntensity = intensity
+    this.scene.environmentRotation.set(0, rotation, 0)
+    this.houseLights(false)
+  }
+
+  private houseLights(on: boolean): void {
+    this.hemi.visible = on
+    this.sun.visible = on
   }
 
   /** Back to the house's HDRI (or none, if it failed), releasing the room's capture. */
@@ -251,6 +275,8 @@ export class Renderer {
     this.localEnvironment = null
     this.scene.environment = this.baseEnvironment.map
     this.scene.environmentIntensity = this.baseEnvironment.intensity
+    this.scene.environmentRotation.set(0, 0, 0)
+    this.houseLights(true)
   }
 
   /** Re-render every shadow map on the next frame. Cheap to call; costly to call often. */

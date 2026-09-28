@@ -16,13 +16,13 @@ import { createCanvas, RuntimeTextSurface, type RuntimeTextSpec } from '../asset
 import { TEXTURE_SET_NAMES, textureKB, textureStore, type LoadedSet, type TextureSetName } from '../assets/textures'
 import { resolveUnder } from '../paths'
 import { ScenePhotoSurface } from './photoSurface'
-import { SHELL_DEFS, type SlotDef } from './shells'
+import { SHELL_DEFS, panoramaDirection, type SlotDef } from './shells'
 import type { ResolvedMaterials } from './shells/types'
-import { findViewpoint, MIN_DISTANCE, MAX_DISTANCE } from './viewpoint'
+import { findViewpoint, seatViewpoint, MIN_DISTANCE, MAX_DISTANCE } from './viewpoint'
 
-export { SHELL_DEFS } from './shells'
+export { SHELL_DEFS, photoShell, panoramaDirection, panoramaFloorPoint } from './shells'
 export { ScenePhotoSurface, fitInside, MAT_MARGIN } from './photoSurface'
-export { findViewpoint, clearOfBlockers, insideWalkable, lineOfSight, footprintDistance, EYE_HEIGHT, CLEARANCE } from './viewpoint'
+export { findViewpoint, seatViewpoint, clearOfBlockers, insideWalkable, lineOfSight, footprintDistance, EYE_HEIGHT, CLEARANCE } from './viewpoint'
 
 export const SHELLS: Readonly<Record<ShellId, ShellInfo>> = SHELL_DEFS
 
@@ -64,6 +64,27 @@ function downscale(texture: THREE.Texture, max: number): THREE.Texture {
   ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
   texture.dispose()
   return new THREE.CanvasTexture(canvas)
+}
+
+/**
+ * The contact shadow's look: black, fading from 45% at the centre to nothing at the edge
+ * of its quad. Without a canvas (node checks) it is a flat, faint patch.
+ */
+function contactShadowMaterial(): THREE.MeshBasicMaterial {
+  const material = new THREE.MeshBasicMaterial({ color: 0x1a120a, transparent: true, opacity: 0.45, depthWrite: false })
+  material.name = 'contact-shadow'
+  const canvas = createCanvas(64, 64)
+  const ctx = canvas?.getContext('2d')
+  if (canvas && ctx) {
+    const g = ctx.createRadialGradient(32, 32, 0, 32, 32, 32)
+    g.addColorStop(0, '#fff')
+    g.addColorStop(0.45, '#bbb')
+    g.addColorStop(1, '#000')
+    ctx.fillStyle = g
+    ctx.fillRect(0, 0, 64, 64)
+    material.alphaMap = new THREE.CanvasTexture(canvas)
+  } else material.opacity = 0.2
+  return material
 }
 
 interface Built {
@@ -115,11 +136,13 @@ export const buildSuiteScene: BuildSuiteScene = async (options) => {
   const root = new THREE.Group()
   root.name = `suite:${pack.meta.id}/${environmentId}`
   const shellLease = new MaterialLease(env)
-  const shell = shellDef.build({ mats: shellLease, materials, quality })
+  const shell = shellDef.build({ mats: shellLease, materials, quality, loadTextures, maxTextureSize: options.maxTextureSize })
   shell.group.name = `shell:${preset.shell}`
   root.add(shell.group)
   const blockers: THREE.Box3[] = [...shell.blockers]
   const unitPlane = new THREE.PlaneGeometry(1, 1)
+  const contact = shell.contactShadows ? contactShadowMaterial() : null
+  const floorQuad = contact ? new THREE.PlaneGeometry(1, 1).rotateX(-Math.PI / 2) : null
 
   // ---- decorative pictures, loaded once per image id, owned by this scene
   const decorativeTextures = new Map<string, Promise<{ texture: THREE.Texture; aspect: number } | null>>()
@@ -175,6 +198,7 @@ export const buildSuiteScene: BuildSuiteScene = async (options) => {
   const bySlot = new Map<string, Built>()
   const built: Built[] = []
   const protoKeys: string[] = []
+  const hotspotResources: { geometry: THREE.BufferGeometry; material: THREE.Material }[] = []
   const gltfKeys: string[] = []
   const textInput = (def: AssetDef, i18n: I18n): { texts: Record<string, string>; lang: string; fontFamily: string } => {
     const texts: Record<string, string> = {}
@@ -199,6 +223,7 @@ export const buildSuiteScene: BuildSuiteScene = async (options) => {
 
   const instantiate = async (def: AssetDef, placementId: string): Promise<{ object: THREE.Group; def: AssetDef } | null> => {
     const tryDef = async (d: AssetDef): Promise<THREE.Group> => {
+      if (d.source.kind === 'photograph') throw new Error('photographed objects require a photo hotspot')
       if (d.source.kind === 'procedural') {
         const proto = acquireProcedural(d, env, quality)
         protoKeys.push(proto.key)
@@ -243,7 +268,32 @@ export const buildSuiteScene: BuildSuiteScene = async (options) => {
     const extraYaw = placement.yaw ?? 0
     const size = turnedSize(def, extraYaw)
     if (size.some((v, i) => v > slot.maxSize[i] + 1e-6)) { reject(`size ${def.size.join('×')} exceeds slot "${slot.id}" max ${slot.maxSize.join('×')}`); continue }
+    if (def.source.kind === 'photograph' && (!slot.photoHotspot || !shellDef.photo)) { reject('photographed object requires a photo hotspot'); continue }
     if (bySlot.has(slot.id)) { reject(`slot "${slot.id}" is already used by "${bySlot.get(slot.id)!.placement.id}"`); continue }
+    // A captured object is already in the photograph. An invisible plane lets the same
+    // scene, prompts, keyboard list and pointer controls address it without drawing a
+    // second (usually mismatched) 3D copy over the pixels.
+    if (slot.photoHotspot && shellDef.photo) {
+      const { u, v, width, height } = slot.photoHotspot
+      const seat = shell.seat.position
+      const focus = seat.clone().addScaledVector(panoramaDirection(u, v, shellDef.photo.panorama.yaw), 3)
+      const geometry = new THREE.PlaneGeometry(width, height)
+      const material = new THREE.MeshBasicMaterial({ transparent: true, opacity: 0, depthWrite: false, side: THREE.DoubleSide })
+      const target = new THREE.Mesh(geometry, material)
+      target.position.copy(focus)
+      target.lookAt(seat)
+      const holder = new THREE.Group()
+      holder.name = `object:${placement.id}`
+      holder.userData.suiteObjectId = placement.id
+      holder.add(target)
+      root.add(holder)
+      hotspotResources.push({ geometry, material })
+      const builtTarget: Built = { placement, def, slot, object: holder, yaw: 0, blockers: [], hostBlockers: [],
+        focus, front: seat.clone().sub(focus).normalize(), photo: null, texts: [] }
+      bySlot.set(slot.id, builtTarget)
+      built.push(builtTarget)
+      continue
+    }
     let hostBlockers: THREE.Box3[] = []
     if (slot.host) {
       const host = bySlot.get(slot.host.slot)
@@ -275,6 +325,18 @@ export const buildSuiteScene: BuildSuiteScene = async (options) => {
     holder.rotation.y = yaw
     root.add(holder)
     holder.updateMatrixWorld(true)
+
+    // A soft patch on the floor under the object (photo rooms), just above any rug.
+    if (contact && floorQuad && def.mount === 'floor' && def.collision && !slot.hang) {
+      const patch = new THREE.Mesh(floorQuad, contact)
+      patch.name = 'contact-shadow'
+      patch.scale.set(w * 1.35 + 0.12, 1, d * 1.35 + 0.12)
+      patch.position.y = 0.015
+      patch.renderOrder = 1
+      // Part of the look, not of the object: a tap on the floor beside it is not a tap on it.
+      patch.raycast = () => undefined
+      holder.add(patch)
+    }
 
     // Shadows only where they matter: large floor pieces, and never on the low tier.
     inner.traverse((node) => {
@@ -327,8 +389,11 @@ export const buildSuiteScene: BuildSuiteScene = async (options) => {
     if (b.slot.hang) front = new THREE.Vector3(seatPos.x - b.focus.x, 0, seatPos.z - b.focus.z).normalize()
     const distance = def.viewDistance ?? Math.min(MAX_DISTANCE, Math.max(MIN_DISTANCE, 0.7 + Math.max(def.size[0], def.size[1]) * 0.8))
     const ignore = new Set([...b.blockers, ...b.hostBlockers])
-    const view = findViewpoint({ focus: b.focus, front, distance, blockers, ignore, walkable: shell.walkable })
-      ?? findViewpoint({ focus: b.focus, front, distance, blockers, ignore, walkable: shell.walkable, maxDistance: 3.0 })
+    // A photo room is right only near where it was photographed: look from the seat.
+    const view = shell.fixedViewpoint
+      ? seatViewpoint({ seat: seatPos, focus: b.focus, radius: shell.fixedViewpoint.radius, size: Math.max(def.size[0], def.size[1]), blockers, walkable: shell.walkable })
+      : findViewpoint({ focus: b.focus, front, distance, blockers, ignore, walkable: shell.walkable })
+        ?? findViewpoint({ focus: b.focus, front, distance, blockers, ignore, walkable: shell.walkable, maxDistance: 3.0 })
     if (!view) warnings.push({ severity: 'error', where: where(b.placement.id), message: 'no clear viewpoint found; the seat is used instead' })
     const viewpoint = view ?? { position: seatPos.clone(), target: b.focus.clone() }
     const narrowed = b.placement.activities?.filter((a) => def.activities.includes(a))
@@ -399,6 +464,10 @@ export const buildSuiteScene: BuildSuiteScene = async (options) => {
     root.add(audioAnchor)
   }
 
+  // ---- whatever the shell loads in the background (a photo room's photograph and light)
+  if (shell.ready) await shell.ready
+  for (const message of shell.problems ?? []) warnings.push({ severity: 'warning', where: where('shell'), message })
+
   // ---- numbers
   const usedTextures = new Set<THREE.Texture>()
   let triangles = 0, meshes = 0
@@ -411,10 +480,11 @@ export const buildSuiteScene: BuildSuiteScene = async (options) => {
     const m = mesh.material as THREE.MeshStandardMaterial
     for (const t of [m.map, m.normalMap, m.roughnessMap]) if (t) usedTextures.add(t)
   })
-  let kb = 0
+  let kb = shell.extraTextureKB?.() ?? 0
   for (const t of usedTextures) {
     const img = t.image as { width?: number; height?: number } | undefined
-    if (img?.width && img?.height) kb += textureKB(img.width, img.height)
+    // A texture without mipmaps (a photo room's backdrop) is its base level alone.
+    if (img?.width && img?.height) kb += t.generateMipmaps === false ? (img.width * img.height * 4) / 1024 : textureKB(img.width, img.height)
   }
   // Sets that ended up unused are released straight away.
   const keptSets: TextureSetName[] = []
@@ -440,9 +510,14 @@ export const buildSuiteScene: BuildSuiteScene = async (options) => {
       for (const t of b.texts) t.dispose()
     }
     for (const g of shell.geometries) g.dispose()
+    for (const { geometry, material } of hotspotResources) { geometry.dispose(); material.dispose() }
     shellLease.releaseAll()
     for (const light of shell.lights) (light as THREE.Light & { dispose?: () => void }).dispose?.()
+    shell.dispose?.()
     unitPlane.dispose()
+    floorQuad?.dispose()
+    contact?.alphaMap?.dispose()
+    contact?.dispose()
     for (const t of ownedTextures) t.dispose()
     for (const name of keptSets) textureStore.release(name)
   }
@@ -458,6 +533,7 @@ export const buildSuiteScene: BuildSuiteScene = async (options) => {
     seat: shell.seat,
     objects,
     audioAnchor,
+    ...(shell.environment ? { environment: shell.environment } : {}),
     report,
     relabel: applyLabels,
     update(dt: number) {
