@@ -908,7 +908,9 @@ export interface SuiteHost {
   /** The saved caregiver profile as read at boot, if any. */
   profile: { saved: LocalProfile | undefined; storageWarning: string }
   /** Optional, consent-gated picture conversation supplied by the app shell. */
-  answerAboutPicture?(request: { imageUrl: string; question: string; history: readonly { role: 'user' | 'assistant'; text: string }[]; imageContext?: 'room' | 'picture'; audio?: { base64: string; mimeType: string } }): Promise<string>
+  answerAboutPicture?(request: { imageUrl: string; question: string; history: readonly { role: 'user' | 'assistant'; text: string }[]; imageContext?: 'room' | 'picture' }): Promise<string>
+  /** Local faster-whisper transcription of a recorded question (tools/stt/server.py). */
+  transcribeSpeech?(audio: Blob, language?: string): Promise<string>
   openAiSetup?(): void
   /** Hands the screen to the suite (true) or back to the house and guided tasks (false):
    *  hides/shows the house, stops the house loop's player and interaction. */

@@ -755,7 +755,7 @@ async function boot(): Promise<void> {
       maxTextureSize: renderer.renderer.capabilities.maxTextureSize
     },
     profile: { saved: savedProfile, storageWarning },
-    answerAboutPicture: async ({ imageUrl, question, history, imageContext, audio }) => {
+    answerAboutPicture: async ({ imageUrl, question, history, imageContext }) => {
       const cfg = agentConfig
       if (!cfg.enabled || !cfg.consentGiven || !cfg.setupMode) {
         throw new Error('Choose a model setup and allow picture conversations in the setup dialog first.')
@@ -767,39 +767,10 @@ async function boot(): Promise<void> {
       const bytes = new Uint8Array(await blob.arrayBuffer())
       let binary = ''
       for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000))
-      if (audio) {
-        const apiKey = cfg.apiKey || env.VITE_GEMINI_API_KEY
-        if (cfg.setupMode !== 'online' || !apiKey) {
-          throw new Error('Voice questions need Online setup because the recorded question is transcribed by Google. You can type a question with the current setup.')
-        }
-        const model = cfg.model || 'gemini-3.5-flash-lite'
-        const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(model)}:generateContent`, {
-          method: 'POST',
-          headers: { 'content-type': 'application/json', 'x-goog-api-key': apiKey },
-          body: JSON.stringify({
-            systemInstruction: { parts: [{ text: `You are a warm, respectful conversation companion. ${imageContext === 'room' ? 'The image is an equirectangular 360-degree photograph of the real room surrounding the viewer, not a small framed picture. Use it to answer about the room and visible furnishings.' : 'Use the supplied picture to answer about what it depicts.'} First understand the user’s spoken question, then answer in 1–3 short sentences. Describe only details you can see. Never guess people’s identities, relationships, memories, or life history. Offer a gentle optional follow-up question.` }] },
-            contents: [{ role: 'user', parts: [
-              { text: `Conversation so far:\n${history.map((turn) => `${turn.role}: ${turn.text}`).join('\n')}\nAnswer the spoken question about this picture.` },
-              { inlineData: { mimeType, data: btoa(binary) } },
-              { inlineData: { mimeType: audio.mimeType, data: audio.base64 } }
-            ] }],
-            generationConfig: { temperature: 0.4, maxOutputTokens: 180 }
-          })
-        })
-        if (!response.ok) {
-          if (response.status === 401 || response.status === 403) throw new Error('Google did not accept the saved API key. Open AI setup to replace it.')
-          if (response.status === 429) throw new Error('Google is busy or the key has reached its limit. Wait a moment and try again.')
-          throw new Error(`Google could not process the voice question (HTTP ${response.status}).`)
-        }
-        const payload = await response.json() as { candidates?: { content?: { parts?: { text?: string }[] } }[] }
-        const spokenAnswer = payload.candidates?.[0]?.content?.parts?.map((part) => part.text ?? '').join('').trim()
-        if (!spokenAnswer) throw new Error('I could not hear a clear question. Please try again or type it.')
-        return spokenAnswer
-      }
       const provider = selectProvider(cfg, { llamaCpp: { baseUrl: env.VITE_AGENT_BASE_URL, model: cfg.model } })
       const result = await provider.run({
-        systemPrompt: `You are a warm, respectful conversation companion. ${imageContext === 'room' ? 'The image is an equirectangular 360-degree photograph of the real room surrounding the viewer, not a small framed picture. Use it to answer about the room and visible furnishings.' : 'Use the supplied picture to answer about what it depicts.'} Answer in 1–3 short sentences. Describe only details you can see. Never guess people’s identities, relationships, memories, or life history. If asked what you think, offer a gentle observation and an open, optional follow-up question.`,
-        caregiverText: `${history.map((turn) => `${turn.role}: ${turn.text}`).join('\n')}\nuser: ${question}`,
+        systemPrompt: `You are a warm, respectful conversation companion. ${imageContext === 'room' ? 'The image is an equirectangular 360-degree photograph of the real room surrounding the viewer, not a small framed picture.' : 'The image is the picture the viewer is looking at.'} Answer exactly the user's latest question. When the question names or points to a particular object (for example "the clock", "that lamp", "the red cushion"), find that object in the image and talk only about it: what it looks like, its colour, material, where it sits, and what it is usually used for. Do not describe the whole image or other objects unless asked. If you cannot find the object, say so kindly and mention what you can see nearby. Answer in 1–3 short sentences. Describe only details you can see. Never guess people’s identities, relationships, memories, or life history. You may end with one gentle, optional follow-up question about that same object.`,
+        caregiverText: `${history.length ? `Conversation so far:\n${history.map((turn) => `${turn.role}: ${turn.text}`).join('\n')}\n\n` : ''}Latest question (answer this one): ${question}`,
         probeImages: [{ assetId: 'conversation-picture', mimeType, base64: btoa(binary) }],
         tools: [{ name: 'reply', description: 'Give a brief spoken conversation reply about the picture.', parameters: {
           type: 'object', properties: { answer: { type: 'string', description: 'A warm, brief answer to say aloud.' } }, required: ['answer']
@@ -809,6 +780,20 @@ async function boot(): Promise<void> {
       const answer = result.toolCalls.find((call) => call.tool === 'reply')?.args?.answer
       if (typeof answer !== 'string' || !answer.trim()) throw new Error('The model returned no reply. Please try again.')
       return answer.trim()
+    },
+    transcribeSpeech: async (audio, language) => {
+      const base = (env.VITE_STT_URL || '/stt').replace(/\/+$/, '')
+      let response: Response
+      try {
+        response = await fetch(`${base}/transcribe${language ? `?lang=${encodeURIComponent(language)}` : ''}`, {
+          method: 'POST', headers: { 'content-type': audio.type || 'application/octet-stream' }, body: audio
+        })
+      } catch {
+        throw new Error('The speech-to-text service is not running. Start tools/stt/server.py, or type your question.')
+      }
+      if (!response.ok) throw new Error(`Speech-to-text failed (HTTP ${response.status}). Please try again or type your question.`)
+      const { text } = await response.json() as { text?: string }
+      return (text ?? '').trim()
     },
     openAiSetup: () => openSetup(),
     setActive: (active) => setSuiteActive(active),
