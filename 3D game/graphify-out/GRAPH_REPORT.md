@@ -1,17 +1,17 @@
 # Graph Report - 3D game  (2026-09-29)
 
 ## Corpus Check
-- 227 files · ~617,837 words
+- 236 files · ~625,300 words
 - Verdict: corpus is large enough that graph structure adds value.
-- Unclassified: 15 file(s) not represented in the graph (top: .hdr 7, .glb 5, .example 1)
+- Unclassified: 16 file(s) not represented in the graph (top: .hdr 7, .glb 5, (none) 2)
 
 ## Summary
-- 3628 nodes · 7439 edges · 214 communities (182 shown, 32 thin omitted)
-- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 506 edges (avg confidence: 0.8)
+- 3748 nodes · 7670 edges · 208 communities (178 shown, 30 thin omitted)
+- Extraction: 93% EXTRACTED · 7% INFERRED · 0% AMBIGUOUS · INFERRED: 513 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `5d782539`
+- Built from commit: `83d800c7`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -26,13 +26,13 @@
 - boot
 - package.json
 - proceduralHouse.ts
-- MemoryPack.ts
+- main.ts
 - offline-check.mjs
 - CORE DIRECTIVE: IMAGE-FIRST WEBSITE DESIGN TO CODE
 - Telemetry
 - make-photos.py
 - compilerOptions
-- navigator.ts
+- suite-app.check.ts
 - agent-prompts.check.ts
 - environments/index.ts
 - agent-gemini.check.ts
@@ -56,7 +56,7 @@
 - gemini.ts
 - grammar.ts
 - review.ts
-- main.ts
+- LocalProfile.ts
 - agent-images.check.ts
 - firewall.ts
 - profile-check.mjs
@@ -66,7 +66,7 @@
 - CameraAdapter
 - agent-provider.check.ts
 - Quality.ts
-- suite-app.check.ts
+- memory-room.check.ts
 - CameraUI
 - SuiteAudio
 - summary
@@ -76,29 +76,29 @@
 - FakeObserver
 - createCameraIntegration
 - summary
-- authoring.ts
-- ScenePhotoSurface
-- VisionBridge
+- tools.ts
+- three
 - integration.ts
+- AdaptableRunner
 - prototypes.ts
-- h
+- ExploreView
 - content/validate.ts
 - CameraAdapterApi
 - screenshot-environments.mjs
 - World.ts
 - FakeConsumer
 - worldSnapshot.ts
-- InstructionHold
+- model.ts
 - Reminiscence Therapy Suite: controls, comfort and accessibility
 - preview.ts
 - FakeProducer
-- three
+- materials.ts
 - CameraUICallbacks
-- model.ts
+- editor.ts
 - harness.ts
 - make-sounds.mjs
 - openCaregiverSetup
-- content/prompts.ts
+- CameraSnapshot
 - contracts.ts
 - Canvas
 - templates/index.ts
@@ -112,7 +112,7 @@
 - i18n/index.ts
 - SuiteController
 - .t
-- resolveUnder
+- content/prompts.ts
 - home
 - build-content.mjs
 - en/app.json
@@ -123,7 +123,7 @@
 - place
 - suite-activities.check.ts
 - High-Agency Frontend Skill
-- Recorder
+- suite-profile.check.ts
 - activity
 - closeup
 - activity
@@ -132,14 +132,14 @@
 - Personalization in the Reminiscence Therapy Suite
 - caregiver
 - caregiver
-- app/index.ts
+- resolve.ts
 - browser-check.mjs
 - Reminiscence Therapy Suite — implementation plan and working agreement
 - Content packs
 - README.md
 - who
 - Design Audit
-- llamaCpp.ts
+- settings.ts
 - pause
 - pause
 - SuiteHost
@@ -149,7 +149,7 @@
 - Analysis & Synthesis Instructions
 - run-check.mjs
 - Fonts
-- Player
+- Renderer
 - Agent Skill: Principal UI/UX Architect & Motion Choreographer (Awwwards-Tier)
 - CORE DIRECTIVE: AWWWARDS-LEVEL IMAGE ART DIRECTION
 - render-thumbnails.mjs
@@ -158,14 +158,14 @@
 - Reminiscence Therapy Suite
 - who
 - Suite assets — provenance and attribution
-- EnvironmentEditor.ts
+- MemoryRoomView
 - Assets and environments
 - write-environments.py
 - caregiver
-- tools.ts
+- Handler
 - caregiver
-- Navigator
-- SuiteAudioApi
+- aiSetup
+- aiSetup
 - fetch-panoramas.mjs
 - manifest.json
 - vision
@@ -176,14 +176,14 @@
 - 2. THE COMBINATORIAL VARIATION ENGINE
 - textSizes
 - chat
-- agent.check.ts
-- minutes
+- vision
+- shells/kit.ts
 - seconds
-- .constructor
+- Lightbox
 - chat
-- keyboard.ts
+- SuiteStatePort
 - 4. DESIGN ENGINEERING DIRECTIVES (Bias Correction)
-- SceneObject
+- camera
 - 10. REFERENCE VOCABULARY (Pattern Names the Agent Should Know)
 - CORE DIRECTIVE: AWWWARDS-LEVEL DESIGN ENGINEERING
 - 22. STYLE VARIATION ENGINE
@@ -209,8 +209,7 @@
 - 5. CONTEXT-AWARE PROACTIVITY
 - 8. DARK MODE PROTOCOL
 - 21. MOBILE ANTI-AI-TELLS RULE
-- audio.ts
-- Interaction
+- seconds
 - 7. DIAL DEFINITIONS (Technical Reference)
 - 33. DEFAULT SECTION PACKS
 - 14. HERO MINIMALISM RULES
@@ -220,23 +219,18 @@
 - 15. DEFAULT SITE PACKS
 - 20. EXAMPLE INTERPRETATIONS
 - guided
-- steps
 - guided
-- steps
 - write-photo-hotspots.py
 - comfort
 - comfort
-- .update
-- plan.ts
 - camera
-- language
 
 ## God Nodes (most connected - your core abstractions)
 1. `Kit` - 102 edges
-2. `SuiteController` - 91 edges
+2. `SuiteController` - 92 edges
 3. `boot()` - 85 edges
-4. `three` - 46 edges
-5. `openCaregiverSetup()` - 46 edges
+4. `three` - 50 edges
+5. `openCaregiverSetup()` - 49 edges
 6. `CORE DIRECTIVE: IMAGE-FIRST WEBSITE DESIGN TO CODE` - 39 edges
 7. `CORE DIRECTIVE: PREMIUM MOBILE APP IMAGE DIRECTION` - 39 edges
 8. `MissionRunner` - 37 edges
@@ -244,6 +238,8 @@
 10. `explore` - 35 edges
 
 ## Surprising Connections (you probably didn't know these)
+- `ctx()` --calls--> `buildAllowedTokens()`  [EXTRACTED]
+  tools/checks/agent-provenance.check.ts → src/agent/tokens.ts
 - `policyRig()` --calls--> `AdaptationPolicy`  [EXTRACTED]
   tools/checks/camera.check.ts → src/camera/AdaptationPolicy.ts
 - `run()` --calls--> `environmentEditor()`  [EXTRACTED]
@@ -251,9 +247,7 @@
 - `run()` --calls--> `styleMaterial()`  [EXTRACTED]
   tools/profile-browser.check.ts → src/EnvironmentMaterials.ts
 - `main()` --calls--> `newProfile()`  [EXTRACTED]
-  tools/checks/suite-profile.check.ts → src/LocalProfile.ts
-- `mutate()` --calls--> `validate()`  [EXTRACTED]
-  tools/checks/pack.check.ts → src/MemoryPack.ts
+  tools/checks/memory-room.check.ts → src/LocalProfile.ts
 
 ## Import Cycles
 - None detected.
@@ -261,7 +255,7 @@
 ## Hyperedges (group relationships)
 - **Three levels in one caregiver pack** — spec_memory_pack, spec_water, spec_morning_walk, spec_familiar_memories [EXTRACTED 1.00]
 
-## Communities (214 total, 32 thin omitted)
+## Communities (208 total, 30 thin omitted)
 
 ### Community 0 - "perf-templates.mjs"
 Cohesion: 0.18
@@ -269,7 +263,7 @@ Nodes (9): chrome, evaluate(), ONLY, pending, profile, REPO, rows, send() (+1 mo
 
 ### Community 1 - "pack.check.ts"
 Cohesion: 0.06
-Nodes (18): failures, fakeCtx, FakeImage, fakeLoad(), FakePlayer, FakeState, FakeUI, FakeVoices (+10 more)
+Nodes (19): PackProblem, failures, fakeCtx, FakeImage, fakeLoad(), FakePlayer, FakeState, FakeUI (+11 more)
 
 ### Community 2 - "brandkit/SKILL.md"
 Cohesion: 0.05
@@ -292,20 +286,20 @@ Cohesion: 0.08
 Nodes (100): frameBars(), legs(), mat(), num(), Params, pivot(), runtimeText(), str() (+92 more)
 
 ### Community 7 - "boot"
-Cohesion: 0.07
-Nodes (8): boot(), describe(), renderOnly(), PackVoices, MissionRunnerDeps, State, escapeText(), UI
+Cohesion: 0.05
+Nodes (9): Interaction, boot(), standableIn(), PackVoices, MissionRunnerDeps, Player, State, escapeText() (+1 more)
 
 ### Community 8 - "package.json"
-Cohesion: 0.07
-Nodes (27): dependencies, three, devDependencies, @types/node, @types/three, typescript, vite, name (+19 more)
+Cohesion: 0.06
+Nodes (31): dependencies, @huggingface/transformers, three, devDependencies, @types/node, @types/three, typescript, vite (+23 more)
 
 ### Community 9 - "proceduralHouse.ts"
 Cohesion: 0.07
 Nodes (53): EnvironmentStyle, colourFor(), styleAnisotropy(), styleMaterial(), stylesSurface(), addSkirting(), auditDoorways(), auditReachability() (+45 more)
 
-### Community 10 - "MemoryPack.ts"
-Cohesion: 0.07
-Nodes (33): breakagesFromLocation(), CardStyle, fitToPlate(), injectAnchors(), isObject(), Json, loadAudio(), loadImage() (+25 more)
+### Community 10 - "main.ts"
+Cohesion: 0.06
+Nodes (40): describe(), FocusProbe, PerfResult, renderOnly(), breakagesFromLocation(), CardStyle, fitToPlate(), injectAnchors() (+32 more)
 
 ### Community 11 - "offline-check.mjs"
 Cohesion: 0.11
@@ -323,21 +317,21 @@ Nodes (16): band(), blank(), disc(), ellipse(), glyph(), grain(), lerp(), over()
 Cohesion: 0.12
 Nodes (16): compilerOptions, allowImportingTsExtensions, isolatedModules, lib, module, moduleResolution, noEmit, noFallthroughCasesInSwitch (+8 more)
 
-### Community 16 - "navigator.ts"
-Cohesion: 0.11
-Nodes (23): BoxLike, clamp(), clampLook(), classifyGesture(), collides(), dampFactor(), DEG, DRAG_SENSITIVITY (+15 more)
+### Community 16 - "suite-app.check.ts"
+Cohesion: 0.06
+Nodes (39): angleDelta(), BoxLike, clamp(), clampLook(), classifyGesture(), collides(), dampFactor(), DEG (+31 more)
 
 ### Community 17 - "agent-prompts.check.ts"
-Cohesion: 0.12
-Nodes (22): colors, ENVIRONMENT_TOOL, anchorLines(), assetLines(), AUTHORING_REASONING, AuthoringContext, buildAuthoringSystemPrompt(), bullets() (+14 more)
+Cohesion: 0.08
+Nodes (30): colors, describeEnvironment(), ENVIRONMENT_TOOL, validateEnvironment(), LlamaCppProviderAdapter, anchorLines(), assetLines(), AUTHORING_REASONING (+22 more)
 
 ### Community 18 - "environments/index.ts"
 Cohesion: 0.09
-Nodes (37): BUILDERS, createCanvas(), SceneReport, buildSuiteScene(), contactShadowMaterial(), downscale(), FLOOR_SETS, isHanging() (+29 more)
+Nodes (37): createCanvas(), Placement, buildSuiteScene(), Built, contactShadowMaterial(), downscale(), FLOOR_SETS, isHanging() (+29 more)
 
 ### Community 19 - "agent-gemini.check.ts"
-Cohesion: 0.10
-Nodes (26): AgentConfig, AgentProvider, applySetupMode(), CONSENT_PROMPT, consentPromptFor(), defaultModelForMode(), ensureConsent(), isAgentProvider() (+18 more)
+Cohesion: 0.09
+Nodes (33): AgentConfig, agentConfigStore, AgentProvider, applySetupMode(), ConsentPrompt, consentPromptFor(), ensureConsent(), isAgentProvider() (+25 more)
 
 ### Community 20 - "run.mjs"
 Cohesion: 0.20
@@ -357,27 +351,27 @@ Nodes (6): ../../tsconfig.json, compilerOptions, noEmit, types, extends, include
 
 ### Community 24 - "shells/index.ts"
 Cohesion: 0.08
-Nodes (35): LocalizedText, SceneEnvironment, ShellId, ShellInfo, ShellMaterials, ShellSlot, courtyardVeranda, POSTS (+27 more)
+Nodes (34): LocalizedText, SceneEnvironment, ShellId, ShellInfo, ShellSlot, courtyardVeranda, POSTS, slots (+26 more)
 
 ### Community 26 - "fetch-models.mjs"
 Cohesion: 0.22
 Nodes (14): ASSETS, download(), gt(), inspect(), main(), MANIFEST, measure(), MODELS (+6 more)
 
 ### Community 37 - "gemini.ts"
-Cohesion: 0.11
-Nodes (24): ALLOWED_HOSTS, classifyStatus(), classifyThrown(), DEFAULT_GEMINI_MODEL, friendlyMessage(), GeminiConfig, GeminiProviderAdapter, imagePart() (+16 more)
+Cohesion: 0.08
+Nodes (42): ALLOWED_HOSTS, classifyStatus(), classifyThrown(), DEFAULT_GEMINI_MODEL, friendlyMessage(), GeminiConfig, GeminiProviderAdapter, imagePart() (+34 more)
 
 ### Community 38 - "grammar.ts"
-Cohesion: 0.49
-Nodes (9): asNode(), buildProposalGrammar(), jsonKey(), kebab(), literal(), objectRule(), ParsedCall, SchemaNode (+1 more)
+Cohesion: 0.36
+Nodes (11): asNode(), buildProposalGrammar(), jsonKey(), kebab(), literal(), objectRule(), ParsedCall, parseProposalCalls() (+3 more)
 
 ### Community 39 - "review.ts"
-Cohesion: 0.10
-Nodes (20): AuthoringRun, ConsentPrompt, Violation, computeProvenance(), ProvenanceBlock, ProposalStatus, ReviewCounts, ReviewedProposal (+12 more)
+Cohesion: 0.09
+Nodes (21): FirewallContext, Violation, ProposalFixture, computeProvenance(), ProvenanceBlock, ProposalStatus, ReviewCounts, ReviewedProposal (+13 more)
 
-### Community 40 - "main.ts"
-Cohesion: 0.13
-Nodes (29): agentConfigStore, Crop, LocalPerson, LocalProfile, newId(), newProfile(), openDatabase(), Photo (+21 more)
+### Community 40 - "LocalProfile.ts"
+Cohesion: 0.12
+Nodes (31): defaultModelForMode(), Crop, LocalPerson, LocalProfile, newId(), newProfile(), openDatabase(), Photo (+23 more)
 
 ### Community 41 - "agent-images.check.ts"
 Cohesion: 0.11
@@ -400,36 +394,32 @@ Cohesion: 0.16
 Nodes (11): assets(), ctx(), emptyPack, failures, fakeCtx, FakeImage, fakeLoad(), firewallWorld() (+3 more)
 
 ### Community 46 - "camera/types.ts"
-Cohesion: 0.16
-Nodes (17): buildSnapshot(), copy(), localCamera(), phaseOf(), SnapshotInputs, visionBlockedReason(), AttentionState, CameraErrorCode (+9 more)
-
-### Community 47 - "CameraAdapter"
-Cohesion: 0.11
-Nodes (8): CameraAdapter, CameraAdapterOptions, errText(), Runtime, observerError(), toGesture(), toSuggestion(), CameraGesture
+Cohesion: 0.12
+Nodes (22): CameraAdapterOptions, Runtime, buildSnapshot(), copy(), localCamera(), observerError(), phaseOf(), SnapshotInputs (+14 more)
 
 ### Community 48 - "agent-provider.check.ts"
 Cohesion: 0.13
-Nodes (8): AuditEntry, AuditLog, AuditSink, consoleAuditSink, DEFAULT_AGENT_CONFIG, failures, REQUEST, WITH_IMAGE
+Nodes (8): AuditEntry, AuditLog, AuditSink, consoleAuditSink, CONSENT_PROMPT, failures, REQUEST, WITH_IMAGE
 
 ### Community 49 - "Quality.ts"
-Cohesion: 0.08
-Nodes (17): AdaptiveOptions, AdaptiveResolution, AdaptiveStep, clampRatio(), detectQuality(), detectTier(), DeviceInfo, isSmall() (+9 more)
+Cohesion: 0.11
+Nodes (15): AdaptiveOptions, AdaptiveResolution, AdaptiveStep, clampRatio(), detectQuality(), detectTier(), DeviceInfo, isSmall() (+7 more)
 
-### Community 50 - "suite-app.check.ts"
-Cohesion: 0.13
-Nodes (14): DOCK_CLEAR_PX, SUITE_CSS, SUITE_Z, channel(), contrastRatio(), cssName(), PALETTE, PALETTE_HC (+6 more)
+### Community 50 - "memory-room.check.ts"
+Cohesion: 0.10
+Nodes (28): PhotoDepth, buildDepthGeometry(), DepthMap, DepthMeshOptions, dropSmallIslands(), normaliseDepth(), sample(), packDepth() (+20 more)
 
 ### Community 51 - "CameraUI"
-Cohesion: 0.17
-Nodes (7): CameraUI, describeError(), describeHold(), describeSnapshot(), StepState, writePref(), CameraSnapshot
+Cohesion: 0.15
+Nodes (7): CameraUI, describeError(), describeHold(), describeSnapshot(), StepState, writePref(), CameraGesture
 
 ### Community 52 - "SuiteAudio"
-Cohesion: 0.17
-Nodes (3): channelLevel(), SuiteAudio, AudioChannel
+Cohesion: 0.08
+Nodes (13): channelLevel(), choosePromptRoute(), findVoice(), norm(), Playing, PromptRoute, SuiteAudio, SuiteAudioOptions (+5 more)
 
 ### Community 53 - "summary"
-Cohesion: 0.05
-Nodes (38): one, other, one, other, summary, activity, another, closeups (+30 more)
+Cohesion: 0.07
+Nodes (27): one, other, summary, activity, another, closeups, content, download (+19 more)
 
 ### Community 55 - "camera.check.ts"
 Cohesion: 0.11
@@ -444,40 +434,36 @@ Cohesion: 0.13
 Nodes (3): samplePerf(), percentile(), FakeObserver
 
 ### Community 58 - "createCameraIntegration"
-Cohesion: 0.13
-Nodes (12): AdaptationEffects, AdaptationPolicy, createCameraIntegration(), disable(), enable(), installInputListeners(), setAdaptation(), startCamera() (+4 more)
+Cohesion: 0.14
+Nodes (11): createCameraIntegration(), disable(), enable(), installInputListeners(), setAdaptation(), startCamera(), syncTick(), readAdaptPref() (+3 more)
 
 ### Community 59 - "summary"
-Cohesion: 0.08
-Nodes (24): summary, activity, another, closeups, content, download, endedExited, endedFinished (+16 more)
+Cohesion: 0.07
+Nodes (27): one, other, summary, activity, another, closeups, content, download (+19 more)
 
-### Community 60 - "authoring.ts"
-Cohesion: 0.22
-Nodes (21): construct(), matchesType(), missingArgument(), runAuthoringPass(), SkippedCall, toProposals(), parseProposalCalls(), proposalTools() (+13 more)
+### Community 60 - "tools.ts"
+Cohesion: 0.10
+Nodes (31): AuthoringRun, construct(), matchesType(), missingArgument(), runAuthoringPass(), SkippedCall, toProposals(), proposalTools() (+23 more)
 
-### Community 61 - "ScenePhotoSurface"
-Cohesion: 0.15
-Nodes (6): PhotoSurface, DecorativeLoader, FACING, fitInside(), MAT_MARGIN, ScenePhotoSurface
-
-### Community 62 - "VisionBridge"
+### Community 61 - "three"
 Cohesion: 0.13
-Nodes (8): GameEventSink, InstructionHoldOptions, OpenTask, OUTCOME_MAP, taskIdFor(), VisionBridge, VisionBridgeOptions, Event
+Nodes (8): three, fakeSession(), PhotoSurface, DecorativeLoader, FACING, fitInside(), MAT_MARGIN, ScenePhotoSurface
 
-### Community 63 - "integration.ts"
-Cohesion: 0.09
-Nodes (14): AdaptationConfig, AdaptationRecord, DEFAULT_ADAPTATION_CONFIG, GameContext, Outcome, CameraIntegration, CameraIntegrationDeps, Env (+6 more)
+### Community 62 - "integration.ts"
+Cohesion: 0.10
+Nodes (13): AdaptationConfig, CameraIntegrationDeps, Env, LOOPBACK, MOVEMENT_KEYS, GameEventSink, InstructionHoldOptions, OpenTask (+5 more)
+
+### Community 63 - "AdaptableRunner"
+Cohesion: 0.14
+Nodes (3): CameraIntegration, AdaptableRunner, SuiteCameraPort
 
 ### Community 64 - "prototypes.ts"
 Cohesion: 0.07
-Nodes (23): Disposable, RefCache, acquireGltf(), cache, GltfPrototype, load(), pending, releaseGltf() (+15 more)
-
-### Community 65 - "h"
-Cohesion: 0.12
-Nodes (11): append(), button(), clear(), h(), ActionName, ExploreView, itemLabel(), setText() (+3 more)
+Nodes (24): BUILDERS, Disposable, RefCache, acquireGltf(), cache, GltfPrototype, load(), pending (+16 more)
 
 ### Community 66 - "content/validate.ts"
 Cohesion: 0.18
-Nodes (30): LoadContentOptions, loadContentPacks(), loadOne(), message(), ASSET_CATEGORIES, AssetLookup, checkActivities(), checkProvenance() (+22 more)
+Nodes (28): LoadContentOptions, loadContentPacks(), loadOne(), message(), ASSET_CATEGORIES, AssetLookup, checkActivities(), checkProvenance() (+20 more)
 
 ### Community 68 - "screenshot-environments.mjs"
 Cohesion: 0.17
@@ -488,8 +474,12 @@ Cohesion: 0.13
 Nodes (14): Focus, SwappedMaterial, StepContext, assertWorldContract(), InteractableMeta, readMeta(), REQUIRED_ANCHORS, REQUIRED_HINT_TARGETS (+6 more)
 
 ### Community 71 - "worldSnapshot.ts"
-Cohesion: 0.18
-Nodes (16): out, snapshot, w, world, snap(), box(), canonicalQuaternion(), Json (+8 more)
+Cohesion: 0.19
+Nodes (16): out, snapshot, w, world, box(), canonicalQuaternion(), diffSnapshots(), Json (+8 more)
+
+### Community 72 - "model.ts"
+Cohesion: 0.16
+Nodes (24): ObjectOverrides, audio(), AUDIO_ALIASES, AUDIO_EXTENSIONS, audioMime(), depth(), isBlob(), isObject() (+16 more)
 
 ### Community 73 - "Reminiscence Therapy Suite: controls, comfort and accessibility"
 Cohesion: 0.15
@@ -499,17 +489,17 @@ Nodes (13): Camera movement, Camera support wording, Checks, Comfort choices, Co
 Cohesion: 0.22
 Nodes (14): SHELL_DEFS, clock, grid(), label(), lines(), look(), main(), probes() (+6 more)
 
-### Community 76 - "three"
-Cohesion: 0.11
-Nodes (21): three, cache, create(), MaterialEnv, MatSpec, PALETTE, signature(), tintFor() (+13 more)
+### Community 76 - "materials.ts"
+Cohesion: 0.15
+Nodes (15): cache, create(), MaterialEnv, MatSpec, PALETTE, signature(), tintFor(), weaveTexture() (+7 more)
 
-### Community 78 - "model.ts"
-Cohesion: 0.10
-Nodes (31): CaregiverAudio, Placement, SequenceRef, SuitePhoto, SuiteSound, TOPICS, SectionName, SECTIONS (+23 more)
+### Community 78 - "editor.ts"
+Cohesion: 0.08
+Nodes (25): CaregiverAudio, CaregiverPrompt, SequenceRef, SuitePhoto, SuiteSound, baseUrl(), DepthError, DepthFailure (+17 more)
 
 ### Community 79 - "harness.ts"
 Cohesion: 0.09
-Nodes (29): pickerFor(), createActivitySession(), EventInput, gentleCueShown(), buildSummary(), SummaryInput, ACTIVITIES, broken (+21 more)
+Nodes (27): SummaryInput, ACTIVITIES, broken, buildScene(), camera, clock, d, demoPhoto (+19 more)
 
 ### Community 80 - "make-sounds.mjs"
 Cohesion: 0.09
@@ -517,23 +507,23 @@ Nodes (25): biquad(), buf(), burst(), durationMs(), fades(), FFMPEG, filter(), L
 
 ### Community 81 - "openCaregiverSetup"
 Cohesion: 0.25
-Nodes (31): openCaregiverSetup(), addPhotos(), addSounds(), applyLanguage(), audioFrom(), audioPreview(), button(), checkField() (+23 more)
+Nodes (32): openCaregiverSetup(), addPhotos(), addSounds(), applyLanguage(), audioFrom(), audioPreview(), button(), checkField() (+24 more)
 
-### Community 82 - "content/prompts.ts"
-Cohesion: 0.23
-Nodes (10): spaceItem(), allows(), GENERIC_PROMPT_COUNTS, ItemKind, promptLevels(), PromptPicker, PromptQuery, AssetCategory (+2 more)
+### Community 82 - "CameraSnapshot"
+Cohesion: 0.17
+Nodes (9): AdaptationEffects, AdaptationPolicy, AdaptationRecord, DEFAULT_ADAPTATION_CONFIG, GameContext, Outcome, CameraSnapshot, CameraSuggestion (+1 more)
 
 ### Community 83 - "contracts.ts"
-Cohesion: 0.11
-Nodes (23): SuiteDeps, ActivityRegistry, AssetSource, AssignPhotos, AudioRef, BuildSceneOptions, BuildSuiteScene, CreateActivitySession (+15 more)
+Cohesion: 0.10
+Nodes (28): SuiteDeps, ACTIVITY_KINDS, ActivityRegistry, AssetSource, AssignPhotos, AudioRef, BuildSceneOptions, BuildSuiteScene (+20 more)
 
 ### Community 84 - "Canvas"
 Cohesion: 0.14
 Nodes (17): bamboo_grove(), Canvas, flowers(), fruit_bowl(), hexrgb(), hills_mist(), hills_morning(), paddy_fields() (+9 more)
 
 ### Community 85 - "templates/index.ts"
-Cohesion: 0.19
-Nodes (20): ARCH_HEIGHT, CEILING_HEIGHT, DOOR_HEIGHT, EXT_WALL_T, INT_WALL_T, courtyard, OPENINGS, hallway (+12 more)
+Cohesion: 0.18
+Nodes (21): ARCH_HEIGHT, CEILING_HEIGHT, DOOR_HEIGHT, EXT_WALL_T, INT_WALL_T, courtyard, OPENINGS, hallway (+13 more)
 
 ### Community 86 - "settings"
 Cohesion: 0.09
@@ -544,12 +534,12 @@ Cohesion: 0.09
 Nodes (22): settings, caregiverAssist, caregiverAssistHint, done, highContrast, master, muted, navigation (+14 more)
 
 ### Community 88 - "definitions.ts"
-Cohesion: 0.16
-Nodes (24): assignPhotos(), Availability, avoidOf(), define(), DEMO_SEQUENCE_OBJECTS, demoSequence(), highlighted(), isAlbum() (+16 more)
+Cohesion: 0.10
+Nodes (36): ACTIVITIES, assignPhotos(), Availability, avoidOf(), define(), DEMO_SEQUENCE_OBJECTS, demoSequence(), highlighted() (+28 more)
 
 ### Community 89 - "home"
-Cohesion: 0.17
-Nodes (12): home, begin, collageLabel, memoriesCount, more, nowShowing, start, storage (+4 more)
+Cohesion: 0.11
+Nodes (19): home, begin, collageLabel, language, memoriesCount, more, nowShowing, start (+11 more)
 
 ### Community 90 - "explore"
 Cohesion: 0.06
@@ -561,23 +551,27 @@ Nodes (33): explore, backToRoom, building, closeup, demoPicture, exit, finish, f
 
 ### Community 92 - "app/app.ts"
 Cohesion: 0.07
-Nodes (34): ContentState, Overlay, Prepared, Run, Screen, AttrValue, Child, focusFirst() (+26 more)
+Nodes (29): ContentState, Overlay, Prepared, Run, Screen, AttrValue, Child, clear() (+21 more)
 
 ### Community 93 - "i18n/index.ts"
-Cohesion: 0.14
-Nodes (31): flattenEntries(), flattenKeys(), formatNumber(), interpolate(), isTree(), lookup(), placeholders(), pluralCategory() (+23 more)
+Cohesion: 0.31
+Nodes (15): flattenEntries(), flattenKeys(), formatNumber(), interpolate(), isTree(), lookup(), pluralCategory(), splitKey() (+7 more)
+
+### Community 94 - "SuiteController"
+Cohesion: 0.09
+Nodes (4): createSuiteAppWith(), dispose(), SuiteController, walkVector()
 
 ### Community 95 - ".t"
-Cohesion: 0.16
-Nodes (13): activityCard(), activityIcon(), badge(), durationText(), header(), ICON_PATHS, panoramaFor(), renderActivityPicker() (+5 more)
+Cohesion: 0.12
+Nodes (18): append(), button(), h(), itemLabel(), activityCard(), activityIcon(), badge(), durationText() (+10 more)
 
-### Community 96 - "resolveUnder"
-Cohesion: 0.15
-Nodes (9): DEMO_TEXTURE_MAX, demoPhoto(), packDisplayMedia(), packSound(), resolvePackPrompt(), DecorativeImageDef, I18n, SoundDef (+1 more)
+### Community 96 - "content/prompts.ts"
+Cohesion: 0.13
+Nodes (13): DEMO_TEXTURE_MAX, demoPhoto(), packDisplayMedia(), packSound(), allows(), GENERIC_PROMPT_COUNTS, ItemKind, promptLevels() (+5 more)
 
 ### Community 97 - "home"
 Cohesion: 0.11
-Nodes (19): hint, open, title, home, begin, camera, collageLabel, language (+11 more)
+Nodes (19): home, begin, collageLabel, language, memoriesCount, more, nowShowing, start (+11 more)
 
 ### Community 98 - "build-content.mjs"
 Cohesion: 0.12
@@ -592,8 +586,8 @@ Cohesion: 0.12
 Nodes (16): back, badge, demo, general, personal, brand, camera, off (+8 more)
 
 ### Community 102 - "runtimeText.ts"
-Cohesion: 0.20
-Nodes (10): drawCalendar(), drawRuntimeText(), drawSpines(), fitFont(), RuntimeTextInput, RuntimeTextSpec, RuntimeTextSurface, safeFormat() (+2 more)
+Cohesion: 0.22
+Nodes (9): drawCalendar(), drawRuntimeText(), drawSpines(), fitFont(), RuntimeTextInput, RuntimeTextSpec, RuntimeTextSurface, safeFormat() (+1 more)
 
 ### Community 103 - "place"
 Cohesion: 0.13
@@ -604,36 +598,40 @@ Cohesion: 0.13
 Nodes (15): place, continue, coverage, failed, general, intro, loading, none (+7 more)
 
 ### Community 105 - "suite-activities.check.ts"
-Cohesion: 0.15
-Nodes (24): loadContentPacks, packDisplayMedia, AudioMode, diskLoader(), failures, fakeAudio(), fakeLibrary(), fakeScene() (+16 more)
+Cohesion: 0.12
+Nodes (25): loadContentPacks, packDisplayMedia, ResolvedSuiteProfile, AudioMode, diskLoader(), failures, fakeAudio(), fakeLibrary() (+17 more)
 
 ### Community 106 - "High-Agency Frontend Skill"
 Cohesion: 0.06
 Nodes (30): 10. FINAL PRE-FLIGHT CHECK, 1. ACTIVE BASELINE CONFIGURATION, 2. DEFAULT ARCHITECTURE & CONVENTIONS, 3. DESIGN ENGINEERING DIRECTIVES (Bias Correction), 4. CREATIVE PROACTIVITY (Anti-Slop Implementation), 5. PERFORMANCE GUARDRAILS, 6. TECHNICAL REFERENCE (Dial Definitions), 7. AI TELLS (Forbidden Patterns) (+22 more)
+
+### Community 107 - "suite-profile.check.ts"
+Cohesion: 0.15
+Nodes (18): LocaleIndex, placeholders(), resolveText(), defaultSuiteProfile(), blob(), captureWarnings(), failures, fakePhoto() (+10 more)
 
 ### Community 108 - "activity"
 Cohesion: 0.17
 Nodes (12): activity, failed, guidedFirst, note, otherPlace, place, preparing, retry (+4 more)
 
 ### Community 109 - "closeup"
-Cohesion: 0.17
-Nodes (12): closeup, alt, altNone, back, close, demoNotice, fit, people (+4 more)
+Cohesion: 0.12
+Nodes (17): closeup, alt, altNone, back, close, demoNotice, fit, people (+9 more)
 
 ### Community 110 - "activity"
 Cohesion: 0.17
 Nodes (12): activity, failed, guidedFirst, note, otherPlace, place, preparing, retry (+4 more)
 
 ### Community 111 - "closeup"
-Cohesion: 0.17
-Nodes (12): closeup, alt, altNone, back, close, demoNotice, fit, people (+4 more)
+Cohesion: 0.12
+Nodes (17): closeup, alt, altNone, back, close, demoNotice, fit, people (+9 more)
 
 ### Community 112 - "Missions.ts"
-Cohesion: 0.10
-Nodes (21): applyNonLevelProposal(), AssetUrlResolver, buildPackFromProposals(), LoadedPack, ChoiceFormat, DemoNotice, FindStep, HINT_DELAYS_MS (+13 more)
+Cohesion: 0.11
+Nodes (19): applyNonLevelProposal(), AssetUrlResolver, buildPackFromProposals(), ChoiceFormat, DemoNotice, FindStep, HINT_DELAYS_MS, Mission (+11 more)
 
 ### Community 113 - "Personalization in the Reminiscence Therapy Suite"
-Cohesion: 0.20
-Nodes (9): Limits, Media that cannot be shown, Personalization in the Reminiscence Therapy Suite, Privacy, Prompts, Storage, The "no inference" rules, Verification (+1 more)
+Cohesion: 0.18
+Nodes (10): Limits, Media that cannot be shown, Personalization in the Reminiscence Therapy Suite, Privacy, Prompts, Stepping into a photograph (memory room), Storage, The "no inference" rules (+2 more)
 
 ### Community 114 - "caregiver"
 Cohesion: 0.20
@@ -643,9 +641,9 @@ Nodes (10): addNote, hide, items, noteAdded, notePlaceholder, notes, show, tip (
 Cohesion: 0.20
 Nodes (10): addNote, hide, items, noteAdded, notePlaceholder, notes, show, tip (+2 more)
 
-### Community 116 - "app/index.ts"
-Cohesion: 0.14
-Nodes (20): ACTIVITIES, createSuiteAppWith(), createSuiteApp(), CaregiverPrompt, CreateSuiteApp, SuiteMediaApi, audioMime(), envKey() (+12 more)
+### Community 116 - "resolve.ts"
+Cohesion: 0.24
+Nodes (10): SuiteMediaApi, envKey(), objectPromptKey(), close(), displayPhoto(), fitWithin(), resolvePrompt(), resolveSuiteProfile() (+2 more)
 
 ### Community 117 - "browser-check.mjs"
 Cohesion: 0.25
@@ -671,9 +669,9 @@ Nodes (7): who, demo, demoHint, none, savedHint, title, unnamed
 Cohesion: 0.10
 Nodes (19): Code Quality, Color and Surfaces, Component Patterns, Content, Design Audit, Fix Priority, How This Works, Iconography (+11 more)
 
-### Community 123 - "llamaCpp.ts"
-Cohesion: 0.15
-Nodes (19): classifyStatus(), classifyThrown(), friendlyMessage(), imageBlock(), isLoopback(), isRetryable(), LlamaCppProviderAdapter, ParsedEnvelope (+11 more)
+### Community 123 - "settings.ts"
+Cohesion: 0.18
+Nodes (12): browserStorage(), defaultSettings(), loadSettings(), normaliseSettings(), prefersReducedMotion(), saveSettings(), SETTINGS_KEY, SettingsStorage (+4 more)
 
 ### Community 124 - "pause"
 Cohesion: 0.33
@@ -685,11 +683,11 @@ Nodes (6): pause, body, end, resume, settings, title
 
 ### Community 127 - "assets/index.ts"
 Cohesion: 0.11
-Nodes (21): hasBuilder(), createAssetLibrary(), Library, loadAssetLibrary(), MANIFEST_PATH, ACCEPTED_LICENSES, CATEGORIES, hasEn() (+13 more)
+Nodes (22): hasBuilder(), createAssetLibrary(), Library, loadAssetLibrary(), MANIFEST_PATH, ACCEPTED_LICENSES, CATEGORIES, hasEn() (+14 more)
 
 ### Community 128 - "proposals.fixtures.ts"
 Cohesion: 0.16
-Nodes (13): FirewallContext, baseContext(), CAREGIVER_FIELDS, CAREGIVER_TEXTS, makeAssets(), makeWorld(), ProposalFixture, sparseContext() (+5 more)
+Nodes (14): DEFAULT_AGENT_CONFIG, baseContext(), CAREGIVER_FIELDS, CAREGIVER_TEXTS, makeAssets(), makeWorld(), PROPOSAL_FIXTURES, sparseContext() (+6 more)
 
 ### Community 129 - "fetch-textures.mjs"
 Cohesion: 0.40
@@ -735,10 +733,6 @@ Nodes (7): who, demo, demoHint, none, savedHint, title, unnamed
 Cohesion: 0.29
 Nodes (6): Fonts, pictures and sounds, Models (Poly Haven, CC0-1.0), Panoramas (Poly Haven, CC0-1.0), Suite assets — provenance and attribution, Textures (Poly Haven, CC0-1.0), Thumbnails
 
-### Community 142 - "EnvironmentEditor.ts"
-Cohesion: 0.20
-Nodes (14): needsSetup(), describeEnvironment(), validateEnvironment(), geminiConfigFromEnv(), llamaCppConfigFromEnv(), selectProvider(), destinationLine(), environmentEditor() (+6 more)
-
 ### Community 143 - "Assets and environments"
 Cohesion: 0.29
 Nodes (6): Add a photo room, Add an asset, Add or change an environment, Assets and environments, Budgets, Lighting
@@ -751,17 +745,21 @@ Nodes (3): env(), Writes public/suite/packs/*/environments.json (the environment
 Cohesion: 0.22
 Nodes (9): failed, hint, homeHint, homeOpen, homeTitle, loading, saved, setup (+1 more)
 
-### Community 146 - "tools.ts"
-Cohesion: 0.12
-Nodes (9): ChoiceType, FindStepProposal, hints, LevelProposal, NavigateStepProposal, PhotoPlacementProposal, ReadContext, rect (+1 more)
+### Community 146 - "Handler"
+Cohesion: 0.28
+Nodes (3): BaseHTTPRequestHandler, Handler, Local speech-to-text for the picture chat, using faster-whisper. The browser…
 
 ### Community 147 - "caregiver"
 Cohesion: 0.22
 Nodes (9): failed, hint, homeHint, homeOpen, homeTitle, loading, saved, setup (+1 more)
 
-### Community 148 - "Navigator"
-Cohesion: 0.23
-Nodes (3): angleDelta(), lookAngles(), Navigator
+### Community 148 - "aiSetup"
+Cohesion: 0.22
+Nodes (9): currentOffline, currentOnline, hint, offline, offlineHint, online, onlineHint, title (+1 more)
+
+### Community 149 - "aiSetup"
+Cohesion: 0.22
+Nodes (9): currentOffline, currentOnline, hint, offline, offlineHint, online, onlineHint, title (+1 more)
 
 ### Community 150 - "fetch-panoramas.mjs"
 Cohesion: 0.36
@@ -796,36 +794,32 @@ Cohesion: 0.50
 Nodes (4): textSizes, larger, largest, standard
 
 ### Community 159 - "chat"
-Cohesion: 0.12
-Nodes (17): ask, failed, hint, listen, listening, micError, micPermission, micUnavailable (+9 more)
+Cohesion: 0.10
+Nodes (21): ask, failed, hint, listen, listening, micError, micPermission, micUnavailable (+13 more)
 
-### Community 160 - "agent.check.ts"
-Cohesion: 0.20
-Nodes (5): PROPOSAL_FIXTURES, StubModel, AGENT_TOOL_SCHEMA, failures, rulesSeen
+### Community 160 - "vision"
+Cohesion: 0.25
+Nodes (8): vision, cues, held, label, samples, title, tracking, unmeasured
 
-### Community 161 - "minutes"
-Cohesion: 0.67
-Nodes (3): one, other, minutes
+### Community 161 - "shells/kit.ts"
+Cohesion: 0.33
+Nodes (5): LIGHT_COLOUR, Opening, V3, WallRun, ShellBuildContext
 
 ### Community 162 - "seconds"
 Cohesion: 0.67
 Nodes (3): one, other, seconds
 
 ### Community 164 - "chat"
-Cohesion: 0.12
-Nodes (17): ask, failed, hint, listen, listening, micError, micPermission, micUnavailable (+9 more)
-
-### Community 165 - "keyboard.ts"
-Cohesion: 0.25
-Nodes (7): ARROWS, BLOCKING_SELECTORS, keyAction, KeyContext, KeyInput, keysBlocked(), WALK_CODES
+Cohesion: 0.10
+Nodes (21): ask, failed, hint, listen, listening, micError, micPermission, micUnavailable (+13 more)
 
 ### Community 166 - "4. DESIGN ENGINEERING DIRECTIVES (Bias Correction)"
 Cohesion: 0.17
 Nodes (12): 4.10 Quotes & Testimonials, 4.11 Page Theme Lock (Light / Dark Mode Consistency), 4.1 Typography, 4.2 Color Calibration, 4.3 Layout Diversification, 4.4 Materiality, Shadows, Cards, 4.5 Interactive UI States, 4.6 Data & Form Patterns (+4 more)
 
-### Community 167 - "SceneObject"
-Cohesion: 0.24
-Nodes (6): Highlighter, pickObject(), ray, TINT, Tintable, SceneObject
+### Community 167 - "camera"
+Cohesion: 0.50
+Nodes (4): hint, open, title, camera
 
 ### Community 168 - "10. REFERENCE VOCABULARY (Pattern Names the Agent Should Know)"
 Cohesion: 0.20
@@ -919,9 +913,9 @@ Nodes (5): 8.A Token Strategy (pick one, stick to it), 8.B Do Not Prescribe Spec
 Cohesion: 0.40
 Nodes (5): 21. MOBILE ANTI-AI-TELLS RULE, Copy AI tells, Layout AI tells, UI clutter tells, Visual AI tells
 
-### Community 193 - "audio.ts"
-Cohesion: 0.25
-Nodes (8): choosePromptRoute(), findVoice(), norm(), Playing, PromptRoute, SuiteAudioOptions, VoiceLike, DisplaySound
+### Community 193 - "seconds"
+Cohesion: 0.67
+Nodes (3): one, other, seconds
 
 ### Community 195 - "7. DIAL DEFINITIONS (Technical Reference)"
 Cohesion: 0.50
@@ -959,17 +953,9 @@ Nodes (4): 20. EXAMPLE INTERPRETATIONS, Example 1, Example 2, Example 3
 Cohesion: 0.50
 Nodes (4): hint, open, title, guided
 
-### Community 204 - "steps"
-Cohesion: 0.50
-Nodes (4): steps, activity, place, who
-
 ### Community 205 - "guided"
 Cohesion: 0.50
 Nodes (4): hint, open, title, guided
-
-### Community 206 - "steps"
-Cohesion: 0.50
-Nodes (4): steps, activity, place, who
 
 ### Community 208 - "comfort"
 Cohesion: 0.50
@@ -979,37 +965,29 @@ Nodes (4): hint, open, title, comfort
 Cohesion: 0.50
 Nodes (4): hint, open, title, comfort
 
-### Community 211 - "plan.ts"
-Cohesion: 0.52
-Nodes (6): band(), cutsWall(), FLOOR, n(), planSvg(), rect()
-
 ### Community 212 - "camera"
 Cohesion: 0.50
 Nodes (4): hint, open, title, camera
 
-### Community 213 - "language"
-Cohesion: 0.67
-Nodes (3): language, machine, title
-
 ## Knowledge Gaps
-- **1341 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+1336 more)
-  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1728 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
-- **32 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **1393 isolated node(s):** `name`, `private`, `version`, `type`, `dev` (+1388 more)
+  These have ≤1 connection - possible missing edges or undocumented components. (Counts symbols only; 1789 node(s) total have ≤1 connection when file, concept and rationale nodes are included.)
+- **30 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `three` connect `three` to `pack.check.ts`, `Kit`, `package.json`, `proceduralHouse.ts`, `MemoryPack.ts`, `EnvironmentEditor.ts`, `navigator.ts`, `environments/index.ts`, `world.check.ts`, `shells/index.ts`, `SceneObject`, `main.ts`, `telemetry.check.ts`, `agent-review.check.ts`, `Quality.ts`, `suite-app.check.ts`, `ScenePhotoSurface`, `prototypes.ts`, `World.ts`, `worldSnapshot.ts`, `preview.ts`, `harness.ts`, `contracts.ts`, `resolveUnder`, `runtimeText.ts`, `suite-activities.check.ts`, `Missions.ts`, `app/index.ts`?**
-  _High betweenness centrality (0.114) - this node is a cross-community bridge._
-- **Why does `SuiteController` connect `SuiteController` to `resolveUnder`, `h`, `.constructor`, `keyboard.ts`, `SceneObject`, `main.ts`, `harness.ts`, `.update`, `app/index.ts`, `SuiteAudio`, `Navigator`, `app/app.ts`, `SuiteHost`, `.t`?**
-  _High betweenness centrality (0.024) - this node is a cross-community bridge._
-- **Why does `LocalProfile` connect `main.ts` to `proceduralHouse.ts`, `EnvironmentEditor.ts`, `model.ts`, `contracts.ts`, `SuiteHost`, `app/app.ts`, `i18n/index.ts`, `SuiteController`?**
-  _High betweenness centrality (0.018) - this node is a cross-community bridge._
+- **Why does `three` connect `three` to `pack.check.ts`, `Kit`, `package.json`, `proceduralHouse.ts`, `main.ts`, `suite-app.check.ts`, `agent-prompts.check.ts`, `environments/index.ts`, `world.check.ts`, `shells/index.ts`, `shells/kit.ts`, `LocalProfile.ts`, `telemetry.check.ts`, `agent-review.check.ts`, `memory-room.check.ts`, `prototypes.ts`, `World.ts`, `worldSnapshot.ts`, `preview.ts`, `materials.ts`, `harness.ts`, `contracts.ts`, `content/prompts.ts`, `runtimeText.ts`, `suite-activities.check.ts`, `Missions.ts`, `resolve.ts`?**
+  _High betweenness centrality (0.124) - this node is a cross-community bridge._
+- **Why does `SuiteController` connect `SuiteController` to `content/prompts.ts`, `ExploreView`, `Lightbox`, `LocalProfile.ts`, `harness.ts`, `suite-app.check.ts`, `settings.ts`, `app/app.ts`, `SuiteHost`, `.t`?**
+  _High betweenness centrality (0.025) - this node is a cross-community bridge._
 - **Are the 42 inferred relationships involving `boot()` (e.g. with `.activate()` and `.clear()`) actually correct?**
   _`boot()` has 42 INFERRED edges - model-reasoned connections that need verification._
 - **What connects `name`, `private`, `version` to the rest of the system?**
-  _1341 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _1393 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `pack.check.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.06039488966318235 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.058693244739756366 - nodes in this community are weakly interconnected._
 - **Should `brandkit/SKILL.md` be split into smaller, more focused modules?**
   _Cohesion score 0.045454545454545456 - nodes in this community are weakly interconnected._
+- **Should `MissionRunner` be split into smaller, more focused modules?**
+  _Cohesion score 0.11428571428571428 - nodes in this community are weakly interconnected._

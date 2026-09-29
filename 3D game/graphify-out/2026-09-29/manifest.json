@@ -816,9 +816,9 @@
     "semantic_hash": ""
   },
   "src/suite/app/screens.ts": {
-    "mtime": 1790659305.2649395,
-    "seen": 1790659370.58692,
-    "ast_hash": "017ec53392f194cd7f684f48d2f58da7",
+    "mtime": 1790659564.6665752,
+    "seen": 1790659587.832717,
+    "ast_hash": "6563c10a64b9056af2334dc0b01b7eaa",
     "semantic_hash": ""
   },
   "src/suite/app/settings.ts": {
@@ -834,9 +834,9 @@
     "semantic_hash": ""
   },
   "src/suite/app/styles.ts": {
-    "mtime": 1790659346.2961872,
-    "seen": 1790659370.586922,
-    "ast_hash": "95fd7edceb8c204170c7da65cb9dfab3",
+    "mtime": 1790659564.6668239,
+    "seen": 1790659587.8327198,
+    "ast_hash": "eeff2a4a4cd8cb868ddd68d942baed9a",
     "semantic_hash": ""
   },
   "src/suite/app/summary.ts": {
