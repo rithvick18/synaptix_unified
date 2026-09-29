@@ -98,6 +98,23 @@ generated. The surround is a blur of the same photograph.
 - It follows the rules below: the model is used for geometry only. Nothing is recognised,
   captioned or added.
 
+### A custom session has no template place
+
+When the chosen profile is a saved one with photographs, the session does not ask for a
+template place. Its environment is the caregiver's own photographs:
+
+- Home lists "Your photographs" in place of the place picker, then the activities.
+- The photo activity opens each photograph straight into its memory room, with the
+  caregiver's caption, people and prompt. Sounds and the guided sequence work as before.
+- Activities that need a template room's objects (familiar objects, familiar space) are
+  offered as "needs setup" and cannot be started.
+- A photograph without a stored depth map has one worked out the first time it is stepped
+  into (a few seconds, once per page load). "Make explorable" in Caregiver setup stores it
+  so it is ready every time.
+- The generic demo is unchanged and still uses the template places.
+
+The scene behind the photographs is an empty, quiet space (`src/suite/memoryRoom/customScene.ts`).
+
 ## Privacy
 
 - Everything a caregiver adds stays **in this browser on this device**, in IndexedDB.

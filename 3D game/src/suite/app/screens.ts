@@ -116,7 +116,7 @@ export function renderHome(c: SuiteController): HTMLElement {
     // Kept outside the disclosure: storage state matters even before a caregiver opens setup.
     warning ? h('p', { class: 's-notice', role: 'status' }, h('strong', { text: c.t('app.home.storage') + ' ' }), h('span', { lang: 'en', text: warning })) : null,
     h('hr', { class: 's-divider' }),
-    ...renderPlaceSection(c),
+    ...(c.customMode ? renderCustomSection(c) : renderPlaceSection(c)),
     more)
 }
 
@@ -194,7 +194,7 @@ function renderHero(c: SuiteController, disclaimer: string): HTMLElement {
       h('div', { class: 's-hero-actions' },
         h('button', { type: 'button', class: 's-primary s-cta', 'data-k': 'hero-begin', onclick: () => scrollTo('s-who', 'center') },
           h('span', { text: c.t('app.home.begin') }), h('span', { class: 's-cta-icon', 'aria-hidden': 'true', text: '↓' })),
-        slides.length ? visit : null)),
+        slides.length && !c.customMode ? visit : null)),
     slides.length ? h('div', { class: 's-hero-side' }, capKicker, capName, capDesc, reel) : null)
 
   if (slides.length) {
@@ -293,6 +293,27 @@ function renderPlaceSection(c: SuiteController): (HTMLElement | null)[] {
   return nodes
 }
 
+/**
+ * A custom profile has no template place to choose: its environment is its own photographs,
+ * each shown as a memory room. This lists them, then the activities.
+ */
+function renderCustomSection(c: SuiteController): (HTMLElement | null)[] {
+  const photos = (c.prepared?.resolved?.photos ?? []).filter((p) => p.personal)
+  const nodes: (HTMLElement | null)[] = [
+    h('div', { class: 's-section-head' },
+      h('h2', { id: 's-place-title', tabindex: -1, text: c.t('app.custom.title') }),
+      h('p', { class: 's-muted', text: c.t('app.custom.intro') }))
+  ]
+  if (photos.length) {
+    nodes.push(h('ul', { class: 's-grid s-custom-photos', 'aria-label': c.t('app.custom.title') },
+      photos.map((p) => h('li', { class: 's-choice s-photo' },
+        h('img', { class: 's-thumb', src: p.thumbUrl, alt: p.caption ? c.t('app.closeup.alt', { caption: p.caption }) : c.t('app.closeup.altNone'), loading: 'lazy', decoding: 'async' }),
+        p.caption ? h('span', { class: 's-photo-body' }, h('span', { class: 's-choice-title', text: p.caption })) : null))))
+  }
+  nodes.push(h('hr', { class: 's-divider' }), renderActivityPicker(c))
+  return nodes
+}
+
 /** The activity list, shown right under the place picker once a place is chosen. */
 function renderActivityPicker(c: SuiteController): HTMLElement {
   const section = h('section', { class: 's-acts-section', 'aria-labelledby': 's-activity-title' },
@@ -300,12 +321,12 @@ function renderActivityPicker(c: SuiteController): HTMLElement {
       h('p', { class: 's-step-tag', 'aria-hidden': 'true' }, h('b', { text: '3' }), c.t('app.home.steps.activity')),
       h('h2', { id: 's-activity-title', text: c.t('app.activity.title') }),
       h('p', { class: 's-muted', text: c.t('app.activity.note') })))
-  if (!c.choice) return section
+  if (!c.choice && !c.customMode) return section
 
   const content = c.content
-  const pack = content?.ok.find((p) => p.meta.id === c.choice!.packId)
-  const env = pack?.environments.find((e) => e.id === c.choice!.environmentId)
-  if (pack && env) {
+  const pack = c.choice ? content?.ok.find((p) => p.meta.id === c.choice!.packId) : undefined
+  const env = c.choice ? pack?.environments.find((e) => e.id === c.choice!.environmentId) : undefined
+  if (pack && env && !c.customMode) {
     section.append(h('p', { class: 's-place-chip' },
       env.thumbnail ? h('img', { src: resolveUnder(pack.baseUrl, env.thumbnail), alt: '', decoding: 'async' }) : null,
       h('span', { text: c.t('app.activity.place', { name: c.i18n!.text(env.name, env.id) }) })))
@@ -418,7 +439,7 @@ export function renderSummary(c: SuiteController): HTMLElement {
   page.append(h('section', { class: 's-card', 'aria-label': c.t('app.summary.title') },
     h('dl', { class: 's-facts' },
       fact(c.t('app.summary.activity'), activityName),
-      fact(c.t('app.summary.place'), env ? i18n.text(env.name, env.id) : s.environmentId),
+      fact(c.t('app.summary.place'), env ? i18n.text(env.name, env.id) : s.packId === 'custom' ? c.t('app.custom.title') : s.environmentId),
       fact(c.t('app.summary.content'), s.profile === 'saved' ? c.t('app.badge.personal') : c.t('app.home.who.demo')),
       fact(c.t('app.summary.time'), durationText(c, s.durationMs)),
       s.pausedMs > 0 ? fact(c.t('app.summary.paused'), durationText(c, s.pausedMs)) : [],

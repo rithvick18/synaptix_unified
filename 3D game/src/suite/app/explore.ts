@@ -354,9 +354,9 @@ export class ExploreView {
     list[next].scrollIntoView({ block: 'nearest', inline: 'nearest', behavior: this.c.settings.reducedMotion ? 'auto' : 'smooth' })
   }
 
-  openLightbox(photo: DisplayPhoto, item: ActivityItem): void {
+  openLightbox(photo: DisplayPhoto, item: ActivityItem, options: { room?: boolean } = {}): void {
     this.closeLightbox(false)
-    this.lightbox = new Lightbox(this.c, photo, item)
+    this.lightbox = new Lightbox(this.c, photo, item, options.room === true)
     this.el.append(this.lightbox.el)
     this.lightbox.focus()
   }
@@ -547,7 +547,8 @@ class Lightbox {
   constructor(
     private readonly c: SuiteController,
     private readonly photo: DisplayPhoto,
-    private readonly item: ActivityItem
+    private readonly item: ActivityItem,
+    autoRoom = false
   ) {
     const t = (k: string, v?: Record<string, string | number>): string => c.t(k, v)
     this.img = h('img', { src: photo.url, alt: photo.caption ? t('app.closeup.alt', { caption: photo.caption }) : t('app.closeup.altNone'), draggable: 'false' })
@@ -562,7 +563,7 @@ class Lightbox {
       button(t('app.closeup.zoomIn'), () => this.zoomBy(1.25), { 'data-k': 'zoom-in' }),
       button(t('app.closeup.fit'), () => this.reset(), { 'data-k': 'zoom-fit' })
     ]
-    this.roomButton = photo.hasDepth && photo.loadDepth
+    this.roomButton = photo.loadDepth
       ? button(t('app.closeup.stepIn'), () => { void this.toggleRoom() }, { 'data-k': 'room-toggle', 'aria-pressed': 'false' })
       : null
     this.el = h('div', { class: 's-lightbox', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 's-lightbox-title' },
@@ -587,6 +588,7 @@ class Lightbox {
     this.bind()
     this.update()
     this.apply()
+    if (autoRoom && this.roomButton) void this.toggleRoom()
   }
 
   focus(): void {
@@ -621,7 +623,10 @@ class Lightbox {
   private async toggleRoom(): Promise<void> {
     if (this.room) { this.leaveRoom(); this.roomButton?.focus(); return }
     const t = (k: string): string => this.c.t(k)
+    this.showRoomNote(t('app.closeup.roomWorking'))
+    if (this.roomButton) this.roomButton.disabled = true
     const depth = await this.photo.loadDepth?.()
+    if (this.roomButton) this.roomButton.disabled = false
     if (!depth || this.el.isConnected === false) { this.showRoomNote(t('app.closeup.roomUnavailable')); return }
     this.reset()
     const room = new MemoryRoomView({

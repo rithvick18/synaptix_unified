@@ -39,6 +39,7 @@ import { renderSettingsDialog } from './settingsPanel'
 import { SUITE_CSS } from './styles'
 import { summaryFromLog } from './summary'
 import { VisionSampler, computeVisionNote } from './vision'
+import { buildCustomPack, buildCustomScene, CUSTOM_ENVIRONMENT_ID, CUSTOM_PACK_ID } from '../memoryRoom/customScene'
 
 export type Screen = 'home' | 'explore' | 'summary' | 'hidden'
 
@@ -542,27 +543,37 @@ export class SuiteController {
 
   // ------------------------------------------------------------------ prepare
 
+  /** True when the session is for a saved profile that has photographs: its environment is those
+   *  photographs (memory rooms), not a template place. */
+  get customMode(): boolean {
+    if (this.profileMode !== 'saved' || !this.savedProfile) return false
+    try { return this.deps.suiteOf(this.savedProfile).photos.length > 0 } catch { return false }
+  }
+
   private prepareKey(): string | null {
-    if (!this.choice || !this.i18n) return null
+    if (!this.i18n) return null
+    if (this.customMode) return ['custom', this.profileVersion, this.i18n.language].join('|')
+    if (!this.choice) return null
     return [this.profileMode, this.profileVersion, this.choice.packId, this.choice.environmentId, this.i18n.language].join('|')
   }
 
   prepare(): Promise<Prepared> {
     const key = this.prepareKey()
-    if (!key || !this.i18n || !this.choice) return Promise.reject(new Error('nothing chosen'))
+    const custom = this.customMode
+    if (!key || !this.i18n || (!custom && !this.choice)) return Promise.reject(new Error('nothing chosen'))
     if (this.prepared?.key === key) return Promise.resolve(this.prepared)
     if (this.preparing?.key === key) return this.preparing.promise
     this.disposePrepared()
     const gen = ++this.gen
     const i18n = this.i18n
-    const choice = this.choice
+    const choice = custom ? { packId: CUSTOM_PACK_ID, environmentId: CUSTOM_ENVIRONMENT_ID } : this.choice!
     const profile = this.profileMode === 'saved' ? this.savedProfile : undefined
     this.prepareError = false
     this.prepareProgress = { done: 0, total: 1 }
     const promise = (async (): Promise<Prepared> => {
-      const content = await this.ensureContent()
-      const pack = content.ok.find((p) => p.meta.id === choice.packId)
-      if (!pack || !pack.environments.some((e) => e.id === choice.environmentId)) throw new Error('place not available')
+      const content = custom ? null : await this.ensureContent()
+      const pack = custom ? buildCustomPack() : content!.ok.find((p) => p.meta.id === choice.packId)
+      if (!pack || (!custom && !pack.environments.some((e) => e.id === choice.environmentId))) throw new Error('place not available')
       let resolved: ResolvedSuiteProfile | null = null
       let media: SuiteMediaApi | null = null
       let packMedia: Prepared['packMedia'] | null = null
@@ -578,11 +589,11 @@ export class SuiteController {
           resolved = r.resolved
           media = r.media
         }
-        packMedia = this.deps.packDisplayMedia(pack, i18n)
-        scene = await this.deps.buildSuiteScene({
+        packMedia = custom ? { demoPhotos: [], packSounds: [], dispose: () => undefined } : this.deps.packDisplayMedia(pack, i18n)
+        scene = custom ? buildCustomScene(i18n) : await this.deps.buildSuiteScene({
           pack,
           environmentId: choice.environmentId,
-          library: content.library,
+          library: content!.library,
           i18n,
           overrides: resolved?.objectOverrides(pack.meta.id, choice.environmentId),
           avoidTopics: resolved?.topics.avoid ?? [],
@@ -685,6 +696,8 @@ export class SuiteController {
 
   availability(kind: ActivityKind): { ok: true } | { ok: false; reasonKey: string } | null {
     if (!this.prepared) return null
+    // A custom session's photographs are its whole environment: there is no room to tour.
+    if (this.customMode && kind === 'space') return { ok: false, reasonKey: 'activities.unavailable.noObjects' }
     try {
       return this.deps.ACTIVITIES[kind].available(this.prepared.ctx)
     } catch (err) {
@@ -843,6 +856,11 @@ export class SuiteController {
       if (run.objectCloseup) {
         run.objectCloseup = null
         session.noteCloseup(false)
+      }
+      if (current && this.customMode && current.kind === 'photo') {
+        // A custom session has no room to look at: the photograph is the place.
+        this.explore?.openLightbox(current.photo, current, { room: true })
+        session.noteCloseup(true)
       }
       if (current) {
         const obj = this.objectForItem(current)

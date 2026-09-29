@@ -490,7 +490,8 @@ export interface SceneReport {
 export interface SuiteScene {
   readonly packId: string
   readonly environmentId: string
-  readonly shell: ShellId
+  /** A custom session's scene has no template shell: 'memoryRoom'. */
+  readonly shell: ShellId | 'memoryRoom'
   root: THREE.Group
   blockers: THREE.Box3[]
   /** Floor area the walking mode may use. */

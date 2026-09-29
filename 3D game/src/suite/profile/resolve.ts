@@ -9,6 +9,7 @@
 import * as THREE from 'three'
 import type { CaregiverPrompt, PhotoDepth, DisplayPhoto, DisplaySound, ResolvedPrompt, ResolvedSuiteProfile, ResolveSuiteProfile, SuiteMediaApi } from '../contracts'
 import type { Photo } from '../../LocalProfile'
+import type { DepthMap } from '../memoryRoom/depthMesh'
 import { unpackDepth } from '../memoryRoom/depthStore'
 import { envKey, objectPromptKey, suiteOf } from './model'
 
@@ -100,6 +101,18 @@ function resolvePrompt(prompt: CaregiverPrompt | undefined, media: SuiteMedia): 
   return { text: prompt.text, lang: prompt.lang, source: 'caregiver', ...(audioUrl ? { audioUrl } : {}) }
 }
 
+/** Depth worked out when a photograph is first stepped into, once per photograph per page load. */
+const onDemandDepth = new Map<string, Promise<DepthMap | null>>()
+function depthOnDemand(photo: Photo): Promise<DepthMap | null> {
+  let pending = onDemandDepth.get(photo.id)
+  if (!pending) {
+    pending = import('../memoryRoom/depthClient').then(async ({ estimateDepth }) => unpackDepth(await estimateDepth(photo.runtime)))
+      .catch((error: unknown) => { console.warn('[suite profile] depth could not be worked out', error); onDemandDepth.delete(photo.id); return null })
+    onDemandDepth.set(photo.id, pending)
+  }
+  return pending
+}
+
 function displayPhoto(
   id: string, photo: Photo, media: SuiteMedia, cap: number,
   fields: Pick<DisplayPhoto, 'caption' | 'people' | 'prompt' | 'topics'> & { preferredSurface?: string; depth?: PhotoDepth }
@@ -119,7 +132,8 @@ function displayPhoto(
     prompt: fields.prompt,
     ...(fields.preferredSurface ? { preferredSurface: fields.preferredSurface } : {}),
     topics: fields.topics,
-    ...(depth ? { hasDepth: true, loadDepth: () => unpackDepth(depth) } : {}),
+    ...(depth ? { hasDepth: true } : {}),
+    loadDepth: () => depth ? unpackDepth(depth) : depthOnDemand(photo),
     texture() {
       texture ??= textureFromBlob(photo.runtime, photo.width, photo.height, cap, media)
       return texture

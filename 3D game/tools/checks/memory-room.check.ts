@@ -5,6 +5,7 @@
 import * as THREE from 'three'
 import { buildDepthGeometry, dropSmallIslands, normaliseDepth } from '../../src/suite/memoryRoom/depthMesh'
 import { packDepth, unpackDepth, STORE_EDGE } from '../../src/suite/memoryRoom/depthStore'
+import { buildCustomPack, buildCustomScene, CUSTOM_ENVIRONMENT_ID, CUSTOM_PACK_ID } from '../../src/suite/memoryRoom/customScene'
 import { suiteOf } from '../../src/suite/profile'
 import { newProfile, type Photo } from '../../src/LocalProfile'
 
@@ -97,6 +98,16 @@ async function main(): Promise<void> {
   ok(suite.photos[2].depth === undefined, 'a photograph without depth stays without')
   const cloned = structuredClone(suite.photos[0])
   ok(cloned.depth?.data instanceof Blob && cloned.depth.data.size === packed.data.size, 'depth survives a structuredClone (IndexedDB) round trip')
+
+  // ---- custom place
+  const scene = buildCustomScene()
+  ok(scene.packId === CUSTOM_PACK_ID && scene.environmentId === CUSTOM_ENVIRONMENT_ID, 'the custom scene names its own place')
+  ok(scene.objects.length === 0 && scene.blockers.length === 0, 'the custom scene has no template objects')
+  ok(scene.root.children.length > 0, 'the custom scene has a quiet surround')
+  const pack = buildCustomPack()
+  ok(pack.environments.length === 0 && pack.prompts.length === 0 && pack.sounds.length === 0, 'the custom pack brings no template content')
+  scene.dispose()
+  ok(scene.root.parent === null, 'disposing the custom scene detaches it')
 
   console.log(`memory-room: ${passed} passed, ${failures.length} failed`)
   if (failures.length) process.exit(1)

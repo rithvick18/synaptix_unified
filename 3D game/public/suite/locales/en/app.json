@@ -185,6 +185,10 @@
     "stay": "Keep exploring",
     "confirm": "End activity"
   },
+  "custom": {
+    "title": "Your photographs",
+    "intro": "This session uses the photographs added in Caregiver setup. Each one can be stepped into and looked around a little."
+  },
   "closeup": {
     "title": "Close-up",
     "close": "Close",
@@ -201,7 +205,8 @@
     "stepOut": "Back to the picture",
     "roomLabel": "The photograph, shown in depth. Move the pointer, or use the arrow keys, to look around a little.",
     "roomHint": "Move the pointer or use the arrow keys to look around a little. Only what is in the photograph is shown.",
-    "roomUnavailable": "This photograph cannot be shown in depth right now."
+    "roomUnavailable": "This photograph cannot be shown in depth right now.",
+    "roomWorking": "Working out depth. The first time can take a few seconds…"
   },
   "summary": {
     "title": "Session summary",
