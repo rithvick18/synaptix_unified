@@ -169,9 +169,10 @@ async function boot(): Promise<void> {
   // Assigned once the level screen exists. Null until then, so a mode chosen while the
   // house is still loading records itself without reaching for a screen that is not up.
   let relabelSetupButton: (() => void) | null = null
-  const openSetup = (onClose?: () => void): void => {
+  const openSetup = (onClose?: () => void, initialMode?: 'offline' | 'online'): void => {
     openSetupScreen({
       config: agentConfig,
+      initialMode,
       envApiKey: env.VITE_GEMINI_API_KEY,
       onSave: (next) => {
         agentConfig = next
@@ -181,7 +182,7 @@ async function boot(): Promise<void> {
       onClose
     })
   }
-  if (needsSetup(agentConfig)) openSetup()
+  if (needsSetup(agentConfig)) openSetup(() => suite.showHome())
 
   const renderer = new Renderer(app)
   const state = new State()
@@ -795,7 +796,8 @@ async function boot(): Promise<void> {
       const { text } = await response.json() as { text?: string }
       return (text ?? '').trim()
     },
-    openAiSetup: () => openSetup(),
+    openAiSetup: (mode) => openSetup(() => suite.showHome(), mode),
+    get aiSetupMode() { return agentConfig.setupMode },
     setActive: (active) => setSuiteActive(active),
     openGuidedTasks: () => {
       setSuiteActive(false)

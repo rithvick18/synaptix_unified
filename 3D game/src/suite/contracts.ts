@@ -911,7 +911,9 @@ export interface SuiteHost {
   answerAboutPicture?(request: { imageUrl: string; question: string; history: readonly { role: 'user' | 'assistant'; text: string }[]; imageContext?: 'room' | 'picture' }): Promise<string>
   /** Local faster-whisper transcription of a recorded question (tools/stt/server.py). */
   transcribeSpeech?(audio: Blob, language?: string): Promise<string>
-  openAiSetup?(): void
+  openAiSetup?(mode?: 'offline' | 'online'): void
+  /** Current caregiver setup mode for the home screen. */
+  aiSetupMode?: 'offline' | 'online' | null
   /** Hands the screen to the suite (true) or back to the house and guided tasks (false):
    *  hides/shows the house, stops the house loop's player and interaction. */
   setActive(active: boolean): void

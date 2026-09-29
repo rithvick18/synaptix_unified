@@ -29,6 +29,8 @@ import {
 
 export interface SetupScreenOptions {
   config: AgentConfig
+  /** Optional mode selected from the suite home screen. */
+  initialMode?: SetupMode
   /** `VITE_GEMINI_API_KEY`, offered as the starting value of the key field. */
   envApiKey?: string
   /** Called with the new config once a mode is chosen. Persisting is the caller's. */
@@ -118,7 +120,7 @@ export function openSetupScreen(options: SetupScreenOptions): HTMLElement {
     'Memoria can build the look of the home from photographs of your own rooms. Choose where the model that reads them runs. Playing a level never uses it — this is only for building the home, and you can change the answer later from the level screen.'
   sheet.append(heading, lede)
 
-  let mode: SetupMode = options.config.setupMode ?? 'offline'
+  let mode: SetupMode = options.initialMode ?? options.config.setupMode ?? 'offline'
   let apiKey = options.config.apiKey || options.envApiKey || ''
 
   const panels = new Map<SetupMode, HTMLElement>()

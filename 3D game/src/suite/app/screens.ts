@@ -53,6 +53,23 @@ export function renderHome(c: SuiteController): HTMLElement {
         onclick: () => document.getElementById('s-place-title')?.scrollIntoView({ behavior: c.settings.reducedMotion ? 'auto' : 'smooth', block: 'start' })
       }, c.t('app.home.start'))))
 
+  const aiMode = c.host.aiSetupMode
+  const aiSetup = h('section', { class: 's-card', 'aria-labelledby': 's-ai-setup' },
+    h('h2', { id: 's-ai-setup', text: c.tOr('app.home.aiSetup.title', 'AI setup') }),
+    h('p', { class: 's-muted', text: c.tOr('app.home.aiSetup.hint', 'Choose where caregiver AI features run. You can change this later.') }),
+    h('div', { class: 's-grid', role: 'group', 'aria-labelledby': 's-ai-setup' },
+      h('button', { type: 'button', class: 's-choice', 'aria-pressed': String(aiMode === 'offline'), 'data-k': 'ai-mode-offline',
+        onclick: () => c.openAiSetup?.('offline') },
+        h('span', { class: 's-choice-title', text: c.tOr('app.home.aiSetup.offline', 'Offline · Gemma on this device') }),
+        h('span', { class: 's-muted s-small', text: c.tOr('app.home.aiSetup.offlineHint', 'Runs locally. Requires the Gemma server.') })),
+      h('button', { type: 'button', class: 's-choice', 'aria-pressed': String(aiMode === 'online'), 'data-k': 'ai-mode-online',
+        onclick: () => c.openAiSetup?.('online') },
+        h('span', { class: 's-choice-title', text: c.tOr('app.home.aiSetup.online', 'Online · Google Gemini') }),
+        h('span', { class: 's-muted s-small', text: c.tOr('app.home.aiSetup.onlineHint', 'Uses Google for caregiver AI features.') }))),
+    aiMode ? h('p', { class: 's-small s-muted', role: 'status', text: aiMode === 'offline'
+      ? c.tOr('app.home.aiSetup.currentOffline', 'Current choice: offline.')
+      : c.tOr('app.home.aiSetup.currentOnline', 'Current choice: online.') }) : null)
+
   const info = i18n.info()
   const language = h('section', { class: 's-card', 'aria-labelledby': 's-lang' },
     h('h2', { id: 's-lang', text: c.t('app.home.language.title') }),
@@ -95,7 +112,7 @@ export function renderHome(c: SuiteController): HTMLElement {
   const disclaimer = c.tOr('common.disclaimer', 'app.disclaimer')
   return h('div', { class: 's-page s-home' },
     renderHero(c, disclaimer),
-    who, language,
+    who, aiSetup, language,
     // Kept outside the disclosure: storage state matters even before a caregiver opens setup.
     warning ? h('p', { class: 's-notice', role: 'status' }, h('strong', { text: c.t('app.home.storage') + ' ' }), h('span', { lang: 'en', text: warning })) : null,
     h('hr', { class: 's-divider' }),

@@ -31,6 +31,16 @@
       "demoHint": "Demo content only. No personal information.",
       "none": "No personal profile is saved on this device yet. A caregiver can make one in Caregiver setup."
     },
+    "aiSetup": {
+      "title": "AI setup",
+      "hint": "Choose where caregiver AI features run. You can change this later.",
+      "offline": "Offline · Gemma on this device",
+      "offlineHint": "Runs locally. Requires the Gemma server.",
+      "online": "Online · Google Gemini",
+      "onlineHint": "Uses Google for caregiver AI features.",
+      "currentOffline": "Current choice: offline.",
+      "currentOnline": "Current choice: online."
+    },
     "language": {
       "title": "Language",
       "machine": "This translation was machine-generated and has not yet been reviewed by a fluent speaker."
