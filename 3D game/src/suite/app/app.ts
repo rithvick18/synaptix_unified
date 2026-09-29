@@ -129,6 +129,7 @@ export class SuiteController {
   private overlay: Overlay = null
   private overlayStack: { kind: Overlay; el: HTMLElement; untrap: () => void; returnFocus: HTMLElement | null }[] = []
   private readonly pressed = new Set<string>()
+  private touchMove: { x: number; z: number } | null = null
   private cameraLineAcc = 0
   private lastCameraLine = ''
   private pointer: { id: number; x: number; y: number; startX: number; startY: number; at: number; moved: number } | null = null
@@ -211,6 +212,21 @@ export class SuiteController {
     this.applySettings()
   }
 
+  /** Movement input from the on-screen first-person D-pad. */
+  setTouchMove(move: { x: number; z: number } | null): void {
+    this.touchMove = move
+    this.refreshMove()
+  }
+
+  private refreshMove(): void {
+    const keyboard = walkVector(this.pressed)
+    let x = keyboard.x + (this.touchMove?.x ?? 0)
+    let z = keyboard.z + (this.touchMove?.z ?? 0)
+    const length = Math.hypot(x, z)
+    if (length > 1) { x /= length; z /= length }
+    this.nav.setMove({ x, z })
+  }
+
   private applySettings(): void {
     const s = this.settings
     this.root.style.setProperty('--s-scale', String(s.textScale))
@@ -221,7 +237,8 @@ export class SuiteController {
       this.applyAudioSettings(this.run.audio)
       if (this.nav.mode !== s.navigation) this.nav.setMode(s.navigation)
       this.pressed.clear()
-      this.nav.setMove({ x: 0, z: 0 })
+      this.touchMove = null
+      this.refreshMove()
     } else {
       this.nav.mode = s.navigation
     }
@@ -1294,17 +1311,18 @@ export class SuiteController {
           e.preventDefault()
           if (this.run && !this.run.session.paused) {
             this.pressed.add(e.code)
-            this.nav.setMove(walkVector(this.pressed))
+            this.refreshMove()
           }
           break
       }
     }
     const onUp = (e: KeyboardEvent): void => {
-      if (this.pressed.delete(e.code)) this.nav.setMove(walkVector(this.pressed))
+      if (this.pressed.delete(e.code)) this.refreshMove()
     }
     const onBlur = (): void => {
       this.pressed.clear()
-      this.nav.setMove({ x: 0, z: 0 })
+      this.touchMove = null
+      this.refreshMove()
     }
     window.addEventListener('keydown', onDown)
     window.addEventListener('keyup', onUp)

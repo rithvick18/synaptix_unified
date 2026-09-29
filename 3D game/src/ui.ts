@@ -370,6 +370,9 @@ export class UI {
   private hintText: string | null = null
   private card: AnswerCardOptions | null = null
   private controlsHtml: string | null | undefined = undefined
+  private promptHtml: string | null | undefined = undefined
+  private hudHtml: string | null | undefined = undefined
+  private perfText: string | null | undefined = undefined
 
   constructor(parent: HTMLElement) {
     const style = document.createElement('style')
@@ -640,6 +643,8 @@ export class UI {
   // --- Crosshair prompt --------------------------------------------------------
 
   setPrompt(text: string | null): void {
+    if (text === this.promptHtml) return
+    this.promptHtml = text
     if (text) {
       this.promptEl.innerHTML = text
       this.promptEl.classList.add('show')
@@ -651,10 +656,14 @@ export class UI {
   }
 
   setHud(html: string): void {
+    if (html === this.hudHtml) return
+    this.hudHtml = html
     this.hudTopEl.innerHTML = html
   }
 
   setPerf(text: string): void {
+    if (text === this.perfText) return
+    this.perfText = text
     this.perfEl.textContent = text
   }
 

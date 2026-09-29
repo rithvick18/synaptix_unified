@@ -142,6 +142,21 @@ export const SUITE_CSS = `
 #suite .s-caregiver { border-top: 1px dashed var(--s-border); padding-top: 0.8em; display: flex; flex-direction: column; gap: 0.6em; }
 #suite .s-items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4em; }
 #suite .s-items button { width: 100%; text-align: start; }
+#suite .s-explore-root { position: absolute; inset: 0; pointer-events: none; }
+#suite .s-navigation-tools { position: absolute; top: 16px; right: 16px; display: flex; flex-direction: column;
+  align-items: flex-end; gap: 0.5em; pointer-events: none; }
+#suite .s-navigation-tools > * { pointer-events: auto; }
+#suite .s-nav-toggle { display: flex; gap: 3px; padding: 4px; border: 1px solid rgba(60,50,40,.2); border-radius: 14px;
+  background: rgba(255,255,255,.94); box-shadow: 0 2px 12px rgba(30,25,20,.2); }
+#suite .s-nav-toggle .s-nav-choice { min-height: 44px; padding: .45em .8em; border: 0; background: transparent; }
+#suite .s-nav-toggle .s-nav-choice[aria-pressed="true"] { background: var(--s-accent); color: var(--s-on-accent); box-shadow: none; }
+#suite .s-navpad { display: flex; flex-direction: column; gap: 4px; padding: 6px; border: 1px solid var(--s-border);
+  border-radius: 16px; background: rgba(255,255,255,.82); box-shadow: 0 2px 12px rgba(30,25,20,.18); touch-action: none; }
+#suite .s-navpad[hidden] { display: none; }
+#suite .s-navpad-row { display: flex; justify-content: center; gap: 4px; }
+#suite .s-navpad .s-nav-key { width: 48px; height: 48px; min-width: 48px; min-height: 48px; padding: 0;
+  font-size: 1.25em; touch-action: none; user-select: none; -webkit-user-select: none; }
+#suite.s-hc .s-navpad, #suite.s-hc .s-nav-toggle { background: var(--s-bg); border: 2px solid var(--s-border); box-shadow: none; }
 
 @media (min-width: 768px) {
   #suite .s-panel { left: 16px; top: 16px; bottom: 16px; width: clamp(20em, 36vw, 28em); max-width: calc(100vw - 32px);

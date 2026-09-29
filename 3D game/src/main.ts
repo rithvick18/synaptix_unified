@@ -828,6 +828,10 @@ async function boot(): Promise<void> {
       samplePerf(frameMs)
       return
     }
+    // The home, level select and other non-game screens are static. RAF stays alive so
+    // this becomes immediate on the first frame after the player resumes, but the GPU
+    // does not redraw the house while it is hidden behind an overlay.
+    if (!started || state.current === 'paused' || state.current === 'completed') return
     // Worlds with moving parts (doors) advance first, so collision and the raycast this
     // frame both see where the door actually is. Shadow maps are static otherwise.
     if (world.update?.(dt)) renderer.refreshShadows()

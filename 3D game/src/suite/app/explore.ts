@@ -30,6 +30,8 @@ export class ExploreView {
   private readonly caregiver: HTMLElement
   private readonly moveHint: HTMLElement
   private readonly cameraLine: HTMLElement
+  private readonly navPad: HTMLElement
+  private readonly navButtons: { button: HTMLButtonElement; labelKey: string }[] = []
   private stripButtons = new Map<string, HTMLButtonElement>()
   private itemButtons = new Map<string, HTMLButtonElement>()
   private lightbox: Lightbox | null = null
@@ -69,6 +71,32 @@ export class ExploreView {
     this.moveHint = h('p', { class: 's-muted s-small' })
     this.cameraLine = h('p', { class: 's-muted s-small', 'data-camera-line': 'hide-off', role: 'status' })
 
+    const directionButton = (labelKey: string, symbol: string, move: { x: number; z: number }): HTMLButtonElement => {
+      const b = button(symbol, () => undefined, { class: 's-nav-key', 'aria-label': c.t(labelKey), 'data-k': `nav-${labelKey.split('.').at(-1)}` })
+      this.navButtons.push({ button: b, labelKey })
+      const start = (e: PointerEvent): void => {
+        e.preventDefault()
+        b.setPointerCapture?.(e.pointerId)
+        c.setTouchMove(move)
+      }
+      const stop = (e: PointerEvent): void => {
+        if (b.hasPointerCapture?.(e.pointerId)) b.releasePointerCapture(e.pointerId)
+        c.setTouchMove(null)
+      }
+      b.addEventListener('pointerdown', start)
+      b.addEventListener('pointerup', stop)
+      b.addEventListener('pointercancel', stop)
+      b.addEventListener('lostpointercapture', () => c.setTouchMove(null))
+      return b
+    }
+    const forward = directionButton('app.explore.moveForward', '↑', { x: 0, z: 1 })
+    const backward = directionButton('app.explore.moveBackward', '↓', { x: 0, z: -1 })
+    const left = directionButton('app.explore.moveLeft', '←', { x: -1, z: 0 })
+    const right = directionButton('app.explore.moveRight', '→', { x: 1, z: 0 })
+    this.navPad = h('div', { class: 's-navpad', role: 'group', 'aria-label': c.t('app.explore.moveControls') },
+      h('div', { class: 's-navpad-row s-navpad-top' }, forward),
+      h('div', { class: 's-navpad-row' }, left, backward, right))
+
     const body = h('div', { class: 's-panel-body' },
       h('header', { class: 's-row' }, h('div', { style: 'flex: 1 1 12em; min-width: 0' }, this.kicker, this.title), this.badge),
       this.prompt, this.promptHidden, this.cue, this.freeHint, this.notice, this.caption,
@@ -81,7 +109,11 @@ export class ExploreView {
       this.cameraLine)
     const foot = h('div', { class: 's-panel-foot' }, this.buttons.pause, this.buttons.exit)
     this.panel = h('aside', { class: 's-panel', 'aria-labelledby': 's-item-title' }, body, foot)
-    this.el = h('div', { class: 's-explore-root' }, this.panel)
+    this.el = h('div', { class: 's-explore-root' }, this.panel,
+      h('div', { class: 's-navigation-tools' },
+        h('div', { class: 's-nav-toggle', role: 'group', 'aria-label': c.t('app.explore.navigationMode') },
+          button(c.t('app.explore.seatedMode'), () => c.updateSettings({ navigation: 'seated' }), { class: 's-nav-choice', 'data-k': 'nav-seated' }),
+          button(c.t('app.explore.walkMode'), () => c.updateSettings({ navigation: 'walk' }), { class: 's-nav-choice', 'data-k': 'nav-walk' })), this.navPad))
     this.rebuild()
   }
 
@@ -267,6 +299,15 @@ export class ExploreView {
       else btn.removeAttribute('aria-current')
     }
     this.moveHint.textContent = c.settings.navigation === 'walk' ? t('app.explore.walkHint') : t('app.explore.lookHint')
+    const navToggle = this.el.querySelector<HTMLElement>('.s-nav-toggle')
+    navToggle?.setAttribute('aria-label', t('app.explore.navigationMode'))
+    const seated = navToggle?.querySelector<HTMLButtonElement>('[data-k="nav-seated"]')
+    const walk = navToggle?.querySelector<HTMLButtonElement>('[data-k="nav-walk"]')
+    if (seated) seated.setAttribute('aria-pressed', String(c.settings.navigation === 'seated'))
+    if (walk) walk.setAttribute('aria-pressed', String(c.settings.navigation === 'walk'))
+    this.navPad.setAttribute('aria-label', t('app.explore.moveControls'))
+    for (const { button: b, labelKey } of this.navButtons) b.setAttribute('aria-label', t(labelKey))
+    this.navPad.hidden = c.settings.navigation !== 'walk'
 
     const camOn = c.cameraOn()
     this.cameraLine.hidden = !camOn
@@ -454,4 +495,3 @@ class Lightbox {
     st.addEventListener('pointercancel', up)
   }
 }
-
