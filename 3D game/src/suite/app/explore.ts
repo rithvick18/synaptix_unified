@@ -32,6 +32,7 @@ export class ExploreView {
   private readonly cameraLine: HTMLElement
   private readonly navPad: HTMLElement
   private readonly chatInput: HTMLTextAreaElement
+  private readonly chatTitle: HTMLElement
   private readonly chatStatus: HTMLElement
   private readonly chatReply: HTMLElement
   private readonly chatListen: HTMLButtonElement
@@ -39,6 +40,10 @@ export class ExploreView {
   private chatBusy = false
   private recognition: SpeechRecognitionLike | null = null
   private recognitionError = false
+  private recorder: MediaRecorder | null = null
+  private recordingStream: MediaStream | null = null
+  private recordingChunks: BlobPart[] = []
+  private recordingTimer: ReturnType<typeof setTimeout> | null = null
   private readonly chatHistory: { role: 'user' | 'assistant'; text: string }[] = []
   private chatPhotoId = ''
   private readonly navButtons: { button: HTMLButtonElement; labelKey: string }[] = []
@@ -81,13 +86,14 @@ export class ExploreView {
     this.moveHint = h('p', { class: 's-muted s-small' })
     this.cameraLine = h('p', { class: 's-muted s-small', 'data-camera-line': 'hide-off', role: 'status' })
     this.chatInput = h('textarea', { rows: 2, 'data-k': 'chat-input', placeholder: c.t('app.explore.chat.placeholder') })
+    this.chatTitle = h('h3', { id: 's-chat-title', text: c.t('app.explore.chat.title') })
     this.chatStatus = h('p', { class: 's-muted s-small', role: 'status', 'aria-live': 'polite' })
     this.chatReply = h('p', { class: 's-chat-reply', 'aria-live': 'polite' })
     this.chatListen = button(c.t('app.explore.chat.listen'), () => this.startListening(), { 'data-k': 'chat-listen' })
     const chatAsk = button(c.t('app.explore.chat.ask'), () => { void this.sendChat() }, { class: 's-primary', 'data-k': 'chat-ask' })
     this.chatSetup = button(c.t('app.explore.chat.setup'), () => c.openAiSetup(), { 'data-k': 'chat-setup' })
     const chat = h('section', { class: 's-chat', 'aria-labelledby': 's-chat-title' },
-      h('h3', { id: 's-chat-title', text: c.t('app.explore.chat.title') }),
+      this.chatTitle,
       h('p', { class: 's-muted s-small', text: c.t('app.explore.chat.hint') }),
       this.chatInput, h('div', { class: 's-row' }, this.chatListen, chatAsk, this.chatSetup), this.chatStatus, this.chatReply)
 
@@ -216,6 +222,9 @@ export class ExploreView {
     const cur = s.current
     const t = (k: string, v?: Record<string, string | number>): string => c.t(k, v)
     const def = c.deps.ACTIVITIES[run.kind]
+    const roomContext = !!this.prep.scene.roomContextImageUrl
+    this.chatTitle.textContent = t(roomContext ? 'app.explore.chat.roomTitle' : 'app.explore.chat.title')
+    this.chatInput.placeholder = t(roomContext ? 'app.explore.chat.roomPlaceholder' : 'app.explore.chat.placeholder')
 
     this.kicker.textContent = def ? t(def.nameKey) : ''
     const focusObj = run.objectCloseup ?? (cur ? c.objectForItem(cur) : null) ?? run.selected
@@ -367,6 +376,7 @@ export class ExploreView {
   destroy(): void {
     this.recognition?.stop()
     this.recognition = null
+    this.abortRecording()
     this.closeLightbox(false)
     this.el.remove()
   }
@@ -375,8 +385,7 @@ export class ExploreView {
     const ctor = (window as Window & { SpeechRecognition?: SpeechRecognitionCtor; webkitSpeechRecognition?: SpeechRecognitionCtor })
     const Recognition = ctor.SpeechRecognition ?? ctor.webkitSpeechRecognition
     if (!Recognition) {
-      this.chatStatus.textContent = this.c.t('app.explore.chat.noMic')
-      this.chatInput.focus()
+      void this.startRecording()
       return
     }
     if (this.recognition) {
@@ -431,20 +440,93 @@ export class ExploreView {
     }
   }
 
-  private async sendChat(): Promise<void> {
+  private async startRecording(): Promise<void> {
+    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
+      this.chatStatus.textContent = this.c.t('app.explore.chat.noMic')
+      return
+    }
+    if (this.recorder) {
+      this.chatStatus.textContent = this.c.t('app.explore.chat.processingVoice')
+      this.recorder.stop()
+      return
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      this.recordingStream = stream
+      const mimeType = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg;codecs=opus']
+        .find((type) => MediaRecorder.isTypeSupported(type))
+      const recorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream)
+      this.recorder = recorder
+      this.recordingChunks = []
+      recorder.ondataavailable = (event) => { if (event.data.size > 0) this.recordingChunks.push(event.data) }
+      recorder.onerror = () => {
+        this.chatStatus.textContent = this.c.t('app.explore.chat.micError')
+        this.abortRecording()
+      }
+      recorder.onstop = () => {
+        const blob = new Blob(this.recordingChunks, { type: recorder.mimeType || 'audio/webm' })
+        this.releaseRecorder()
+        if (blob.size === 0) {
+          this.chatStatus.textContent = this.c.t('app.explore.chat.noSpeech')
+          this.chatListen.textContent = this.c.t('app.explore.chat.listen')
+          return
+        }
+        void this.sendChat(blob)
+      }
+      recorder.start()
+      this.chatStatus.textContent = this.c.t('app.explore.chat.listening')
+      this.chatListen.textContent = this.c.t('app.explore.chat.stopAndSend')
+      this.recordingTimer = setTimeout(() => {
+        if (this.recorder === recorder && recorder.state === 'recording') {
+          this.chatStatus.textContent = this.c.t('app.explore.chat.voiceLimit')
+          recorder.stop()
+        }
+      }, 30_000)
+    } catch (error) {
+      this.abortRecording()
+      this.chatListen.textContent = this.c.t('app.explore.chat.listen')
+      const denied = error instanceof DOMException && (error.name === 'NotAllowedError' || error.name === 'SecurityError')
+      this.chatStatus.textContent = denied ? this.c.t('app.explore.chat.micPermission') : this.c.t('app.explore.chat.micError')
+    }
+  }
+
+  private releaseRecorder(): void {
+    if (this.recordingTimer) clearTimeout(this.recordingTimer)
+    this.recordingTimer = null
+    for (const track of this.recordingStream?.getTracks() ?? []) track.stop()
+    this.recordingStream = null
+    this.recorder = null
+    this.recordingChunks = []
+    this.chatListen.textContent = this.c.t('app.explore.chat.listen')
+  }
+
+  private abortRecording(): void {
+    const recorder = this.recorder
+    if (recorder) {
+      recorder.onstop = null
+      recorder.onerror = null
+      if (recorder.state !== 'inactive') recorder.stop()
+    }
+    this.releaseRecorder()
+  }
+
+  private async sendChat(audio?: Blob): Promise<void> {
     const question = this.chatInput.value.trim()
-    if (!question || this.chatBusy) return
+    if ((!question && !audio) || this.chatBusy) return
     const current = this.run.session.current
-    const photo = current?.kind === 'photo' ? current.photo : (() => {
+    const picture = current?.kind === 'photo' ? current.photo : (() => {
       const object = this.run.objectCloseup ?? this.run.selected
       return object ? this.prep.photoOnObject.get(object.id) ?? null : null
     })()
-    if (!photo) {
+    const roomImageUrl = this.prep.scene.roomContextImageUrl
+    const imageUrl = roomImageUrl ?? picture?.url
+    const contextKey = roomImageUrl ?? picture?.id
+    if (!imageUrl || !contextKey) {
       this.chatStatus.textContent = this.c.t('app.explore.chat.selectPicture')
       return
     }
-    if (this.chatPhotoId !== photo.id) {
-      this.chatPhotoId = photo.id
+    if (this.chatPhotoId !== contextKey) {
+      this.chatPhotoId = contextKey
       this.chatHistory.length = 0
       this.chatReply.textContent = ''
     }
@@ -452,8 +534,10 @@ export class ExploreView {
     this.chatInput.disabled = true
     this.chatStatus.textContent = this.c.t('app.explore.chat.thinking')
     try {
-      const answer = await this.c.answerAboutPicture({ imageUrl: photo.url, question, history: this.chatHistory.slice(-8) })
-      this.chatHistory.push({ role: 'user', text: question }, { role: 'assistant', text: answer })
+      const submittedQuestion = audio ? this.c.t('app.explore.chat.voiceQuestion') : question
+      const audioPayload = audio ? { base64: await blobToBase64(audio), mimeType: audio.type || 'audio/webm' } : undefined
+      const answer = await this.c.answerAboutPicture({ imageUrl, question: submittedQuestion, history: this.chatHistory.slice(-8), imageContext: roomImageUrl ? 'room' : 'picture', ...(audioPayload ? { audio: audioPayload } : {}) })
+      this.chatHistory.push({ role: 'user', text: submittedQuestion }, { role: 'assistant', text: answer })
       this.chatReply.textContent = answer
       this.run.audio.speakText(answer, this.c.i18n?.language ?? 'en')
       this.chatStatus.textContent = ''
@@ -484,6 +568,13 @@ type SpeechRecognitionCtor = new () => SpeechRecognitionLike
 
 function itemLabel(c: SuiteController, item: ActivityItem): string {
   return item.personal ? `${item.title} (${c.t('app.badge.personal')})` : item.title
+}
+
+async function blobToBase64(blob: Blob): Promise<string> {
+  const bytes = new Uint8Array(await blob.arrayBuffer())
+  let binary = ''
+  for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000))
+  return btoa(binary)
 }
 
 function setText(el: HTMLElement, text: string): void {

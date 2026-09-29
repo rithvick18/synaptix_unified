@@ -498,6 +498,8 @@ export interface SuiteScene {
   spawn: { position: THREE.Vector3; yaw: number }
   /** Seated overview: a restful default view. */
   seat: { position: THREE.Vector3; target: THREE.Vector3; fov?: number }
+  /** Original 360° room photograph for visual conversation in photographed environments. */
+  roomContextImageUrl?: string
   objects: SceneObject[]
   /** Where non-positional audio would come from if spatialised (the radio, if any). */
   audioAnchor: THREE.Object3D
@@ -906,7 +908,7 @@ export interface SuiteHost {
   /** The saved caregiver profile as read at boot, if any. */
   profile: { saved: LocalProfile | undefined; storageWarning: string }
   /** Optional, consent-gated picture conversation supplied by the app shell. */
-  answerAboutPicture?(request: { imageUrl: string; question: string; history: readonly { role: 'user' | 'assistant'; text: string }[] }): Promise<string>
+  answerAboutPicture?(request: { imageUrl: string; question: string; history: readonly { role: 'user' | 'assistant'; text: string }[]; imageContext?: 'room' | 'picture'; audio?: { base64: string; mimeType: string } }): Promise<string>
   openAiSetup?(): void
   /** Hands the screen to the suite (true) or back to the house and guided tasks (false):
    *  hides/shows the house, stops the house loop's player and interaction. */

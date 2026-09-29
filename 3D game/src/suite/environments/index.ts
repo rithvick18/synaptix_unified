@@ -14,7 +14,7 @@ import { MaterialLease, type MaterialEnv } from '../assets/materials'
 import { acquireProcedural, releasePrototype } from '../assets/prototypes'
 import { createCanvas, RuntimeTextSurface, type RuntimeTextSpec } from '../assets/runtimeText'
 import { TEXTURE_SET_NAMES, textureKB, textureStore, type LoadedSet, type TextureSetName } from '../assets/textures'
-import { resolveUnder } from '../paths'
+import { resolveUnder, suiteUrl } from '../paths'
 import { ScenePhotoSurface } from './photoSurface'
 import { SHELL_DEFS, panoramaDirection, type SlotDef } from './shells'
 import type { ResolvedMaterials } from './shells/types'
@@ -531,6 +531,7 @@ export const buildSuiteScene: BuildSuiteScene = async (options) => {
     walkable: shell.walkable,
     spawn: shell.spawn,
     seat: shell.seat,
+    ...(shellDef.photo ? { roomContextImageUrl: suiteUrl(shellDef.photo.panorama.display) } : {}),
     objects,
     audioAnchor,
     ...(shell.environment ? { environment: shell.environment } : {}),
