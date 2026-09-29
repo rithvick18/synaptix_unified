@@ -33,7 +33,7 @@ export function clampLook(yaw: number, pitch: number, limits = LOOK_LIMITS): { y
 export function tweenDuration(distance: number, angle: number, reducedMotion: boolean): number {
   if (reducedMotion) return 0
   if (distance < 0.01 && angle < 0.01) return 0
-  return clamp(0.45 + 0.3 * distance + 0.25 * angle, 0.45, MAX_TWEEN_S)
+  return clamp(0.18 + 0.12 * distance + 0.1 * angle, 0.18, 0.45)
 }
 
 /** Cubic ease-in-out on [0, 1]. */
@@ -255,7 +255,8 @@ export class Navigator {
 
   /** Drag look, in pixels. Seated: clamped around the rest view. Walk: yaw turns freely. */
   lookBy(dxPx: number, dyPx: number): void {
-    if (this.tween) return
+    // Pointer input always takes priority over an automatic object transition.
+    this.tween = null
     const dyaw = -dxPx * DRAG_SENSITIVITY
     const dpitch = -dyPx * DRAG_SENSITIVITY
     if (this.mode === 'walk') {
@@ -269,6 +270,7 @@ export class Navigator {
   }
 
   setMove(move: { x: number; z: number }): void {
+    if ((move.x !== 0 || move.z !== 0) && this.tween) this.tween = null
     this.move = move
   }
 

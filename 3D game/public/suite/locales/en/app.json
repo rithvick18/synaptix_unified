@@ -120,6 +120,21 @@
     "moveBackward": "Move backward",
     "moveLeft": "Move left",
     "moveRight": "Move right",
+    "chat": {
+      "title": "Talk about this picture",
+      "hint": "The selected picture and question go to the model chosen in setup. Voice input is transcribed by your browser; you can type instead.",
+      "placeholder": "What do you think of this picture?",
+      "listen": "Speak",
+      "stop": "Stop listening",
+      "ask": "Ask",
+      "setup": "Set up AI",
+      "listening": "Listening…",
+      "thinking": "Thinking about the picture…",
+      "noMic": "Voice input is unavailable here. Type your question instead.",
+      "micError": "Microphone input did not start. Check browser microphone permission or type your question.",
+      "selectPicture": "Select a picture in the room before asking about it.",
+      "failed": "I could not answer just now. Please try again."
+    },
     "caregiver": {
       "title": "Caregiver panel",
       "show": "Show caregiver panel",

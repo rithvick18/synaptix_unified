@@ -130,6 +130,16 @@ export class SuiteAudio implements SuiteAudioApi {
     if (muted && this.utterance) this.stopSpeech()
   }
 
+  /** Reads an AI conversation reply through the same optional voice channel as prompts. */
+  speakText(text: string, language: LanguageCode): void {
+    if (this.muted || !this.speechEnabled || !this.speech || typeof SpeechSynthesisUtterance === 'undefined') return
+    this.speech.cancel()
+    const utterance = new SpeechSynthesisUtterance(text)
+    utterance.lang = this.speechLangFor(language)
+    this.utterance = utterance
+    this.speech.speak(utterance)
+  }
+
   setSpeechEnabled(enabled: boolean): void {
     this.speechEnabled = enabled
     if (!enabled) this.stopSpeech()

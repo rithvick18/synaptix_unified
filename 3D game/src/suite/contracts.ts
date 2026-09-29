@@ -905,6 +905,9 @@ export interface SuiteHost {
   quality: { tier: 'software' | 'baseline' | 'full'; anisotropy: number; maxTextureSize: number }
   /** The saved caregiver profile as read at boot, if any. */
   profile: { saved: LocalProfile | undefined; storageWarning: string }
+  /** Optional, consent-gated picture conversation supplied by the app shell. */
+  answerAboutPicture?(request: { imageUrl: string; question: string; history: readonly { role: 'user' | 'assistant'; text: string }[] }): Promise<string>
+  openAiSetup?(): void
   /** Hands the screen to the suite (true) or back to the house and guided tasks (false):
    *  hides/shows the house, stops the house loop's player and interaction. */
   setActive(active: boolean): void

@@ -981,6 +981,15 @@ export class SuiteController {
     this.explore?.update()
   }
 
+  answerAboutPicture(request: { imageUrl: string; question: string; history: readonly { role: 'user' | 'assistant'; text: string }[] }): Promise<string> {
+    if (!this.host.answerAboutPicture) return Promise.reject(new Error('Picture chat is unavailable in this build.'))
+    return this.host.answerAboutPicture(request)
+  }
+
+  openAiSetup(): void {
+    this.host.openAiSetup?.()
+  }
+
   selectObject(id: string): void {
     const run = this.run
     const obj = this.objectById(id)

@@ -31,6 +31,15 @@ export class ExploreView {
   private readonly moveHint: HTMLElement
   private readonly cameraLine: HTMLElement
   private readonly navPad: HTMLElement
+  private readonly chatInput: HTMLTextAreaElement
+  private readonly chatStatus: HTMLElement
+  private readonly chatReply: HTMLElement
+  private readonly chatListen: HTMLButtonElement
+  private readonly chatSetup: HTMLButtonElement
+  private chatBusy = false
+  private recognition: SpeechRecognitionLike | null = null
+  private readonly chatHistory: { role: 'user' | 'assistant'; text: string }[] = []
+  private chatPhotoId = ''
   private readonly navButtons: { button: HTMLButtonElement; labelKey: string }[] = []
   private stripButtons = new Map<string, HTMLButtonElement>()
   private itemButtons = new Map<string, HTMLButtonElement>()
@@ -70,6 +79,16 @@ export class ExploreView {
     this.caregiver = h('section', { class: 's-caregiver', 'aria-labelledby': 's-cg-title' })
     this.moveHint = h('p', { class: 's-muted s-small' })
     this.cameraLine = h('p', { class: 's-muted s-small', 'data-camera-line': 'hide-off', role: 'status' })
+    this.chatInput = h('textarea', { rows: 2, 'data-k': 'chat-input', placeholder: c.t('app.explore.chat.placeholder') })
+    this.chatStatus = h('p', { class: 's-muted s-small', role: 'status', 'aria-live': 'polite' })
+    this.chatReply = h('p', { class: 's-chat-reply', 'aria-live': 'polite' })
+    this.chatListen = button(c.t('app.explore.chat.listen'), () => this.startListening(), { 'data-k': 'chat-listen' })
+    const chatAsk = button(c.t('app.explore.chat.ask'), () => { void this.sendChat() }, { class: 's-primary', 'data-k': 'chat-ask' })
+    this.chatSetup = button(c.t('app.explore.chat.setup'), () => c.openAiSetup(), { 'data-k': 'chat-setup' })
+    const chat = h('section', { class: 's-chat', 'aria-labelledby': 's-chat-title' },
+      h('h3', { id: 's-chat-title', text: c.t('app.explore.chat.title') }),
+      h('p', { class: 's-muted s-small', text: c.t('app.explore.chat.hint') }),
+      this.chatInput, h('div', { class: 's-row' }, this.chatListen, chatAsk, this.chatSetup), this.chatStatus, this.chatReply)
 
     const directionButton = (labelKey: string, symbol: string, move: { x: number; z: number }): HTMLButtonElement => {
       const b = button(symbol, () => undefined, { class: 's-nav-key', 'aria-label': c.t(labelKey), 'data-k': `nav-${labelKey.split('.').at(-1)}` })
@@ -103,6 +122,7 @@ export class ExploreView {
       h('div', { class: 's-actions' }, this.buttons.replay, this.buttons.previous, this.buttons.next, this.buttons.skip,
         this.buttons.closeup, this.buttons.sound),
       this.info,
+      chat,
       h('section', { class: 's-objects' }, this.stripTitle, this.strip, this.moveHint),
       this.caregiver,
       h('div', { class: 's-row' }, this.buttons.assist),
@@ -344,10 +364,96 @@ export class ExploreView {
   }
 
   destroy(): void {
+    this.recognition?.stop()
+    this.recognition = null
     this.closeLightbox(false)
     this.el.remove()
   }
+
+  private startListening(): void {
+    const ctor = (window as Window & { SpeechRecognition?: SpeechRecognitionCtor; webkitSpeechRecognition?: SpeechRecognitionCtor })
+    const Recognition = ctor.SpeechRecognition ?? ctor.webkitSpeechRecognition
+    if (!Recognition) {
+      this.chatStatus.textContent = this.c.t('app.explore.chat.noMic')
+      this.chatInput.focus()
+      return
+    }
+    if (this.recognition) {
+      this.recognition.stop()
+      this.recognition = null
+      this.chatListen.textContent = this.c.t('app.explore.chat.listen')
+      return
+    }
+    const recognition = new Recognition()
+    this.recognition = recognition
+    recognition.lang = this.c.i18n?.info().speechLang ?? 'en-US'
+    recognition.interimResults = true
+    recognition.continuous = false
+    recognition.onresult = (event) => {
+      let words = ''
+      for (let i = 0; i < event.results.length; i++) words += event.results[i][0]?.transcript ?? ''
+      this.chatInput.value = words.trim()
+    }
+    recognition.onerror = () => { this.chatStatus.textContent = this.c.t('app.explore.chat.micError') }
+    recognition.onend = () => {
+      if (this.recognition === recognition) this.recognition = null
+      this.chatListen.textContent = this.c.t('app.explore.chat.listen')
+      if (this.chatInput.value.trim()) void this.sendChat()
+    }
+    this.chatStatus.textContent = this.c.t('app.explore.chat.listening')
+    this.chatListen.textContent = this.c.t('app.explore.chat.stop')
+    try { recognition.start() } catch { this.chatStatus.textContent = this.c.t('app.explore.chat.micError'); this.recognition = null }
+  }
+
+  private async sendChat(): Promise<void> {
+    const question = this.chatInput.value.trim()
+    if (!question || this.chatBusy) return
+    const current = this.run.session.current
+    const photo = current?.kind === 'photo' ? current.photo : (() => {
+      const object = this.run.objectCloseup ?? this.run.selected
+      return object ? this.prep.photoOnObject.get(object.id) ?? null : null
+    })()
+    if (!photo) {
+      this.chatStatus.textContent = this.c.t('app.explore.chat.selectPicture')
+      return
+    }
+    if (this.chatPhotoId !== photo.id) {
+      this.chatPhotoId = photo.id
+      this.chatHistory.length = 0
+      this.chatReply.textContent = ''
+    }
+    this.chatBusy = true
+    this.chatInput.disabled = true
+    this.chatStatus.textContent = this.c.t('app.explore.chat.thinking')
+    try {
+      const answer = await this.c.answerAboutPicture({ imageUrl: photo.url, question, history: this.chatHistory.slice(-8) })
+      this.chatHistory.push({ role: 'user', text: question }, { role: 'assistant', text: answer })
+      this.chatReply.textContent = answer
+      this.run.audio.speakText(answer, this.c.i18n?.language ?? 'en')
+      this.chatStatus.textContent = ''
+      this.chatInput.value = ''
+    } catch (err) {
+      this.chatStatus.textContent = err instanceof Error ? err.message : this.c.t('app.explore.chat.failed')
+    } finally {
+      this.chatBusy = false
+      this.chatInput.disabled = false
+      this.chatInput.focus({ preventScroll: true })
+    }
+  }
 }
+
+interface SpeechRecognitionResultLike { 0?: { transcript?: string } }
+interface SpeechRecognitionLike {
+  lang: string
+  interimResults: boolean
+  continuous: boolean
+  onresult: ((event: { results: ArrayLike<SpeechRecognitionResultLike> }) => void) | null
+  onerror: (() => void) | null
+  onend: (() => void) | null
+  start(): void
+  stop(): void
+}
+type SpeechRecognitionCtor = new () => SpeechRecognitionLike
 
 function itemLabel(c: SuiteController, item: ActivityItem): string {
   return item.personal ? `${item.title} (${c.t('app.badge.personal')})` : item.title

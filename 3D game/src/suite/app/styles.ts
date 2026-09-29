@@ -136,6 +136,9 @@ export const SUITE_CSS = `
 #suite .s-actions { display: flex; flex-wrap: wrap; gap: 0.5em; }
 #suite .s-actions button { flex: 1 1 auto; }
 #suite .s-objects { display: flex; flex-direction: column; gap: 0.5em; }
+#suite .s-chat { display: flex; flex-direction: column; gap: 0.55em; padding: 0.8em; border: 1px solid var(--s-border); border-radius: 14px;
+  background: var(--s-surface-2); }
+#suite .s-chat-reply { padding: 0.65em; border-radius: 10px; background: var(--s-surface); }
 #suite .s-strip { list-style: none; margin: 0; padding: 0 0 4px; display: flex; flex-wrap: wrap; gap: 0.5em; }
 #suite .s-strip button { text-align: start; }
 #suite .s-strip button.s-current { border-color: var(--s-accent); box-shadow: inset 0 0 0 2px var(--s-accent); }

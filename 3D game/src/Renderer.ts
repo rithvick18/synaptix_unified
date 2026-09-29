@@ -284,8 +284,8 @@ export class Renderer {
     this.renderer.shadowMap.needsUpdate = true
   }
 
-  render(): void {
-    if (this.composer) this.composer.render()
+  render(options: { postProcessing?: boolean } = {}): void {
+    if (this.composer && options.postProcessing !== false) this.composer.render()
     else this.renderer.render(this.scene, this.camera)
   }
 }

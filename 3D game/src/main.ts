@@ -33,6 +33,7 @@ import {
 import { UI, escapeText, type LoadStage } from './ui'
 import { createCameraIntegration } from './camera/integration'
 import { agentConfigStore, needsSetup, type AgentConfig } from './agent/config'
+import { selectProvider } from './agent/selectProvider'
 import { describeSetup, openSetupScreen } from './agent/setupModeUI'
 import { assertWorldContract } from './World'
 import { createProceduralHouse } from './proceduralHouse'
@@ -754,6 +755,33 @@ async function boot(): Promise<void> {
       maxTextureSize: renderer.renderer.capabilities.maxTextureSize
     },
     profile: { saved: savedProfile, storageWarning },
+    answerAboutPicture: async ({ imageUrl, question, history }) => {
+      const cfg = agentConfig
+      if (!cfg.enabled || !cfg.consentGiven || !cfg.setupMode) {
+        throw new Error('Choose a model setup and allow picture conversations in the setup dialog first.')
+      }
+      const response = await fetch(imageUrl)
+      if (!response.ok) throw new Error('Could not load this picture for the conversation.')
+      const blob = await response.blob()
+      const mimeType = blob.type === 'image/png' || blob.type === 'image/webp' ? blob.type : 'image/jpeg'
+      const bytes = new Uint8Array(await blob.arrayBuffer())
+      let binary = ''
+      for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000))
+      const provider = selectProvider(cfg, { llamaCpp: { baseUrl: env.VITE_AGENT_BASE_URL, model: cfg.model } })
+      const result = await provider.run({
+        systemPrompt: 'You are a warm, respectful conversation companion. Answer the user\'s question about the visible picture in 1–3 short sentences. Describe only details you can see. Never guess people\'s identities, relationships, memories, or life history. If asked what you think, offer a gentle observation and an open, optional follow-up question.',
+        caregiverText: `${history.map((turn) => `${turn.role}: ${turn.text}`).join('\n')}\nuser: ${question}`,
+        probeImages: [{ assetId: 'conversation-picture', mimeType, base64: btoa(binary) }],
+        tools: [{ name: 'reply', description: 'Give a brief spoken conversation reply about the picture.', parameters: {
+          type: 'object', properties: { answer: { type: 'string', description: 'A warm, brief answer to say aloud.' } }, required: ['answer']
+        } }]
+      })
+      if (!result.ok) throw new Error(result.message)
+      const answer = result.toolCalls.find((call) => call.tool === 'reply')?.args?.answer
+      if (typeof answer !== 'string' || !answer.trim()) throw new Error('The model returned no reply. Please try again.')
+      return answer.trim()
+    },
+    openAiSetup: () => openSetup(),
     setActive: (active) => setSuiteActive(active),
     openGuidedTasks: () => {
       setSuiteActive(false)
@@ -815,6 +843,11 @@ async function boot(): Promise<void> {
 
   const loop = (): void => {
     requestAnimationFrame(loop)
+    if (document.visibilityState === 'hidden') {
+      last = performance.now()
+      clock.getDelta()
+      return
+    }
     const now = performance.now()
     const frameMs = now - last
     last = now
@@ -823,7 +856,9 @@ async function boot(): Promise<void> {
     if (suiteActive) {
       // The suite moves its own camera and animates its own scene; the house is hidden.
       suite.update(dt)
-      renderer.render()
+      // Photographed scenes already contain their ambient shading. Drawing them through
+      // GTAO repeats expensive full-screen passes without improving the panorama.
+      renderer.render({ postProcessing: false })
       adaptive.sample(frameMs)
       samplePerf(frameMs)
       return
