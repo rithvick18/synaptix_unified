@@ -24,26 +24,26 @@ export interface Palette {
   noticeBg: string
 }
 
-/** Default: the game's own look — charcoal surfaces, warm off-white text, amber accent (see ui.ts STYLE). */
+/** Default: greyish-white paper, white surfaces, near-black ink; colour only as a quiet pastel. */
 export const PALETTE: Palette = {
-  bg: '#0e0f11',
-  surface: '#14161a',
-  surface2: '#23262c',
-  text: '#f2efe9',
-  muted: '#b5b0a6',
-  border: '#7a766e',
-  accent: '#ffd98a',
-  onAccent: '#14161a',
-  accentSoft: '#33302a',
-  onAccentSoft: '#ffe7b4',
-  focus: '#8ec5f2',
-  personalBg: '#1f3324',
-  personalText: '#c3e6c8',
-  demoBg: '#2b2540',
-  demoText: '#d9cef2',
-  cue: '#ffe7b4',
-  notice: '#ffe7b4',
-  noticeBg: '#2e2818'
+  bg: '#f4f4f2',
+  surface: '#ffffff',
+  surface2: '#ebebe8',
+  text: '#1b1b1a',
+  muted: '#5c5b57',
+  border: '#8a8984',
+  accent: '#1b1b1a',
+  onAccent: '#ffffff',
+  accentSoft: '#e8e8e4',
+  onAccentSoft: '#1b1b1a',
+  focus: '#1d5a85',
+  personalBg: '#e9f1e7',
+  personalText: '#2c5a30',
+  demoBg: '#eeeaf5',
+  demoText: '#4a3a6b',
+  cue: '#6b5420',
+  notice: '#7a5200',
+  noticeBg: '#fbf3db'
 }
 
 /** High contrast: 7:1 or better for all text. */

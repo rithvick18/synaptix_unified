@@ -14,7 +14,13 @@
   },
   "home": {
     "start": "Choose a place",
-    "tagline": "Familiar places, together.",
+    "tagline": "Familiar places,",
+    "taglineEm": "together.",
+    "begin": "Begin",
+    "memoriesCount": "{count} places to revisit",
+    "nowShowing": "Now showing",
+    "visitThis": "Visit this place",
+    "collageLabel": "Places you can step back into",
     "steps": { "who": "Who", "place": "Place", "activity": "Activity" },
     "storage": "About this device:",
     "who": {
@@ -134,8 +140,11 @@
       "thinking": "Thinking about the picture…",
       "noMic": "Voice input is unavailable here. Type your question instead.",
       "micError": "Microphone input did not start. Check browser microphone permission or type your question.",
+      "micPermission": "Microphone access is off for this site. You can allow it in browser site settings, or type your question.",
+      "micUnavailable": "A microphone is not available. You can connect one or type your question.",
+      "noSpeech": "I did not hear anything. You can speak once more or type your question.",
       "selectPicture": "Select a picture in the room before asking about it.",
-      "failed": "I could not answer just now. Please try again."
+      "failed": "I could not answer just now. You can ask once more in a moment."
     },
     "caregiver": {
       "title": "Caregiver panel",

@@ -654,9 +654,9 @@
     "semantic_hash": ""
   },
   "public/suite/locales/en/app.json": {
-    "mtime": 1790658038.7035239,
-    "seen": 1790658083.9803588,
-    "ast_hash": "725eeef211d32c39d42a08e451ec010a",
+    "mtime": 1790659294.669108,
+    "seen": 1790659370.586849,
+    "ast_hash": "9a80eb05ae906a045f98ffbe96e94908",
     "semantic_hash": ""
   },
   "public/suite/locales/en/common.json": {
@@ -678,9 +678,9 @@
     "semantic_hash": ""
   },
   "public/suite/locales/hi/app.json": {
-    "mtime": 1790658038.7090554,
-    "seen": 1790658083.980363,
-    "ast_hash": "643787e9312df5bef8c734cb7bcee38f",
+    "mtime": 1790659294.6695962,
+    "seen": 1790659370.586854,
+    "ast_hash": "43e57ad27eb4fa28000ab0f9399c5b39",
     "semantic_hash": ""
   },
   "public/suite/locales/hi/common.json": {
@@ -786,9 +786,9 @@
     "semantic_hash": ""
   },
   "src/suite/app/explore.ts": {
-    "mtime": 1790657134.8912647,
-    "seen": 1790658083.980426,
-    "ast_hash": "ea3583baa0f8f7e6f7e32eeeefd99b4f",
+    "mtime": 1790659132.9246306,
+    "seen": 1790659370.5869162,
+    "ast_hash": "a379be7629f67231428ca7d24dd92a7b",
     "semantic_hash": ""
   },
   "src/suite/app/highlight.ts": {
@@ -816,9 +816,9 @@
     "semantic_hash": ""
   },
   "src/suite/app/screens.ts": {
-    "mtime": 1790658038.7096722,
-    "seen": 1790658083.9804301,
-    "ast_hash": "83ace17b443a876915caa0f10ed27fb7",
+    "mtime": 1790659564.6665752,
+    "seen": 1790659587.832717,
+    "ast_hash": "6563c10a64b9056af2334dc0b01b7eaa",
     "semantic_hash": ""
   },
   "src/suite/app/settings.ts": {
@@ -834,9 +834,9 @@
     "semantic_hash": ""
   },
   "src/suite/app/styles.ts": {
-    "mtime": 1790658016.7194772,
-    "seen": 1790658083.980433,
-    "ast_hash": "2349e22de3b48b347d67ca8566f8195c",
+    "mtime": 1790659564.6668239,
+    "seen": 1790659587.8327198,
+    "ast_hash": "eeff2a4a4cd8cb868ddd68d942baed9a",
     "semantic_hash": ""
   },
   "src/suite/app/summary.ts": {
@@ -846,9 +846,9 @@
     "semantic_hash": ""
   },
   "src/suite/app/theme.ts": {
-    "mtime": 1790657992.8775423,
-    "seen": 1790658083.980434,
-    "ast_hash": "85f1248e8a0be9b9ef512a9f3808425e",
+    "mtime": 1790658965.6816626,
+    "seen": 1790659008.027349,
+    "ast_hash": "cb85ba6da91c64c757127b0c47808132",
     "semantic_hash": ""
   },
   "src/suite/app/vision.ts": {

@@ -38,6 +38,7 @@ export class ExploreView {
   private readonly chatSetup: HTMLButtonElement
   private chatBusy = false
   private recognition: SpeechRecognitionLike | null = null
+  private recognitionError = false
   private readonly chatHistory: { role: 'user' | 'assistant'; text: string }[] = []
   private chatPhotoId = ''
   private readonly navButtons: { button: HTMLButtonElement; labelKey: string }[] = []
@@ -379,30 +380,55 @@ export class ExploreView {
       return
     }
     if (this.recognition) {
+      // The stop button is an explicit end-of-dictation action. Submit the captured
+      // transcript here, after the browser has delivered its final recognition result.
       this.recognition.stop()
-      this.recognition = null
-      this.chatListen.textContent = this.c.t('app.explore.chat.listen')
       return
     }
     const recognition = new Recognition()
     this.recognition = recognition
+    this.recognitionError = false
     recognition.lang = this.c.i18n?.info().speechLang ?? 'en-US'
     recognition.interimResults = true
     recognition.continuous = false
+    recognition.maxAlternatives = 1
     recognition.onresult = (event) => {
       let words = ''
-      for (let i = 0; i < event.results.length; i++) words += event.results[i][0]?.transcript ?? ''
-      this.chatInput.value = words.trim()
+      for (let i = 0; i < event.results.length; i++) {
+        const result = event.results[i]
+        if (result?.isFinal) words += `${result[0]?.transcript ?? ''} `
+      }
+      // Interim text is useful feedback, but should never trigger a request on its own.
+      const interim = event.results[event.results.length - 1]
+      this.chatInput.value = `${words}${interim && !interim.isFinal ? interim[0]?.transcript ?? '' : ''}`.trim()
     }
-    recognition.onerror = () => { this.chatStatus.textContent = this.c.t('app.explore.chat.micError') }
+    recognition.onerror = (event) => {
+      this.recognitionError = true
+      const message = event.error === 'not-allowed' || event.error === 'service-not-allowed'
+        ? this.c.t('app.explore.chat.micPermission')
+        : event.error === 'audio-capture'
+          ? this.c.t('app.explore.chat.micUnavailable')
+          : event.error === 'no-speech'
+            ? this.c.t('app.explore.chat.noSpeech')
+            : this.c.t('app.explore.chat.micError')
+      this.chatStatus.textContent = message
+    }
     recognition.onend = () => {
       if (this.recognition === recognition) this.recognition = null
       this.chatListen.textContent = this.c.t('app.explore.chat.listen')
-      if (this.chatInput.value.trim()) void this.sendChat()
+      if (!this.recognitionError && this.chatInput.value.trim()) void this.sendChat()
     }
     this.chatStatus.textContent = this.c.t('app.explore.chat.listening')
     this.chatListen.textContent = this.c.t('app.explore.chat.stop')
-    try { recognition.start() } catch { this.chatStatus.textContent = this.c.t('app.explore.chat.micError'); this.recognition = null }
+    try {
+      recognition.start()
+    } catch (error) {
+      this.chatStatus.textContent = error instanceof DOMException && error.name === 'NotAllowedError'
+        ? this.c.t('app.explore.chat.micPermission')
+        : this.c.t('app.explore.chat.micError')
+      this.recognition = null
+      this.chatListen.textContent = this.c.t('app.explore.chat.listen')
+    }
   }
 
   private async sendChat(): Promise<void> {
@@ -442,13 +468,14 @@ export class ExploreView {
   }
 }
 
-interface SpeechRecognitionResultLike { 0?: { transcript?: string } }
+interface SpeechRecognitionResultLike { 0?: { transcript?: string }; isFinal?: boolean }
 interface SpeechRecognitionLike {
   lang: string
   interimResults: boolean
   continuous: boolean
+  maxAlternatives: number
   onresult: ((event: { results: ArrayLike<SpeechRecognitionResultLike> }) => void) | null
-  onerror: (() => void) | null
+  onerror: ((event: { error?: string }) => void) | null
   onend: (() => void) | null
   start(): void
   stop(): void
