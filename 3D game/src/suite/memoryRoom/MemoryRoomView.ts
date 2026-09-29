@@ -23,7 +23,7 @@ export interface MemoryRoomOptions {
 }
 
 const FOV = 45
-const FILL = 0.92
+const FILL = 1.02 // the picture may touch the edges: the blurred surround takes over past them
 const BLUR_EDGE = 128
 export const DEFAULT_MAX_DEGREES = 14
 export const MAX_ALLOWED_DEGREES = 20

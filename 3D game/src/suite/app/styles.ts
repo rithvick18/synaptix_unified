@@ -322,6 +322,14 @@ export const SUITE_CSS = `
 #suite .s-lightbox-info { padding: 0.8em 1em calc(var(--s-dock-clear) + 0.4em); background: var(--s-surface);
   display: flex; flex-direction: column; gap: 0.5em; max-height: 40vh; overflow: auto; }
 
+/* In a memory room the photograph takes the whole area under the title bar; the caption and prompt
+   sit over its lower edge. */
+#suite .s-lightbox.s-room-mode .s-lightbox-info { position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; max-height: 24vh;
+  flex-direction: row; flex-wrap: wrap; align-items: center; gap: 0.3em 1em; padding: 0.5em 1em calc(var(--s-dock-clear) * 0.6);
+  background: color-mix(in srgb, var(--s-surface) 82%, transparent); }
+#suite .s-lightbox.s-room-mode .s-lightbox-info p { margin: 0; }
+#suite .s-lightbox.s-room-mode .s-lightbox-info .s-muted.s-small { display: none; }
+
 #suite dl.s-facts { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 0.4em 1em; margin: 0; }
 #suite dl.s-facts dt { color: var(--s-muted); }
 #suite dl.s-facts dd { margin: 0; font-weight: 600; text-align: end; }

@@ -635,6 +635,7 @@ class Lightbox {
     })
     this.room = room
     this.stage.style.display = 'none'
+    this.el.classList.add('s-room-mode')
     this.stage.after(room.el)
     for (const b of this.zoomButtons) b.disabled = true
     this.zoomLabel.hidden = true
@@ -649,6 +650,7 @@ class Lightbox {
     this.room.destroy()
     this.room = null
     this.stage.style.display = ''
+    this.el.classList.remove('s-room-mode')
     for (const b of this.zoomButtons) b.disabled = false
     this.zoomLabel.hidden = false
     this.roomButton?.setAttribute('aria-pressed', 'false')
