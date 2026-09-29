@@ -8,7 +8,7 @@
  * A blob that exists but may not decode is kept, so the editor can say so.
  */
 import { TOPICS } from '../contracts'
-import type { CaregiverAudio, CaregiverPrompt, LanguageCode, ObjectOverrides, SequenceRef, SuiteOf, SuitePhoto, SuiteProfile, SuiteSound } from '../contracts'
+import type { CaregiverAudio, CaregiverPrompt, PhotoDepth, LanguageCode, ObjectOverrides, SequenceRef, SuiteOf, SuitePhoto, SuiteProfile, SuiteSound } from '../contracts'
 import type { LocalProfile, Photo } from '../../LocalProfile'
 
 export const SUITE_LIMITS = {
@@ -135,6 +135,15 @@ function photo(v: unknown): Photo | undefined {
     crop: { x: num(crop.x, .5), y: num(crop.y, .5), zoom: num(crop.zoom, 1) } }
 }
 
+/** A stored depth map, kept only if its blob has exactly one byte per cell. */
+function depth(v: unknown): PhotoDepth | undefined {
+  if (!isObject(v) || !isBlob(v.data)) return undefined
+  const { width, height } = v
+  const ok = (n: unknown): n is number => typeof n === 'number' && Number.isInteger(n) && n >= 2 && n <= 2048
+  if (!ok(width) || !ok(height) || v.data.size !== width * height) return undefined
+  return { data: v.data, width, height }
+}
+
 function people(v: unknown): { name: string; relationship: string }[] {
   if (!Array.isArray(v)) return []
   return v.filter(isObject)
@@ -190,8 +199,9 @@ export function normaliseSuite(raw: unknown): SuiteProfile {
     const e = entry as Loose
     const p = prompt(e.prompt, lang)
     const topics = normaliseTopics(e.topics)
+    const relief = depth(e.depth)
     photos.push({ id, photo: media, caption: str(e.caption) ?? '', people: people(e.people),
-      ...(p ? { prompt: p } : {}), ...(str(e.surface) ? { surface: e.surface as string } : {}), ...(topics.length ? { topics } : {}) })
+      ...(relief ? { depth: relief } : {}), ...(p ? { prompt: p } : {}), ...(str(e.surface) ? { surface: e.surface as string } : {}), ...(topics.length ? { topics } : {}) })
   }
   warnDropped('photos', dropped)
 

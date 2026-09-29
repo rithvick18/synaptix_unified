@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "check:offline": "node tools/offline-check.mjs",
     "check": "node tools/checks/run.mjs",
-    "check:profile": "node tools/profile-check.mjs"
+    "check:profile": "node tools/profile-check.mjs",
+    "setup:depth": "node tools/setup-depth-model.mjs"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.3.0",

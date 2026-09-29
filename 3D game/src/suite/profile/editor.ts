@@ -12,6 +12,7 @@ import { TOPICS } from '../contracts'
 import type { AssetDef, CaregiverAudio, CaregiverPrompt, EnvironmentPreset, LoadedContentPack, OpenCaregiverSetup, Placement, SequenceRef, SuitePhoto, SuiteSound } from '../contracts'
 import { newId, newProfile, profileErrors, profileStore, type LocalProfile } from '../../LocalProfile'
 import { importPhoto } from '../../PhotoMedia'
+import { DepthError, estimateDepth, releaseDepthWorker } from '../memoryRoom/depthClient'
 import { resolveUnder } from '../paths'
 import { EDITOR_CSS, ROOT_ID } from './editorStyle'
 import { clock, DurationMeter, Recorder } from './media'
@@ -564,6 +565,36 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
   // ---------------------------------------------------------------------------------------
   // Photo and sound cards
   // ---------------------------------------------------------------------------------------
+  /** "Make explorable": works out a depth map on this device so the photo can be stepped into. */
+  function depthControls(card: HTMLElement, photo: SuitePhoto, where: { n: number; total: number }) {
+    const box = h('div', { class: 'scs-field' }, h('p', { class: 'scs-hint', text: t('photos.depthHint') }))
+    const note = h('p', { class: 'scs-hint', role: 'status', text: photo.depth ? t('photos.depthHas') : '' })
+    const bar = h('div', { class: 'scs-actions' })
+    if (!photo.depth) {
+      button(bar, t('photos.depthMake'), () => {
+        void run(async () => {
+          note.textContent = t('photos.depthWorking')
+          try {
+            const depth = await estimateDepth(photo.photo.runtime)
+            if (closed) return
+            photo.depth = depth; changed()
+            rerender(['photos'], `photo-depth-remove-${photo.id}`)
+            status.textContent = t('photos.depthReady')
+          } catch (error) {
+            note.textContent = t(error instanceof DepthError ? { 'not-installed': 'photos.depthNotInstalled', unsupported: 'photos.depthUnsupported', failed: 'photos.depthFailed' }[error.reason] : 'photos.depthFailed')
+          }
+        })
+      }, { key: `photo-depth-make-${photo.id}`, label: t('photos.depthMakeLabel', where) })
+    } else {
+      button(bar, t('photos.depthRemove'), () => {
+        delete photo.depth; changed()
+        rerender(['photos'], `photo-depth-make-${photo.id}`)
+      }, { key: `photo-depth-remove-${photo.id}`, label: t('photos.depthRemoveLabel', where) })
+    }
+    box.append(note, bar)
+    card.append(box)
+  }
+
   function photoCard(photo: SuitePhoto, index: number): HTMLElement {
     const headingId = uid('photo')
     const card = h('article', { class: 'scs-card', 'aria-labelledby': headingId })
@@ -608,9 +639,11 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
       hint: surfaces.length ? t('photos.surfaceHint') : t('photos.surfaceNone'),
       onChange: v => { if (v) photo.surface = v; else delete photo.surface } })
 
+    const where = { n: index + 1, total: suite.photos.length }
+    depthControls(card, photo, where)
+
     const bar = h('div', { class: 'scs-actions' })
     const total = suite.photos.length
-    const where = { n: index + 1, total }
     const move = (to: number) => {
       const [item] = suite.photos.splice(index, 1); suite.photos.splice(to, 0, item); changed()
       rerender(['photos', 'sequence'], `photo-${to < index ? 'up' : 'down'}-${item.id}`)
@@ -623,6 +656,7 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
         if (!check.ok) { problem.textContent = i18n.t(check.key, check.vars); return }
         try {
           photo.photo = await importPhoto(file, base.quality, maxTextureSize, photo.photo)
+          delete photo.depth // it described the old picture
           broken.delete(`photo:${photo.id}`); changed()
           rerender(['photos'], `photo-replace-${photo.id}`)
         } catch { problem.textContent = c('media.decodeFailed') }
@@ -829,6 +863,7 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
   function close() {
     if (closed) return
     closed = true
+    releaseDepthWorker()
     for (const r of recorders) r.cancel()
     recorders.clear()
     meter.close()

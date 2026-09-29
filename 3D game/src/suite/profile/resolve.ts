@@ -7,8 +7,9 @@
  * nothing else is filled in: an empty caption stays empty.
  */
 import * as THREE from 'three'
-import type { CaregiverPrompt, DisplayPhoto, DisplaySound, ResolvedPrompt, ResolvedSuiteProfile, ResolveSuiteProfile, SuiteMediaApi } from '../contracts'
+import type { CaregiverPrompt, PhotoDepth, DisplayPhoto, DisplaySound, ResolvedPrompt, ResolvedSuiteProfile, ResolveSuiteProfile, SuiteMediaApi } from '../contracts'
 import type { Photo } from '../../LocalProfile'
+import { unpackDepth } from '../memoryRoom/depthStore'
 import { envKey, objectPromptKey, suiteOf } from './model'
 
 /** The in-scene texture cap (long edge), before the renderer's own limit. */
@@ -101,9 +102,10 @@ function resolvePrompt(prompt: CaregiverPrompt | undefined, media: SuiteMedia): 
 
 function displayPhoto(
   id: string, photo: Photo, media: SuiteMedia, cap: number,
-  fields: Pick<DisplayPhoto, 'caption' | 'people' | 'prompt' | 'topics'> & { preferredSurface?: string }
+  fields: Pick<DisplayPhoto, 'caption' | 'people' | 'prompt' | 'topics'> & { preferredSurface?: string; depth?: PhotoDepth }
 ): DisplayPhoto {
   let texture: Promise<THREE.Texture | null> | undefined
+  const depth = fields.depth
   return {
     id,
     url: media.url(photo.runtime),
@@ -117,6 +119,7 @@ function displayPhoto(
     prompt: fields.prompt,
     ...(fields.preferredSurface ? { preferredSurface: fields.preferredSurface } : {}),
     topics: fields.topics,
+    ...(depth ? { hasDepth: true, loadDepth: () => unpackDepth(depth) } : {}),
     texture() {
       texture ??= textureFromBlob(photo.runtime, photo.width, photo.height, cap, media)
       return texture
@@ -134,7 +137,8 @@ export const resolveSuiteProfile: ResolveSuiteProfile = async (profile, i18n, ma
     people: p.people.map(v => ({ ...v })),
     prompt: resolvePrompt(p.prompt, media),
     topics: [...(p.topics ?? [])],
-    preferredSurface: p.surface
+    preferredSurface: p.surface,
+    ...(p.depth ? { depth: p.depth } : {})
   }))
   // Personalise Home photographs: portraits, the wall photo, the event photo.
   const used = new Set(suite.photos.map(p => p.photo.id))

@@ -60,3 +60,10 @@ to. The API key is entered on the setup screen and kept in the visitor's own bro
 page. If the host sets a restrictive Content-Security-Policy, allow
 `generativelanguage.googleapis.com` in `connect-src`, or online mode will fail with an
 unreachable-server message and offline mode will still work.
+
+## Memory room (depth model)
+
+"Step into the photo" needs the on-device depth model (~40 MB, git-ignored). To offer it in a
+deploy, run `npm run setup:depth` before `npm run build`; the files land in
+`public/depth-models/` and are copied into `dist/`. Without them the caregiver editor
+shows "The depth model is not installed here" and the rest of the app is unaffected.

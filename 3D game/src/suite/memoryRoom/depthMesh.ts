@@ -22,6 +22,8 @@ export interface DepthMeshOptions {
   edgeCut?: number
   /** Fraction of each side cropped away, where depth estimates are least reliable. */
   borderTrim?: number
+  /** Pieces smaller than this fraction of the largest connected piece are removed. */
+  islandFraction?: number
 }
 
 /** Rescales to 0–1 using the 2nd and 98th percentiles so a stray pixel can't flatten the scene. */
@@ -73,19 +75,70 @@ export function buildDepthGeometry(depth: DepthMap, aspect: number, opts: DepthM
       uvs.set([u, v], k * 2) // ImageBitmap textures are not flipped on upload: the image top is v = 0
     }
   }
-  const indices: number[] = []
-  for (let j = 0; j < rows - 1; j++) {
-    for (let i = 0; i < cols - 1; i++) {
+  // Which cells of the grid to keep: drop any that span a large depth jump.
+  const qc = cols - 1, qr = rows - 1
+  const keep = new Uint8Array(qc * qr)
+  for (let j = 0; j < qr; j++) {
+    for (let i = 0; i < qc; i++) {
       const a = j * cols + i, b = a + 1, c = a + cols, d = c + 1
-      const quad = [values[a], values[b], values[c], values[d]]
-      if (Math.max(...quad) - Math.min(...quad) > edgeCut) continue
+      const lo = Math.min(values[a], values[b], values[c], values[d]), hi = Math.max(values[a], values[b], values[c], values[d])
+      keep[j * qc + i] = hi - lo > edgeCut ? 0 : 1
+    }
+  }
+  dropSmallIslands(keep, qc, qr, opts.islandFraction ?? 0.02)
+
+  // Fade the surface out where it was cut (or reaches the frame), so the edge blends into
+  // the surround instead of ending in a hard, jagged line.
+  const colors = new Float32Array(cols * rows * 4).fill(1)
+  const kept = (i: number, j: number): boolean => i >= 0 && j >= 0 && i < qc && j < qr && keep[j * qc + i] === 1
+  for (let j = 0; j < rows; j++) {
+    for (let i = 0; i < cols; i++) {
+      const solid = kept(i - 1, j - 1) && kept(i, j - 1) && kept(i - 1, j) && kept(i, j)
+      colors[(j * cols + i) * 4 + 3] = solid ? 1 : 0
+    }
+  }
+
+  const indices: number[] = []
+  for (let j = 0; j < qr; j++) {
+    for (let i = 0; i < qc; i++) {
+      if (!keep[j * qc + i]) continue
+      const a = j * cols + i, b = a + 1, c = a + cols, d = c + 1
       indices.push(a, c, b, b, c, d)
     }
   }
   const geo = new THREE.BufferGeometry()
   geo.setAttribute('position', new THREE.BufferAttribute(positions, 3))
   geo.setAttribute('uv', new THREE.BufferAttribute(uvs, 2))
+  geo.setAttribute('color', new THREE.BufferAttribute(colors, 4))
   geo.setIndex(indices)
   geo.computeVertexNormals()
   return geo
+}
+
+/** Clears kept cells that form small disconnected pieces (4-connected), e.g. a stray sliver of wall. */
+export function dropSmallIslands(keep: Uint8Array, qc: number, qr: number, fraction: number): void {
+  const label = new Int32Array(keep.length)
+  const sizes: number[] = [0]
+  const stack: number[] = []
+  for (let start = 0; start < keep.length; start++) {
+    if (!keep[start] || label[start]) continue
+    const id = sizes.length
+    let size = 0
+    stack.push(start); label[start] = id
+    while (stack.length) {
+      const cell = stack.pop()!
+      size++
+      const x = cell % qc, y = (cell - x) / qc
+      for (const [nx, ny] of [[x - 1, y], [x + 1, y], [x, y - 1], [x, y + 1]]) {
+        if (nx < 0 || ny < 0 || nx >= qc || ny >= qr) continue
+        const n = ny * qc + nx
+        if (keep[n] && !label[n]) { label[n] = id; stack.push(n) }
+      }
+    }
+    sizes.push(size)
+  }
+  const largest = Math.max(0, ...sizes)
+  for (let cell = 0; cell < keep.length; cell++) {
+    if (keep[cell] && sizes[label[cell]] < largest * fraction) keep[cell] = 0
+  }
 }

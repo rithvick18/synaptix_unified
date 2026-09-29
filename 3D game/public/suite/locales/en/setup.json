@@ -90,6 +90,17 @@
     "upLabel": "Move photograph {n} of {total} up",
     "downLabel": "Move photograph {n} of {total} down",
     "replaceLabel": "Replace photograph {n}",
+    "depthHint": "Make this photograph explorable, so it can be looked into a little from its close-up. The depth is worked out on this device from the picture's shapes alone. The photograph is not sent anywhere, and nothing is recognised or added.",
+    "depthMake": "Make explorable",
+    "depthRemove": "Remove depth",
+    "depthMakeLabel": "Make photograph {n} explorable",
+    "depthRemoveLabel": "Remove depth from photograph {n}",
+    "depthWorking": "Working out depth. The first time can take a little while…",
+    "depthReady": "Ready. This photograph can now be stepped into from its close-up.",
+    "depthHas": "This photograph can be stepped into from its close-up.",
+    "depthNotInstalled": "The depth model is not installed here. Run “npm run setup:depth” and reload.",
+    "depthUnsupported": "This browser cannot work out depth.",
+    "depthFailed": "Depth could not be worked out for this photograph.",
     "removeLabel": "Remove photograph {n}"
   },
   "sounds": {

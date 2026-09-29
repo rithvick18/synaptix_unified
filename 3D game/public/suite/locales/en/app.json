@@ -196,7 +196,12 @@
     "person": "{name} — {relationship}",
     "demoNotice": "Demo picture: an illustration, not a real memory",
     "alt": "Picture: {caption}",
-    "altNone": "Picture"
+    "altNone": "Picture",
+    "stepIn": "Step into the photo",
+    "stepOut": "Back to the picture",
+    "roomLabel": "The photograph, shown in depth. Move the pointer, or use the arrow keys, to look around a little.",
+    "roomHint": "Move the pointer or use the arrow keys to look around a little. Only what is in the photograph is shown.",
+    "roomUnavailable": "This photograph cannot be shown in depth right now."
   },
   "summary": {
     "title": "Session summary",

@@ -63,6 +63,7 @@ The prompt text is always shown on screen.
 |---|---|
 | Photographs | JPEG, PNG or WebP; 25 MB or less each; at most 60 |
 | Sounds | MP3, M4A/MP4, WAV, OGG or WebM; 15 MB or less and 10 minutes or less each; at most 30 |
+| Depth map | at most 512 px on the long edge, 1 byte per cell (typically under 300 KB), made on request |
 | In-scene photo textures | 1024 px or less on the long edge (and never above the device's `maxTextureSize`), aspect kept, sRGB, made on demand and cached |
 
 These limits are defined as `SUITE_LIMITS`, `validatePhotoFile` and `validateAudioFile` in
@@ -76,6 +77,26 @@ A stored photograph or sound that fails to decode is **never dropped silently**:
   "played" for sounds), and counts it in the footer.
 - At session time, `DisplayPhoto.texture()` resolves `null` for such a photograph instead
   of throwing.
+
+## Stepping into a photograph (memory room)
+
+On each photograph card the caregiver can press **Make explorable**. The close-up then
+offers **Step into the photo**: the picture is shown as a shallow 3D relief the viewer can
+look around a little (pointer or arrow keys, at most ±14°, and none at all when the device
+asks for reduced motion). It is a picture viewer, not a world: nothing outside the frame is
+generated. The surround is a blur of the same photograph.
+
+- The depth is worked out **on this device** by a small model (Depth Anything V2 Small,
+  int8) run in a worker. The model and the ONNX runtime are served by the site itself.
+  The photograph is never sent anywhere. Install them with `npm run setup:depth`; without
+  them the editor says so and everything else works unchanged.
+- Only a relative depth map is stored: `SuitePhoto.depth`, one byte per cell, at most
+  512 px on the longer side (`src/suite/memoryRoom/depthStore.ts`). It is dropped if its
+  size does not match, and cleared when the photograph is replaced.
+- If depth is missing or the 3D view cannot start, the close-up shows the flat picture as
+  before.
+- It follows the rules below: the model is used for geometry only. Nothing is recognised,
+  captioned or added.
 
 ## Privacy
 

@@ -14,3 +14,6 @@ agent-audit.jsonl
 
 # Local vision model weights
 /models/
+
+# Memory room depth model (npm run setup:depth)
+/public/depth-models/

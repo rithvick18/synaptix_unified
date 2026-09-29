@@ -990,8 +990,8 @@ export class SuiteController {
     return this.host.transcribeSpeech?.bind(this.host)
   }
 
-  openAiSetup(): void {
-    this.host.openAiSetup?.()
+  openAiSetup(mode?: 'offline' | 'online'): void {
+    this.host.openAiSetup?.(mode)
   }
 
   selectObject(id: string): void {

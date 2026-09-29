@@ -7,6 +7,7 @@
  */
 import type { ActivityItem, DisplayPhoto } from '../contracts'
 import type { Prepared, Run, SuiteController } from './app'
+import { MemoryRoomView } from '../memoryRoom/MemoryRoomView'
 import { append, button, clear, h, trapFocus } from './dom'
 
 type ActionName = 'replay' | 'previous' | 'next' | 'skip' | 'closeup' | 'sound' | 'pause' | 'exit' | 'assist'
@@ -535,13 +536,17 @@ class Lightbox {
   private scale = 1
   private tx = 0
   private ty = 0
+  private room: MemoryRoomView | null = null
+  private readonly roomButton: HTMLButtonElement | null
+  private readonly roomNote: HTMLElement
+  private readonly zoomButtons: HTMLButtonElement[]
   private readonly pointers = new Map<number, { x: number; y: number }>()
   private pinch: { dist: number; scale: number } | null = null
   private readonly untrap: () => void
 
   constructor(
     private readonly c: SuiteController,
-    photo: DisplayPhoto,
+    private readonly photo: DisplayPhoto,
     private readonly item: ActivityItem
   ) {
     const t = (k: string, v?: Record<string, string | number>): string => c.t(k, v)
@@ -550,18 +555,28 @@ class Lightbox {
     this.prompt = h('p', { class: 's-prompt', 'aria-live': 'polite' })
     this.zoomLabel = h('span', { class: 's-muted s-small', 'aria-live': 'polite' })
     const people = photo.people.filter((p) => p.name.trim())
+    this.roomNote = h('p', { class: 's-muted s-small', 'aria-live': 'polite' })
+    this.roomNote.hidden = true
+    this.zoomButtons = [
+      button(t('app.closeup.zoomOut'), () => this.zoomBy(1 / 1.25), { 'data-k': 'zoom-out' }),
+      button(t('app.closeup.zoomIn'), () => this.zoomBy(1.25), { 'data-k': 'zoom-in' }),
+      button(t('app.closeup.fit'), () => this.reset(), { 'data-k': 'zoom-fit' })
+    ]
+    this.roomButton = photo.hasDepth && photo.loadDepth
+      ? button(t('app.closeup.stepIn'), () => { void this.toggleRoom() }, { 'data-k': 'room-toggle', 'aria-pressed': 'false' })
+      : null
     this.el = h('div', { class: 's-lightbox', role: 'dialog', 'aria-modal': 'true', 'aria-labelledby': 's-lightbox-title' },
       h('div', { class: 's-lightbox-bar' },
         h('h2', { id: 's-lightbox-title', text: item.title || t('app.closeup.title') }),
-        button(t('app.closeup.zoomOut'), () => this.zoomBy(1 / 1.25), { 'data-k': 'zoom-out' }),
-        button(t('app.closeup.zoomIn'), () => this.zoomBy(1.25), { 'data-k': 'zoom-in' }),
-        button(t('app.closeup.fit'), () => this.reset(), { 'data-k': 'zoom-fit' }),
+        this.roomButton,
+        ...this.zoomButtons,
         this.zoomLabel,
         button(t('app.closeup.close'), () => c.closeLightbox(), { 'data-k': 'closeup-close', class: 's-primary', 'data-autofocus': true })),
       this.stage,
       h('div', { class: 's-lightbox-info' },
         photo.personal ? h('span', { class: 's-badge s-personal', text: t('app.badge.personal') }) : h('p', { class: 's-notice', text: photo.notice || t('app.closeup.demoNotice') }),
         photo.caption ? h('p', { text: photo.caption }) : null,
+        this.roomNote,
         people.length
           ? h('div', {}, h('h3', { text: t('app.closeup.people') }),
               h('ul', {}, people.map((p) => h('li', { text: p.relationship.trim() ? t('app.closeup.person', { name: p.name, relationship: p.relationship }) : p.name }))))
@@ -597,8 +612,48 @@ class Lightbox {
   }
 
   destroy(): void {
+    this.leaveRoom()
     this.untrap()
     this.el.remove()
+  }
+
+  /** Steps into the photograph as a shallow 3D view, or back to the flat picture. */
+  private async toggleRoom(): Promise<void> {
+    if (this.room) { this.leaveRoom(); this.roomButton?.focus(); return }
+    const t = (k: string): string => this.c.t(k)
+    const depth = await this.photo.loadDepth?.()
+    if (!depth || this.el.isConnected === false) { this.showRoomNote(t('app.closeup.roomUnavailable')); return }
+    this.reset()
+    const room = new MemoryRoomView({
+      photoUrl: this.photo.url, depth, label: t('app.closeup.roomLabel'),
+      onError: () => { this.leaveRoom(); this.showRoomNote(t('app.closeup.roomUnavailable')) }
+    })
+    this.room = room
+    this.stage.style.display = 'none'
+    this.stage.after(room.el)
+    for (const b of this.zoomButtons) b.disabled = true
+    this.zoomLabel.hidden = true
+    this.roomButton?.setAttribute('aria-pressed', 'true')
+    if (this.roomButton) this.roomButton.textContent = t('app.closeup.stepOut')
+    this.showRoomNote(t('app.closeup.roomHint'))
+    room.el.focus()
+  }
+
+  private leaveRoom(): void {
+    if (!this.room) return
+    this.room.destroy()
+    this.room = null
+    this.stage.style.display = ''
+    for (const b of this.zoomButtons) b.disabled = false
+    this.zoomLabel.hidden = false
+    this.roomButton?.setAttribute('aria-pressed', 'false')
+    if (this.roomButton) this.roomButton.textContent = this.c.t('app.closeup.stepIn')
+    this.roomNote.hidden = true
+  }
+
+  private showRoomNote(text: string): void {
+    setText(this.roomNote, text)
+    this.roomNote.hidden = !text
   }
 
   private setScale(s: number): void {

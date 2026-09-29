@@ -31,7 +31,7 @@ function rebuild(): void {
     relief: Number($<HTMLInputElement>('relief').value), edgeCut: Number($<HTMLInputElement>('edge').value)
   })
   if (!mesh) {
-    mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: current.texture, side: THREE.DoubleSide }))
+    mesh = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ map: current.texture, side: THREE.DoubleSide, vertexColors: true, transparent: true }))
     scene.add(mesh)
   } else { mesh.geometry = geo; (mesh.material as THREE.MeshBasicMaterial).map = current.texture }
   ;(mesh.material as THREE.MeshBasicMaterial).wireframe = $<HTMLInputElement>('wire').checked
@@ -64,7 +64,7 @@ $<HTMLInputElement>('file').addEventListener('change', async (e) => {
   status.textContent = 'Estimating depth…'
   const image = await fit(file)
   const id = nextId++
-  worker.postMessage({ id, image })
+  worker.postMessage({ id, image, base: new URL('./depth-models/', document.baseURI).href })
   const tex = new THREE.Texture(await createImageBitmap(image))
   tex.colorSpace = THREE.SRGBColorSpace
   tex.needsUpdate = true

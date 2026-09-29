@@ -572,6 +572,17 @@ export interface CaregiverPrompt {
   audio?: CaregiverAudio
 }
 
+/**
+ * A relative depth map made on the device from a photograph, so the photo can be looked
+ * into. `data` holds `width × height` bytes (row-major, top row first; 0 far … 255 near).
+ * Geometry only: it says nothing about what is in the picture.
+ */
+export interface PhotoDepth {
+  data: Blob
+  width: number
+  height: number
+}
+
 export interface SuitePhoto {
   id: string
   /** The existing photo record: original kept, display derivatives generated. */
@@ -583,6 +594,8 @@ export interface SuitePhoto {
   /** Preferred placement id to show it on, if any. */
   surface?: string
   topics?: string[]
+  /** Made on this device from the photograph, on request. Cleared when the photograph is replaced. */
+  depth?: PhotoDepth
 }
 
 export interface SuiteSound {
@@ -646,6 +659,10 @@ export interface DisplayPhoto {
   prompt: ResolvedPrompt | null
   preferredSurface?: string
   topics: string[]
+  /** True when a depth map is stored, so the picture can be stepped into. */
+  hasDepth?: boolean
+  /** The stored depth map, decoded. Null if it cannot be read. */
+  loadDepth?(): Promise<{ width: number; height: number; data: Float32Array } | null>
   /** An in-scene texture (≤ 1024 px long edge), cached; aspect = width / height. */
   texture(): Promise<THREE.Texture | null>
 }
