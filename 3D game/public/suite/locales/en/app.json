@@ -14,6 +14,8 @@
   },
   "home": {
     "start": "Choose a place",
+    "tagline": "Familiar places, together.",
+    "steps": { "who": "Who", "place": "Place", "activity": "Activity" },
     "storage": "About this device:",
     "who": {
       "title": "Who is this session for?",

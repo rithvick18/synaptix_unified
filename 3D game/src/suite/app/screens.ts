@@ -94,9 +94,12 @@ export function renderHome(c: SuiteController): HTMLElement {
 
   const disclaimer = c.tOr('common.disclaimer', 'app.disclaimer')
   return h('div', { class: 's-page' },
-    h('header', { class: 's-brand' },
-      h('h1', { tabindex: -1, text: c.t('app.brand') }),
-      h('p', { class: 's-muted', text: disclaimer })),
+    h('header', { class: 's-hero' },
+      h('p', { class: 's-eyebrow', text: c.t('app.brand') }),
+      h('h1', { tabindex: -1, text: c.t('app.home.tagline') }),
+      h('p', { class: 's-lede', text: disclaimer }),
+      h('ol', { class: 's-steps', 'aria-hidden': 'true' },
+        (['who', 'place', 'activity'] as const).map((k, n) => h('li', {}, h('b', { text: String(n + 1) }), h('span', { text: c.t(`app.home.steps.${k}`) }))))),
     who, language,
     // Kept outside the disclosure: storage state matters even before a caregiver opens setup.
     warning ? h('p', { class: 's-notice', role: 'status' }, h('strong', { text: c.t('app.home.storage') + ' ' }), h('span', { lang: 'en', text: warning })) : null,
@@ -113,8 +116,9 @@ export function renderHome(c: SuiteController): HTMLElement {
 
 function renderPlaceSection(c: SuiteController): (HTMLElement | null)[] {
   const nodes: (HTMLElement | null)[] = [
-    h('h2', { id: 's-place-title', tabindex: -1, text: c.t('app.place.title') }),
-    h('p', { class: 's-muted', text: c.t('app.place.intro') })
+    h('div', { class: 's-section-head' },
+      h('h2', { id: 's-place-title', tabindex: -1, text: c.t('app.place.title') }),
+      h('p', { class: 's-muted', text: c.t('app.place.intro') }))
   ]
   const content = c.content
   if (!content) {
@@ -149,11 +153,12 @@ function renderPlaceSection(c: SuiteController): (HTMLElement | null)[] {
   const envCard = (pack: LoadedContentPack, env: EnvironmentPreset): HTMLElement => {
     const group = pack.meta.regional ? c.lastRegionalChoice : c.lastGeneralChoice
     const chosen = group?.packId === pack.meta.id && group.environmentId === env.id
-    return h('button', { type: 'button', class: 's-choice', 'aria-pressed': String(chosen), 'data-k': `env-${pack.meta.id}-${env.id}`,
+    return h('button', { type: 'button', class: `s-choice${env.thumbnail ? ' s-photo' : ''}`, 'aria-pressed': String(chosen), 'data-k': `env-${pack.meta.id}-${env.id}`,
       onclick: () => c.choose(pack.meta.id, env.id) },
       env.thumbnail ? h('img', { class: 's-thumb', src: resolveUnder(pack.baseUrl, env.thumbnail), alt: '', loading: 'lazy', decoding: 'async' }) : null,
-      h('span', { class: 's-choice-title', text: i18n.text(env.name, env.id) }),
-      h('span', { class: 's-muted s-small', text: i18n.text(env.description, '') }))
+      h('span', { class: 's-photo-body' },
+        h('span', { class: 's-choice-title', text: i18n.text(env.name, env.id) }),
+        h('span', { class: 's-muted s-small', text: i18n.text(env.description, '') })))
   }
   const packSection = (pack: LoadedContentPack, isRegional: boolean): HTMLElement =>
     h('section', { class: 's-card', 'aria-label': i18n.text(pack.meta.name, pack.meta.id) },
@@ -219,8 +224,8 @@ function activityCard(c: SuiteController, kind: ActivityKind): HTMLElement {
   const avail = c.availability(kind)
   const ok = !!avail && avail.ok
   const titleId = `s-act-${kind}`
-  return h('section', { class: 's-card', 'aria-labelledby': titleId },
-    h('h2', { id: titleId, text: c.t(def.nameKey) }),
+  return h('section', { class: 's-card s-activity-card', 'aria-labelledby': titleId },
+    h('h3', { id: titleId, text: c.t(def.nameKey) }),
     h('p', { class: 's-muted', text: c.t(def.descriptionKey) }),
     ok
       ? h('div', { class: 's-row' },

@@ -22,7 +22,7 @@ export const SUITE_CSS = `
 #suite[hidden] { display: none; }
 #suite *, #suite *::before, #suite *::after { box-sizing: border-box; }
 #suite .s-backdrop { position: absolute; inset: 0; pointer-events: auto;
-  background: radial-gradient(120% 90% at 20% 0%, var(--s-surface) 0%, var(--s-bg) 60%); }
+  background: radial-gradient(90% 60% at 50% -10%, rgba(255, 217, 138, .10) 0%, transparent 70%), var(--s-bg); }
 #suite.s-hc .s-backdrop { background: var(--s-bg); }
 #suite .s-stage { position: absolute; inset: 0; pointer-events: auto; touch-action: none; cursor: grab; }
 #suite .s-stage.s-dragging { cursor: grabbing; }
@@ -44,24 +44,26 @@ export const SUITE_CSS = `
 #suite .s-visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden;
   clip: rect(0 0 0 0); white-space: nowrap; }
 
-#suite .s-card { background: var(--s-surface); border: 1px solid var(--s-surface-2); border-radius: var(--s-radius);
+#suite .s-card { background: var(--s-surface); border: 1px solid rgba(255, 255, 255, .10); border-radius: var(--s-radius);
   padding: 1em; display: flex; flex-direction: column; gap: var(--s-gap);
-  box-shadow: 0 1px 2px rgba(60, 40, 20, .06), 0 6px 18px rgba(60, 40, 20, .06); }
+  box-shadow: 0 8px 28px rgba(0, 0, 0, .35); }
 #suite.s-hc .s-card { border: 2px solid var(--s-border); box-shadow: none; }
+#suite.s-hc button { border: 2px solid var(--s-border); }
 #suite .s-card.s-separate { background: var(--s-surface-2); border-style: dashed; border-color: var(--s-border); }
 #suite .s-divider { border: 0; border-top: 1px solid var(--s-border); margin: 0.5em 0; opacity: .6; }
 #suite .s-row { display: flex; flex-wrap: wrap; gap: var(--s-gap); align-items: center; }
 #suite .s-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 13em), 1fr)); gap: var(--s-gap); }
 
 #suite button, #suite .s-button { font: inherit; color: var(--s-text); background: var(--s-surface);
-  border: 2px solid var(--s-border); border-radius: 12px; min-height: 48px; min-width: 48px;
+  border: 1px solid rgba(255, 255, 255, .18); border-radius: 12px; min-height: 48px; min-width: 48px;
   padding: 0.45em 1em; cursor: pointer; text-align: center; line-height: 1.3; overflow-wrap: break-word; }
 /* In flex rows, never shrink a button below its longest word (an explicit min-width would
    otherwise let flex squeeze it and break words mid-way, e.g. Devanagari at large text). */
 #suite .s-row > button, #suite .s-actions button, #suite .s-panel-foot button, #suite .s-strip button,
 #suite .s-lightbox-bar button { min-width: min-content; }
 #suite button:hover { background: var(--s-accent-soft); color: var(--s-on-accent-soft); }
-#suite button.s-primary { background: var(--s-accent); border-color: var(--s-accent); color: var(--s-on-accent); font-weight: 600; }
+#suite button.s-primary { background: var(--s-accent); border-color: var(--s-accent); color: var(--s-on-accent); font-weight: 600;
+  letter-spacing: .03em; }
 #suite button.s-primary:hover { filter: brightness(1.08); }
 #suite button[aria-pressed="true"], #suite button.s-chosen { background: var(--s-accent-soft); color: var(--s-on-accent-soft);
   border-color: var(--s-accent); box-shadow: inset 0 0 0 2px var(--s-accent); }
@@ -83,6 +85,33 @@ export const SUITE_CSS = `
 #suite .s-thumb { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 10px; background: var(--s-surface-2); display: block; }
 
 #suite .s-brand { display: flex; flex-direction: column; gap: 0.35em; }
+
+/* Home: hero + guided steps, in the game's language — charcoal, amber, small caps labels. */
+#suite .s-eyebrow { font-size: 0.72em; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--s-muted); }
+#suite .s-hero { display: flex; flex-direction: column; gap: 0.7em; padding: 1.4em 0 0.6em; }
+#suite .s-hero h1 { font-size: clamp(2em, 6vw, 3em); line-height: 1.08; letter-spacing: -0.02em; font-weight: 700; }
+#suite .s-hero h1 .s-mark { color: var(--s-accent); }
+#suite .s-hero .s-lede { max-width: 34em; color: var(--s-muted); font-size: 1.05em; }
+#suite .s-steps { list-style: none; margin: 0.4em 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.5em; }
+#suite .s-steps li { display: inline-flex; align-items: center; gap: 0.5em; padding: 0.3em 0.9em 0.3em 0.4em; border-radius: 999px;
+  background: var(--s-surface); border: 1px solid rgba(255, 255, 255, .10); font-size: 0.85em; color: var(--s-muted); }
+#suite .s-steps li b { display: inline-grid; place-items: center; width: 1.7em; height: 1.7em; border-radius: 50%;
+  background: var(--s-accent-soft); color: var(--s-on-accent-soft); font-weight: 650; }
+#suite .s-section-head { display: flex; flex-direction: column; gap: 0.25em; margin-top: 0.6em; }
+#suite .s-section-head h2 { font-size: 1.4em; letter-spacing: -0.01em; }
+
+/* Place cards: photo first, name over a dark fade. */
+#suite .s-choice.s-photo { padding: 0; overflow: hidden; gap: 0; background: var(--s-surface-2); position: relative; }
+#suite .s-choice.s-photo .s-thumb { border-radius: 0; aspect-ratio: 16 / 10; transition: transform .25s ease; }
+#suite .s-choice.s-photo:hover .s-thumb { transform: scale(1.03); }
+#suite .s-choice.s-photo .s-photo-body { display: flex; flex-direction: column; gap: 0.2em; padding: 0.7em 0.9em 0.85em; width: 100%; }
+#suite .s-choice.s-photo[aria-pressed="true"] { box-shadow: inset 0 0 0 2px var(--s-accent); background: var(--s-accent-soft); }
+#suite .s-choice.s-photo[aria-pressed="true"]::after { content: '✓'; position: absolute; top: 0.6em; right: 0.6em; width: 1.9em; height: 1.9em;
+  display: grid; place-items: center; border-radius: 50%; background: var(--s-accent); color: var(--s-on-accent); font-weight: 700; }
+#suite.s-rm .s-choice.s-photo .s-thumb { transition: none; }
+#suite .s-choice[aria-pressed="true"] .s-choice-title { color: var(--s-on-accent-soft); }
+#suite .s-activity-card { border-top: 2px solid var(--s-accent-soft); }
+#suite .s-activity-card:hover { border-top-color: var(--s-accent); }
 #suite .s-back { align-self: flex-start; }
 
 /* Home screen: secondary/caregiver-only controls collapse behind one disclosure so the
@@ -149,12 +178,12 @@ export const SUITE_CSS = `
 #suite .s-navigation-tools { position: absolute; top: 16px; right: 16px; display: flex; flex-direction: column;
   align-items: flex-end; gap: 0.5em; pointer-events: none; }
 #suite .s-navigation-tools > * { pointer-events: auto; }
-#suite .s-nav-toggle { display: flex; gap: 3px; padding: 4px; border: 1px solid rgba(60,50,40,.2); border-radius: 14px;
-  background: rgba(255,255,255,.94); box-shadow: 0 2px 12px rgba(30,25,20,.2); }
+#suite .s-nav-toggle { display: flex; gap: 3px; padding: 4px; border: 1px solid rgba(255,255,255,.13); border-radius: 14px;
+  background: rgba(20,22,26,.9); box-shadow: 0 2px 12px rgba(0,0,0,.4); }
 #suite .s-nav-toggle .s-nav-choice { min-height: 44px; padding: .45em .8em; border: 0; background: transparent; }
 #suite .s-nav-toggle .s-nav-choice[aria-pressed="true"] { background: var(--s-accent); color: var(--s-on-accent); box-shadow: none; }
 #suite .s-navpad { display: flex; flex-direction: column; gap: 4px; padding: 6px; border: 1px solid var(--s-border);
-  border-radius: 16px; background: rgba(255,255,255,.82); box-shadow: 0 2px 12px rgba(30,25,20,.18); touch-action: none; }
+  border-radius: 16px; background: rgba(20,22,26,.85); box-shadow: 0 2px 12px rgba(0,0,0,.4); touch-action: none; }
 #suite .s-navpad[hidden] { display: none; }
 #suite .s-navpad-row { display: flex; justify-content: center; gap: 4px; }
 #suite .s-navpad .s-nav-key { width: 48px; height: 48px; min-width: 48px; min-height: 48px; padding: 0;
