@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <base href="/" />
+    <title>Memory room spike (dev only)</title>
+    <style>
+      html,body{margin:0;height:100%;overflow:hidden;background:#0e0f11;color:#f2efe9;font:14px/1.45 system-ui,sans-serif}
+      #hud{position:fixed;left:14px;top:14px;z-index:2;max-width:340px;padding:12px 14px;border-radius:10px;background:#1a1c20cc}
+      #hud label{display:block;margin-top:8px}
+      #status{margin-top:8px;opacity:.85}
+    </style>
+  </head>
+  <body>
+    <div id="hud">
+      <strong>Memory room spike</strong>
+      <div><input id="file" type="file" accept="image/jpeg,image/png,image/webp" /></div>
+      <label>Relief <input id="relief" type="range" min="0.05" max="0.8" step="0.01" value="0.35" /></label>
+      <label>Edge cut <input id="edge" type="range" min="0.03" max="0.4" step="0.01" value="0.2" /></label>
+      <label>Motion <input id="motion" type="range" min="0" max="35" step="1" value="18" /> °</label>
+      <label><input id="wire" type="checkbox" /> Wireframe</label>
+      <label><input id="showdepth" type="checkbox" /> Show depth map</label>
+      <div id="status">Choose a photo. The first run downloads the model.</div>
+    </div>
+    <canvas id="depthview" style="position:fixed;right:14px;top:14px;width:240px;display:none;z-index:2;border-radius:8px"></canvas>
+    <div id="app"></div>
+    <script type="module" src="/src/suite/memoryRoom/spike.ts"></script>
+  </body>
+</html>

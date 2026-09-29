@@ -12,6 +12,7 @@
     "check:profile": "node tools/profile-check.mjs"
   },
   "dependencies": {
+    "@huggingface/transformers": "^4.3.0",
     "three": "0.181.2"
   },
   "devDependencies": {
