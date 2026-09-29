@@ -45,8 +45,10 @@ camera/integration.ts ◀── attach(session.adaptable) ── the suite's ses
 - The suite does **not** use pointer lock, which keeps it touch friendly. Seated mode is
   the default: the camera sits at `scene.seat`, and choosing an object moves the view to
   `object.viewpoint`. That move is a gentle tween of 1.2 s or less, or an instant cut
-  with reduced motion. Look-around by dragging is limited. Walk mode is optional: WASD or
-  the arrow keys, with collision against `scene.blockers`, inside `scene.walkable`.
+  with reduced motion. Look-around by dragging is limited. First-person mode is optional:
+  WASD or the arrow keys, plus an on-screen touch D-pad, with collision against
+  `scene.blockers` inside `scene.walkable`. Photo environments deliberately use a tiny
+  walkable area to preserve panorama alignment.
 - Vision works through `host.camera.attach(session.adaptable)`. A reminiscence item is a
   service "task" only so that presentation timing works: the service holds a new prompt's
   speech, or offers one gentle re-offer of the same prompt. `requestHint()` always returns

@@ -129,6 +129,7 @@ export class SuiteController {
   private overlay: Overlay = null
   private overlayStack: { kind: Overlay; el: HTMLElement; untrap: () => void; returnFocus: HTMLElement | null }[] = []
   private readonly pressed = new Set<string>()
+  private touchMove: { x: number; z: number } | null = null
   private cameraLineAcc = 0
   private lastCameraLine = ''
   private pointer: { id: number; x: number; y: number; startX: number; startY: number; at: number; moved: number } | null = null
@@ -211,6 +212,21 @@ export class SuiteController {
     this.applySettings()
   }
 
+  /** Movement input from the on-screen first-person D-pad. */
+  setTouchMove(move: { x: number; z: number } | null): void {
+    this.touchMove = move
+    this.refreshMove()
+  }
+
+  private refreshMove(): void {
+    const keyboard = walkVector(this.pressed)
+    let x = keyboard.x + (this.touchMove?.x ?? 0)
+    let z = keyboard.z + (this.touchMove?.z ?? 0)
+    const length = Math.hypot(x, z)
+    if (length > 1) { x /= length; z /= length }
+    this.nav.setMove({ x, z })
+  }
+
   private applySettings(): void {
     const s = this.settings
     this.root.style.setProperty('--s-scale', String(s.textScale))
@@ -221,7 +237,8 @@ export class SuiteController {
       this.applyAudioSettings(this.run.audio)
       if (this.nav.mode !== s.navigation) this.nav.setMode(s.navigation)
       this.pressed.clear()
-      this.nav.setMove({ x: 0, z: 0 })
+      this.touchMove = null
+      this.refreshMove()
     } else {
       this.nav.mode = s.navigation
     }
@@ -305,7 +322,15 @@ export class SuiteController {
     }
     if (!this.i18n) {
       clear(this.screenEl)
-      this.screenEl.append(h('div', { class: 's-page', 'aria-busy': 'true' }))
+      // Its own strings aren't in yet, so this is the one screen with hardcoded English —
+      // the same brand line that appears (translated) a moment later, so nothing visibly
+      // changes when it does. No spinner or motion: see SUITE_CSS's "no animations" rule.
+      this.screenEl.append(
+        h('div', { class: 's-page', 'aria-busy': 'true' },
+          h('div', { class: 's-launch' },
+            h('p', { lang: 'en', class: 's-muted s-small' }, 'Loading…'),
+            h('h1', { lang: 'en' }, 'Reminiscence Therapy Suite')))
+      )
       return
     }
     if (explore) {
@@ -485,15 +510,16 @@ export class SuiteController {
         const sp = this.deps.suiteOf(this.savedProfile)
         const pack = content.ok.find((p) => p.meta.id === sp.packId)
         if (pack) {
-          const env = pack.environments.find((e) => e.id === sp.environmentId) ?? pack.environments[0]
+          const env = pack.environments.find((e) => e.id === sp.environmentId && e.shell.startsWith('photo'))
           if (env) return { packId: pack.meta.id, environmentId: env.id }
         }
       } catch {
         /* fall through to the general default */
       }
     }
-    const general = content.ok.find((p) => !p.meta.regional && p.environments.length > 0)
-    return general ? { packId: general.meta.id, environmentId: general.environments[0].id } : null
+    const general = content.ok.find((p) => !p.meta.regional && p.environments.some((e) => e.shell.startsWith('photo')))
+    const env = general?.environments.find((e) => e.shell.startsWith('photo'))
+    return general && env ? { packId: general.meta.id, environmentId: env.id } : null
   }
 
   choose(packId: string, environmentId: string): void {
@@ -698,6 +724,10 @@ export class SuiteController {
     this.nav.mode = this.settings.navigation
     this.nav.setScene(scene)
     this.host.three.refreshShadows()
+    // A photo room brings its own light (its photograph as an HDR). Otherwise, after
+    // setActive, the house is hidden, so only this room is in the capture.
+    if (scene.environment && this.host.three.useEnvironment) this.host.three.useEnvironment(scene.environment)
+    else this.host.three.captureEnvironment?.(scene.seat.position)
     try {
       await this.applyPhotos(prep)
     } catch (err) {
@@ -914,8 +944,10 @@ export class SuiteController {
     if (!obj) return
     run.objectCloseup = obj
     const vp = obj.viewpoint
-    const closer = vp.position.clone().lerp(vp.target, 0.3)
-    this.nav.goTo({ position: closer, target: vp.target.clone() })
+    // A photo room's viewpoint carries a field of view: there a closer look is a narrower
+    // one from the same place, since the photograph is right only from where it was taken.
+    if (vp.fov !== undefined) this.nav.goTo({ position: vp.position.clone(), target: vp.target.clone(), fov: vp.fov * 0.7 })
+    else this.nav.goTo({ position: vp.position.clone().lerp(vp.target, 0.3), target: vp.target.clone() })
     run.session.noteCloseup(true)
     this.explore?.update()
     this.explore?.focusCloseup()
@@ -947,6 +979,19 @@ export class SuiteController {
     if (this.run) this.run.selected = null
     this.nav.goToSeat()
     this.explore?.update()
+  }
+
+  answerAboutPicture(request: { imageUrl: string; question: string; history: readonly { role: 'user' | 'assistant'; text: string }[]; imageContext?: 'room' | 'picture' }): Promise<string> {
+    if (!this.host.answerAboutPicture) return Promise.reject(new Error('Picture chat is unavailable in this build.'))
+    return this.host.answerAboutPicture(request)
+  }
+
+  get transcribeSpeech(): ((audio: Blob, language?: string) => Promise<string>) | undefined {
+    return this.host.transcribeSpeech?.bind(this.host)
+  }
+
+  openAiSetup(): void {
+    this.host.openAiSetup?.()
   }
 
   selectObject(id: string): void {
@@ -1279,17 +1324,18 @@ export class SuiteController {
           e.preventDefault()
           if (this.run && !this.run.session.paused) {
             this.pressed.add(e.code)
-            this.nav.setMove(walkVector(this.pressed))
+            this.refreshMove()
           }
           break
       }
     }
     const onUp = (e: KeyboardEvent): void => {
-      if (this.pressed.delete(e.code)) this.nav.setMove(walkVector(this.pressed))
+      if (this.pressed.delete(e.code)) this.refreshMove()
     }
     const onBlur = (): void => {
       this.pressed.clear()
-      this.nav.setMove({ x: 0, z: 0 })
+      this.touchMove = null
+      this.refreshMove()
     }
     window.addEventListener('keydown', onDown)
     window.addEventListener('keyup', onUp)

@@ -30,6 +30,21 @@ export class ExploreView {
   private readonly caregiver: HTMLElement
   private readonly moveHint: HTMLElement
   private readonly cameraLine: HTMLElement
+  private readonly navPad: HTMLElement
+  private readonly chatInput: HTMLTextAreaElement
+  private readonly chatTitle: HTMLElement
+  private readonly chatStatus: HTMLElement
+  private readonly chatReply: HTMLElement
+  private readonly chatListen: HTMLButtonElement
+  private readonly chatSetup: HTMLButtonElement
+  private chatBusy = false
+  private recorder: MediaRecorder | null = null
+  private recordingStream: MediaStream | null = null
+  private recordingChunks: BlobPart[] = []
+  private recordingTimer: ReturnType<typeof setTimeout> | null = null
+  private readonly chatHistory: { role: 'user' | 'assistant'; text: string }[] = []
+  private chatPhotoId = ''
+  private readonly navButtons: { button: HTMLButtonElement; labelKey: string }[] = []
   private stripButtons = new Map<string, HTMLButtonElement>()
   private itemButtons = new Map<string, HTMLButtonElement>()
   private lightbox: Lightbox | null = null
@@ -68,6 +83,43 @@ export class ExploreView {
     this.caregiver = h('section', { class: 's-caregiver', 'aria-labelledby': 's-cg-title' })
     this.moveHint = h('p', { class: 's-muted s-small' })
     this.cameraLine = h('p', { class: 's-muted s-small', 'data-camera-line': 'hide-off', role: 'status' })
+    this.chatInput = h('textarea', { rows: 2, 'data-k': 'chat-input', placeholder: c.t('app.explore.chat.placeholder') })
+    this.chatTitle = h('h3', { id: 's-chat-title', text: c.t('app.explore.chat.title') })
+    this.chatStatus = h('p', { class: 's-muted s-small', role: 'status', 'aria-live': 'polite' })
+    this.chatReply = h('p', { class: 's-chat-reply', 'aria-live': 'polite' })
+    this.chatListen = button(c.t('app.explore.chat.listen'), () => this.startListening(), { 'data-k': 'chat-listen' })
+    const chatAsk = button(c.t('app.explore.chat.ask'), () => { void this.sendChat() }, { class: 's-primary', 'data-k': 'chat-ask' })
+    this.chatSetup = button(c.t('app.explore.chat.setup'), () => c.openAiSetup(), { 'data-k': 'chat-setup' })
+    const chat = h('section', { class: 's-chat', 'aria-labelledby': 's-chat-title' },
+      this.chatTitle,
+      h('p', { class: 's-muted s-small', text: c.t('app.explore.chat.hint') }),
+      this.chatInput, h('div', { class: 's-row' }, this.chatListen, chatAsk, this.chatSetup), this.chatStatus, this.chatReply)
+
+    const directionButton = (labelKey: string, symbol: string, move: { x: number; z: number }): HTMLButtonElement => {
+      const b = button(symbol, () => undefined, { class: 's-nav-key', 'aria-label': c.t(labelKey), 'data-k': `nav-${labelKey.split('.').at(-1)}` })
+      this.navButtons.push({ button: b, labelKey })
+      const start = (e: PointerEvent): void => {
+        e.preventDefault()
+        b.setPointerCapture?.(e.pointerId)
+        c.setTouchMove(move)
+      }
+      const stop = (e: PointerEvent): void => {
+        if (b.hasPointerCapture?.(e.pointerId)) b.releasePointerCapture(e.pointerId)
+        c.setTouchMove(null)
+      }
+      b.addEventListener('pointerdown', start)
+      b.addEventListener('pointerup', stop)
+      b.addEventListener('pointercancel', stop)
+      b.addEventListener('lostpointercapture', () => c.setTouchMove(null))
+      return b
+    }
+    const forward = directionButton('app.explore.moveForward', '↑', { x: 0, z: 1 })
+    const backward = directionButton('app.explore.moveBackward', '↓', { x: 0, z: -1 })
+    const left = directionButton('app.explore.moveLeft', '←', { x: -1, z: 0 })
+    const right = directionButton('app.explore.moveRight', '→', { x: 1, z: 0 })
+    this.navPad = h('div', { class: 's-navpad', role: 'group', 'aria-label': c.t('app.explore.moveControls') },
+      h('div', { class: 's-navpad-row s-navpad-top' }, forward),
+      h('div', { class: 's-navpad-row' }, left, backward, right))
 
     const body = h('div', { class: 's-panel-body' },
       h('header', { class: 's-row' }, h('div', { style: 'flex: 1 1 12em; min-width: 0' }, this.kicker, this.title), this.badge),
@@ -75,13 +127,18 @@ export class ExploreView {
       h('div', { class: 's-actions' }, this.buttons.replay, this.buttons.previous, this.buttons.next, this.buttons.skip,
         this.buttons.closeup, this.buttons.sound),
       this.info,
+      chat,
       h('section', { class: 's-objects' }, this.stripTitle, this.strip, this.moveHint),
       this.caregiver,
       h('div', { class: 's-row' }, this.buttons.assist),
       this.cameraLine)
     const foot = h('div', { class: 's-panel-foot' }, this.buttons.pause, this.buttons.exit)
     this.panel = h('aside', { class: 's-panel', 'aria-labelledby': 's-item-title' }, body, foot)
-    this.el = h('div', { class: 's-explore-root' }, this.panel)
+    this.el = h('div', { class: 's-explore-root' }, this.panel,
+      h('div', { class: 's-navigation-tools' },
+        h('div', { class: 's-nav-toggle', role: 'group', 'aria-label': c.t('app.explore.navigationMode') },
+          button(c.t('app.explore.seatedMode'), () => c.updateSettings({ navigation: 'seated' }), { class: 's-nav-choice', 'data-k': 'nav-seated' }),
+          button(c.t('app.explore.walkMode'), () => c.updateSettings({ navigation: 'walk' }), { class: 's-nav-choice', 'data-k': 'nav-walk' })), this.navPad))
     this.rebuild()
   }
 
@@ -163,6 +220,9 @@ export class ExploreView {
     const cur = s.current
     const t = (k: string, v?: Record<string, string | number>): string => c.t(k, v)
     const def = c.deps.ACTIVITIES[run.kind]
+    const roomContext = !!this.prep.scene.roomContextImageUrl
+    this.chatTitle.textContent = t(roomContext ? 'app.explore.chat.roomTitle' : 'app.explore.chat.title')
+    this.chatInput.placeholder = t(roomContext ? 'app.explore.chat.roomPlaceholder' : 'app.explore.chat.placeholder')
 
     this.kicker.textContent = def ? t(def.nameKey) : ''
     const focusObj = run.objectCloseup ?? (cur ? c.objectForItem(cur) : null) ?? run.selected
@@ -267,6 +327,15 @@ export class ExploreView {
       else btn.removeAttribute('aria-current')
     }
     this.moveHint.textContent = c.settings.navigation === 'walk' ? t('app.explore.walkHint') : t('app.explore.lookHint')
+    const navToggle = this.el.querySelector<HTMLElement>('.s-nav-toggle')
+    navToggle?.setAttribute('aria-label', t('app.explore.navigationMode'))
+    const seated = navToggle?.querySelector<HTMLButtonElement>('[data-k="nav-seated"]')
+    const walk = navToggle?.querySelector<HTMLButtonElement>('[data-k="nav-walk"]')
+    if (seated) seated.setAttribute('aria-pressed', String(c.settings.navigation === 'seated'))
+    if (walk) walk.setAttribute('aria-pressed', String(c.settings.navigation === 'walk'))
+    this.navPad.setAttribute('aria-label', t('app.explore.moveControls'))
+    for (const { button: b, labelKey } of this.navButtons) b.setAttribute('aria-label', t(labelKey))
+    this.navPad.hidden = c.settings.navigation !== 'walk'
 
     const camOn = c.cameraOn()
     this.cameraLine.hidden = !camOn
@@ -303,10 +372,145 @@ export class ExploreView {
   }
 
   destroy(): void {
+    this.abortRecording()
     this.closeLightbox(false)
     this.el.remove()
   }
+
+  private startListening(): void {
+    void this.startRecording()
+  }
+
+  private async startRecording(): Promise<void> {
+    if (!navigator.mediaDevices?.getUserMedia || typeof MediaRecorder === 'undefined') {
+      this.chatStatus.textContent = this.c.t('app.explore.chat.noMic')
+      return
+    }
+    if (this.recorder) {
+      this.chatStatus.textContent = this.c.t('app.explore.chat.processingVoice')
+      this.recorder.stop()
+      return
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      this.recordingStream = stream
+      const mimeType = ['audio/webm;codecs=opus', 'audio/mp4', 'audio/ogg;codecs=opus']
+        .find((type) => MediaRecorder.isTypeSupported(type))
+      const recorder = mimeType ? new MediaRecorder(stream, { mimeType }) : new MediaRecorder(stream)
+      this.recorder = recorder
+      this.recordingChunks = []
+      recorder.ondataavailable = (event) => { if (event.data.size > 0) this.recordingChunks.push(event.data) }
+      recorder.onerror = () => {
+        this.chatStatus.textContent = this.c.t('app.explore.chat.micError')
+        this.abortRecording()
+      }
+      recorder.onstop = () => {
+        const blob = new Blob(this.recordingChunks, { type: recorder.mimeType || 'audio/webm' })
+        this.releaseRecorder()
+        if (blob.size === 0) {
+          this.chatStatus.textContent = this.c.t('app.explore.chat.noSpeech')
+          this.chatListen.textContent = this.c.t('app.explore.chat.listen')
+          return
+        }
+        void this.transcribeAndSend(blob)
+      }
+      recorder.start()
+      this.chatStatus.textContent = this.c.t('app.explore.chat.listening')
+      this.chatListen.textContent = this.c.t('app.explore.chat.stopAndSend')
+      this.recordingTimer = setTimeout(() => {
+        if (this.recorder === recorder && recorder.state === 'recording') {
+          this.chatStatus.textContent = this.c.t('app.explore.chat.voiceLimit')
+          recorder.stop()
+        }
+      }, 30_000)
+    } catch (error) {
+      this.abortRecording()
+      this.chatListen.textContent = this.c.t('app.explore.chat.listen')
+      const denied = error instanceof DOMException && (error.name === 'NotAllowedError' || error.name === 'SecurityError')
+      this.chatStatus.textContent = denied ? this.c.t('app.explore.chat.micPermission') : this.c.t('app.explore.chat.micError')
+    }
+  }
+
+  private async transcribeAndSend(audio: Blob): Promise<void> {
+    if (!this.c.transcribeSpeech) {
+      this.chatStatus.textContent = this.c.t('app.explore.chat.noMic')
+      return
+    }
+    this.chatStatus.textContent = this.c.t('app.explore.chat.processingVoice')
+    try {
+      const lang = this.c.i18n?.language?.split('-')[0]
+      const text = await this.c.transcribeSpeech(audio, lang)
+      if (!text) {
+        this.chatStatus.textContent = this.c.t('app.explore.chat.noSpeech')
+        return
+      }
+      this.chatInput.value = text
+      await this.sendChat()
+    } catch (err) {
+      this.chatStatus.textContent = err instanceof Error ? err.message : this.c.t('app.explore.chat.micError')
+    }
+  }
+
+  private releaseRecorder(): void {
+    if (this.recordingTimer) clearTimeout(this.recordingTimer)
+    this.recordingTimer = null
+    for (const track of this.recordingStream?.getTracks() ?? []) track.stop()
+    this.recordingStream = null
+    this.recorder = null
+    this.recordingChunks = []
+    this.chatListen.textContent = this.c.t('app.explore.chat.listen')
+  }
+
+  private abortRecording(): void {
+    const recorder = this.recorder
+    if (recorder) {
+      recorder.onstop = null
+      recorder.onerror = null
+      if (recorder.state !== 'inactive') recorder.stop()
+    }
+    this.releaseRecorder()
+  }
+
+  private async sendChat(): Promise<void> {
+    const question = this.chatInput.value.trim()
+    if (!question || this.chatBusy) return
+    const current = this.run.session.current
+    const picture = current?.kind === 'photo' ? current.photo : (() => {
+      const object = this.run.objectCloseup ?? this.run.selected
+      return object ? this.prep.photoOnObject.get(object.id) ?? null : null
+    })()
+    const roomImageUrl = this.prep.scene.roomContextImageUrl
+    const imageUrl = roomImageUrl ?? picture?.url
+    const contextKey = roomImageUrl ?? picture?.id
+    if (!imageUrl || !contextKey) {
+      this.chatStatus.textContent = this.c.t('app.explore.chat.selectPicture')
+      return
+    }
+    if (this.chatPhotoId !== contextKey) {
+      this.chatPhotoId = contextKey
+      this.chatHistory.length = 0
+      this.chatReply.textContent = ''
+    }
+    this.chatBusy = true
+    this.chatInput.disabled = true
+    this.chatStatus.textContent = this.c.t('app.explore.chat.thinking')
+    try {
+      const answer = await this.c.answerAboutPicture({ imageUrl, question, history: this.chatHistory.slice(-8), imageContext: roomImageUrl ? 'room' : 'picture' })
+      this.chatHistory.push({ role: 'user', text: question }, { role: 'assistant', text: answer })
+      this.chatReply.textContent = answer
+      this.run.audio.speakText(answer, this.c.i18n?.language ?? 'en')
+      this.chatStatus.textContent = ''
+      this.chatInput.value = ''
+    } catch (err) {
+      this.chatStatus.textContent = err instanceof Error ? err.message : this.c.t('app.explore.chat.failed')
+    } finally {
+      this.chatBusy = false
+      this.chatInput.disabled = false
+      this.chatInput.focus({ preventScroll: true })
+    }
+  }
 }
+
 
 function itemLabel(c: SuiteController, item: ActivityItem): string {
   return item.personal ? `${item.title} (${c.t('app.badge.personal')})` : item.title
@@ -454,4 +658,3 @@ class Lightbox {
     st.addEventListener('pointercancel', up)
   }
 }
-

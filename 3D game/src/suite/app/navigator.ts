@@ -33,7 +33,7 @@ export function clampLook(yaw: number, pitch: number, limits = LOOK_LIMITS): { y
 export function tweenDuration(distance: number, angle: number, reducedMotion: boolean): number {
   if (reducedMotion) return 0
   if (distance < 0.01 && angle < 0.01) return 0
-  return clamp(0.45 + 0.3 * distance + 0.25 * angle, 0.45, MAX_TWEEN_S)
+  return clamp(0.18 + 0.12 * distance + 0.1 * angle, 0.18, 0.45)
 }
 
 /** Cubic ease-in-out on [0, 1]. */
@@ -139,6 +139,9 @@ export function moveToWorld(move: { x: number; z: number }, yaw: number, distanc
 export interface View {
   position: THREE.Vector3
   target: THREE.Vector3
+  /** Vertical field of view (degrees); absent, the camera's own. A photo room zooms rather
+   *  than moves, because its photograph is right only from where it was taken. */
+  fov?: number
 }
 
 export interface NavScene {
@@ -155,6 +158,8 @@ interface Tween {
   yaw1: number
   pitch0: number
   pitch1: number
+  fov0: number
+  fov1: number
   t: number
   duration: number
   done?: () => void
@@ -174,8 +179,14 @@ export class Navigator {
   private move = { x: 0, z: 0 }
   mode: 'seated' | 'walk' = 'seated'
   reducedMotion = false
+  /** The camera's own field of view, which every view without `fov` returns to. */
+  private readonly baseFov: number
+  private fov: number
 
-  constructor(private readonly camera: THREE.PerspectiveCamera) {}
+  constructor(private readonly camera: THREE.PerspectiveCamera) {
+    this.baseFov = camera.fov
+    this.fov = camera.fov
+  }
 
   get moving(): boolean {
     return this.tween !== null
@@ -194,7 +205,12 @@ export class Navigator {
     this.scene = scene
     this.tween = null
     this.move = { x: 0, z: 0 }
-    if (!scene) return
+    if (!scene) {
+      // Leaves the camera as the house expects it.
+      this.fov = this.baseFov
+      this.applyFov()
+      return
+    }
     if (this.mode === 'walk') this.toSpawn()
     else this.cut(scene.seat)
   }
@@ -214,7 +230,8 @@ export class Navigator {
     const yaw0 = this.restYaw + this.lookYaw
     const pitch0 = this.restPitch + this.lookPitch
     const dist = this.pos.distanceTo(view.position)
-    const angle = Math.abs(angleDelta(yaw0, yaw)) + Math.abs(pitch - pitch0)
+    // A zoom counts as movement: halving the field of view is like walking halfway there.
+    const angle = Math.abs(angleDelta(yaw0, yaw)) + Math.abs(pitch - pitch0) + Math.abs((view.fov ?? this.baseFov) - this.fov) * DEG
     const duration = tweenDuration(dist, angle, this.reducedMotion)
     this.lookYaw = this.lookPitch = this.wantYaw = this.wantPitch = 0
     if (duration === 0) {
@@ -225,7 +242,10 @@ export class Navigator {
     }
     this.restYaw = yaw0
     this.restPitch = pitch0
-    this.tween = { from: this.pos.clone(), to: view.position.clone(), yaw0, yaw1: yaw0 + angleDelta(yaw0, yaw), pitch0, pitch1: pitch, t: 0, duration, done }
+    this.tween = {
+      from: this.pos.clone(), to: view.position.clone(), yaw0, yaw1: yaw0 + angleDelta(yaw0, yaw), pitch0, pitch1: pitch,
+      fov0: this.fov, fov1: view.fov ?? this.baseFov, t: 0, duration, done
+    }
     this.apply()
   }
 
@@ -235,7 +255,8 @@ export class Navigator {
 
   /** Drag look, in pixels. Seated: clamped around the rest view. Walk: yaw turns freely. */
   lookBy(dxPx: number, dyPx: number): void {
-    if (this.tween) return
+    // Pointer input always takes priority over an automatic object transition.
+    this.tween = null
     const dyaw = -dxPx * DRAG_SENSITIVITY
     const dpitch = -dyPx * DRAG_SENSITIVITY
     if (this.mode === 'walk') {
@@ -249,6 +270,7 @@ export class Navigator {
   }
 
   setMove(move: { x: number; z: number }): void {
+    if ((move.x !== 0 || move.z !== 0) && this.tween) this.tween = null
     this.move = move
   }
 
@@ -260,6 +282,7 @@ export class Navigator {
       this.pos.lerpVectors(tw.from, tw.to, k)
       this.restYaw = tw.yaw0 + (tw.yaw1 - tw.yaw0) * k
       this.restPitch = tw.pitch0 + (tw.pitch1 - tw.pitch0) * k
+      this.fov = tw.fov0 + (tw.fov1 - tw.fov0) * k
       if (tw.t >= tw.duration) {
         this.tween = null
         tw.done?.()
@@ -288,6 +311,7 @@ export class Navigator {
     this.pos.copy(view.position)
     this.restYaw = yaw
     this.restPitch = pitch
+    this.fov = view.fov ?? this.baseFov
     this.lookYaw = this.lookPitch = this.wantYaw = this.wantPitch = 0
     this.apply()
   }
@@ -307,5 +331,12 @@ export class Navigator {
     this.camera.position.copy(this.pos)
     this.camera.rotation.set(this.restPitch + this.lookPitch, this.restYaw + this.lookYaw, 0, 'YXZ')
     this.camera.updateMatrixWorld()
+    this.applyFov()
+  }
+
+  private applyFov(): void {
+    if (Math.abs(this.camera.fov - this.fov) < 1e-4) return
+    this.camera.fov = this.fov
+    this.camera.updateProjectionMatrix()
   }
 }

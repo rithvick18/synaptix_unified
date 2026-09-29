@@ -64,7 +64,7 @@ export const livingRoom: ShellDef = {
     k.box(trim, [-X, 2.35, -Z], [X, 2.39, -Z + 0.02])
     k.box(trim, [-X, 2.35, Z - 0.02], [X, 2.39, Z])
     const centre = new THREE.Vector3(0, 0, -0.4)
-    k.interiorLights(centre, { x: X, z: Z }, H, [-2.5, 6, 1.5])
+    k.interiorLights(centre, { x: X, z: Z }, H, [-4.2, 3.3, 2.6])
     const geometries = k.finish()
     return {
       group: k.group,

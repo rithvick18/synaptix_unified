@@ -77,7 +77,9 @@ export default defineConfig({
   server: {
     // Serve this project plus the camera app's sources (and their node_modules, for
     // @mediapipe/tasks-vision). Nothing else outside this folder.
-    fs: { allow: [here, CAMERA_WEB] }
+    fs: { allow: [here, CAMERA_WEB] },
+    // Local faster-whisper speech-to-text (tools/stt/server.py) for the picture chat.
+    proxy: { '/stt': { target: process.env.MEMORIA_STT_URL ?? 'http://127.0.0.1:8765', rewrite: (p) => p.replace(/^\/stt/, '') } }
   },
   plugins: [cameraAssets()]
 })

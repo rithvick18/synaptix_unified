@@ -7,9 +7,9 @@
 > languages, the verification results and the limitations, and see `docs/suite/` for how
 > to add a pack, a language, an activity or an asset.
 >
-> The guided tasks described below are unchanged. They are one button away on the suite's
-> home screen, or open first with `?start=tasks`. `?patient=mira` and `?patient=raju` also
-> open them first.
+> The guided tasks described below still use the earlier modelled house. They can be
+> opened explicitly with `?start=tasks`. `?patient=mira` and `?patient=raju` also open
+> them first.
 
 First-person cognitive-care prototype (SIH26003). SPEC.md §6 rows A–D are done: scaffold,
 renderer, procedural world, movement and interaction (A); the mission runner, hint ladder,

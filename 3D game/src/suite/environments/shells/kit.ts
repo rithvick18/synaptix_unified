@@ -96,16 +96,18 @@ export class ShellKit {
     const material = run.material ?? this.wall
     const openings = [...(run.openings ?? [])].sort((p, q) => p.from - q.from)
     let cursor = run.from
+    // Walls cast, so daylight reaches a room only through its windows and doorways.
+    const solid = { cast: true }
     for (const op of openings) {
-      this.runBox(run, material, cursor, op.from, 0, run.height, 0, run.thickness)
-      if (op.bottom > 0) this.runBox(run, material, op.from, op.to, 0, op.bottom, 0, run.thickness)
-      this.runBox(run, material, op.from, op.to, op.top, run.height, 0, run.thickness)
+      this.runBox(run, material, cursor, op.from, 0, run.height, 0, run.thickness, solid)
+      if (op.bottom > 0) this.runBox(run, material, op.from, op.to, 0, op.bottom, 0, run.thickness, solid)
+      this.runBox(run, material, op.from, op.to, op.top, run.height, 0, run.thickness, solid)
       cursor = op.to
       if (op.kind === 'window') this.window(run, op)
       else if (op.kind === 'door') this.door(run, op)
       else if (op.kind === 'gate') this.gate(run, op)
     }
-    this.runBox(run, material, cursor, run.to, 0, run.height, 0, run.thickness)
+    this.runBox(run, material, cursor, run.to, 0, run.height, 0, run.thickness, solid)
     if (run.blocks !== false) {
       const a = run.at, b = run.at + run.outward * run.thickness
       const lo = Math.min(a, b), hi = Math.max(a, b)
@@ -136,14 +138,15 @@ export class ShellKit {
     this.runBox(run, frame, op.from - f, op.from, op.bottom, op.top, -0.025, 0.02, { bevel: 0.008 })
     this.runBox(run, frame, op.to, op.to + f, op.bottom, op.top, -0.025, 0.02, { bevel: 0.008 })
     this.runBox(run, frame, op.from - f - 0.03, op.to + f + 0.03, op.bottom - 0.04, op.bottom, -0.07, t * 0.5, { bevel: 0.008 })
-    // Shutters' frame, glazing bars and the iron grill in the opening.
-    this.runBox(run, frame, op.from, op.to, op.bottom + h / 2 - 0.02, op.bottom + h / 2 + 0.02, mid - 0.02, mid + 0.02)
-    this.runBox(run, frame, (op.from + op.to) / 2 - 0.025, (op.from + op.to) / 2 + 0.025, op.bottom, op.top, mid - 0.02, mid + 0.02)
+    // Shutters' frame, glazing bars and the iron grill in the opening. They cast, so the
+    // patch of sunlight on the floor carries the grill's shadow, as a real one does.
+    this.runBox(run, frame, op.from, op.to, op.bottom + h / 2 - 0.02, op.bottom + h / 2 + 0.02, mid - 0.02, mid + 0.02, { cast: true })
+    this.runBox(run, frame, (op.from + op.to) / 2 - 0.025, (op.from + op.to) / 2 + 0.025, op.bottom, op.top, mid - 0.02, mid + 0.02, { cast: true })
     const iron = this.m('iron', '#3b3b3e')
     const bars = Math.max(3, Math.round(w / 0.14))
     for (let i = 1; i < bars; i++) {
       const u = op.from + (i / bars) * w
-      this.runBox(run, iron, u - 0.008, u + 0.008, op.bottom, op.top, mid - 0.06, mid - 0.044)
+      this.runBox(run, iron, u - 0.008, u + 0.008, op.bottom, op.top, mid - 0.06, mid - 0.044, { cast: true })
     }
     // Curtains either side on a brass rod.
     const cloth = this.m('fabric', this.ctx.materials.accent)
@@ -201,7 +204,7 @@ export class ShellKit {
   }
 
   ceilingSlab(x0: number, z0: number, x1: number, z1: number, height: number): void {
-    this.box(this.ceiling, [x0, height, z0], [x1, height + 0.1, z1])
+    this.box(this.ceiling, [x0, height, z0], [x1, height + 0.1, z1], { cast: true })
   }
 
   /** A batten tube light on a wall: a recognisable fixture, emissive, no extra light. */
@@ -219,21 +222,30 @@ export class ShellKit {
   }
 
   /**
-   * An interior's lighting: a soft hemisphere fill, a warm ceiling point light, and one
-   * shadow-casting directional light standing in for daylight (standard tier only).
+   * An interior's lighting: a soft hemisphere fill standing in for light bounced off the
+   * walls, a warm ceiling point light, and the sun, low enough to come in through a window
+   * and lay a patch of light across the floor (shadowed on the standard tier, where the
+   * walls, ceiling and window grills cast). `from` is the sun's offset from `centre`.
+   *
+   * The room stays bright everywhere: the sun adds a highlight, it does not take the fill
+   * away. People using the suite may see less well, and a dim corner hides what is in it.
    */
   interiorLights(centre: THREE.Vector3, half: { x: number; z: number }, height: number, from: V3): void {
     const colour = LIGHT_COLOUR[this.ctx.materials.light]
-    const hemi = new THREE.HemisphereLight(0xfff6ea, 0x8a7458, 1.15)
+    const hemi = new THREE.HemisphereLight(0xfff4e4, 0x8a7458, 1.05)
     hemi.name = 'suite:fill'
-    const lamp = new THREE.PointLight(colour, 14, 11, 1.6)
+    const lamp = new THREE.PointLight(colour, 16, 11, 1.6)
     lamp.position.set(centre.x, height - 0.35, centre.z)
     lamp.name = 'suite:lamp'
-    const day = new THREE.DirectionalLight(0xfff4e6, 1.25)
+    // Without shadows (low tier) nothing stops the sun at the ceiling, so it lights the
+    // whole room evenly and must stay gentle; with them it only reaches the windows' patches.
+    const day = new THREE.DirectionalLight(0xffeccf, this.ctx.quality === 'standard' ? 3.2 : 1.25)
     day.name = 'suite:daylight'
     day.position.set(centre.x + from[0], from[1], centre.z + from[2])
     day.target.position.copy(centre)
-    this.shadow(day, Math.max(half.x, half.z) + 0.8)
+    // A low sun sees the room at a slant, so its shadow camera must hold the whole box —
+    // walls and ceiling included. Anything outside it is lit as if nothing were in the way.
+    this.shadow(day, Math.hypot(half.x, half.z, height) + 0.3)
     this.group.add(hemi, lamp, day, day.target)
     this.lights.push(hemi, lamp, day)
   }
@@ -256,12 +268,14 @@ export class ShellKit {
   private shadow(light: THREE.DirectionalLight, extent: number): void {
     if (this.ctx.quality !== 'standard') return
     light.castShadow = true
-    light.shadow.mapSize.set(1024, 1024)
+    light.shadow.mapSize.set(2048, 2048)
     const cam = light.shadow.camera
     cam.left = -extent; cam.right = extent; cam.top = extent; cam.bottom = -extent
     cam.near = 0.5; cam.far = 25
     light.shadow.bias = -0.0005
     light.shadow.normalBias = 0.02
+    // A sun through a window has a soft edge; a hard one reads as a computer graphic.
+    light.shadow.radius = 3
   }
 
   finish(): THREE.BufferGeometry[] {

@@ -53,6 +53,9 @@ export interface QualityProfile {
   anisotropy: number
   /** The top rung the adaptive ladder may reach. 1 means "do not climb". */
   maxPixelRatio: number
+  /** Screen-space ambient occlusion (`Renderer.enableAmbientOcclusion`). A second
+   *  geometry pass and a full-screen shader, so only where the pixel ladder may climb. */
+  ambientOcclusion: boolean
 }
 
 /**
@@ -107,10 +110,10 @@ export function detectQuality(device: DeviceInfo, override: QualityTier | null =
     : detected.reason
 
   if (tier === 'software') {
-    return { tier, reason, bootResolution: '1k', upgradeResolution: null, anisotropy: anisotropy(4), maxPixelRatio: 1 }
+    return { tier, reason, bootResolution: '1k', upgradeResolution: null, anisotropy: anisotropy(4), maxPixelRatio: 1, ambientOcclusion: false }
   }
   if (tier === 'baseline') {
-    return { tier, reason, bootResolution: '1k', upgradeResolution: null, anisotropy: anisotropy(8), maxPixelRatio: 1 }
+    return { tier, reason, bootResolution: '1k', upgradeResolution: null, anisotropy: anisotropy(8), maxPixelRatio: 1, ambientOcclusion: false }
   }
   return {
     tier,
@@ -118,7 +121,8 @@ export function detectQuality(device: DeviceInfo, override: QualityTier | null =
     bootResolution: '1k',
     upgradeResolution: '2k',
     anisotropy: anisotropy(16),
-    maxPixelRatio: clampRatio(device.devicePixelRatio)
+    maxPixelRatio: clampRatio(device.devicePixelRatio),
+    ambientOcclusion: true
   }
 }
 

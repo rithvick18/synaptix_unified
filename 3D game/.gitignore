@@ -13,4 +13,4 @@ graphify-out/cache/
 agent-audit.jsonl
 
 # Local vision model weights
-models/
+/models/

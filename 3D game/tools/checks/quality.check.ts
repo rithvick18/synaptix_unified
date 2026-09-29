@@ -62,6 +62,7 @@ const GPU: DeviceInfo = {
     eq(profile.upgradeResolution, null, `software: "${name}" never fetches 2k maps`)
     eq(profile.anisotropy, 4, `software: "${name}" keeps anisotropy 4`)
     eq(profile.bootResolution, '1k', `software: "${name}" boots at 1k`)
+    eq(profile.ambientOcclusion, false, `software: "${name}" draws no ambient occlusion pass`)
   }
 
   // The whole ladder collapses to one rung, so §7's sampler may start immediately.
@@ -88,6 +89,7 @@ const GPU: DeviceInfo = {
     eq(profile.maxPixelRatio, 1, `baseline: ${label} does not raise the pixel ratio`)
     eq(profile.upgradeResolution, null, `baseline: ${label} does not fetch 2k maps`)
     eq(profile.anisotropy, 8, `baseline: ${label} still gets better-sampled floors`)
+    eq(profile.ambientOcclusion, false, `baseline: ${label} draws no ambient occlusion pass`)
   }
 
   // Anisotropy is a request, not a demand: it is clamped to what the driver offers.
@@ -106,6 +108,7 @@ const GPU: DeviceInfo = {
   eq(profile.upgradeResolution, '2k', 'full: 2k is fetched afterwards instead')
   eq(profile.anisotropy, 16, 'full: anisotropy goes to the hardware maximum')
   eq(profile.maxPixelRatio, 2, 'full: the ladder may climb to the display ratio')
+  eq(profile.ambientOcclusion, true, 'full: ambient occlusion is drawn')
   ok(profile.reason.includes('Apple M2 Pro'), 'full: the reason names what decided it')
 
   // An unknown renderer string is not a reason to assume the worst — only a software

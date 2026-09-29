@@ -26,7 +26,10 @@ def env(id, shell, name, desc, materials, rows):
         assert a['mount'] == mount, f'{id}/{pid}: {asset} is {a["mount"]}, slot {slot} is {mount}'
         assert all(s <= m + 1e-6 for s, m in zip(a['size'], maxs)), f'{id}/{pid}: {asset} {a["size"]} > {slot} {maxs}'
         placements.append({'id': pid, 'asset': asset, 'slot': slot, **extra})
-    return {'id': id, 'shell': shell, 'name': name, 'description': desc, 'materials': materials, 'placements': placements}
+    photo_thumbs = {'photoLivingDemo': 'lythwood-room', 'photoCombination': 'combination-room', 'photoKiara': 'kiara-interior',
+                    'photoChineseGarden': 'chinese-garden', 'photoGreenPointPark': 'green-point-park', 'photoMondelloBeach': 'mondello-beach'}
+    thumbnail = {'thumbnail': f'thumbs/{photo_thumbs[shell]}.webp'} if shell in photo_thumbs else {}
+    return {'id': id, 'shell': shell, 'name': name, 'description': desc, **thumbnail, 'materials': materials, 'placements': placements}
 
 H = {'highlight': True}
 def img(i, hl=False): return {'image': i, **({'highlight': True} if hl else {})}
@@ -125,6 +128,41 @@ everyday = [
          ('umbrella', 'umbrella', 'right-wall-hang'),
          ('calendar', 'calendar-wall', 'left-wall-hang'),
          ('carrom', 'carrom-board', 'courtyard-centre', H)]),
+    # Objects are identified in the actual photograph; no 3D replicas cover its pixels.
+    env('photo-living-demo', 'photoLivingDemo', {'en': 'Lythwood room · photographed', 'hi': 'लिथवुड का कमरा · तस्वीर'},
+        {'en': 'Look around a real photographed room. Explore its television, lamp, mirror, picture and tea table.',
+         'hi': 'एक असली कमरे की तस्वीर में चारों ओर देखें। टीवी, लैंप, आईना, चित्र और चाय की मेज़ देखें।'},
+        {},
+        [('television', 'lythwood-television', 'television', H),
+         ('lamp', 'lythwood-lamp', 'lamp', H),
+         ('mirror', 'lythwood-mirror', 'mirror'),
+         ('picture', 'lythwood-picture', 'picture'),
+         ('tea-table', 'lythwood-tea-table', 'tea-table', H)]),
+    env('photo-combination', 'photoCombination', {'en': 'Traditional sitting room', 'hi': 'पारंपरिक बैठक'},
+        {'en': 'A photographed sitting room with a sofa, armchair, standing lamp and framed art.',
+         'hi': 'सोफ़े, आरामकुर्सी, लैंप और चित्रों वाली असली बैठक की तस्वीर।'}, {},
+        [('sofa', 'combination-sofa', 'sofa', H), ('lamp', 'combination-lamp', 'lamp', H),
+         ('armchair', 'combination-armchair', 'armchair', H), ('picture', 'combination-picture', 'picture')]),
+    env('photo-kiara', 'photoKiara', {'en': 'Kitchen and lounge', 'hi': 'रसोई और बैठक'},
+        {'en': 'A photographed home with a kitchen, sofa, table, television and everyday objects.',
+         'hi': 'रसोई, सोफ़े, मेज़, टीवी और रोज़मर्रा की चीज़ों वाले असली घर की तस्वीर।'}, {},
+        [('sofa', 'kiara-sofa', 'sofa', H), ('television', 'kiara-television', 'television', H),
+         ('fridge', 'kiara-fridge', 'fridge', H), ('chair', 'kiara-chair', 'chair'),
+         ('mug', 'kiara-mug', 'mug')]),
+    env('photo-chinese-garden', 'photoChineseGarden', {'en': 'Chinese garden', 'hi': 'चीनी उद्यान'},
+        {'en': 'A real 360° garden photograph with a pond, stone paths, trees and a pavilion.',
+         'hi': 'तालाब, पत्थर के रास्तों, पेड़ों और मंडप वाले बगीचे की वास्तविक 360° तस्वीर।'}, {},
+        [('pond', 'garden-pond', 'pond', H), ('pavilion', 'garden-pavilion', 'pavilion', H),
+         ('garden-trees', 'garden-trees', 'garden-trees')]),
+    env('photo-green-point-park', 'photoGreenPointPark', {'en': 'Green Point Park · Cape Town', 'hi': 'ग्रीन पॉइंट पार्क · केप टाउन'},
+        {'en': 'A real 360° park photograph looking over open grass toward the city and mountains.',
+         'hi': 'खुले मैदान से शहर और पहाड़ों की ओर देखता पार्क का वास्तविक 360° दृश्य।'}, {},
+        [('park-lawn', 'park-lawn', 'lawn', H), ('park-mountains', 'park-mountains', 'mountains')]),
+    env('photo-mondello-beach', 'photoMondelloBeach', {'en': 'Mondello Beach · Sicily', 'hi': 'मोंडेलो बीच · सिसिली'},
+        {'en': 'A real 360° seaside photograph with sand, clear water and coastal trees.',
+         'hi': 'रेत, साफ़ पानी और तटीय पेड़ों वाला समुद्र-तट का वास्तविक 360° दृश्य।'}, {},
+        [('beach-shore', 'beach-shore', 'shore', H), ('beach-water', 'beach-water', 'water'),
+         ('beach-pines', 'beach-pines', 'pines')]),
 ]
 
 northeast = [

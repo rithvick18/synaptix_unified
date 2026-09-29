@@ -27,7 +27,7 @@ product branding. The suite is an activity space, not a medical treatment.
 | Tab / Shift+Tab | Everywhere | Moves through buttons, the object list and the caregiver panel |
 | Arrow keys | Explore, seated | Move focus through "Things in this room"; the focused object gets a soft highlight |
 | Arrow keys | Explore, walk mode | Walk, unless focus is in the object list (then they move through the list) |
-| W A S D | Explore, walk mode | Walk slowly (1.4 m/s) |
+| W A S D | Explore, first-person mode | Move slowly (1.4 m/s) |
 | Enter | Explore | Chooses the highlighted object (on a button, it presses that button) |
 | Space | Explore, close-up | Replays the prompt (on a button, it presses that button) |
 | P | Explore | Pause or resume |
@@ -42,12 +42,13 @@ while someone is typing a note. Keys with Ctrl, Cmd or Alt are left alone.
 
 | Gesture | Where | What it does |
 |---|---|---|
-| Drag | 3D room | Looks around: up to about 70° left or right and 35° up or down from the resting view, with gentle damping. In walk mode, dragging sideways turns freely. |
+| Drag | Explore | Looks around. In first-person mode, dragging sideways turns freely. |
+| Hold an on-screen arrow | Explore, first-person mode | Move forward, backward or sideways on touch screens. |
 | Tap or click | 3D room | Chooses the object under the pointer. A drag is never read as a tap: a tap moves less than 8 px and lasts less than 0.65 s. |
 | Hover | 3D room, object list | A soft, steady warm tint on the object, with no flashing or pulsing |
 | Buttons, wheel, pinch | Photo close-up | Zoom from 100% to 500%; drag to pan when zoomed |
 
-There is no pointer lock, so touch screens work the same way as a mouse.
+There is no pointer lock. Drag-to-look works with a mouse or touch, and the on-screen arrows add movement on touch screens.
 
 ### Camera movement
 
@@ -55,8 +56,11 @@ There is no pointer lock, so touch screens work the same way as a mouse.
   glides to its viewpoint with an ease-in-out lasting 1.2 s or less.
 - With **reduce motion** on, the view cuts straight to the new place instead of gliding.
 - The view never turns by itself.
-- **Walk mode** is optional: a slow walk that cannot pass through furniture (a 0.25 m
-  radius) and stays inside the room's floor area.
+- **First-person mode** can be toggled from the Explore screen or Comfort settings. Use
+  W A S D / arrow keys on a keyboard, or hold the on-screen arrows on touch screens; drag
+  to look around. In modelled rooms, the slow walk cannot pass through furniture (a 0.25 m
+  radius) and stays inside the room's floor area. In photographed places, movement is
+  restricted to the panorama's small parallax radius so the real capture stays aligned.
 
 ## Comfort settings
 

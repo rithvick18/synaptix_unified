@@ -48,9 +48,9 @@
     "semantic_hash": ""
   },
   "src/Renderer.ts": {
-    "mtime": 1790014936.995617,
-    "seen": 1790283561.990436,
-    "ast_hash": "c52a0e1d04893cd32d91bca9e5ea0a25",
+    "mtime": 1790656142.7561834,
+    "seen": 1790658083.980385,
+    "ast_hash": "a597734eed995511f38d62f694596dbc",
     "semantic_hash": ""
   },
   "src/State.ts": {
@@ -78,9 +78,9 @@
     "semantic_hash": ""
   },
   "src/main.ts": {
-    "mtime": 1790360975.392982,
-    "seen": 1790389297.6618502,
-    "ast_hash": "4b56df459d4cc71387517ce8baacfe19",
+    "mtime": 1790657134.5139616,
+    "seen": 1790658083.980417,
+    "ast_hash": "1d96b4832ef54e1739a924f148744d11",
     "semantic_hash": ""
   },
   "src/proceduralHouse.ts": {
@@ -90,9 +90,9 @@
     "semantic_hash": ""
   },
   "src/ui.ts": {
-    "mtime": 1790360868.984833,
-    "seen": 1790389297.661875,
-    "ast_hash": "a5e68430b46d34a5393434753c69ba58",
+    "mtime": 1790648356.3877182,
+    "seen": 1790658083.980486,
+    "ast_hash": "33e3532bf742d42fac3d44e99265edab",
     "semantic_hash": ""
   },
   "tools/checks/pack.check.ts": {
@@ -156,9 +156,9 @@
     "semantic_hash": ""
   },
   "README.md": {
-    "mtime": 1790390566.5564644,
-    "seen": 1790620614.9978619,
-    "ast_hash": "176b55ccae922065de6b6450da6053e3",
+    "mtime": 1790632559.0418487,
+    "seen": 1790658083.980535,
+    "ast_hash": "d42cbf9c2af4ba70a5f3df6f140d809f",
     "semantic_hash": ""
   },
   "SPEC.md": {
@@ -456,15 +456,15 @@
     "semantic_hash": ""
   },
   "src/Quality.ts": {
-    "mtime": 1790113406.047402,
-    "seen": 1790113710.1093261,
-    "ast_hash": "a2f033176c0d9e2c0a96a7c35d208ff3",
+    "mtime": 1790626090.2341821,
+    "seen": 1790627299.6023831,
+    "ast_hash": "a5c9d4ee275d0e9e3d1c1e58228ee6a3",
     "semantic_hash": ""
   },
   "tools/checks/quality.check.ts": {
-    "mtime": 1790092497.4885983,
-    "seen": 1790094388.218802,
-    "ast_hash": "2e521eedf7739aea3ecb293074ae1f8e",
+    "mtime": 1790626090.234517,
+    "seen": 1790627299.602438,
+    "ast_hash": "bc78b93faa90ae7856c1e0e664292c6f",
     "semantic_hash": ""
   },
   "src/agent/auditNode.ts": {
@@ -654,9 +654,9 @@
     "semantic_hash": ""
   },
   "public/suite/locales/en/app.json": {
-    "mtime": 1790618937.8124728,
-    "seen": 1790620614.997781,
-    "ast_hash": "23ad9a72452a183d87a286898f45132b",
+    "mtime": 1790659294.669108,
+    "seen": 1790659370.586849,
+    "ast_hash": "9a80eb05ae906a045f98ffbe96e94908",
     "semantic_hash": ""
   },
   "public/suite/locales/en/common.json": {
@@ -678,9 +678,9 @@
     "semantic_hash": ""
   },
   "public/suite/locales/hi/app.json": {
-    "mtime": 1790618943.0244763,
-    "seen": 1790620614.997783,
-    "ast_hash": "bd05cb8fe3b7ee00e1003c499c38db04",
+    "mtime": 1790659294.6695962,
+    "seen": 1790659370.586854,
+    "ast_hash": "43e57ad27eb4fa28000ab0f9399c5b39",
     "semantic_hash": ""
   },
   "public/suite/locales/hi/common.json": {
@@ -708,9 +708,9 @@
     "semantic_hash": ""
   },
   "public/suite/packs/everyday-home/pack.json": {
-    "mtime": 1790360511.8245106,
-    "seen": 1790389297.661825,
-    "ast_hash": "911ff546ceab913276f807149f36e904",
+    "mtime": 1790633507.0531538,
+    "seen": 1790658083.9803689,
+    "ast_hash": "9c11b86f99659790314960794a4f757b",
     "semantic_hash": ""
   },
   "public/suite/packs/index.json": {
@@ -756,15 +756,15 @@
     "semantic_hash": ""
   },
   "src/suite/app/app.ts": {
-    "mtime": 1790620972.5444856,
-    "seen": 1790621018.349099,
-    "ast_hash": "ff372102fc18c60badb037f32b40f509",
+    "mtime": 1790657134.6170368,
+    "seen": 1790658083.980421,
+    "ast_hash": "4805c0526813b8f999c37fe8f070ffe5",
     "semantic_hash": ""
   },
   "src/suite/app/audio.ts": {
-    "mtime": 1790361173.187499,
-    "seen": 1790389297.6618528,
-    "ast_hash": "40dbff75529565fc68356d73eb7d60a6",
+    "mtime": 1790656925.4015915,
+    "seen": 1790658083.9804218,
+    "ast_hash": "277666d6ce82de5f3b1ad510b377a93c",
     "semantic_hash": ""
   },
   "src/suite/app/deps.ts": {
@@ -774,8 +774,8 @@
     "semantic_hash": ""
   },
   "src/suite/app/dev/harness.ts": {
-    "mtime": 1790620981.5377946,
-    "seen": 1790621018.349101,
+    "mtime": 1790629273.6028485,
+    "seen": 1790630443.1558459,
     "ast_hash": "292162be168a86d760067d028cd392eb",
     "semantic_hash": ""
   },
@@ -786,9 +786,9 @@
     "semantic_hash": ""
   },
   "src/suite/app/explore.ts": {
-    "mtime": 1790389621.1057994,
-    "seen": 1790620614.9978151,
-    "ast_hash": "10e72e195b1ce8235e694013466ef1e7",
+    "mtime": 1790659132.9246306,
+    "seen": 1790659370.5869162,
+    "ast_hash": "a379be7629f67231428ca7d24dd92a7b",
     "semantic_hash": ""
   },
   "src/suite/app/highlight.ts": {
@@ -810,15 +810,15 @@
     "semantic_hash": ""
   },
   "src/suite/app/navigator.ts": {
-    "mtime": 1790361109.0367546,
-    "seen": 1790389297.661856,
-    "ast_hash": "cf13916bb7516ad441d03653f23e60c3",
+    "mtime": 1790656193.724562,
+    "seen": 1790658083.9804292,
+    "ast_hash": "3b2ea7da5c416b8e3ab2f36bfa99713b",
     "semantic_hash": ""
   },
   "src/suite/app/screens.ts": {
-    "mtime": 1790620948.1373563,
-    "seen": 1790621018.3491042,
-    "ast_hash": "f9f7e81d79ec37933e341626b44344ca",
+    "mtime": 1790659305.2649395,
+    "seen": 1790659370.58692,
+    "ast_hash": "017ec53392f194cd7f684f48d2f58da7",
     "semantic_hash": ""
   },
   "src/suite/app/settings.ts": {
@@ -834,9 +834,9 @@
     "semantic_hash": ""
   },
   "src/suite/app/styles.ts": {
-    "mtime": 1790618933.3392246,
-    "seen": 1790620614.997819,
-    "ast_hash": "96ad814067ba708cf9bb85fd322c9537",
+    "mtime": 1790659346.2961872,
+    "seen": 1790659370.586922,
+    "ast_hash": "95fd7edceb8c204170c7da65cb9dfab3",
     "semantic_hash": ""
   },
   "src/suite/app/summary.ts": {
@@ -846,9 +846,9 @@
     "semantic_hash": ""
   },
   "src/suite/app/theme.ts": {
-    "mtime": 1790361052.1894777,
-    "seen": 1790389297.661859,
-    "ast_hash": "7d76fbad0bfe1615e119ec023f60d127",
+    "mtime": 1790658965.6816626,
+    "seen": 1790659008.027349,
+    "ast_hash": "cb85ba6da91c64c757127b0c47808132",
     "semantic_hash": ""
   },
   "src/suite/app/vision.ts": {
@@ -972,15 +972,15 @@
     "semantic_hash": ""
   },
   "src/suite/content/validate.ts": {
-    "mtime": 1790361787.1449494,
-    "seen": 1790389297.661866,
-    "ast_hash": "8dae2b8c6704ae1e9c779bdfe8946dce",
+    "mtime": 1790633506.978469,
+    "seen": 1790658083.980457,
+    "ast_hash": "b2924cbb38b58f88b43da0d8e10959d3",
     "semantic_hash": ""
   },
   "src/suite/contracts.ts": {
-    "mtime": 1790389581.8902082,
-    "seen": 1790620614.9978318,
-    "ast_hash": "84c02d8d8f0cf9cb8a00e85280c2a455",
+    "mtime": 1790657134.4003408,
+    "seen": 1790658083.980457,
+    "ast_hash": "556f2f7eae7fa00f9fd8c02e9a3ac76a",
     "semantic_hash": ""
   },
   "src/suite/i18n/core.ts": {
@@ -1002,9 +1002,9 @@
     "semantic_hash": ""
   },
   "src/suite/profile/editor.ts": {
-    "mtime": 1790389149.087107,
-    "seen": 1790389297.661868,
-    "ast_hash": "8e48668061b5761093bdd3182b17fc37",
+    "mtime": 1790632029.77715,
+    "seen": 1790658083.980474,
+    "ast_hash": "3bfb7c0c6bc3ae93ad2a2892faba445a",
     "semantic_hash": ""
   },
   "src/suite/profile/editorStyle.ts": {
@@ -1080,9 +1080,9 @@
     "semantic_hash": ""
   },
   "docs/suite/PLAN.md": {
-    "mtime": 1790360561.336416,
-    "seen": 1790389297.6618922,
-    "ast_hash": "a189ce4d8454a2761a45d999d716f5f4",
+    "mtime": 1790634406.4714196,
+    "seen": 1790658083.9805372,
+    "ast_hash": "efae2be4951a342c7588431ef2ba6c8d",
     "semantic_hash": ""
   },
   "docs/suite/languages.md": {
@@ -1362,27 +1362,27 @@
     "semantic_hash": ""
   },
   "public/suite/assets/manifest.json": {
-    "mtime": 1790389640.8529563,
-    "seen": 1790620614.997778,
-    "ast_hash": "f12ecc8339dea6ed4aa0862bc4937f87",
+    "mtime": 1790633581.8102193,
+    "seen": 1790658083.980353,
+    "ast_hash": "875eedc8a856303cdb2e05119c5bfd45",
     "semantic_hash": ""
   },
   "public/suite/packs/everyday-home/environments.json": {
-    "mtime": 1790390140.1700234,
-    "seen": 1790620614.997785,
-    "ast_hash": "330f0629a68da0eae5833f5d679b4be0",
+    "mtime": 1790633582.2288063,
+    "seen": 1790658083.980368,
+    "ast_hash": "0f3dec9cef134c2a823e71e61cea97f6",
     "semantic_hash": ""
   },
   "public/suite/packs/northeast-home/environments.json": {
-    "mtime": 1790390140.1703966,
-    "seen": 1790620614.997787,
+    "mtime": 1790633582.229086,
+    "seen": 1790658083.980371,
     "ast_hash": "10fcbbf753ec517dd16357c689551c7f",
     "semantic_hash": ""
   },
   "src/suite/assets/gltf.ts": {
-    "mtime": 1790389384.7938402,
-    "seen": 1790620614.997826,
-    "ast_hash": "fbdc9fff5ae3333f3ad5dc7fa034f846",
+    "mtime": 1790626924.2608862,
+    "seen": 1790627299.602415,
+    "ast_hash": "6fa1b19faaef153dd6831a04c7099d93",
     "semantic_hash": ""
   },
   "src/suite/assets/index.ts": {
@@ -1404,15 +1404,15 @@
     "semantic_hash": ""
   },
   "src/suite/assets/validate.ts": {
-    "mtime": 1790389404.0860524,
-    "seen": 1790620614.9978292,
-    "ast_hash": "1cc04d452b5c8b138715fe2b02892a37",
+    "mtime": 1790631854.013483,
+    "seen": 1790658083.980452,
+    "ast_hash": "8a35d0553cdaade6d85c725695681c9f",
     "semantic_hash": ""
   },
   "src/suite/environments/index.ts": {
-    "mtime": 1790390001.2037873,
-    "seen": 1790620614.9978318,
-    "ast_hash": "b313ad0f81ae7d5c8344a4712cbff4b3",
+    "mtime": 1790631865.1199853,
+    "seen": 1790658083.980458,
+    "ast_hash": "4943bd13d54325cb4ce495c302e55d22",
     "semantic_hash": ""
   },
   "src/suite/environments/photoSurface.ts": {
@@ -1428,39 +1428,39 @@
     "semantic_hash": ""
   },
   "src/suite/environments/shells/index.ts": {
-    "mtime": 1790389911.9327574,
-    "seen": 1790620614.997834,
-    "ast_hash": "b5ea2ab3a27135a71a1647d3b24fe5ee",
+    "mtime": 1790633506.9955907,
+    "seen": 1790658083.9804611,
+    "ast_hash": "f890aa20aa0f1aa438c1969493d89644",
     "semantic_hash": ""
   },
   "src/suite/environments/shells/kit.ts": {
-    "mtime": 1790389717.3705971,
-    "seen": 1790620614.997834,
-    "ast_hash": "1457ac99899fb31106ec94e1b237126a",
+    "mtime": 1790626547.1659098,
+    "seen": 1790627299.602423,
+    "ast_hash": "2904c32c595c31f2f8269aeb01bcd7ee",
     "semantic_hash": ""
   },
   "src/suite/environments/shells/kitchenDining.ts": {
-    "mtime": 1790389798.5668979,
-    "seen": 1790620614.997834,
-    "ast_hash": "6908e8227291d72fb2c617a0695080a2",
+    "mtime": 1790626181.5449994,
+    "seen": 1790627299.6024241,
+    "ast_hash": "c428e219490fddc146121a3905117b30",
     "semantic_hash": ""
   },
   "src/suite/environments/shells/livingRoom.ts": {
-    "mtime": 1790389769.1953037,
-    "seen": 1790620614.997835,
-    "ast_hash": "278213683e93da1b943307c236595cf7",
+    "mtime": 1790626181.5447133,
+    "seen": 1790627299.6024241,
+    "ast_hash": "47bb3bc3c99c844891531e8b58cbf268",
     "semantic_hash": ""
   },
   "src/suite/environments/shells/types.ts": {
-    "mtime": 1790390001.203659,
-    "seen": 1790620614.997835,
-    "ast_hash": "0bd06d588b6ff166ae5dbe695dc1432f",
+    "mtime": 1790632680.951676,
+    "seen": 1790658083.98047,
+    "ast_hash": "940c603ec35738d42a5af35650559ae1",
     "semantic_hash": ""
   },
   "src/suite/environments/viewpoint.ts": {
-    "mtime": 1790389871.016954,
-    "seen": 1790620614.997836,
-    "ast_hash": "f11ed1fa90f29cf75e22a8c49433ec58",
+    "mtime": 1790629273.5990915,
+    "seen": 1790630443.1558669,
+    "ast_hash": "cee5eef8bb01fb2881e3975853528713",
     "semantic_hash": ""
   },
   "tools/checks/suite-activities.check.ts": {
@@ -1470,9 +1470,9 @@
     "semantic_hash": ""
   },
   "tools/checks/suite-assets.check.ts": {
-    "mtime": 1790390506.568626,
-    "seen": 1790620614.997851,
-    "ast_hash": "2c704acb81a6ccc9241ea36985f3dc42",
+    "mtime": 1790632365.3747966,
+    "seen": 1790658083.9804978,
+    "ast_hash": "c4029c9f4f659834a7903244f99f9e77",
     "semantic_hash": ""
   },
   "tools/suite/assets/render-thumbnails.mjs": {
@@ -1482,33 +1482,33 @@
     "semantic_hash": ""
   },
   "tools/suite/assets/thumbs.ts": {
-    "mtime": 1790390457.5086093,
-    "seen": 1790620614.997857,
-    "ast_hash": "62778c072092f5d74339153bd7b104cd",
+    "mtime": 1790626845.912233,
+    "seen": 1790627299.602448,
+    "ast_hash": "c91af408d60fe09f2b403417a8d4598d",
     "semantic_hash": ""
   },
   "tools/suite/assets/write-environments.py": {
-    "mtime": 1790390140.1438754,
-    "seen": 1790620614.997857,
-    "ast_hash": "4f9a41f6c8ca7ea72afb2cbf45d2a463",
+    "mtime": 1790633507.0169742,
+    "seen": 1790658083.980515,
+    "ast_hash": "8ce443d00f00ba0f2de126e4bfadbf47",
     "semantic_hash": ""
   },
   "tools/suite/browser-check.mjs": {
-    "mtime": 1790390356.7425408,
-    "seen": 1790620614.997858,
-    "ast_hash": "cbd9d50b134d0bcd26b6c29db40e1a6b",
+    "mtime": 1790629818.6403294,
+    "seen": 1790630443.155893,
+    "ast_hash": "8e815a4db4aae3bc37de8a5f2638a9f1",
     "semantic_hash": ""
   },
   "docs/suite/README.md": {
-    "mtime": 1790390546.8543496,
-    "seen": 1790620614.9978628,
-    "ast_hash": "0ee4f4085d0501acefda7618f5a8f7dc",
+    "mtime": 1790627297.22856,
+    "seen": 1790627299.602454,
+    "ast_hash": "3cea815887265d5d826ab84e43a72c6c",
     "semantic_hash": ""
   },
   "docs/suite/accessibility.md": {
-    "mtime": 1790389663.347836,
-    "seen": 1790620614.9978628,
-    "ast_hash": "b68cf75fc3cbb8f5567055fceeee7e7d",
+    "mtime": 1790634406.4522922,
+    "seen": 1790658083.9805388,
+    "ast_hash": "0bf332c30363c6959c05a46aa01bb5e8",
     "semantic_hash": ""
   },
   "docs/suite/activities.md": {
@@ -1518,9 +1518,9 @@
     "semantic_hash": ""
   },
   "docs/suite/assets.md": {
-    "mtime": 1790390523.2623632,
-    "seen": 1790620614.997864,
-    "ast_hash": "20871a417283490e5653a3a114fe1528",
+    "mtime": 1790633661.6072352,
+    "seen": 1790658083.9805398,
+    "ast_hash": "b4ad05649e0f3b929b8d17548e69b947",
     "semantic_hash": ""
   },
   "docs/suite/content-packs.md": {
@@ -1530,9 +1530,9 @@
     "semantic_hash": ""
   },
   "public/suite/assets/ATTRIBUTION.md": {
-    "mtime": 1790390496.6737597,
-    "seen": 1790620614.997867,
-    "ast_hash": "7b48903e0b032ec300853a746ea86a2c",
+    "mtime": 1790633661.641218,
+    "seen": 1790658083.980546,
+    "ast_hash": "9e2ff1b84f5a2062218482cbaac8964d",
     "semantic_hash": ""
   },
   "tools/suite/assets/thumbs.html": {
@@ -1542,459 +1542,879 @@
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/almirah-steel.webp": {
-    "mtime": 1790390469.3828938,
-    "seen": 1790620614.9978821,
+    "mtime": 1790626849.4898384,
+    "seen": 1790627299.602474,
     "ast_hash": "1018fa2b703167ad571cd82d41b6d47c",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/armchair-cane.webp": {
-    "mtime": 1790390469.26617,
-    "seen": 1790620614.9978828,
+    "mtime": 1790626849.1437676,
+    "seen": 1790627299.602474,
     "ast_hash": "b3c10be58f519b4e6ec7366efb521111",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/bamboo-basket.webp": {
-    "mtime": 1790390469.5082848,
-    "seen": 1790620614.9978828,
-    "ast_hash": "448420158bb1718198761a981466f8f6",
+    "mtime": 1790626849.627612,
+    "seen": 1790627299.602475,
+    "ast_hash": "1b991e2ea3a6ff5a2e6f1438d0385bfb",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/bench-veranda.webp": {
-    "mtime": 1790390469.371794,
-    "seen": 1790620614.9978838,
+    "mtime": 1790626849.4790769,
+    "seen": 1790627299.602475,
     "ast_hash": "8956801b0e86fa0c399f56fee5fe76f7",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/bicycle.webp": {
-    "mtime": 1790390470.0050654,
-    "seen": 1790620614.9978838,
+    "mtime": 1790626850.279959,
+    "seen": 1790627299.6024761,
     "ast_hash": "325665f2ff71384ac607e918d4c10daf",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/books-stack.webp": {
-    "mtime": 1790390469.926341,
-    "seen": 1790620614.9978838,
+    "mtime": 1790626850.2007265,
+    "seen": 1790627299.6024761,
     "ast_hash": "6947354119f2e4620ce830f65a4f289b",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/bookshelf.webp": {
-    "mtime": 1790390469.3525455,
-    "seen": 1790620614.997885,
+    "mtime": 1790626849.4602215,
+    "seen": 1790627299.602477,
     "ast_hash": "f4b7cb5bc37a544eed0b4e09b80603f0",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/brass-vessel.webp": {
-    "mtime": 1790390469.6420507,
-    "seen": 1790620614.997885,
+    "mtime": 1790626849.771444,
+    "seen": 1790627299.602477,
     "ast_hash": "16a3fdddd20ef845de5ce02b0117cd17",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/bucket-mug.webp": {
-    "mtime": 1790390469.8439832,
-    "seen": 1790620614.997885,
+    "mtime": 1790626850.1211956,
+    "seen": 1790627299.602477,
     "ast_hash": "53f016691e0f3b1fce3ae004151be512",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/calendar-wall.webp": {
-    "mtime": 1790390469.1478858,
-    "seen": 1790620614.997886,
+    "mtime": 1790626849.0918999,
+    "seen": 1790627299.602478,
     "ast_hash": "69ae30014f0e12564de263035d8a6780",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/carrom-board.webp": {
-    "mtime": 1790390470.024639,
-    "seen": 1790620614.997886,
+    "mtime": 1790626850.2990365,
+    "seen": 1790627299.602478,
     "ast_hash": "4818ef68bda89de85e67baf03267df89",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/cassette-player.webp": {
-    "mtime": 1790390469.8885612,
-    "seen": 1790620614.997887,
+    "mtime": 1790626850.164352,
+    "seen": 1790627299.6024792,
     "ast_hash": "f1a671e9005e7da1acb34d4bd2c7d328",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/ceiling-fan.webp": {
-    "mtime": 1790390470.085244,
-    "seen": 1790620614.997887,
+    "mtime": 1790626850.3590362,
+    "seen": 1790627299.6024792,
     "ast_hash": "6d18e3ae135011f3cab4e64cf06df2c4",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/chair-plastic.webp": {
-    "mtime": 1790390469.2940347,
-    "seen": 1790620614.997887,
-    "ast_hash": "6655ceb906d5a43c9d3a1a017bda7b80",
+    "mtime": 1790626849.3367896,
+    "seen": 1790627299.6024802,
+    "ast_hash": "2e1ae270e69a5755d9e71bc4b274097d",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/chair-wood.webp": {
-    "mtime": 1790390469.2817314,
-    "seen": 1790620614.997888,
+    "mtime": 1790626849.1547866,
+    "seen": 1790627299.6024802,
     "ast_hash": "840bc3da0e6b1db1a94b3b61530d6351",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/chess-set.webp": {
-    "mtime": 1790390470.0376496,
-    "seen": 1790620614.997888,
+    "mtime": 1790626850.3117478,
+    "seen": 1790627299.602481,
     "ast_hash": "648b5876a07083e274ff7595c4c0b854",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/clay-water-pot.webp": {
-    "mtime": 1790390469.692315,
-    "seen": 1790620614.997889,
+    "mtime": 1790626849.819792,
+    "seen": 1790627299.602481,
     "ast_hash": "a08b22d592d25a1e7421ff02a36059e9",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/clock-table.webp": {
-    "mtime": 1790390469.1770892,
-    "seen": 1790620614.997889,
+    "mtime": 1790626849.1158206,
+    "seen": 1790627299.6024818,
     "ast_hash": "b62dc64077b4126053fd3f6fef6cd090",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/clock-wall.webp": {
-    "mtime": 1790390469.1639311,
-    "seen": 1790620614.99789,
+    "mtime": 1790626849.103987,
+    "seen": 1790627299.6024818,
     "ast_hash": "de885575798db7304cd550ab782f38e9",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/clothesline.webp": {
-    "mtime": 1790390469.8531992,
-    "seen": 1790620614.99789,
+    "mtime": 1790626850.1303148,
+    "seen": 1790627299.6024818,
     "ast_hash": "db3dab130e55395a18ba44a3245031ca",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/coffee-table.webp": {
-    "mtime": 1790390469.3263147,
-    "seen": 1790620614.99789,
+    "mtime": 1790626849.4078817,
+    "seen": 1790627299.602483,
     "ast_hash": "de1593f6354e5d6f1d48640ba2f88878",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/cricket-bat-ball.webp": {
-    "mtime": 1790390470.0465078,
-    "seen": 1790620614.9978912,
+    "mtime": 1790626850.3203917,
+    "seen": 1790627299.602483,
     "ast_hash": "8f38729b71234851917fd3537d4fc476",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/cupboard-wood.webp": {
-    "mtime": 1790390469.4720037,
-    "seen": 1790620614.9978912,
+    "mtime": 1790626849.5773203,
+    "seen": 1790627299.602483,
     "ast_hash": "9da9383ddd0519ee2edb40bd41fd163a",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/cushion-set.webp": {
-    "mtime": 1790390469.538154,
-    "seen": 1790620614.9978912,
+    "mtime": 1790626849.6685228,
+    "seen": 1790627299.602484,
     "ast_hash": "211ed2de02add95236775aa5d8cb4bf1",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/dining-table.webp": {
-    "mtime": 1790390469.3151424,
-    "seen": 1790620614.9978921,
+    "mtime": 1790626849.3965528,
+    "seen": 1790627299.602484,
     "ast_hash": "0d05b39f6066eda7a579bb38f175989e",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/floor-mat-woven.webp": {
-    "mtime": 1790390469.527153,
-    "seen": 1790620614.9978921,
+    "mtime": 1790626849.658109,
+    "seen": 1790627299.602485,
     "ast_hash": "03253ceeaac4934dc0b94de2092078cc",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/flower-pots-row.webp": {
-    "mtime": 1790390469.8333156,
-    "seen": 1790620614.9978921,
+    "mtime": 1790626850.11032,
+    "seen": 1790627299.602485,
     "ast_hash": "3b6a03ac17f901f5658eadb284bf840f",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/frame-table.webp": {
-    "mtime": 1790390468.985617,
-    "seen": 1790620614.997893,
+    "mtime": 1790626848.930199,
+    "seen": 1790627299.6024861,
     "ast_hash": "faac27b2831e552debed57f34b61acd6",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/frame-wall-large.webp": {
-    "mtime": 1790390468.9391124,
-    "seen": 1790620614.997893,
+    "mtime": 1790626848.8396924,
+    "seen": 1790627299.6024861,
     "ast_hash": "362da3867a3856b0a69ecba289d1be94",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/frame-wall-small.webp": {
-    "mtime": 1790390468.9655476,
-    "seen": 1790620614.9978938,
+    "mtime": 1790626848.9130425,
+    "seen": 1790627299.6024861,
     "ast_hash": "805125edbb9a9a1b9d60930c61b7662e",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/gamosa.webp": {
-    "mtime": 1790390469.556254,
-    "seen": 1790620614.9978938,
+    "mtime": 1790626849.6860275,
+    "seen": 1790627299.602487,
     "ast_hash": "72cf5beb0833d9e3616706c6c42573be",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/gas-stove.webp": {
-    "mtime": 1790390469.6725097,
-    "seen": 1790620614.9978938,
+    "mtime": 1790626849.8011668,
+    "seen": 1790627299.602487,
     "ast_hash": "e56c3ad7adc69d374deac0d92e8ae704",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/hanging-plant.webp": {
-    "mtime": 1790390469.8196125,
-    "seen": 1790620614.997895,
+    "mtime": 1790626850.0969708,
+    "seen": 1790627299.602488,
     "ast_hash": "6b8ec3d4d60bc1fbd6c5d512ee88d55b",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/harmonium.webp": {
-    "mtime": 1790390469.9046752,
-    "seen": 1790620614.997895,
+    "mtime": 1790626850.1796763,
+    "seen": 1790627299.602488,
     "ast_hash": "822b804fcb37f18e45c0176c01011ff1",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/hurricane-lantern.webp": {
-    "mtime": 1790390470.1275764,
-    "seen": 1790620614.997896,
+    "mtime": 1790626850.4011087,
+    "seen": 1790627299.602488,
     "ast_hash": "add6a27f325bdfdae4fa8f02192a32c5",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/jaapi.webp": {
-    "mtime": 1790390470.1601572,
-    "seen": 1790620614.997896,
+    "mtime": 1790626850.432616,
+    "seen": 1790627299.602489,
     "ast_hash": "e625df3cc99b950c15212d94f47cfdab",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/jar-pickle.webp": {
-    "mtime": 1790390469.6627233,
-    "seen": 1790620614.997896,
+    "mtime": 1790626849.791746,
+    "seen": 1790627299.602489,
     "ast_hash": "f98627f01a7da4fab60f4c1853a64625",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/kadai.webp": {
-    "mtime": 1790390469.6240246,
-    "seen": 1790620614.997897,
+    "mtime": 1790626849.7532055,
+    "seen": 1790627299.6024902,
     "ast_hash": "b163fa550c38d04d6850e2a12e987cd9",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/kettle.webp": {
-    "mtime": 1790390469.6523573,
-    "seen": 1790620614.997897,
+    "mtime": 1790626849.7816978,
+    "seen": 1790627299.6024902,
     "ast_hash": "2092b61e2ef62e66923fa45a1c0f8550",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/kitchen-rack.webp": {
-    "mtime": 1790390469.4960215,
-    "seen": 1790620614.997897,
+    "mtime": 1790626849.600554,
+    "seen": 1790627299.6024902,
     "ast_hash": "93bab89173acf78ec07a472638a44144",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/kite-spool.webp": {
-    "mtime": 1790390470.0563164,
-    "seen": 1790620614.997898,
+    "mtime": 1790626850.330378,
+    "seen": 1790627299.602491,
     "ast_hash": "7b31efe5c369e5f2ecba52d4cb0a6c3c",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/knitting-basket.webp": {
-    "mtime": 1790390470.0667658,
-    "seen": 1790620614.997898,
+    "mtime": 1790626850.3405354,
+    "seen": 1790627299.602491,
     "ast_hash": "c43310f0a2b55445ea35ac278a84b2c5",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/ledger-pen.webp": {
-    "mtime": 1790390469.9822397,
-    "seen": 1790620614.997899,
+    "mtime": 1790626850.2562835,
+    "seen": 1790627299.6024919,
     "ast_hash": "7d36d3aa0f7a03730bc8b5b81d6ed2f5",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/letters-bundle.webp": {
-    "mtime": 1790390469.1355526,
-    "seen": 1790620614.997899,
+    "mtime": 1790626849.0826514,
+    "seen": 1790627299.6024919,
     "ast_hash": "12579ebc797a7a3b40e2b57b65338966",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/mortar-pestle.webp": {
-    "mtime": 1790390469.6821802,
-    "seen": 1790620614.997899,
+    "mtime": 1790626849.8101692,
+    "seen": 1790627299.6024928,
     "ast_hash": "9bc888214b00bcf141d7cfb326935274",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/newspaper-folded.webp": {
-    "mtime": 1790390470.0764356,
-    "seen": 1790620614.9979,
+    "mtime": 1790626850.3501272,
+    "seen": 1790627299.6024928,
     "ast_hash": "9ad1b4b967d84d886166b39814965061",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/photo-album.webp": {
-    "mtime": 1790390469.0940795,
-    "seen": 1790620614.9979,
+    "mtime": 1790626849.0404303,
+    "seen": 1790627299.6024928,
     "ast_hash": "3d1d2b93593174c08496daf54176edd0",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/potted-plant-large.webp": {
-    "mtime": 1790390469.7944384,
-    "seen": 1790620614.997901,
-    "ast_hash": "b8d20ad5e1aa3e97cd31db7f441df406",
+    "mtime": 1790626849.9809556,
+    "seen": 1790627299.602494,
+    "ast_hash": "f2e349e134de91e169603124fcf6925d",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/potted-plant-small.webp": {
-    "mtime": 1790390469.8070536,
-    "seen": 1790620614.997901,
+    "mtime": 1790626850.0846894,
+    "seen": 1790627299.602495,
     "ast_hash": "fd6577b06ded607818a7b12aca01aa48",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/pressure-cooker.webp": {
-    "mtime": 1790390469.5659502,
-    "seen": 1790620614.997901,
+    "mtime": 1790626849.6957912,
+    "seen": 1790627299.602495,
     "ast_hash": "283cf9fdc574733aaf56e2869f795116",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/radio-transistor.webp": {
-    "mtime": 1790390469.8647592,
-    "seen": 1790620614.9979022,
+    "mtime": 1790626850.1417205,
+    "seen": 1790627299.602495,
     "ast_hash": "0f6da53479d6599072e8612231bc3a45",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/radio-valve.webp": {
-    "mtime": 1790390469.876468,
-    "seen": 1790620614.9979022,
+    "mtime": 1790626850.152973,
+    "seen": 1790627299.602496,
     "ast_hash": "f99bff0dbdd59dba7db8a58c714579c2",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/rolling-board-pin.webp": {
-    "mtime": 1790390469.615369,
-    "seen": 1790620614.9979022,
+    "mtime": 1790626849.744413,
+    "seen": 1790627299.602496,
     "ast_hash": "5867b7bf432c0f63b013f6a8349a9b33",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/rug-durrie.webp": {
-    "mtime": 1790390469.5183122,
-    "seen": 1790620614.997903,
+    "mtime": 1790626849.6491318,
+    "seen": 1790627299.602497,
     "ast_hash": "e191c03deb824977842ccc98c8c4bfbe",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/school-bag.webp": {
-    "mtime": 1790390469.9463074,
-    "seen": 1790620614.997903,
+    "mtime": 1790626850.220942,
+    "seen": 1790627299.602497,
     "ast_hash": "2dfee4365adec8c4bf47ef194646dfcf",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/school-slate.webp": {
-    "mtime": 1790390469.936329,
-    "seen": 1790620614.9979038,
+    "mtime": 1790626850.2106123,
+    "seen": 1790627299.602497,
     "ast_hash": "d6e17981c741545c02a0d2ebaf754148",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/sewing-machine.webp": {
-    "mtime": 1790390469.9584885,
-    "seen": 1790620614.9979038,
+    "mtime": 1790626850.2324927,
+    "seen": 1790627299.602498,
     "ast_hash": "a7af973e5403c2caa69694a791d4b3c2",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/side-table.webp": {
-    "mtime": 1790390469.338333,
-    "seen": 1790620614.9979038,
-    "ast_hash": "9c810692539372e611d56d9f0321f9cd",
+    "mtime": 1790626849.4337769,
+    "seen": 1790627299.602499,
+    "ast_hash": "2438df3c80db62a809e53ab5d8e293dd",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/sofa-wood.webp": {
-    "mtime": 1790390469.1981447,
-    "seen": 1790620614.9979048,
+    "mtime": 1790626849.1319869,
+    "seen": 1790627299.602499,
     "ast_hash": "06d024da8cc5a5c67ca7ebdc7616de49",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/spice-box.webp": {
-    "mtime": 1790390469.6065872,
-    "seen": 1790620614.9979048,
+    "mtime": 1790626849.7360606,
+    "seen": 1790627299.602499,
     "ast_hash": "348187985e7fcadc2d5efae31c799792",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/steel-plate.webp": {
-    "mtime": 1790390469.5849676,
-    "seen": 1790620614.9979048,
+    "mtime": 1790626849.7150762,
+    "seen": 1790627299.6025002,
     "ast_hash": "98c8274e0c3ce38e671ab6f3ef4daccc",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/steel-tumbler-set.webp": {
-    "mtime": 1790390469.5755265,
-    "seen": 1790620614.997906,
+    "mtime": 1790626849.705859,
+    "seen": 1790627299.6025002,
     "ast_hash": "237b73a46b1893b3ef11bc3ad0562da8",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/stool-low.webp": {
-    "mtime": 1790390469.304603,
-    "seen": 1790620614.997906,
-    "ast_hash": "4e16650c3b3df7bb819c40efa854505e",
+    "mtime": 1790626849.3741682,
+    "seen": 1790627299.6025028,
+    "ast_hash": "6fd39fb257b2405851e346da88681bed",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/suitcase-old.webp": {
-    "mtime": 1790390469.9932134,
-    "seen": 1790620614.997907,
+    "mtime": 1790626850.2679741,
+    "seen": 1790627299.6025028,
     "ast_hash": "ca7d8a83a5354f138c72c964cf9a71e6",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/table-cloth.webp": {
-    "mtime": 1790390469.5469737,
-    "seen": 1790620614.997907,
+    "mtime": 1790626849.6770248,
+    "seen": 1790627299.6025028,
     "ast_hash": "a9ad8b0416aa757c5cb2a9392000b9f2",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/table-lamp.webp": {
-    "mtime": 1790390470.0944836,
-    "seen": 1790620614.997907,
+    "mtime": 1790626850.3678842,
+    "seen": 1790627299.602504,
     "ast_hash": "8be2e4f7b9e4005c46c143c25ce1ea2e",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/tawa.webp": {
-    "mtime": 1790390469.6324334,
-    "seen": 1790620614.9979079,
+    "mtime": 1790626849.761894,
+    "seen": 1790627299.602504,
     "ast_hash": "452d6b37ab14d804d43e0fce9d5c911d",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/television-crt.webp": {
-    "mtime": 1790390469.9162233,
-    "seen": 1790620614.9979079,
+    "mtime": 1790626850.1907685,
+    "seen": 1790627299.602505,
     "ast_hash": "5654169cd8557bd26b5959ba61169ae8",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/tiffin-carrier.webp": {
-    "mtime": 1790390469.5948994,
-    "seen": 1790620614.997909,
+    "mtime": 1790626849.724216,
+    "seen": 1790627299.602505,
     "ast_hash": "2dc7d4ca3b8d9bad2c155ad32ad63f84",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/trunk-tin.webp": {
-    "mtime": 1790390469.4846904,
-    "seen": 1790620614.997909,
+    "mtime": 1790626849.5896301,
+    "seen": 1790627299.602506,
     "ast_hash": "139c33a8ecb813d63abde4361946f688",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/typewriter.webp": {
-    "mtime": 1790390469.9714136,
-    "seen": 1790620614.997909,
+    "mtime": 1790626850.244977,
+    "seen": 1790627299.602506,
     "ast_hash": "85bc62c4d3c4be13066ff158be80f74f",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/umbrella.webp": {
-    "mtime": 1790390470.0132122,
-    "seen": 1790620614.99791,
+    "mtime": 1790626850.287862,
+    "seen": 1790627299.602506,
     "ast_hash": "c73e08eee47d28322e3dc80fa1aaf650",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/vase-flowers.webp": {
-    "mtime": 1790390470.1477776,
-    "seen": 1790620614.99791,
+    "mtime": 1790626850.4210536,
+    "seen": 1790627299.602507,
     "ast_hash": "d681fd851efa5bfcbc225d0e7d8ae2c9",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/wall-mirror.webp": {
-    "mtime": 1790390470.1378386,
-    "seen": 1790620614.99791,
+    "mtime": 1790626850.4110763,
+    "seen": 1790627299.602507,
     "ast_hash": "687dc16256c30e12194b9404c7c13917",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/wall-shelf.webp": {
-    "mtime": 1790390469.3622658,
-    "seen": 1790620614.997911,
+    "mtime": 1790626849.469855,
+    "seen": 1790627299.602508,
     "ast_hash": "66285553f911963809313f8c3d613755",
     "semantic_hash": ""
   },
   "public/suite/assets/thumbs/xorai.webp": {
-    "mtime": 1790390469.7025957,
-    "seen": 1790620614.997911,
+    "mtime": 1790626849.8297348,
+    "seen": 1790627299.602508,
     "ast_hash": "ff8f5b11e72897aaedeb4e679d54fe9d",
+    "semantic_hash": ""
+  },
+  "tools/suite/assets/fetch-models.mjs": {
+    "mtime": 1790626924.2610962,
+    "seen": 1790627299.602446,
+    "ast_hash": "b0fb3170c444e62cf27c4847d6f26c0b",
+    "semantic_hash": ""
+  },
+  "tools/suite/assets/preview.ts": {
+    "mtime": 1790632261.778735,
+    "seen": 1790658083.980512,
+    "ast_hash": "7232c7186d4466a9f0148fd5fda0eb0d",
+    "semantic_hash": ""
+  },
+  "tools/suite/assets/screenshot-environments.mjs": {
+    "mtime": 1790633661.625657,
+    "seen": 1790658083.980514,
+    "ast_hash": "6208a5e95619e2f71dbfcf444771ab0a",
+    "semantic_hash": ""
+  },
+  "tools/suite/assets/preview.html": {
+    "mtime": 1790625989.2904787,
+    "seen": 1790627299.60246,
+    "ast_hash": "9a687fb3dad139a633d5eeee57779add",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/bamboo-basket-simple.webp": {
+    "mtime": 1790626849.6393836,
+    "seen": 1790627299.602474,
+    "ast_hash": "448420158bb1718198761a981466f8f6",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/chair-plastic-simple.webp": {
+    "mtime": 1790626849.3500888,
+    "seen": 1790627299.6024802,
+    "ast_hash": "6655ceb906d5a43c9d3a1a017bda7b80",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/potted-plant-large-simple.webp": {
+    "mtime": 1790626850.0724998,
+    "seen": 1790627299.602494,
+    "ast_hash": "b8d20ad5e1aa3e97cd31db7f441df406",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/side-table-simple.webp": {
+    "mtime": 1790626849.4463072,
+    "seen": 1790627299.602498,
+    "ast_hash": "9c810692539372e611d56d9f0321f9cd",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/stool-low-simple.webp": {
+    "mtime": 1790626849.3854897,
+    "seen": 1790627299.6025012,
+    "ast_hash": "4e16650c3b3df7bb819c40efa854505e",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/models/sources.json": {
+    "mtime": 1790626932.6936333,
+    "seen": 1790630443.155811,
+    "ast_hash": "fe4f1fb64cc50bf7d191ecfc760bd7e7",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/panoramas/sources.json": {
+    "mtime": 1790633391.1480308,
+    "seen": 1790658083.980356,
+    "ast_hash": "4dae9dfbadc59ae1b3d8067f2f2f4f83",
+    "semantic_hash": ""
+  },
+  "src/suite/environments/shells/photo.ts": {
+    "mtime": 1790632680.9314194,
+    "seen": 1790658083.9804642,
+    "ast_hash": "3b2ec415e9c39f0ce4fa9a11db22a030",
+    "semantic_hash": ""
+  },
+  "src/suite/environments/shells/photoLivingDemo.ts": {
+    "mtime": 1790632669.5074234,
+    "seen": 1790658083.980469,
+    "ast_hash": "e94dd1212ffa9b6075485e9e6118fb6d",
+    "semantic_hash": ""
+  },
+  "tools/suite/assets/fetch-panoramas.mjs": {
+    "mtime": 1790629361.8900669,
+    "seen": 1790630443.1558871,
+    "ast_hash": "e9bcb5a145a779f8572670f044bab8e7",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/panoramas/lythwood-room.webp": {
+    "mtime": 1790629378.0784693,
+    "seen": 1790630443.155908,
+    "ast_hash": "396198b99efad2376fc2c7d933408c3a",
+    "semantic_hash": ""
+  },
+  "skills-lock.json": {
+    "mtime": 1790657942.8916216,
+    "seen": 1790658083.980374,
+    "ast_hash": "1fdb54277684f41969c8d0aad8f2329f",
+    "semantic_hash": ""
+  },
+  "src/suite/environments/shells/photoChineseGarden.ts": {
+    "mtime": 1790633569.897566,
+    "seen": 1790658083.980465,
+    "ast_hash": "a2d6f00db71e8a08b9ff9843758322fc",
+    "semantic_hash": ""
+  },
+  "src/suite/environments/shells/photoCombination.ts": {
+    "mtime": 1790632412.4464383,
+    "seen": 1790658083.980466,
+    "ast_hash": "cc6a49c7417bda06dec512fe09b651e6",
+    "semantic_hash": ""
+  },
+  "src/suite/environments/shells/photoGreenPointPark.ts": {
+    "mtime": 1790633569.9209034,
+    "seen": 1790658083.9804668,
+    "ast_hash": "66d69f5f4a767014e3cd7b075c802247",
+    "semantic_hash": ""
+  },
+  "src/suite/environments/shells/photoKiara.ts": {
+    "mtime": 1790631969.561821,
+    "seen": 1790658083.980468,
+    "ast_hash": "8b487c5f8b8bfa167c2a135b39ca387e",
+    "semantic_hash": ""
+  },
+  "src/suite/environments/shells/photoMondelloBeach.ts": {
+    "mtime": 1790633569.9396894,
+    "seen": 1790658083.980469,
+    "ast_hash": "10a1aab43ed4ea02f7d213699736723b",
+    "semantic_hash": ""
+  },
+  "tools/suite/assets/write-photo-hotspots.py": {
+    "mtime": 1790633507.035845,
+    "seen": 1790658083.9805162,
+    "ast_hash": "4a66fce060d0767db92b4bab38481acc",
+    "semantic_hash": ""
+  },
+  ".agents/skills/brandkit/SKILL.md": {
+    "mtime": 1790657942.4992824,
+    "seen": 1790658083.980523,
+    "ast_hash": "cd3701c774e9bd7ce4fc9078377d517f",
+    "semantic_hash": ""
+  },
+  ".agents/skills/design-taste-frontend-v1/SKILL.md": {
+    "mtime": 1790657942.872166,
+    "seen": 1790658083.980524,
+    "ast_hash": "d0ee97b35983cf5e786e5b65994a2ecb",
+    "semantic_hash": ""
+  },
+  ".agents/skills/design-taste-frontend/SKILL.md": {
+    "mtime": 1790657942.8467312,
+    "seen": 1790658083.980525,
+    "ast_hash": "6f73606d20cd948b471b1ce1767aab50",
+    "semantic_hash": ""
+  },
+  ".agents/skills/full-output-enforcement/SKILL.md": {
+    "mtime": 1790657942.7254598,
+    "seen": 1790658083.980526,
+    "ast_hash": "5ed528ceb72c5d089757ba70c5a434e8",
+    "semantic_hash": ""
+  },
+  ".agents/skills/gpt-taste/SKILL.md": {
+    "mtime": 1790657942.5591338,
+    "seen": 1790658083.9805272,
+    "ast_hash": "0968d17fda872b36dc35e6bcc0c9af36",
+    "semantic_hash": ""
+  },
+  ".agents/skills/high-end-visual-design/SKILL.md": {
+    "mtime": 1790657942.7808757,
+    "seen": 1790658083.980528,
+    "ast_hash": "269e37851b3a17693d8052f5f8002cfc",
+    "semantic_hash": ""
+  },
+  ".agents/skills/image-to-code/SKILL.md": {
+    "mtime": 1790657942.602551,
+    "seen": 1790658083.9805288,
+    "ast_hash": "442613e4710f0005b94f1c4b1d3ac246",
+    "semantic_hash": ""
+  },
+  ".agents/skills/imagegen-frontend-mobile/SKILL.md": {
+    "mtime": 1790657942.6402125,
+    "seen": 1790658083.9805288,
+    "ast_hash": "4c84e37e50e610779a71e0fb0a198963",
+    "semantic_hash": ""
+  },
+  ".agents/skills/imagegen-frontend-web/SKILL.md": {
+    "mtime": 1790657942.6663883,
+    "seen": 1790658083.98053,
+    "ast_hash": "208c5866f7320c7f842283b312a00e17",
+    "semantic_hash": ""
+  },
+  ".agents/skills/industrial-brutalist-ui/SKILL.md": {
+    "mtime": 1790657942.5283375,
+    "seen": 1790658083.980531,
+    "ast_hash": "9e673477ecc2eaf4a230c8326cbc2f0d",
+    "semantic_hash": ""
+  },
+  ".agents/skills/minimalist-ui/SKILL.md": {
+    "mtime": 1790657942.6921422,
+    "seen": 1790658083.980532,
+    "ast_hash": "c7f814d7df4b1b0e3eebf706a6d74adf",
+    "semantic_hash": ""
+  },
+  ".agents/skills/redesign-existing-projects/SKILL.md": {
+    "mtime": 1790657942.753699,
+    "seen": 1790658083.980532,
+    "ast_hash": "31d802d02ccb9f5da82d99156af36317",
+    "semantic_hash": ""
+  },
+  ".agents/skills/stitch-design-taste/DESIGN.md": {
+    "mtime": 1790657942.8173864,
+    "seen": 1790658083.980533,
+    "ast_hash": "ee7cc02dcc99eda38299a5a6f6727563",
+    "semantic_hash": ""
+  },
+  ".agents/skills/stitch-design-taste/SKILL.md": {
+    "mtime": 1790657942.8174403,
+    "seen": 1790658083.980534,
+    "ast_hash": "82dc71a62461f956b5666c1041efc886",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/panoramas/chinese-garden.webp": {
+    "mtime": 1790633369.5059178,
+    "seen": 1790658083.9805582,
+    "ast_hash": "642a20636c4f1e5bf18569b663871914",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/panoramas/combination-room.webp": {
+    "mtime": 1790631764.951196,
+    "seen": 1790658083.980559,
+    "ast_hash": "72dffb206478649f052866f1090f74fc",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/panoramas/green-point-park.webp": {
+    "mtime": 1790633380.4360046,
+    "seen": 1790658083.9805598,
+    "ast_hash": "c8de5f4a2d6dc427ab8d936a81ec7b21",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/panoramas/kiara-interior.webp": {
+    "mtime": 1790631840.9977195,
+    "seen": 1790658083.9805598,
+    "ast_hash": "23597b698734161912aba73af7bee9d1",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/panoramas/lebombo-living.webp": {
+    "mtime": 1790631669.8399222,
+    "seen": 1790658083.9805608,
+    "ast_hash": "6c44fb4caa40272fb619dafab7ad8f35",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/panoramas/mondello-beach.webp": {
+    "mtime": 1790633390.4325836,
+    "seen": 1790658083.980563,
+    "ast_hash": "5d65c512def6088727c46d841000b143",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/beach-pines.webp": {
+    "mtime": 1790633581.8079953,
+    "seen": 1790658083.980584,
+    "ast_hash": "461005e4688d6b5c6a0e0aeb1b6acb6f",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/beach-shore.webp": {
+    "mtime": 1790633581.7255177,
+    "seen": 1790658083.9805849,
+    "ast_hash": "70baedaac7afd9a6d6c9d74c739a81ab",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/beach-water.webp": {
+    "mtime": 1790633581.7670622,
+    "seen": 1790658083.980586,
+    "ast_hash": "393f82b1877a8989191fdf2c96d6e8f1",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/combination-armchair.webp": {
+    "mtime": 1790633581.080851,
+    "seen": 1790658083.980603,
+    "ast_hash": "abb031abe10dbe52f0a095a94309f565",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/combination-lamp.webp": {
+    "mtime": 1790633581.031414,
+    "seen": 1790658083.980603,
+    "ast_hash": "6af4b173a93589c82af4c3863760cc39",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/combination-picture.webp": {
+    "mtime": 1790633581.1319716,
+    "seen": 1790658083.980604,
+    "ast_hash": "a859da68db6d5984cbd89a01a4072d85",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/combination-sofa.webp": {
+    "mtime": 1790633580.9820902,
+    "seen": 1790658083.980605,
+    "ast_hash": "3f33c1d0c0dc8840cbdbc28fbb7c440c",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/garden-pavilion.webp": {
+    "mtime": 1790633581.5044677,
+    "seen": 1790658083.980614,
+    "ast_hash": "2ce6dd515d4f92b85b9d5c8a588c6577",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/garden-pond.webp": {
+    "mtime": 1790633581.4297535,
+    "seen": 1790658083.980615,
+    "ast_hash": "42e6bc2f6cc0fd61b0db749fcaa1bdd5",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/garden-trees.webp": {
+    "mtime": 1790633581.5812278,
+    "seen": 1790658083.9806159,
+    "ast_hash": "5c6b1c17cd49562a12629abb4a073c82",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/kiara-chair.webp": {
+    "mtime": 1790633581.3095162,
+    "seen": 1790658083.980623,
+    "ast_hash": "3a1fadb9b9f2ed1d40b213c692482da1",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/kiara-fridge.webp": {
+    "mtime": 1790633581.2648516,
+    "seen": 1790658083.980624,
+    "ast_hash": "f771dfc7b641692d6b24978d85e1e194",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/kiara-mug.webp": {
+    "mtime": 1790633581.355544,
+    "seen": 1790658083.980625,
+    "ast_hash": "47402826e845524cdcd68abcadd99852",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/kiara-sofa.webp": {
+    "mtime": 1790633581.1771333,
+    "seen": 1790658083.9806259,
+    "ast_hash": "479871cd4c4ca420803ab6a0099e09c6",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/kiara-television.webp": {
+    "mtime": 1790633581.2210407,
+    "seen": 1790658083.9806259,
+    "ast_hash": "06172d5ccf0e39c028c58435e96e9013",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/lythwood-lamp.webp": {
+    "mtime": 1790633580.8182704,
+    "seen": 1790658083.980631,
+    "ast_hash": "cb7dedc4aa04cf484cefefa8958a416b",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/lythwood-mirror.webp": {
+    "mtime": 1790633580.8573313,
+    "seen": 1790658083.980632,
+    "ast_hash": "d1f0e92f6a738ed75d1710aa04c540c6",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/lythwood-picture.webp": {
+    "mtime": 1790633580.8951783,
+    "seen": 1790658083.980633,
+    "ast_hash": "d4d0923540b2e08e5f7ec8be5f533f44",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/lythwood-tea-table.webp": {
+    "mtime": 1790633580.9331439,
+    "seen": 1790658083.980633,
+    "ast_hash": "d3ea9d380768915ece20473ce004d1df",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/lythwood-television.webp": {
+    "mtime": 1790633580.778925,
+    "seen": 1790658083.9806342,
+    "ast_hash": "caf412b49ee8aa22437a589988964a12",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/park-lawn.webp": {
+    "mtime": 1790633581.633536,
+    "seen": 1790658083.980636,
+    "ast_hash": "cc391a3e73e1a52b5f2568a742b4e7cf",
+    "semantic_hash": ""
+  },
+  "public/suite/assets/thumbs/park-mountains.webp": {
+    "mtime": 1790633581.6828923,
+    "seen": 1790658083.9806368,
+    "ast_hash": "c308cefe3dacca13bbbcd10fccc6cea8",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/thumbs/chinese-garden.webp": {
+    "mtime": 1790633582.0792758,
+    "seen": 1790658083.980671,
+    "ast_hash": "37c4253e469fa8a99058130ee73359cd",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/thumbs/combination-room.webp": {
+    "mtime": 1790633581.922817,
+    "seen": 1790658083.980672,
+    "ast_hash": "b368aa65c1b731911469c9392a343938",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/thumbs/green-point-park.webp": {
+    "mtime": 1790633582.142941,
+    "seen": 1790658083.980673,
+    "ast_hash": "b91c040d00453da01d3110023e3f6e83",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/thumbs/kiara-interior.webp": {
+    "mtime": 1790633581.9802024,
+    "seen": 1790658083.980673,
+    "ast_hash": "b60d1092d9456b5a5c453d7025c57c12",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/thumbs/lythwood-room.webp": {
+    "mtime": 1790633581.8586128,
+    "seen": 1790658083.980674,
+    "ast_hash": "c93e4e00a9f49f06c76cbd0dd8d1483c",
+    "semantic_hash": ""
+  },
+  "public/suite/packs/everyday-home/thumbs/mondello-beach.webp": {
+    "mtime": 1790633582.1984317,
+    "seen": 1790658083.980675,
+    "ast_hash": "29aead06c9d888b75da4d427f2a97a2d",
     "semantic_hash": ""
   }
 }

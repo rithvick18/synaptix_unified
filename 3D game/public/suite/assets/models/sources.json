@@ -1,0 +1,80 @@
+{
+  "retrieved": "2026-09-28",
+  "models": [
+    {
+      "id": "wicker_basket_02",
+      "title": "Wicker Basket 02",
+      "authors": [
+        "Kuutti Siitonen"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/wicker_basket_02",
+      "file": "models/bamboo-basket.glb",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/wicker_basket_02/wicker_basket_02_1k.gltf",
+      "modified": "1k glTF packed to GLB with glTF-Transform; textures resized (base colour 512 px, normal 256 px, roughness/metal 256 px) and re-encoded to WebP; base centre moved to the origin",
+      "retrieved": "2026-09-28",
+      "bytes": 513780,
+      "triangles": 17850
+    },
+    {
+      "id": "plastic_monobloc_chair_01",
+      "title": "Plastic Monobloc Chair 01",
+      "authors": [
+        "Kuutti Siitonen"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/plastic_monobloc_chair_01",
+      "file": "models/chair-plastic.glb",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/plastic_monobloc_chair_01/plastic_monobloc_chair_01_1k.gltf",
+      "modified": "1k glTF packed to GLB with glTF-Transform; textures resized (base colour 512 px, normal 512 px, roughness/metal 256 px) and re-encoded to WebP; base centre moved to the origin",
+      "retrieved": "2026-09-28",
+      "bytes": 201572,
+      "triangles": 3356
+    },
+    {
+      "id": "potted_plant_02",
+      "title": "Potted Plant 02",
+      "authors": [
+        "Rico Cilliers"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/potted_plant_02",
+      "file": "models/potted-plant-large.glb",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/potted_plant_02/potted_plant_02_1k.gltf",
+      "modified": "1k glTF packed to GLB with glTF-Transform; textures resized (base colour 512 px, normal 256 px, roughness/metal 256 px) and re-encoded to WebP; base centre moved to the origin",
+      "retrieved": "2026-09-28",
+      "bytes": 1923692,
+      "triangles": 69806
+    },
+    {
+      "id": "side_table_01",
+      "title": "Side Table 01",
+      "authors": [
+        "James Ray Cock"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/side_table_01",
+      "file": "models/side-table.glb",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/side_table_01/side_table_01_1k.gltf",
+      "modified": "1k glTF packed to GLB with glTF-Transform; textures resized (base colour 512 px, normal 512 px, roughness/metal 256 px) and re-encoded to WebP; base centre moved to the origin",
+      "retrieved": "2026-09-28",
+      "bytes": 164460,
+      "triangles": 2756
+    },
+    {
+      "id": "wooden_stool_02",
+      "title": "Wooden Stool 02",
+      "authors": [
+        "Kuutti Siitonen"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/wooden_stool_02",
+      "file": "models/stool-low.glb",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/1k/wooden_stool_02/wooden_stool_02_1k.gltf",
+      "modified": "1k glTF packed to GLB with glTF-Transform; textures resized (base colour 512 px, normal 256 px, roughness/metal 256 px) and re-encoded to WebP; base centre moved to the origin",
+      "retrieved": "2026-09-28",
+      "bytes": 333648,
+      "triangles": 11146
+    }
+  ]
+}

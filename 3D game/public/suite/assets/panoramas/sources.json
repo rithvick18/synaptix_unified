@@ -1,0 +1,250 @@
+{
+  "panoramas": [
+    {
+      "name": "chinese-garden",
+      "source": "polyhaven:chinese_garden",
+      "title": "Chinese Garden",
+      "authors": [
+        "Andreas Mischok"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/chinese_garden",
+      "taken": "2020-06-24",
+      "retrieved": "2026-09-28",
+      "downloads": {
+        "display": "https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Tonemapped%20JPG/chinese_garden.jpg",
+        "lighting": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/chinese_garden_1k.hdr"
+      },
+      "modified": "tonemapped JPG (8192×4096) resized to 3840×1920 and re-encoded to WebP (cwebp -q 82); 1k .hdr unchanged",
+      "files": {
+        "display": {
+          "file": "panoramas/chinese-garden.webp",
+          "px": [
+            3840,
+            1920
+          ],
+          "bytes": 1549562
+        },
+        "lighting": {
+          "file": "panoramas/chinese-garden_1k.hdr",
+          "px": [
+            1024,
+            512
+          ],
+          "bytes": 1780617
+        }
+      }
+    },
+    {
+      "name": "combination-room",
+      "source": "polyhaven:combination_room",
+      "title": "Combination Room",
+      "authors": [
+        "Sergej Majboroda"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/combination_room",
+      "taken": "2019-04-18",
+      "retrieved": "2026-09-28",
+      "downloads": {
+        "display": "https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Tonemapped%20JPG/combination_room.jpg",
+        "lighting": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/combination_room_1k.hdr"
+      },
+      "modified": "tonemapped JPG (8192×4096) resized to 3840×1920 and re-encoded to WebP (cwebp -q 82); 1k .hdr unchanged",
+      "files": {
+        "display": {
+          "file": "panoramas/combination-room.webp",
+          "px": [
+            3840,
+            1920
+          ],
+          "bytes": 806954
+        },
+        "lighting": {
+          "file": "panoramas/combination-room_1k.hdr",
+          "px": [
+            1024,
+            512
+          ],
+          "bytes": 1667263
+        }
+      }
+    },
+    {
+      "name": "green-point-park",
+      "source": "polyhaven:green_point_park",
+      "title": "Green Point Park",
+      "authors": [
+        "Greg Zaal",
+        "Rico Cilliers"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/green_point_park",
+      "taken": "2016-06-02",
+      "retrieved": "2026-09-28",
+      "downloads": {
+        "display": "https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Tonemapped%20JPG/green_point_park.jpg",
+        "lighting": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/green_point_park_1k.hdr"
+      },
+      "modified": "tonemapped JPG (8192×4096) resized to 3840×1920 and re-encoded to WebP (cwebp -q 82); 1k .hdr unchanged",
+      "files": {
+        "display": {
+          "file": "panoramas/green-point-park.webp",
+          "px": [
+            3840,
+            1920
+          ],
+          "bytes": 843940
+        },
+        "lighting": {
+          "file": "panoramas/green-point-park_1k.hdr",
+          "px": [
+            1024,
+            512
+          ],
+          "bytes": 1669782
+        }
+      }
+    },
+    {
+      "name": "kiara-interior",
+      "source": "polyhaven:kiara_interior",
+      "title": "Kiara Interior",
+      "authors": [
+        "Greg Zaal"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/kiara_interior",
+      "taken": "2016-08-23",
+      "retrieved": "2026-09-28",
+      "downloads": {
+        "display": "https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Tonemapped%20JPG/kiara_interior.jpg",
+        "lighting": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/kiara_interior_1k.hdr"
+      },
+      "modified": "tonemapped JPG (8192×4096) resized to 3840×1920 and re-encoded to WebP (cwebp -q 82); 1k .hdr unchanged",
+      "files": {
+        "display": {
+          "file": "panoramas/kiara-interior.webp",
+          "px": [
+            3840,
+            1920
+          ],
+          "bytes": 657876
+        },
+        "lighting": {
+          "file": "panoramas/kiara-interior_1k.hdr",
+          "px": [
+            1024,
+            512
+          ],
+          "bytes": 1721761
+        }
+      }
+    },
+    {
+      "name": "lebombo-living",
+      "source": "polyhaven:lebombo",
+      "title": "Lebombo",
+      "authors": [
+        "Greg Zaal"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/lebombo",
+      "taken": "2019-04-23",
+      "retrieved": "2026-09-28",
+      "downloads": {
+        "display": "https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Tonemapped%20JPG/lebombo.jpg",
+        "lighting": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/lebombo_1k.hdr"
+      },
+      "modified": "tonemapped JPG (8192×4096) resized to 3840×1920 and re-encoded to WebP (cwebp -q 82); 1k .hdr unchanged",
+      "files": {
+        "display": {
+          "file": "panoramas/lebombo-living.webp",
+          "px": [
+            3840,
+            1920
+          ],
+          "bytes": 126148
+        },
+        "lighting": {
+          "file": "panoramas/lebombo-living_1k.hdr",
+          "px": [
+            1024,
+            512
+          ],
+          "bytes": 1481931
+        }
+      }
+    },
+    {
+      "name": "lythwood-room",
+      "source": "polyhaven:lythwood_room",
+      "title": "Lythwood Room",
+      "authors": [
+        "Greg Zaal"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/lythwood_room",
+      "taken": "2018-03-22",
+      "retrieved": "2026-09-28",
+      "downloads": {
+        "display": "https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Tonemapped%20JPG/lythwood_room.jpg",
+        "lighting": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/lythwood_room_1k.hdr"
+      },
+      "modified": "tonemapped JPG (8192×4096) resized to 3840×1920 and re-encoded to WebP (cwebp -q 82); 1k .hdr unchanged",
+      "files": {
+        "display": {
+          "file": "panoramas/lythwood-room.webp",
+          "px": [
+            3840,
+            1920
+          ],
+          "bytes": 481446
+        },
+        "lighting": {
+          "file": "panoramas/lythwood-room_1k.hdr",
+          "px": [
+            1024,
+            512
+          ],
+          "bytes": 1495104
+        }
+      }
+    },
+    {
+      "name": "mondello-beach",
+      "source": "polyhaven:spiaggia_di_mondello",
+      "title": "Spiaggia di Mondello",
+      "authors": [
+        "Andreas Mischok"
+      ],
+      "license": "CC0-1.0",
+      "page": "https://polyhaven.com/a/spiaggia_di_mondello",
+      "taken": "2019-09-30",
+      "retrieved": "2026-09-28",
+      "downloads": {
+        "display": "https://dl.polyhaven.org/file/ph-assets/HDRIs/extra/Tonemapped%20JPG/spiaggia_di_mondello.jpg",
+        "lighting": "https://dl.polyhaven.org/file/ph-assets/HDRIs/hdr/1k/spiaggia_di_mondello_1k.hdr"
+      },
+      "modified": "tonemapped JPG (8192×4096) resized to 3840×1920 and re-encoded to WebP (cwebp -q 82); 1k .hdr unchanged",
+      "files": {
+        "display": {
+          "file": "panoramas/mondello-beach.webp",
+          "px": [
+            3840,
+            1920
+          ],
+          "bytes": 574298
+        },
+        "lighting": {
+          "file": "panoramas/mondello-beach_1k.hdr",
+          "px": [
+            1024,
+            512
+          ],
+          "bytes": 1541267
+        }
+      }
+    }
+  ]
+}

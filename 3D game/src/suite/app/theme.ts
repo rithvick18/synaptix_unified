@@ -24,26 +24,26 @@ export interface Palette {
   noticeBg: string
 }
 
-/** Warm neutral default. */
+/** Default: greyish-white paper, white surfaces, near-black ink; colour only as a quiet pastel. */
 export const PALETTE: Palette = {
-  bg: '#f4eee3',
-  surface: '#fffaf2',
-  surface2: '#efe6d6',
-  text: '#2b2620',
-  muted: '#574d42',
-  border: '#8c7a64',
-  accent: '#7a4520',
-  onAccent: '#fffaf2',
-  accentSoft: '#f1dfc7',
-  onAccentSoft: '#4a2a12',
+  bg: '#f4f4f2',
+  surface: '#ffffff',
+  surface2: '#ebebe8',
+  text: '#1b1b1a',
+  muted: '#5c5b57',
+  border: '#8a8984',
+  accent: '#1b1b1a',
+  onAccent: '#ffffff',
+  accentSoft: '#e8e8e4',
+  onAccentSoft: '#1b1b1a',
   focus: '#1d5a85',
-  personalBg: '#dcebd6',
-  personalText: '#1f4526',
-  demoBg: '#e6e0ee',
-  demoText: '#3f2f59',
-  cue: '#5a3d16',
-  notice: '#4f3a14',
-  noticeBg: '#f7ead0'
+  personalBg: '#e9f1e7',
+  personalText: '#2c5a30',
+  demoBg: '#eeeaf5',
+  demoText: '#4a3a6b',
+  cue: '#6b5420',
+  notice: '#7a5200',
+  noticeBg: '#fbf3db'
 }
 
 /** High contrast: 7:1 or better for all text. */

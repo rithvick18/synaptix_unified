@@ -8,7 +8,7 @@
  * usually ready by the time it scrolls into view.
  */
 import type { ActivityKind, EnvironmentPreset, LoadedContentPack, SessionSummary } from '../contracts'
-import { resolveUnder } from '../paths'
+import { resolveUnder, suiteUrl } from '../paths'
 import type { SuiteController } from './app'
 import { h } from './dom'
 import { splitDuration } from './summary'
@@ -83,38 +83,124 @@ export function renderHome(c: SuiteController): HTMLElement {
     h('p', { class: 's-muted', text: c.t('app.home.caregiver.hint') }),
     c.flash ? h('p', { class: 's-notice', role: 'status', text: c.flash }) : null,
     h('div', { class: 's-row' },
-      h('button', { type: 'button', 'data-k': 'caregiver-setup', onclick: () => void c.openCaregiverSetup() }, c.t('app.home.caregiver.setup'))),
-    h('hr', { class: 's-divider' }),
-    h('h3', { text: c.t('app.home.caregiver.homeTitle') }),
-    h('p', { class: 's-muted', text: c.t('app.home.caregiver.homeHint') }),
-    h('div', { class: 's-row' },
-      h('button', { type: 'button', 'data-k': 'home-personalise', onclick: () => c.openHomePersonalisation() }, c.t('app.home.caregiver.homeOpen'))))
-
-  const guided = h('section', { 'aria-labelledby': 's-guided' },
-    h('h3', { id: 's-guided', text: c.t('app.home.guided.title') }),
-    h('p', { class: 's-muted', text: c.t('app.home.guided.hint') }),
-    h('div', { class: 's-row' },
-      h('button', { type: 'button', 'data-k': 'guided', onclick: () => c.openGuidedTasks() }, c.t('app.home.guided.open'))))
+      h('button', { type: 'button', 'data-k': 'caregiver-setup', onclick: () => void c.openCaregiverSetup() }, c.t('app.home.caregiver.setup'))))
 
   const more = h('details', { class: 's-card s-more', 'data-k': 'more' },
     h('summary', { class: 's-more-summary' }, c.t('app.home.more.title')),
     h('div', { class: 's-more-body' },
       comfort, h('hr', { class: 's-divider' }),
       camera, h('hr', { class: 's-divider' }),
-      caregiver, h('hr', { class: 's-divider' }),
-      guided))
+      caregiver))
 
   const disclaimer = c.tOr('common.disclaimer', 'app.disclaimer')
-  return h('div', { class: 's-page' },
-    h('header', { class: 's-brand' },
-      h('h1', { tabindex: -1, text: c.t('app.brand') }),
-      h('p', { class: 's-muted', text: disclaimer })),
+  return h('div', { class: 's-page s-home' },
+    renderHero(c, disclaimer),
     who, language,
     // Kept outside the disclosure: storage state matters even before a caregiver opens setup.
     warning ? h('p', { class: 's-notice', role: 'status' }, h('strong', { text: c.t('app.home.storage') + ' ' }), h('span', { lang: 'en', text: warning })) : null,
     h('hr', { class: 's-divider' }),
     ...renderPlaceSection(c),
     more)
+}
+
+// ---------------------------------------------------------------------------------------- Hero
+//
+// A full-bleed "look around" preview: the suite's own panoramas dissolve slowly one into the
+// next while the view drifts sideways, like turning your head in the room. Nothing flashes or
+// jumps: dissolves are 1.6 s opacity transitions (CSS transitions, never animations), and
+// the whole thing stops under reduced motion, on hover/focus, and once anyone picks a place.
+
+let heroIndex = 0
+let heroManual = false
+const HERO_DWELL_MS = 9000
+
+/** Full-size panorama that sits next to a place's thumbnail (thumbs/x.webp → assets/panoramas/x.webp). */
+const panoramaFor = (thumb: string): string => suiteUrl(`assets/panoramas/${thumb.replace(/^.*\//, '')}`)
+
+function renderHero(c: SuiteController, disclaimer: string): HTMLElement {
+  const i18n = c.i18n!
+  const shots: { pack: LoadedContentPack; env: EnvironmentPreset; thumb: string; name: string; desc: string }[] = []
+  for (const pack of c.content?.ok ?? []) {
+    for (const env of pack.environments) {
+      if (env.shell.startsWith('photo') && env.thumbnail) {
+        shots.push({ pack, env, thumb: resolveUnder(pack.baseUrl, env.thumbnail), name: i18n.text(env.name, env.id), desc: i18n.text(env.description, '') })
+      }
+    }
+  }
+  const slides = shots.slice(0, 6)
+  if (heroIndex >= slides.length) heroIndex = 0
+  const scrollTo = (id: string, block: ScrollLogicalPosition): void =>
+    document.getElementById(id)?.scrollIntoView({ behavior: c.settings.reducedMotion ? 'auto' : 'smooth', block })
+
+  const layers = slides.map((sh, n) => {
+    const img = h('img', { class: `s-slide ${n % 2 ? 's-pan-r' : 's-pan-l'}`, alt: '', decoding: 'async', draggable: 'false' })
+    img.addEventListener('error', () => { if (img.src !== sh.thumb) img.src = sh.thumb }, { once: true })
+    return img
+  })
+  const load = (n: number): void => {
+    const img = layers[n % layers.length]
+    if (img && !img.getAttribute('src')) img.src = panoramaFor(slides[n % slides.length].thumb)
+  }
+
+  const capKicker = h('p', { class: 's-cap-kicker', text: c.t('app.home.nowShowing') })
+  const capName = h('p', { class: 's-cap-name', 'aria-live': 'polite' })
+  const capDesc = h('p', { class: 's-cap-desc' })
+  const visit = h('button', { type: 'button', class: 's-ghost', 'data-k': 'hero-visit',
+    onclick: () => {
+      const cur = slides[heroIndex]
+      if (!cur) return
+      heroManual = true
+      c.choose(cur.pack.meta.id, cur.env.id)
+      scrollTo('s-place-title', 'start')
+    } }, c.t('app.home.visitThis'))
+  const reel = h('div', { class: 's-reel', role: 'group', 'aria-label': c.t('app.home.collageLabel') },
+    slides.map((sh, n) => h('button', { type: 'button', class: 's-reel-item', 'data-k': `reel-${sh.pack.meta.id}-${sh.env.id}`, 'aria-label': sh.name,
+      onclick: () => { heroManual = true; show(n) } }, h('img', { src: sh.thumb, alt: '', decoding: 'async', loading: 'lazy' }))))
+
+  function show(n: number): void {
+    heroIndex = n
+    load(n)
+    load(n + 1)
+    layers.forEach((l, i) => l.classList.toggle('s-on', i === n))
+    ;[...reel.children].forEach((b, i) => b.setAttribute('aria-pressed', String(i === n)))
+    const cur = slides[n]
+    if (cur) { capName.textContent = cur.name; capDesc.textContent = cur.desc }
+  }
+
+  const stage = h('div', { class: 's-hero-stage' },
+    h('div', { class: 's-slides', 'aria-hidden': 'true' }, layers),
+    h('div', { class: 's-scrim', 'aria-hidden': 'true' }),
+    h('p', { class: 's-eyebrow' }, h('span', { class: 's-dot', 'aria-hidden': 'true' }), c.t('app.brand')),
+    h('div', { class: 's-hero-copy' },
+      h('h1', { tabindex: -1 }, c.t('app.home.tagline'), ' ', h('em', { text: c.t('app.home.taglineEm') })),
+      h('p', { class: 's-lede', text: disclaimer }),
+      h('div', { class: 's-hero-actions' },
+        h('button', { type: 'button', class: 's-primary s-cta', 'data-k': 'hero-begin', onclick: () => scrollTo('s-who', 'center') },
+          h('span', { text: c.t('app.home.begin') }), h('span', { class: 's-cta-icon', 'aria-hidden': 'true', text: '↓' })),
+        slides.length ? visit : null)),
+    slides.length ? h('div', { class: 's-hero-side' }, capKicker, capName, capDesc, reel) : null)
+
+  if (slides.length) {
+    show(heroIndex)
+    const motionOk = !c.settings.reducedMotion && !window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    if (motionOk && slides.length > 1) {
+      let held = false
+      const hold = (v: boolean) => () => { held = v }
+      stage.addEventListener('pointerenter', hold(true))
+      stage.addEventListener('pointerleave', hold(false))
+      stage.addEventListener('focusin', hold(true))
+      stage.addEventListener('focusout', hold(false))
+      const timer = window.setInterval(() => {
+        if (!stage.isConnected) { window.clearInterval(timer); return }
+        if (!held && !heroManual && !document.hidden) show((heroIndex + 1) % slides.length)
+      }, HERO_DWELL_MS)
+    }
+  }
+
+  return h('header', { class: 's-hero' },
+    h('div', { class: 's-hero-frame' }, stage),
+    h('ol', { class: 's-steps', 'aria-hidden': 'true' },
+      (['who', 'place', 'activity'] as const).map((k, n) => h('li', {}, h('b', { text: String(n + 1) }), h('span', { text: c.t(`app.home.steps.${k}`) })))))
 }
 
 // ---------------------------------------------------------------------------------------- Place + Activity
@@ -125,8 +211,9 @@ export function renderHome(c: SuiteController): HTMLElement {
 
 function renderPlaceSection(c: SuiteController): (HTMLElement | null)[] {
   const nodes: (HTMLElement | null)[] = [
-    h('h2', { id: 's-place-title', tabindex: -1, text: c.t('app.place.title') }),
-    h('p', { class: 's-muted', text: c.t('app.place.intro') })
+    h('div', { class: 's-section-head' },
+      h('h2', { id: 's-place-title', tabindex: -1, text: c.t('app.place.title') }),
+      h('p', { class: 's-muted', text: c.t('app.place.intro') }))
   ]
   const content = c.content
   if (!content) {
@@ -140,13 +227,15 @@ function renderPlaceSection(c: SuiteController): (HTMLElement | null)[] {
     }
     return nodes
   }
-  if (!c.choice || !content.ok.some((p) => p.meta.id === c.choice!.packId && p.environments.some((e) => e.id === c.choice!.environmentId))) {
+  if (!c.choice || !content.ok.some((p) => p.meta.id === c.choice!.packId && p.environments.some((e) => e.id === c.choice!.environmentId && e.shell.startsWith('photo')))) {
     c.choice = c.defaultChoice(content)
     c.rememberChoice(c.choice)
   }
   const i18n = c.i18n!
-  const general = content.ok.filter((p) => !p.meta.regional)
-  const regional = content.ok.filter((p) => p.meta.regional)
+  const captured = content.ok.map((p) => ({ ...p, environments: p.environments.filter((e) => e.shell.startsWith('photo')) }))
+    .filter((p) => p.environments.length > 0)
+  const general = captured.filter((p) => !p.meta.regional)
+  const regional = captured.filter((p) => p.meta.regional)
 
   if (content.failed.length) {
     nodes.push(h('p', { class: 's-notice', role: 'status',
@@ -159,11 +248,12 @@ function renderPlaceSection(c: SuiteController): (HTMLElement | null)[] {
   const envCard = (pack: LoadedContentPack, env: EnvironmentPreset): HTMLElement => {
     const group = pack.meta.regional ? c.lastRegionalChoice : c.lastGeneralChoice
     const chosen = group?.packId === pack.meta.id && group.environmentId === env.id
-    return h('button', { type: 'button', class: 's-choice', 'aria-pressed': String(chosen), 'data-k': `env-${pack.meta.id}-${env.id}`,
+    return h('button', { type: 'button', class: `s-choice${env.thumbnail ? ' s-photo' : ''}`, 'aria-pressed': String(chosen), 'data-k': `env-${pack.meta.id}-${env.id}`,
       onclick: () => c.choose(pack.meta.id, env.id) },
       env.thumbnail ? h('img', { class: 's-thumb', src: resolveUnder(pack.baseUrl, env.thumbnail), alt: '', loading: 'lazy', decoding: 'async' }) : null,
-      h('span', { class: 's-choice-title', text: i18n.text(env.name, env.id) }),
-      h('span', { class: 's-muted s-small', text: i18n.text(env.description, '') }))
+      h('span', { class: 's-photo-body' },
+        h('span', { class: 's-choice-title', text: i18n.text(env.name, env.id) }),
+        h('span', { class: 's-muted s-small', text: i18n.text(env.description, '') })))
   }
   const packSection = (pack: LoadedContentPack, isRegional: boolean): HTMLElement =>
     h('section', { class: 's-card', 'aria-label': i18n.text(pack.meta.name, pack.meta.id) },
@@ -171,7 +261,7 @@ function renderPlaceSection(c: SuiteController): (HTMLElement | null)[] {
       h('p', { class: 's-muted', text: i18n.text(pack.meta.description, '') }),
       isRegional ? h('p', { class: 's-small', text: c.t('app.place.coverage', { note: i18n.text(pack.meta.coverageNote, '') }) }) : null,
       pack.meta.status === 'preview' ? h('p', { class: 's-notice s-small', text: c.t('app.place.preview') }) : null,
-      h('div', { class: 's-grid' }, pack.environments.map((env) => envCard(pack, env))))
+      h('div', { class: 's-grid s-places' }, pack.environments.map((env) => envCard(pack, env))))
 
   if (general.length) nodes.push(h('h3', { text: c.t('app.place.general') }), ...general.map((p) => packSection(p, false)))
   if (regional.length) {
@@ -188,15 +278,21 @@ function renderPlaceSection(c: SuiteController): (HTMLElement | null)[] {
 
 /** The activity list, shown right under the place picker once a place is chosen. */
 function renderActivityPicker(c: SuiteController): HTMLElement {
-  const section = h('section', { 'aria-labelledby': 's-activity-title' },
-    h('h2', { id: 's-activity-title', text: c.t('app.activity.title') }),
-    h('p', { class: 's-notice', text: c.t('app.activity.note') }))
+  const section = h('section', { class: 's-acts-section', 'aria-labelledby': 's-activity-title' },
+    h('div', { class: 's-section-head' },
+      h('p', { class: 's-step-tag', 'aria-hidden': 'true' }, h('b', { text: '3' }), c.t('app.home.steps.activity')),
+      h('h2', { id: 's-activity-title', text: c.t('app.activity.title') }),
+      h('p', { class: 's-muted', text: c.t('app.activity.note') })))
   if (!c.choice) return section
 
   const content = c.content
   const pack = content?.ok.find((p) => p.meta.id === c.choice!.packId)
   const env = pack?.environments.find((e) => e.id === c.choice!.environmentId)
-  if (pack && env) section.append(h('p', { class: 's-muted', text: c.t('app.activity.place', { name: c.i18n!.text(env.name, env.id) }) }))
+  if (pack && env) {
+    section.append(h('p', { class: 's-place-chip' },
+      env.thumbnail ? h('img', { src: resolveUnder(pack.baseUrl, env.thumbnail), alt: '', decoding: 'async' }) : null,
+      h('span', { text: c.t('app.activity.place', { name: c.i18n!.text(env.name, env.id) }) })))
+  }
 
   if (c.prepareError) {
     section.append(h('div', { class: 's-card', role: 'status' },
@@ -218,28 +314,66 @@ function renderActivityPicker(c: SuiteController): HTMLElement {
 
   const guided = c.profileMode === 'saved' && c.prepared.resolved?.mode === 'guided'
   if (guided) section.append(h('p', { class: 's-muted', text: c.t('app.activity.guidedFirst') }))
-  const list = h('div', { class: 's-grid' })
-  for (const kind of c.activityOrder()) list.append(activityCard(c, kind))
+  // Ready activities first (the first one is featured over the place's photograph), then the
+  // ones that still need caregiver setup as quiet, compact cards.
+  const order = c.activityOrder()
+  const ready = order.filter((k) => c.availability(k)?.ok)
+  const setup = order.filter((k) => !c.availability(k)?.ok)
+  const photo = pack && env?.thumbnail ? resolveUnder(pack.baseUrl, env.thumbnail) : null
+  const list = h('div', { class: 's-acts' })
+  ready.forEach((kind, n) => list.append(activityCard(c, kind, order.indexOf(kind) + 1, n === 0 ? photo : undefined)))
   section.append(list)
+  if (setup.length) section.append(h('div', { class: 's-acts s-acts-setup' }, setup.map((kind) => activityCard(c, kind, order.indexOf(kind) + 1))))
   return section
 }
 
-function activityCard(c: SuiteController, kind: ActivityKind): HTMLElement {
+const ICON_PATHS: Record<ActivityKind, string[]> = {
+  photo: ['M4 5h16v14H4z', 'M4 16l4.5-4.5 3.5 3.5 3-3 5 5', 'M15.5 9.5h.01'],
+  object: ['M5 8h11v6a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4z', 'M16 10h2a2 2 0 0 1 0 4h-2', 'M8 4c0 1 1 1 1 2M12 4c0 1 1 1 1 2'],
+  sound: ['M4 10v4h3l4 3V7l-4 3z', 'M15 9a4 4 0 0 1 0 6', 'M17.5 6.5a8 8 0 0 1 0 11'],
+  space: ['M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18z', 'M15.5 8.5l-2 5-5 2 2-5z'],
+  sequence: ['M5 12h14', 'M5 12h.01M12 12h.01M19 12h.01', 'M3.5 12a1.5 1.5 0 1 0 3 0 1.5 1.5 0 1 0-3 0M10.5 12a1.5 1.5 0 1 0 3 0 1.5 1.5 0 1 0-3 0M17.5 12a1.5 1.5 0 1 0 3 0 1.5 1.5 0 1 0-3 0']
+}
+
+/** Thin line icon per activity; decorative (the title carries the meaning). */
+function activityIcon(kind: ActivityKind): SVGElement {
+  const NS = 'http://www.w3.org/2000/svg'
+  const svg = document.createElementNS(NS, 'svg')
+  svg.setAttribute('viewBox', '0 0 24 24')
+  svg.setAttribute('aria-hidden', 'true')
+  svg.setAttribute('class', 's-act-icon')
+  for (const d of ICON_PATHS[kind]) {
+    const path = document.createElementNS(NS, 'path')
+    path.setAttribute('d', d)
+    svg.append(path)
+  }
+  return svg
+}
+
+function activityCard(c: SuiteController, kind: ActivityKind, number: number, feature?: string | null): HTMLElement {
   const def = c.deps.ACTIVITIES[kind]
   const avail = c.availability(kind)
   const ok = !!avail && avail.ok
   const titleId = `s-act-${kind}`
-  return h('section', { class: 's-card', 'aria-labelledby': titleId },
-    h('h2', { id: titleId, text: c.t(def.nameKey) }),
-    h('p', { class: 's-muted', text: c.t(def.descriptionKey) }),
-    ok
-      ? h('div', { class: 's-row' },
-          h('button', { type: 'button', class: 's-primary', 'data-k': `start-${kind}`, onclick: () => void c.startActivity(kind) }, c.t('app.activity.start')))
-      : h('div', { class: 's-notice' },
-          h('p', { text: avail && !avail.ok ? `${c.t('app.activity.unavailable')}: ${c.t(avail.reasonKey)}` : c.t('app.activity.unavailable') }),
-          h('p', { class: 's-small', text: c.t('app.activity.setupHint') }),
-          h('div', { class: 's-row' },
-            h('button', { type: 'button', 'data-k': `setup-${kind}`, onclick: () => { c.go('home'); void c.openCaregiverSetup() } }, c.t('app.home.caregiver.setup')))))
+  const top = h('div', { class: 's-act-top' },
+    h('span', { class: 's-act-badge' }, activityIcon(kind)),
+    h('span', { class: 's-act-num', 'aria-hidden': 'true', text: String(number).padStart(2, '0') }))
+  const head = [h('h3', { id: titleId, text: c.t(def.nameKey) }), h('p', { class: 's-act-desc', text: c.t(def.descriptionKey) })]
+
+  if (ok) {
+    return h('section', { class: `s-act${feature ? ' s-act-feature' : ''}`, 'aria-labelledby': titleId },
+      feature ? h('img', { class: 's-act-photo', src: feature, alt: '', 'aria-hidden': 'true', decoding: 'async' }) : null,
+      top, ...head,
+      h('div', { class: 's-act-foot' },
+        h('button', { type: 'button', class: 's-primary s-act-start', 'data-k': `start-${kind}`, onclick: () => void c.startActivity(kind) },
+          h('span', { text: c.t('app.activity.start') }), h('span', { class: 's-cta-icon', 'aria-hidden': 'true', text: '→' }))))
+  }
+  return h('section', { class: 's-act s-act-off', 'aria-labelledby': titleId },
+    top, ...head,
+    h('div', { class: 's-act-foot' },
+      h('p', { class: 's-small s-act-reason', text: avail && !avail.ok ? c.t(avail.reasonKey) : c.t('app.activity.unavailable') }),
+      h('button', { type: 'button', class: 's-linkish', 'data-k': `setup-${kind}`, onclick: () => { c.go('home'); void c.openCaregiverSetup() } },
+        c.t('app.home.caregiver.setup'))))
 }
 
 // ---------------------------------------------------------------------------------------- Summary

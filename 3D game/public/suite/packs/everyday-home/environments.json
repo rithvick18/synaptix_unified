@@ -467,6 +467,225 @@
      "highlight": true
     }
    ]
+  },
+  {
+   "id": "photo-living-demo",
+   "shell": "photoLivingDemo",
+   "name": {
+    "en": "Lythwood room · photographed",
+    "hi": "लिथवुड का कमरा · तस्वीर"
+   },
+   "description": {
+    "en": "Look around a real photographed room. Explore its television, lamp, mirror, picture and tea table.",
+    "hi": "एक असली कमरे की तस्वीर में चारों ओर देखें। टीवी, लैंप, आईना, चित्र और चाय की मेज़ देखें।"
+   },
+   "thumbnail": "thumbs/lythwood-room.webp",
+   "materials": {},
+   "placements": [
+    {
+     "id": "television",
+     "asset": "lythwood-television",
+     "slot": "television",
+     "highlight": true
+    },
+    {
+     "id": "lamp",
+     "asset": "lythwood-lamp",
+     "slot": "lamp",
+     "highlight": true
+    },
+    {
+     "id": "mirror",
+     "asset": "lythwood-mirror",
+     "slot": "mirror"
+    },
+    {
+     "id": "picture",
+     "asset": "lythwood-picture",
+     "slot": "picture"
+    },
+    {
+     "id": "tea-table",
+     "asset": "lythwood-tea-table",
+     "slot": "tea-table",
+     "highlight": true
+    }
+   ]
+  },
+  {
+   "id": "photo-combination",
+   "shell": "photoCombination",
+   "name": {
+    "en": "Traditional sitting room",
+    "hi": "पारंपरिक बैठक"
+   },
+   "description": {
+    "en": "A photographed sitting room with a sofa, armchair, standing lamp and framed art.",
+    "hi": "सोफ़े, आरामकुर्सी, लैंप और चित्रों वाली असली बैठक की तस्वीर।"
+   },
+   "thumbnail": "thumbs/combination-room.webp",
+   "materials": {},
+   "placements": [
+    {
+     "id": "sofa",
+     "asset": "combination-sofa",
+     "slot": "sofa",
+     "highlight": true
+    },
+    {
+     "id": "lamp",
+     "asset": "combination-lamp",
+     "slot": "lamp",
+     "highlight": true
+    },
+    {
+     "id": "armchair",
+     "asset": "combination-armchair",
+     "slot": "armchair",
+     "highlight": true
+    },
+    {
+     "id": "picture",
+     "asset": "combination-picture",
+     "slot": "picture"
+    }
+   ]
+  },
+  {
+   "id": "photo-kiara",
+   "shell": "photoKiara",
+   "name": {
+    "en": "Kitchen and lounge",
+    "hi": "रसोई और बैठक"
+   },
+   "description": {
+    "en": "A photographed home with a kitchen, sofa, table, television and everyday objects.",
+    "hi": "रसोई, सोफ़े, मेज़, टीवी और रोज़मर्रा की चीज़ों वाले असली घर की तस्वीर।"
+   },
+   "thumbnail": "thumbs/kiara-interior.webp",
+   "materials": {},
+   "placements": [
+    {
+     "id": "sofa",
+     "asset": "kiara-sofa",
+     "slot": "sofa",
+     "highlight": true
+    },
+    {
+     "id": "television",
+     "asset": "kiara-television",
+     "slot": "television",
+     "highlight": true
+    },
+    {
+     "id": "fridge",
+     "asset": "kiara-fridge",
+     "slot": "fridge",
+     "highlight": true
+    },
+    {
+     "id": "chair",
+     "asset": "kiara-chair",
+     "slot": "chair"
+    },
+    {
+     "id": "mug",
+     "asset": "kiara-mug",
+     "slot": "mug"
+    }
+   ]
+  },
+  {
+   "id": "photo-chinese-garden",
+   "shell": "photoChineseGarden",
+   "name": {
+    "en": "Chinese garden",
+    "hi": "चीनी उद्यान"
+   },
+   "description": {
+    "en": "A real 360° garden photograph with a pond, stone paths, trees and a pavilion.",
+    "hi": "तालाब, पत्थर के रास्तों, पेड़ों और मंडप वाले बगीचे की वास्तविक 360° तस्वीर।"
+   },
+   "thumbnail": "thumbs/chinese-garden.webp",
+   "materials": {},
+   "placements": [
+    {
+     "id": "pond",
+     "asset": "garden-pond",
+     "slot": "pond",
+     "highlight": true
+    },
+    {
+     "id": "pavilion",
+     "asset": "garden-pavilion",
+     "slot": "pavilion",
+     "highlight": true
+    },
+    {
+     "id": "garden-trees",
+     "asset": "garden-trees",
+     "slot": "garden-trees"
+    }
+   ]
+  },
+  {
+   "id": "photo-green-point-park",
+   "shell": "photoGreenPointPark",
+   "name": {
+    "en": "Green Point Park · Cape Town",
+    "hi": "ग्रीन पॉइंट पार्क · केप टाउन"
+   },
+   "description": {
+    "en": "A real 360° park photograph looking over open grass toward the city and mountains.",
+    "hi": "खुले मैदान से शहर और पहाड़ों की ओर देखता पार्क का वास्तविक 360° दृश्य।"
+   },
+   "thumbnail": "thumbs/green-point-park.webp",
+   "materials": {},
+   "placements": [
+    {
+     "id": "park-lawn",
+     "asset": "park-lawn",
+     "slot": "lawn",
+     "highlight": true
+    },
+    {
+     "id": "park-mountains",
+     "asset": "park-mountains",
+     "slot": "mountains"
+    }
+   ]
+  },
+  {
+   "id": "photo-mondello-beach",
+   "shell": "photoMondelloBeach",
+   "name": {
+    "en": "Mondello Beach · Sicily",
+    "hi": "मोंडेलो बीच · सिसिली"
+   },
+   "description": {
+    "en": "A real 360° seaside photograph with sand, clear water and coastal trees.",
+    "hi": "रेत, साफ़ पानी और तटीय पेड़ों वाला समुद्र-तट का वास्तविक 360° दृश्य।"
+   },
+   "thumbnail": "thumbs/mondello-beach.webp",
+   "materials": {},
+   "placements": [
+    {
+     "id": "beach-shore",
+     "asset": "beach-shore",
+     "slot": "shore",
+     "highlight": true
+    },
+    {
+     "id": "beach-water",
+     "asset": "beach-water",
+     "slot": "water"
+    },
+    {
+     "id": "beach-pines",
+     "asset": "beach-pines",
+     "slot": "pines"
+    }
+   ]
   }
  ]
 }

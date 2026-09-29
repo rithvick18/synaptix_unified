@@ -1,5 +1,9 @@
 import * as THREE from 'three'
 import { HDRLoader } from 'three/examples/jsm/loaders/HDRLoader.js'
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js'
+import { GTAOPass } from 'three/examples/jsm/postprocessing/GTAOPass.js'
+import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js'
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js'
 import type { DeviceInfo } from './Quality'
 import type { StageProgress } from './ui'
 
@@ -32,6 +36,12 @@ export class Renderer {
   readonly camera: THREE.PerspectiveCamera
 
   private pmrem: THREE.PMREMGenerator
+  /** Set by `enableAmbientOcclusion`; null draws straight to the canvas. */
+  private composer: EffectComposer | null = null
+  /** What `setupEnvironment` settled on, restored by `releaseLocalEnvironment`. */
+  private baseEnvironment: { map: THREE.Texture | null; intensity: number } = { map: null, intensity: 1 }
+  /** Set by `captureLocalEnvironment` or `useLocalEnvironment` while a suite room is on screen. */
+  private localEnvironment: THREE.WebGLRenderTarget | null = null
   private hemi: THREE.HemisphereLight
   private sun: THREE.DirectionalLight
 
@@ -121,6 +131,7 @@ export class Renderer {
       // Kept low deliberately: at 0.55 the studio HDRI reflected off floors at grazing
       // angles and blew the far end of every room to white (Fresnel, not a shadow bug).
       this.scene.environmentIntensity = 0.28
+      this.baseEnvironment = { map: envMap, intensity: 0.28 }
       // The HDRI carries ambient bounce, so the stand-in lights step back.
       this.hemi.intensity = 0.7
       this.sun.intensity = 2.2
@@ -147,6 +158,41 @@ export class Renderer {
     if (this.renderer.getPixelRatio() === ratio) return
     this.renderer.setPixelRatio(ratio)
     this.renderer.setSize(window.innerWidth, window.innerHeight)
+    this.composer?.setPixelRatio(ratio)
+    this.composer?.setSize(window.innerWidth, window.innerHeight)
+  }
+
+  /**
+   * Screen-space ambient occlusion (GTAO): the soft darkening where a sofa meets the
+   * floor, under a table, in the corner of a room. It is most of the difference between
+   * a room that looks lit and one that looks modelled, and it applies to the house and
+   * the suite alike because both draw through this renderer.
+   *
+   * It costs a second geometry pass (normals and depth) plus a full-screen shader, so
+   * `main.ts` enables it only on the 'full' tier. The software tier the checks run on
+   * never has it, which keeps §7's frame-time figure comparable with every earlier run.
+   *
+   * Drawing into the composer's target bypasses the canvas's own antialiasing, so the
+   * target is multisampled; `OutputPass` then applies the ACES tone mapping and sRGB
+   * conversion the renderer would otherwise have applied itself.
+   */
+  enableAmbientOcclusion(): void {
+    if (this.composer) return
+    const size = this.renderer.getDrawingBufferSize(new THREE.Vector2())
+    const target = new THREE.WebGLRenderTarget(size.x, size.y, { type: THREE.HalfFloatType, samples: 4 })
+    const composer = new EffectComposer(this.renderer, target)
+    composer.addPass(new RenderPass(this.scene, this.camera))
+    const ao = new GTAOPass(this.scene, this.camera, size.x, size.y)
+    // Radii in metres: large enough to reach from a sofa's seat to its base, small
+    // enough that a wall does not shade the middle of the floor.
+    ao.updateGtaoMaterial({ radius: 0.45, distanceExponent: 1.4, thickness: 1.2, scale: 1.15, samples: 16 })
+    ao.updatePdMaterial({ lumaPhi: 10, depthPhi: 2, normalPhi: 3, radius: 5, rings: 2, samples: 16 })
+    ao.blendIntensity = 0.85
+    composer.addPass(ao)
+    composer.addPass(new OutputPass())
+    composer.setPixelRatio(this.renderer.getPixelRatio())
+    composer.setSize(window.innerWidth, window.innerHeight)
+    this.composer = composer
   }
 
   /** What `Quality.detectQuality` needs, read once. `WEBGL_debug_renderer_info` is the
@@ -175,6 +221,62 @@ export class Renderer {
     this.camera.aspect = window.innerWidth / window.innerHeight
     this.camera.updateProjectionMatrix()
     this.renderer.setSize(window.innerWidth, window.innerHeight)
+    this.composer?.setSize(window.innerWidth, window.innerHeight)
+  }
+
+  /**
+   * Replaces the studio HDRI with the room itself, seen from `at`: a steel tumbler, a
+   * glass door or a polished floor then reflects the walls, window and furniture around
+   * it rather than a photographer's softboxes. Rendered once, into a 128 px cube, from
+   * whatever is visible now — so the caller hides the house and adds the room first.
+   *
+   * The capture happens with no environment at all (a room lit by its own reflection
+   * would feed back on itself) and costs six small renders and a PMREM blur: tens of
+   * milliseconds, once per room, never per frame.
+   */
+  captureLocalEnvironment(at: THREE.Vector3): void {
+    this.localEnvironment?.dispose()
+    this.houseLights(true)
+    this.scene.environmentRotation.set(0, 0, 0)
+    this.scene.environment = null
+    this.localEnvironment = this.pmrem.fromScene(this.scene, 0.02, 0.05, 40, { size: 128, position: at })
+    this.scene.environment = this.localEnvironment.texture
+    // The room's lights already carry direct light and the hemisphere fill carries the
+    // bounce, so the capture adds only part of itself: enough for reflections to read.
+    this.scene.environmentIntensity = 0.45
+  }
+
+  /**
+   * Lights the scene with a photo room's own HDR photograph, turned by `rotation` about +Y
+   * to match the photograph on screen. That image already holds all of the room's light —
+   * its window, its lamps, the bounce off its walls — so the house's hemisphere and sun step
+   * aside until the room is released: added on top, they would light the objects twice and
+   * the sun would lay the house's shadows on the photograph's floor. `map` stays the
+   * caller's; only its prefiltered copy is kept.
+   */
+  useLocalEnvironment(map: THREE.Texture, intensity: number, rotation: number): void {
+    this.localEnvironment?.dispose()
+    this.localEnvironment = this.pmrem.fromEquirectangular(map)
+    this.scene.environment = this.localEnvironment.texture
+    this.scene.environmentIntensity = intensity
+    this.scene.environmentRotation.set(0, rotation, 0)
+    this.houseLights(false)
+  }
+
+  private houseLights(on: boolean): void {
+    this.hemi.visible = on
+    this.sun.visible = on
+  }
+
+  /** Back to the house's HDRI (or none, if it failed), releasing the room's capture. */
+  releaseLocalEnvironment(): void {
+    if (!this.localEnvironment) return
+    this.localEnvironment.dispose()
+    this.localEnvironment = null
+    this.scene.environment = this.baseEnvironment.map
+    this.scene.environmentIntensity = this.baseEnvironment.intensity
+    this.scene.environmentRotation.set(0, 0, 0)
+    this.houseLights(true)
   }
 
   /** Re-render every shadow map on the next frame. Cheap to call; costly to call often. */
@@ -182,7 +284,8 @@ export class Renderer {
     this.renderer.shadowMap.needsUpdate = true
   }
 
-  render(): void {
-    this.renderer.render(this.scene, this.camera)
+  render(options: { postProcessing?: boolean } = {}): void {
+    if (this.composer && options.postProcessing !== false) this.composer.render()
+    else this.renderer.render(this.scene, this.camera)
   }
 }

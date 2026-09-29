@@ -12,12 +12,11 @@ The flow:
 4. Explore, with optional prompts and caregiver notes.
 5. Read a factual summary.
 
-The suite has no timers, no scores, and no right or wrong answers.
+The suite has no timers, no scores, and no right or wrong answers. Its home picker now opens three locally packaged 360° photographs of real interiors. Selecting an object uses an invisible target over the object already in the photograph, so no cartoon furniture is drawn into these rooms. Looking around is supported from the capture point; free walking is limited by the single viewpoint.
 
-- **Content:** two packs.
-  - *Everyday home* is the default and is not tied to any region. Its environments are a living room, a kitchen with a dining area, and a courtyard with a veranda.
-  - *Northeast home* is optional and regional, with a living room and a veranda.
-  - Across the packs: 76 procedural assets with rendered thumbnails, CC0 textures vendored locally, synthesized sounds, and demo illustrations.
+- **Visible homes:** three CC0 photographed interiors: Lythwood Room, Combination Room, and Kiara Interior. The captured-home format accepts rooms from anywhere; these three captures are not a claim of worldwide coverage.
+- **Legacy content:** the earlier procedural rooms and the Northeast pack remain in the repository for compatibility, but the suite's home picker presents photographed rooms only. The guided-task house is still the earlier 3D experience.
+- **Assets:** panoramas, lighting maps, photographed-object thumbnails, existing scanned models and textures are packaged locally, with sources in `3D game/public/suite/assets/ATTRIBUTION.md`.
 - **Activities:** photo exploration, familiar objects, sound and memory, familiar space, and a guided sequence.
 - **Caregiver setup:**
   - language, pack and environment;
@@ -30,7 +29,7 @@ The suite has no timers, no scores, and no right or wrong answers.
   Everything is stored in the existing IndexedDB profile. Nothing is inferred.
 - **Languages:** English, and Hindi. The Hindi is machine-generated and needs human review. Both have full UI coverage, and no other language is claimed.
 - **Camera support:** stays optional. In the suite it only affects presentation timing: it holds a new prompt's speech, and offers one gentle re-offer. Nothing is read as recall or as a clinical state.
-- **Guided tasks:** the existing three levels with caregiver-set answers are unchanged, and reachable from the suite's home screen or with `?start=tasks`.
+- **Guided tasks:** the existing three levels still use the earlier modelled house. They are available through the explicit `?start=tasks` route while their artwork is being replaced.
 
 Documentation for adding a content pack, a language, an activity or an asset, the verification results and the known limitations are in [`3D game/docs/suite/README.md`](3D%20game/docs/suite/README.md).
 
