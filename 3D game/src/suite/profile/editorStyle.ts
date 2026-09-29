@@ -4,7 +4,7 @@ export const ROOT_ID = 'suite-caregiver-setup'
 const R = `#${ROOT_ID}`
 
 export const EDITOR_CSS = `
-${R}{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#f8f5ee;color:#1b271f;font-size:18px;line-height:1.5;box-sizing:border-box;overflow:hidden;overflow:clip;z-index:1000}
+${R}{position:fixed;inset:0;width:100%;height:100%;max-width:none;max-height:none;margin:0;padding:0;border:0;background:#f8f5ee;color:#1b271f;font-size:18px;line-height:1.5;box-sizing:border-box;overflow:hidden;overflow:clip;z-index:1000;pointer-events:auto}
 ${R}::backdrop{background:rgba(12,26,18,.9)}
 ${R} *,${R} *::before,${R} *::after{box-sizing:border-box}
 ${R} .scs-frame{display:flex;flex-direction:column;height:100%}

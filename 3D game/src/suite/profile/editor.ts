@@ -21,6 +21,9 @@ import { envKey, normaliseSuite, objectPromptKey, SUITE_LIMITS, suiteOf, validat
 type Vars = Record<string, string | number>
 type SectionName = 'profile' | 'language' | 'place' | 'mode' | 'topics' | 'objects' | 'photos' | 'sounds' | 'sequence'
 const SECTIONS: SectionName[] = ['profile', 'language', 'place', 'mode', 'topics', 'objects', 'photos', 'sounds', 'sequence']
+/** Caregiver setup is for the caregiver's own content. Choosing among the built-in demo places, and
+ *  relabelling their objects, is not offered here; a place saved earlier is left as it was. */
+const HIDDEN_SECTIONS: readonly SectionName[] = ['place', 'objects']
 const PHOTO_ACCEPT = 'image/jpeg,image/png,image/webp'
 const AUDIO_ACCEPT = 'audio/mpeg,audio/mp3,audio/mp4,audio/x-m4a,audio/aac,audio/wav,audio/x-wav,audio/ogg,audio/webm,.mp3,.m4a,.mp4,.wav,.ogg,.oga,.opus,.webm'
 
@@ -258,7 +261,7 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
   dialog.append(style, h('div', { class: 'scs-frame' }, header, main, footer))
   const sections = Object.fromEntries(SECTIONS.map(n => [n, h('section', { class: 'scs-section', 'aria-labelledby': `${ROOT_ID}-${n}` })])) as Record<SectionName, HTMLElement>
   const explanation = h('div', { class: 'scs-note' })
-  inner.append(explanation, ...SECTIONS.map(n => sections[n]))
+  inner.append(explanation, ...SECTIONS.filter(n => !HIDDEN_SECTIONS.includes(n)).map(n => sections[n]))
 
   let validationShown = false
   function setErrors(list: string[]) {
@@ -632,12 +635,15 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
 
     promptEditor(card, `photo-${photo.id}`, () => photo.prompt, p => { if (p) photo.prompt = p; else delete photo.prompt })
 
-    const surfaces = photoSurfaces()
-    const surfaceOptions = [{ value: '', label: t('photos.surfaceAny') }, ...surfaces.map(x => ({ value: x.id, label: x.label }))]
-    if (photo.surface && !surfaces.some(x => x.id === photo.surface)) surfaceOptions.push({ value: photo.surface, label: t('photos.surfaceOther') })
-    selectField(card, { label: t('photos.surface'), value: photo.surface ?? '', key: `photo-surface-${photo.id}`, options: surfaceOptions,
-      hint: surfaces.length ? t('photos.surfaceHint') : t('photos.surfaceNone'),
-      onChange: v => { if (v) photo.surface = v; else delete photo.surface } })
+    // Choosing a frame only makes sense once a place has been chosen, and that is not offered here.
+    if (currentPack()) {
+      const surfaces = photoSurfaces()
+      const surfaceOptions = [{ value: '', label: t('photos.surfaceAny') }, ...surfaces.map(x => ({ value: x.id, label: x.label }))]
+      if (photo.surface && !surfaces.some(x => x.id === photo.surface)) surfaceOptions.push({ value: photo.surface, label: t('photos.surfaceOther') })
+      selectField(card, { label: t('photos.surface'), value: photo.surface ?? '', key: `photo-surface-${photo.id}`, options: surfaceOptions,
+        hint: surfaces.length ? t('photos.surfaceHint') : t('photos.surfaceNone'),
+        onChange: v => { if (v) photo.surface = v; else delete photo.surface } })
+    }
 
     const where = { n: index + 1, total: suite.photos.length }
     depthControls(card, photo, where)
@@ -883,7 +889,7 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
   function rerender(names: SectionName[], focusKey?: string) {
     const active = document.activeElement instanceof HTMLElement && dialog.contains(document.activeElement) ? document.activeElement : null
     const key = focusKey ?? active?.dataset.key
-    for (const n of names) { clear(sections[n]); renderers[n]() }
+    for (const n of names) { if (HIDDEN_SECTIONS.includes(n)) continue; clear(sections[n]); renderers[n]() }
     if (key && (focusKey || !active?.isConnected)) dialog.querySelector<HTMLElement>(`[data-key="${CSS.escape(key)}"]`)?.focus()
   }
   function applyLanguage() {

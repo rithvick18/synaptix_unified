@@ -182,7 +182,10 @@ async function boot(): Promise<void> {
       onClose
     })
   }
-  if (needsSetup(agentConfig)) openSetup(() => suite.showHome())
+  // The setup sheet can be closed before the suite below exists; startup shows its home
+  // screen anyway, so a close that early has nothing to do.
+  let suiteReady: SuiteAppApi | null = null
+  if (needsSetup(agentConfig)) openSetup(() => suiteReady?.showHome())
 
   const renderer = new Renderer(app)
   const state = new State()
@@ -796,7 +799,7 @@ async function boot(): Promise<void> {
       const { text } = await response.json() as { text?: string }
       return (text ?? '').trim()
     },
-    openAiSetup: (mode) => openSetup(() => suite.showHome(), mode),
+    openAiSetup: (mode) => openSetup(() => suiteReady?.showHome(), mode),
     get aiSetupMode() { return agentConfig.setupMode },
     setActive: (active) => setSuiteActive(active),
     openGuidedTasks: () => {
@@ -806,6 +809,7 @@ async function boot(): Promise<void> {
     openHomePersonalisation
   }
   const suite: SuiteAppApi = createSuiteApp(suiteHost)
+  suiteReady = suite
 
   // Which screen comes first. The suite, unless the URL names a guided-task demo
   // (`?patient=`), asks for the task list (`?start=tasks`), or a caregiver's own profile
