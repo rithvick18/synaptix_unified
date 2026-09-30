@@ -8,7 +8,7 @@
  * A blob that exists but may not decode is kept, so the editor can say so.
  */
 import { TOPICS } from '../contracts'
-import type { CaregiverAudio, CaregiverPrompt, PhotoDepth, LanguageCode, ObjectOverrides, SequenceRef, SuiteOf, SuitePhoto, SuiteProfile, SuiteSound } from '../contracts'
+import type { CaregiverAudio, CaregiverPrompt, PhotoDepth, PhotoObject, LanguageCode, ObjectOverrides, SequenceRef, SuiteOf, SuitePhoto, SuiteProfile, SuiteSound } from '../contracts'
 import type { LocalProfile, Photo } from '../../LocalProfile'
 
 export const SUITE_LIMITS = {
@@ -151,6 +151,26 @@ function people(v: unknown): { name: string; relationship: string }[] {
     .filter(p => p.name.trim() || p.relationship.trim())
 }
 
+function photoObjects(v: unknown): PhotoObject[] {
+  if (!Array.isArray(v)) return []
+  const out: PhotoObject[] = []
+  const ids = new Set<string>()
+  for (const item of v) {
+    if (!isObject(item) || typeof item.id !== 'string' || !item.id || ids.has(item.id)) continue
+    const box = isObject(item.box) ? item.box : {}
+    const unit = (x: unknown): number | undefined => typeof x === 'number' && Number.isFinite(x) && x >= 0 && x <= 1 ? x : undefined
+    const x = unit(box.x), y = unit(box.y), width = unit(box.width), height = unit(box.height)
+    const confidence = typeof item.confidence === 'number' && Number.isFinite(item.confidence) ? Math.max(0, Math.min(1, item.confidence)) : 0
+    const label = str(item.label)?.trim().slice(0, SUITE_LIMITS.text.label)
+    if (!label || x === undefined || y === undefined || width === undefined || height === undefined || width <= 0 || height <= 0 || x + width > 1.001 || y + height > 1.001) continue
+    ids.add(item.id)
+    const description = typeof item.description === 'string' ? item.description.slice(0, SUITE_LIMITS.text.description) : undefined
+    out.push({ id: item.id, label, ...(description ? { description } : {}), confidence, box: { x, y, width, height }, included: item.included === true })
+    if (out.length >= 80) break
+  }
+  return out
+}
+
 function overrides(v: unknown): ObjectOverrides {
   const out: ObjectOverrides = {}
   if (!isObject(v)) return out
@@ -200,7 +220,8 @@ export function normaliseSuite(raw: unknown): SuiteProfile {
     const p = prompt(e.prompt, lang)
     const topics = normaliseTopics(e.topics)
     const relief = depth(e.depth)
-    photos.push({ id, photo: media, caption: str(e.caption) ?? '', people: people(e.people),
+    const objects = photoObjects(e.objects)
+    photos.push({ id, photo: media, caption: str(e.caption) ?? '', people: people(e.people), ...(objects.length ? { objects } : {}),
       ...(relief ? { depth: relief } : {}), ...(p ? { prompt: p } : {}), ...(str(e.surface) ? { surface: e.surface as string } : {}), ...(topics.length ? { topics } : {}) })
   }
   warnDropped('photos', dropped)

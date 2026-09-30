@@ -584,6 +584,17 @@ export interface PhotoDepth {
   height: number
 }
 
+/** A caregiver-reviewed object proposal in image-normalised coordinates (0–1). */
+export interface PhotoObject {
+  id: string
+  label: string
+  /** Caregiver-written context shown when this object is selected. */
+  description?: string
+  confidence: number
+  box: { x: number; y: number; width: number; height: number }
+  included: boolean
+}
+
 export interface SuitePhoto {
   id: string
   /** The existing photo record: original kept, display derivatives generated. */
@@ -597,6 +608,8 @@ export interface SuitePhoto {
   topics?: string[]
   /** Made on this device from the photograph, on request. Cleared when the photograph is replaced. */
   depth?: PhotoDepth
+  /** Local model proposals, retained only after caregiver review. */
+  objects?: PhotoObject[]
 }
 
 export interface SuiteSound {
@@ -660,6 +673,8 @@ export interface DisplayPhoto {
   prompt: ResolvedPrompt | null
   preferredSurface?: string
   topics: string[]
+  /** Confirmed hotspots only; names remain editable by the caregiver. */
+  objects?: PhotoObject[]
   /** True when a depth map is stored, so the picture can be stepped into. */
   hasDepth?: boolean
   /** The stored depth map, decoded. Null if it cannot be read. */

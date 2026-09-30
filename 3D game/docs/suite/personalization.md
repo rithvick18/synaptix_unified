@@ -95,8 +95,26 @@ generated. The surround is a blur of the same photograph.
   size does not match, and cleared when the photograph is replaced.
 - If depth is missing or the 3D view cannot start, the close-up shows the flat picture as
   before.
-- It follows the rules below: the model is used for geometry only. Nothing is recognised,
-  captioned or added.
+
+### Object suggestions on a photograph
+
+Caregiver setup can optionally run **Suggest objects** on a photograph. This uses the
+[YOLOS Tiny COCO detector](https://huggingface.co/Xenova/yolos-tiny) locally in a worker. It proposes boxes for a limited set of
+common household categories (for example chairs, beds, couches, tables, clocks and books).
+It does not build a room mesh, infer dimensions, identify people, or reliably find every
+object. Proposals may be wrong.
+
+- Suggestions stay hidden until the caregiver checks **Show**. Labels can be edited or
+  removed. Shown labels become selectable boxes on the flat close-up; stepping into the
+  shallow depth view hides those overlays because a 2D detector box is not a 3D surface.
+- Each suggestion can also carry a caregiver-written note, shown when the object is selected.
+- Suggestions and review choices are saved with `SuitePhoto.objects`. Replacing the source
+  photograph clears them.
+- Images are downscaled on-device and are not uploaded. Install both optional room models
+  with `npm run setup:room-models`; `npm run setup:depth` still installs depth alone. The
+  YOLOS Tiny checkpoint is Apache 2.0 licensed ([upstream model](https://huggingface.co/hustvl/yolos-tiny)).
+- This is an object annotation layer over a photograph. It does not create walkable room
+  geometry or free navigation. Multi-view capture and a reviewed layout remain future work.
 
 ### A custom session has no template place
 
@@ -104,8 +122,9 @@ When the chosen profile is a saved one with photographs, the session does not as
 template place. Its environment is the caregiver's own photographs:
 
 - Home lists "Your photographs" in place of the place picker, then the activities.
-- The photo activity opens each photograph straight into its memory room, with the
-  caregiver's caption, people and prompt. Sounds and the guided sequence work as before.
+- The photo activity shows each photograph in the main view, with the caregiver's
+  caption, people and prompt. Close-up offers zoom and, when available, depth motion.
+  Sounds and the guided sequence work as before.
 - Activities that need a template room's objects (familiar objects, familiar space) are
   offered as "needs setup" and cannot be started.
 - A photograph without a stored depth map has one worked out the first time it is stepped
@@ -113,7 +132,7 @@ template place. Its environment is the caregiver's own photographs:
   so it is ready every time.
 - The generic demo is unchanged and still uses the template places.
 
-The scene behind the photographs is an empty, quiet space (`src/suite/memoryRoom/customScene.ts`).
+The scene behind the main photograph is an empty, quiet space (`src/suite/memoryRoom/customScene.ts`).
 
 ## Privacy
 
@@ -127,13 +146,14 @@ The scene behind the photographs is an empty, quiet space (`src/suite/memoryRoom
 - Object URLs made for previews and sessions are revoked when the editor closes or when a
   session's `SuiteMediaApi.dispose()` runs. Textures are disposed at the same time.
 
-## The "no inference" rules
+## Personal-content rules
 
 These are enforced in code, not only in the UI copy:
 
-1. **Only typed text.** Names, relationships, captions, titles and prompts are exactly what
-   the caregiver typed. Nothing is recognised from a photograph, and nothing is taken from
-   a file name or metadata.
+1. **Personal text is typed.** Names, relationships, captions, titles and prompts are
+   exactly what the caregiver typed. Optional detector category suggestions are visibly
+   model-generated, require caregiver approval, and never identify a person. Nothing is
+   taken from a file name or metadata.
 2. **Empty stays empty.** A photograph with no caption has no caption, and a person row left
    blank is dropped. A sound with no title cannot be saved until it has one; nothing fills
    the title in automatically.
@@ -147,8 +167,8 @@ These are enforced in code, not only in the UI copy:
    is marked `personal: true`. Demo pictures come from content packs and are never mixed
    into a profile.
 
-The editor states the first two rules at the top: "Everything you enter here is shown only
-as you wrote it. Nothing is guessed, recognised from pictures, filled in or added."
+The editor explains that personal text is shown as written and object suggestions are
+optional, local, and hidden until reviewed.
 
 ## Verification
 

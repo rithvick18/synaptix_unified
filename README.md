@@ -29,6 +29,7 @@ The suite has no timers, no scores, and no right or wrong answers. Its home pick
   Everything is stored in the existing IndexedDB profile. Nothing is inferred.
 - **Languages:** English, and Hindi. The Hindi is machine-generated and needs human review. Both have full UI coverage, and no other language is claimed.
 - **Camera support:** stays optional. In the suite it only affects presentation timing: it holds a new prompt's speech, and offers one gentle re-offer. Nothing is read as recall or as a clinical state.
+- **Uploaded room photographs:** caregiver setup can optionally suggest common household objects entirely on-device. Suggestions are marked, editable, and hidden until approved; approved boxes are selectable over the photograph. The depth view adds gentle parallax, not a walkable reconstruction. Install the optional models with `cd "3D game" && npm run setup:room-models`.
 - **Guided tasks:** the existing three levels still use the earlier modelled house. They are available through the explicit `?start=tasks` route while their artwork is being replaced.
 
 Documentation for adding a content pack, a language, an activity or an asset, the verification results and the known limitations are in [`3D game/docs/suite/README.md`](3D%20game/docs/suite/README.md).

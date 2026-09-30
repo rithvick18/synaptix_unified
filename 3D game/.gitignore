@@ -17,3 +17,4 @@ agent-audit.jsonl
 
 # Memory room depth model (npm run setup:depth)
 /public/depth-models/
+/public/object-models/

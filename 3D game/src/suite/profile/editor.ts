@@ -2,9 +2,9 @@
  * The caregiver editor: a full-screen, keyboard- and touch-friendly layer for the suite
  * settings stored in the profile's `suite` field.
  *
- * Everything shown in a session from here is exactly what the caregiver typed or
- * uploaded. Nothing is recognised from photographs, nothing is filled in, and empty
- * fields stay empty. The microphone is requested only when a "Record" button is pressed.
+ * Personal labels and prompts shown in a session are typed by the caregiver. Optional
+ * on-device object suggestions remain hidden until the caregiver reviews them. The
+ * microphone is requested only when a "Record" button is pressed.
  * Saving goes through the existing profileStore; Cancel discards; closing releases every
  * object URL, recording and audio element.
  */
@@ -13,6 +13,7 @@ import type { AssetDef, CaregiverAudio, CaregiverPrompt, EnvironmentPreset, Load
 import { newId, newProfile, profileErrors, profileStore, type LocalProfile } from '../../LocalProfile'
 import { importPhoto } from '../../PhotoMedia'
 import { DepthError, estimateDepth, releaseDepthWorker } from '../memoryRoom/depthClient'
+import { detectPhotoObjects, ObjectDetectionError, releaseObjectWorker } from '../memoryRoom/objectClient'
 import { resolveUnder } from '../paths'
 import { EDITOR_CSS, ROOT_ID } from './editorStyle'
 import { clock, DurationMeter, Recorder } from './media'
@@ -598,6 +599,48 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
     card.append(box)
   }
 
+  /** Detects possible objects locally, then asks the caregiver which labels to keep. */
+  function objectControls(card: HTMLElement, photo: SuitePhoto, where: { n: number; total: number }) {
+    const box = h('div', { class: 'scs-field' })
+    box.append(h('p', { class: 'scs-hint', text: t('photos.objectsHint') }))
+    const note = h('p', { class: 'scs-hint', role: 'status' })
+    const list = h('div', { class: 'scs-object-suggestions' })
+    const draw = () => {
+      list.replaceChildren()
+      for (const object of photo.objects ?? []) {
+        const row = h('div', { class: 'scs-object-suggestion' })
+        checkField(row, { label: t('photos.objectKeep', { label: object.label, confidence: Math.round(object.confidence * 100) }), checked: object.included,
+          key: `photo-object-keep-${object.id}`, onChange: v => { object.included = v } })
+        textField(row, { label: t('photos.objectName'), value: object.label, key: `photo-object-label-${object.id}`, max: SUITE_LIMITS.text.label,
+          onInput: value => { object.label = value } })
+        textField(row, { label: t('photos.objectDescription'), value: object.description ?? '', key: `photo-object-description-${object.id}`,
+          max: SUITE_LIMITS.text.description, multiline: true, hint: t('photos.objectDescriptionHint'), onInput: value => { object.description = value } })
+        button(row, c('actions.remove'), () => { photo.objects = (photo.objects ?? []).filter(o => o.id !== object.id); changed(); draw() }, { label: t('photos.objectRemove', { label: object.label }) })
+        list.append(row)
+      }
+    }
+    draw()
+    const bar = h('div', { class: 'scs-actions' })
+    button(bar, t('photos.objectsFind'), () => {
+      void run(async () => {
+        note.textContent = t('photos.objectsWorking')
+        try {
+          const found = await detectPhotoObjects(photo.photo.runtime)
+          if (closed) return
+          photo.objects = found
+          changed(); draw()
+          note.textContent = found.length ? t('photos.objectsReady', { count: found.length }) : t('photos.objectsNone')
+        } catch (error) {
+          note.textContent = t(error instanceof ObjectDetectionError ? {
+            'not-installed': 'photos.objectsNotInstalled', unsupported: 'photos.objectsUnsupported', failed: 'photos.objectsFailed'
+          }[error.reason] : 'photos.objectsFailed')
+        }
+      })
+    }, { key: `photo-objects-find-${photo.id}`, label: t('photos.objectsFindLabel', where) })
+    box.append(bar, note, list)
+    card.append(box)
+  }
+
   function photoCard(photo: SuitePhoto, index: number): HTMLElement {
     const headingId = uid('photo')
     const card = h('article', { class: 'scs-card', 'aria-labelledby': headingId })
@@ -647,6 +690,7 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
 
     const where = { n: index + 1, total: suite.photos.length }
     depthControls(card, photo, where)
+    objectControls(card, photo, where)
 
     const bar = h('div', { class: 'scs-actions' })
     const total = suite.photos.length
@@ -663,6 +707,7 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
         try {
           photo.photo = await importPhoto(file, base.quality, maxTextureSize, photo.photo)
           delete photo.depth // it described the old picture
+          delete photo.objects // detections described the old picture
           broken.delete(`photo:${photo.id}`); changed()
           rerender(['photos'], `photo-replace-${photo.id}`)
         } catch { problem.textContent = c('media.decodeFailed') }
@@ -870,6 +915,7 @@ export const openCaregiverSetup: OpenCaregiverSetup = (options) => {
     if (closed) return
     closed = true
     releaseDepthWorker()
+    releaseObjectWorker()
     for (const r of recorders) r.cancel()
     recorders.clear()
     meter.close()

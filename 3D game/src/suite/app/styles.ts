@@ -278,6 +278,15 @@ export const SUITE_CSS = `
 #suite .s-items { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.4em; }
 #suite .s-items button { width: 100%; text-align: start; }
 #suite .s-explore-root { position: absolute; inset: 0; pointer-events: none; }
+#suite .s-custom-photo { position: absolute; top: 16px; right: 16px; bottom: 16px;
+  left: calc(clamp(20em, 36vw, 28em) + 32px); overflow: hidden; border-radius: 16px;
+  background: #171716; pointer-events: auto; }
+#suite .s-custom-photo > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+#suite .s-custom-photo-hotspots { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+#suite .s-custom-photo-hotspots > button { pointer-events: auto; }
+#suite .s-custom-photo-info, #suite .s-custom-photo-error { position: absolute; left: 12px; right: 12px; bottom: 12px;
+  margin: 0; padding: .55em .75em; border-radius: 10px; color: #fff; background: rgba(17, 17, 17, .84); }
+#suite .s-custom-photo-error { top: 50%; bottom: auto; text-align: center; }
 #suite .s-navigation-tools { position: absolute; top: 16px; right: 16px; display: flex; flex-direction: column;
   align-items: flex-end; gap: 0.5em; pointer-events: none; }
 #suite .s-navigation-tools > * { pointer-events: auto; }
@@ -298,6 +307,7 @@ export const SUITE_CSS = `
     border-radius: var(--s-radius); }
 }
 @media (max-width: 767.98px) {
+  #suite .s-custom-photo { top: 8px; left: 8px; right: 8px; bottom: 62vh; border-radius: 12px; }
   #suite .s-panel { left: 0; right: 0; bottom: 0; max-height: 62vh; border-radius: var(--s-radius) var(--s-radius) 0 0; }
   /* The footer keeps the bottom-right corner free for the camera chip dock (about 110 px
      wide); its two buttons stay on one row and wrap their text instead. */
@@ -319,6 +329,12 @@ export const SUITE_CSS = `
 #suite .s-lightbox-stage.s-zoomed { cursor: grab; }
 #suite .s-lightbox-stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain;
   transform-origin: 50% 50%; user-select: none; -webkit-user-drag: none; }
+#suite .s-photo-hotspots { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+#suite .s-photo-hotspot { position: absolute; pointer-events: auto; min-width: 44px; min-height: 44px; padding: 2px 6px;
+  overflow: hidden; border: 2px solid #fff !important; background: rgba(26, 92, 66, .28) !important; color: #fff !important;
+  text-shadow: 0 1px 3px #000, 0 1px 6px #000; font-size: .78em; }
+#suite .s-photo-hotspot:hover, #suite .s-photo-hotspot:focus-visible { background: rgba(26, 92, 66, .72) !important; }
+#suite .s-photo-object-info { padding: .25em .75em; border-radius: 999px; background: var(--s-accent-soft); }
 #suite .s-lightbox-info { padding: 0.8em 1em calc(var(--s-dock-clear) + 0.4em); background: var(--s-surface);
   display: flex; flex-direction: column; gap: 0.5em; max-height: 40vh; overflow: auto; }
 

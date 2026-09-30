@@ -38,6 +38,14 @@ export class ExploreView {
   private readonly chatReply: HTMLElement
   private readonly chatListen: HTMLButtonElement
   private readonly chatSetup: HTMLButtonElement
+  private readonly roomPhoto: HTMLElement
+  private readonly roomPhotoImage: HTMLImageElement
+  private readonly roomHotspots: HTMLElement
+  private readonly roomPhotoInfo: HTMLElement
+  private readonly roomPhotoError: HTMLElement
+  private readonly roomResize: ResizeObserver | null
+  private currentRoomPhoto: DisplayPhoto | null = null
+  private selectedRoomObjectId: string | null = null
   private chatBusy = false
   private recorder: MediaRecorder | null = null
   private recordingStream: MediaStream | null = null
@@ -91,6 +99,23 @@ export class ExploreView {
     this.chatListen = button(c.t('app.explore.chat.listen'), () => this.startListening(), { 'data-k': 'chat-listen' })
     const chatAsk = button(c.t('app.explore.chat.ask'), () => { void this.sendChat() }, { class: 's-primary', 'data-k': 'chat-ask' })
     this.chatSetup = button(c.t('app.explore.chat.setup'), () => c.openAiSetup(), { 'data-k': 'chat-setup' })
+    this.roomPhotoImage = h('img', { alt: '' })
+    this.roomHotspots = h('div', { class: 's-custom-photo-hotspots' })
+    this.roomPhotoInfo = h('p', { class: 's-custom-photo-info', role: 'status', 'aria-live': 'polite' })
+    this.roomPhotoInfo.hidden = true
+    this.roomPhotoError = h('p', { class: 's-custom-photo-error', role: 'status' })
+    this.roomPhotoError.hidden = true
+    this.roomPhoto = h('div', { class: 's-custom-photo', 'aria-label': c.t('app.explore.photoView') },
+      this.roomPhotoImage, this.roomHotspots, this.roomPhotoInfo, this.roomPhotoError)
+    this.roomPhoto.hidden = prep.scene.shell !== 'memoryRoom'
+    this.roomPhotoImage.addEventListener('load', () => { this.roomPhotoError.hidden = true; this.drawRoomHotspots() })
+    this.roomPhotoImage.addEventListener('error', () => {
+      this.roomHotspots.replaceChildren()
+      this.roomPhotoError.textContent = this.c.t('app.explore.photoUnavailable')
+      this.roomPhotoError.hidden = false
+    })
+    this.roomResize = typeof ResizeObserver === 'function' ? new ResizeObserver(() => this.drawRoomHotspots()) : null
+    this.roomResize?.observe(this.roomPhoto)
     const chat = h('section', { class: 's-chat', 'aria-labelledby': 's-chat-title' },
       this.chatTitle,
       h('p', { class: 's-muted s-small', text: c.t('app.explore.chat.hint') }),
@@ -135,11 +160,12 @@ export class ExploreView {
       this.cameraLine)
     const foot = h('div', { class: 's-panel-foot' }, this.buttons.pause, this.buttons.exit)
     this.panel = h('aside', { class: 's-panel', 'aria-labelledby': 's-item-title' }, body, foot)
-    this.el = h('div', { class: 's-explore-root' }, this.panel,
+    this.el = h('div', { class: 's-explore-root' }, this.roomPhoto, this.panel,
       h('div', { class: 's-navigation-tools' },
         h('div', { class: 's-nav-toggle', role: 'group', 'aria-label': c.t('app.explore.navigationMode') },
           button(c.t('app.explore.seatedMode'), () => c.updateSettings({ navigation: 'seated' }), { class: 's-nav-choice', 'data-k': 'nav-seated' }),
           button(c.t('app.explore.walkMode'), () => c.updateSettings({ navigation: 'walk' }), { class: 's-nav-choice', 'data-k': 'nav-walk' })), this.navPad))
+    if (prep.scene.shell === 'memoryRoom') this.el.querySelector<HTMLElement>('.s-navigation-tools')!.hidden = true
     this.rebuild()
   }
 
@@ -179,6 +205,7 @@ export class ExploreView {
     }
     this.buildCaregiver()
     this.infoKey = ''
+    if (this.prep.scene.shell === 'memoryRoom') this.currentRoomPhoto = null
     this.update()
   }
 
@@ -220,6 +247,7 @@ export class ExploreView {
     const s = run.session
     const cur = s.current
     const t = (k: string, v?: Record<string, string | number>): string => c.t(k, v)
+    if (this.prep.scene.shell === 'memoryRoom') this.showRoomPhoto(cur?.kind === 'photo' ? cur.photo : this.prep.resolved?.photos[0] ?? null)
     const def = c.deps.ACTIVITIES[run.kind]
     const roomContext = !!this.prep.scene.roomContextImageUrl
     this.chatTitle.textContent = t(roomContext ? 'app.explore.chat.roomTitle' : 'app.explore.chat.title')
@@ -316,7 +344,7 @@ export class ExploreView {
 
     // Object strip
     for (const [id, btn] of this.stripButtons) {
-      const on = focusObj?.id === id
+      const on = this.prep.scene.shell === 'memoryRoom' ? this.selectedRoomObjectId === id : focusObj?.id === id
       btn.classList.toggle('s-current', on)
       if (on) btn.setAttribute('aria-current', 'true')
       else btn.removeAttribute('aria-current')
@@ -327,7 +355,9 @@ export class ExploreView {
       if (on) btn.setAttribute('aria-current', 'step')
       else btn.removeAttribute('aria-current')
     }
-    this.moveHint.textContent = c.settings.navigation === 'walk' ? t('app.explore.walkHint') : t('app.explore.lookHint')
+    this.moveHint.textContent = this.prep.scene.shell === 'memoryRoom'
+      ? t(this.currentRoomPhoto?.objects?.length ? 'app.explore.photoObjectHint' : 'app.explore.photoNoObjects')
+      : c.settings.navigation === 'walk' ? t('app.explore.walkHint') : t('app.explore.lookHint')
     const navToggle = this.el.querySelector<HTMLElement>('.s-nav-toggle')
     navToggle?.setAttribute('aria-label', t('app.explore.navigationMode'))
     const seated = navToggle?.querySelector<HTMLButtonElement>('[data-k="nav-seated"]')
@@ -374,8 +404,71 @@ export class ExploreView {
 
   destroy(): void {
     this.abortRecording()
+    this.roomResize?.disconnect()
     this.closeLightbox(false)
     this.el.remove()
+  }
+
+  private showRoomPhoto(photo: DisplayPhoto | null): void {
+    if (photo === this.currentRoomPhoto) return
+    this.currentRoomPhoto = photo
+    this.selectedRoomObjectId = null
+    this.roomPhotoInfo.hidden = true
+    this.roomPhotoError.hidden = true
+    this.roomHotspots.replaceChildren()
+    clear(this.strip)
+    this.stripButtons.clear()
+    if (!photo) {
+      this.roomPhotoImage.removeAttribute('src')
+      this.roomPhotoError.textContent = this.c.t('app.explore.photoUnavailable')
+      this.roomPhotoError.hidden = false
+      return
+    }
+    this.roomPhotoImage.alt = photo.caption || this.c.t('app.closeup.altNone')
+    this.roomPhotoImage.src = photo.url
+    for (const object of photo.objects ?? []) {
+      const b = button(object.label, () => this.selectRoomObject(object.id), { 'data-object-id': object.id })
+      this.stripButtons.set(object.id, b)
+      this.strip.append(h('li', {}, b))
+    }
+    this.drawRoomHotspots()
+  }
+
+  private selectRoomObject(id: string): void {
+    const object = this.currentRoomPhoto?.objects?.find(o => o.id === id)
+    if (!object) return
+    this.selectedRoomObjectId = id
+    this.roomPhotoInfo.textContent = object.description?.trim() ? `${object.label}: ${object.description}` : object.label
+    this.roomPhotoInfo.hidden = false
+    for (const [key, btn] of this.stripButtons) btn.setAttribute('aria-pressed', String(key === id))
+    for (const btn of this.roomHotspots.querySelectorAll<HTMLButtonElement>('button[data-object-id]')) {
+      btn.setAttribute('aria-pressed', String(btn.dataset.objectId === id))
+    }
+  }
+
+  private drawRoomHotspots(): void {
+    const photo = this.currentRoomPhoto
+    this.roomHotspots.replaceChildren()
+    if (!photo?.objects?.length || !this.roomPhotoImage.complete || !this.roomPhotoImage.naturalWidth) return
+    const rect = this.roomPhoto.getBoundingClientRect()
+    if (!rect.width || !rect.height) return
+    const width = photo.width || this.roomPhotoImage.naturalWidth
+    const height = photo.height || this.roomPhotoImage.naturalHeight
+    const fit = Math.min(rect.width / width, rect.height / height)
+    const shownW = width * fit, shownH = height * fit
+    const left = (rect.width - shownW) / 2, top = (rect.height - shownH) / 2
+    for (const object of photo.objects) {
+      const b = button(object.label, () => this.selectRoomObject(object.id), {
+        class: 's-photo-hotspot', 'data-object-id': object.id, 'aria-label': object.label,
+        'aria-pressed': String(object.id === this.selectedRoomObjectId)
+      })
+      const box = object.box
+      b.style.left = `${left + box.x * shownW}px`
+      b.style.top = `${top + box.y * shownH}px`
+      b.style.width = `${Math.max(44, box.width * shownW)}px`
+      b.style.height = `${Math.max(44, box.height * shownH)}px`
+      this.roomHotspots.append(b)
+    }
   }
 
   private startListening(): void {
@@ -531,6 +624,8 @@ class Lightbox {
   readonly el: HTMLElement
   private readonly stage: HTMLElement
   private readonly img: HTMLImageElement
+  private readonly hotspots: HTMLElement
+  private readonly objectInfo: HTMLElement
   private readonly prompt: HTMLElement
   private readonly zoomLabel: HTMLElement
   private scale = 1
@@ -543,6 +638,7 @@ class Lightbox {
   private readonly pointers = new Map<number, { x: number; y: number }>()
   private pinch: { dist: number; scale: number } | null = null
   private readonly untrap: () => void
+  private readonly hotspotResize: ResizeObserver | null
 
   constructor(
     private readonly c: SuiteController,
@@ -552,7 +648,10 @@ class Lightbox {
   ) {
     const t = (k: string, v?: Record<string, string | number>): string => c.t(k, v)
     this.img = h('img', { src: photo.url, alt: photo.caption ? t('app.closeup.alt', { caption: photo.caption }) : t('app.closeup.altNone'), draggable: 'false' })
-    this.stage = h('div', { class: 's-lightbox-stage' }, this.img)
+    this.hotspots = h('div', { class: 's-photo-hotspots', 'aria-label': t('app.closeup.objects') })
+    this.stage = h('div', { class: 's-lightbox-stage' }, this.img, this.hotspots)
+    this.objectInfo = h('p', { class: 's-photo-object-info', 'aria-live': 'polite' })
+    this.objectInfo.hidden = true
     this.prompt = h('p', { class: 's-prompt', 'aria-live': 'polite' })
     this.zoomLabel = h('span', { class: 's-muted s-small', 'aria-live': 'polite' })
     const people = photo.people.filter((p) => p.name.trim())
@@ -577,6 +676,7 @@ class Lightbox {
       h('div', { class: 's-lightbox-info' },
         photo.personal ? h('span', { class: 's-badge s-personal', text: t('app.badge.personal') }) : h('p', { class: 's-notice', text: photo.notice || t('app.closeup.demoNotice') }),
         photo.caption ? h('p', { text: photo.caption }) : null,
+        this.objectInfo,
         this.roomNote,
         people.length
           ? h('div', {}, h('h3', { text: t('app.closeup.people') }),
@@ -585,6 +685,9 @@ class Lightbox {
         this.prompt,
         item.prompt ? h('div', { class: 's-row' }, button(t('app.explore.replay'), () => c.replay(), { 'data-k': 'closeup-replay' })) : null))
     this.untrap = trapFocus(this.el)
+    this.drawHotspots()
+    this.hotspotResize = typeof ResizeObserver === 'function' ? new ResizeObserver(() => this.drawHotspots()) : null
+    this.hotspotResize?.observe(this.stage)
     this.bind()
     this.update()
     this.apply()
@@ -615,6 +718,7 @@ class Lightbox {
 
   destroy(): void {
     this.leaveRoom()
+    this.hotspotResize?.disconnect()
     this.untrap()
     this.el.remove()
   }
@@ -634,6 +738,7 @@ class Lightbox {
       onError: () => { this.leaveRoom(); this.showRoomNote(t('app.closeup.roomUnavailable')) }
     })
     this.room = room
+    this.drawHotspots()
     this.stage.style.display = 'none'
     this.el.classList.add('s-room-mode')
     this.stage.after(room.el)
@@ -649,6 +754,7 @@ class Lightbox {
     if (!this.room) return
     this.room.destroy()
     this.room = null
+    this.drawHotspots()
     this.stage.style.display = ''
     this.el.classList.remove('s-room-mode')
     for (const b of this.zoomButtons) b.disabled = false
@@ -681,6 +787,34 @@ class Lightbox {
     this.img.style.transform = `translate(${this.tx}px, ${this.ty}px) scale(${this.scale})`
     this.stage.classList.toggle('s-zoomed', this.scale > 1.001)
     this.zoomLabel.textContent = `${Math.round(this.scale * 100)}%`
+    this.drawHotspots()
+  }
+
+  /** Maps normalized detector boxes into the contained photograph; labels remain caregiver reviewed. */
+  private drawHotspots(): void {
+    const objects = this.photo.objects ?? []
+    this.hotspots.replaceChildren()
+    if (!objects.length || this.room) return
+    const rect = this.stage.getBoundingClientRect()
+    if (!rect.width || !rect.height || !this.photo.width || !this.photo.height) return
+    const fit = Math.min(rect.width / this.photo.width, rect.height / this.photo.height)
+    const w = this.photo.width * fit, fh = this.photo.height * fit, ox = (rect.width - w) / 2, oy = (rect.height - fh) / 2
+    for (const object of objects) {
+      const b = object.box
+      const buttonEl = h('button', { type: 'button', class: 's-photo-hotspot', text: object.label,
+        'aria-label': object.label, 'data-object-id': object.id })
+      buttonEl.addEventListener('pointerdown', event => event.stopPropagation())
+      const x = ox + b.x * w, y = oy + b.y * fh, bw = Math.max(44, b.width * w), bh = Math.max(44, b.height * fh)
+      buttonEl.style.left = `${rect.width / 2 + (x - rect.width / 2) * this.scale + this.tx}px`
+      buttonEl.style.top = `${rect.height / 2 + (y - rect.height / 2) * this.scale + this.ty}px`
+      buttonEl.style.width = `${bw * this.scale}px`; buttonEl.style.height = `${bh * this.scale}px`
+      buttonEl.addEventListener('click', (event) => {
+        event.stopPropagation()
+        this.objectInfo.textContent = object.description?.trim() ? `${object.label}: ${object.description}` : object.label
+        this.objectInfo.hidden = false
+      })
+      this.hotspots.append(buttonEl)
+    }
   }
 
   private bind(): void {

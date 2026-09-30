@@ -857,11 +857,6 @@ export class SuiteController {
         run.objectCloseup = null
         session.noteCloseup(false)
       }
-      if (current && this.customMode && current.kind === 'photo') {
-        // A custom session has no room to look at: the photograph is the place.
-        this.explore?.openLightbox(current.photo, current, { room: true })
-        session.noteCloseup(true)
-      }
       if (current) {
         const obj = this.objectForItem(current)
         // A person's own choice (selectObject) has already started the move.

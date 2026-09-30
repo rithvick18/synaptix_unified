@@ -10,7 +10,8 @@
     "check:offline": "node tools/offline-check.mjs",
     "check": "node tools/checks/run.mjs",
     "check:profile": "node tools/profile-check.mjs",
-    "setup:depth": "node tools/setup-depth-model.mjs"
+    "setup:depth": "node tools/setup-depth-model.mjs",
+    "setup:room-models": "node tools/setup-depth-model.mjs --objects"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.3.0",

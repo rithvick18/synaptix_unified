@@ -1,8 +1,8 @@
 /**
  * The "place" of a custom session: the caregiver's own photographs, with no template room.
- * There is nothing to build in 3D here: each photograph is shown as a memory room by the
- * close-up (see MemoryRoomView), so the scene behind it is an empty, quiet space with
- * no objects. The activities that need objects report themselves unavailable on their own.
+ * There is nothing to build in 3D here: ExploreView displays the current photograph
+ * over this empty, quiet scene. Close-up can add depth motion when available.
+ * Activities that need template objects report themselves unavailable on their own.
  */
 import * as THREE from 'three'
 import type { I18n, LoadedContentPack, SuiteScene } from '../contracts'

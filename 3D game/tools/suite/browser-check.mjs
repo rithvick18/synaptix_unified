@@ -86,11 +86,12 @@ try {
   ok(await until('!!window.__memoria?.suite && window.__memoria.suite.screen === "home"'), 'the suite home is the first screen')
   // A fresh browser profile gets the existing first-run model-setup screen (src/agent/);
   // choose "Decide later", as a person who only wants to play would.
+  await until('[...document.querySelectorAll("[role=dialog] button")].some(b => /Decide later/.test(b.textContent))', 5000)
   await evaluate('[...document.querySelectorAll("[role=dialog] button")].find(b => /Decide later/.test(b.textContent))?.click(); true')
   await sleep(300)
   ok(await evaluate('window.__memoria.suiteActive === true && !document.querySelector("#suite").hidden'), 'the suite has the screen')
   const homeText = await evaluate('document.querySelector("#suite").innerText')
-  ok(/Reminiscence Therapy Suite/.test(homeText), 'home shows the branding')
+  ok(/Reminiscence Therapy Suite/i.test(homeText), 'home shows the branding')
   ok(/not a medical treatment/i.test(homeText), 'home shows the not-a-medical-treatment disclaimer', homeText.slice(0, 300))
   ok(/demo/i.test(homeText), 'home offers the generic demo, labelled as demo')
   ok(await noHorizontalScroll(), 'home: no horizontal scroll at 1280 px')
@@ -168,6 +169,54 @@ try {
   ok(await evaluate('document.querySelectorAll("#overlay button[data-level]").length === 3'), 'the guided tasks still offer three levels')
   await evaluate('document.querySelector(\'#overlay button[data-act="suite"]\').click()')
   ok(await until('window.__memoria.suite.screen === "home" && window.__memoria.suiteActive'), 'the level list leads back to the suite')
+
+  // --- a saved room photograph stays visible in the main view -----------------------
+  await evaluate(`(async () => {
+    const canvas = document.createElement('canvas')
+    canvas.width = 320; canvas.height = 240
+    const ctx = canvas.getContext('2d')
+    ctx.fillStyle = '#c48151'; ctx.fillRect(0, 0, 320, 240)
+    ctx.fillStyle = '#385c62'; ctx.fillRect(115, 65, 90, 125)
+    const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'))
+    const photo = { id: 'room-fixture', original: blob, runtime: blob, thumbnail: blob,
+      width: 320, height: 240, crop: { x: .5, y: .5, zoom: 1 } }
+    const p = { version: 1, id: 'browser-room-fixture', name: 'Browser room fixture',
+      quality: 2048, skipRecall: true, wallId: 'wall-fixture', eventId: 'event-fixture',
+      caption: '', templateId: 'hallway', mirrored: false, people: [], questions: [],
+      suite: { version: 1, language: 'en', packId: null, environmentId: null,
+        objects: {}, objectPrompts: {}, sounds: [], topics: { include: [], avoid: [] },
+        mode: 'open', sequence: [], caregiverAssist: true,
+        photos: [{ id: 'room-fixture', photo, caption: 'Test room', people: [],
+          objects: [{ id: 'chair-fixture', label: 'Chair', description: 'Blue chair', confidence: .9,
+            box: { x: .36, y: .27, width: .28, height: .52 }, included: true }] }] } }
+    const db = await new Promise((resolve, reject) => {
+      const request = indexedDB.open('memoria-caregiver-v1', 1)
+      request.onupgradeneeded = () => request.result.createObjectStore('profiles')
+      request.onsuccess = () => resolve(request.result)
+      request.onerror = () => reject(request.error)
+    })
+    await new Promise((resolve, reject) => {
+      const tx = db.transaction('profiles', 'readwrite')
+      tx.objectStore('profiles').put(p, 'local')
+      tx.objectStore('profiles').put(p.id, 'selected')
+      tx.oncomplete = resolve
+      tx.onerror = () => reject(tx.error)
+    })
+    db.close()
+    return true
+  })()`)
+  await send('Page.navigate', { url: `${ORIGIN}/` })
+  ok(await until('window.__memoria?.suite?.profileMode === "saved" && !!document.querySelector("#suite [data-k=start-photo]")'),
+    'saved room profile offers photo exploration')
+  await evaluate('[...document.querySelectorAll("[role=dialog] button")].find(b => /Decide later/.test(b.textContent))?.click(); true')
+  await evaluate('document.querySelector("#suite [data-k=start-photo]").click(); true')
+  ok(await until('window.__memoria?.suite?.screen === "explore" && document.querySelector("#suite .s-custom-photo img")?.naturalWidth === 320'),
+    'saved room photo loads in the main view')
+  ok(await evaluate('(() => { const el = document.querySelector("#suite .s-custom-photo"); const r = el?.getBoundingClientRect(); return !!r && r.width > 200 && r.height > 200 && getComputedStyle(el).display !== "none" })()'),
+    'saved room photo has a visible viewport')
+  ok(await evaluate('document.querySelectorAll("#suite .s-custom-photo-hotspots button").length === 1 && document.querySelector("#suite .s-navigation-tools").hidden'),
+    'approved room object is selectable and unsupported navigation is hidden')
+  await shot('saved-room-photo-1280')
 
   ok(exceptions.length === 0, 'no uncaught exception on the page', exceptions.slice(0, 3).join('\n     '))
   ws.close()

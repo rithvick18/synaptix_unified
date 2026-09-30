@@ -115,7 +115,7 @@ function depthOnDemand(photo: Photo): Promise<DepthMap | null> {
 
 function displayPhoto(
   id: string, photo: Photo, media: SuiteMedia, cap: number,
-  fields: Pick<DisplayPhoto, 'caption' | 'people' | 'prompt' | 'topics'> & { preferredSurface?: string; depth?: PhotoDepth }
+  fields: Pick<DisplayPhoto, 'caption' | 'people' | 'prompt' | 'topics'> & { preferredSurface?: string; depth?: PhotoDepth; objects?: DisplayPhoto['objects'] }
 ): DisplayPhoto {
   let texture: Promise<THREE.Texture | null> | undefined
   const depth = fields.depth
@@ -131,6 +131,7 @@ function displayPhoto(
     personal: true,
     prompt: fields.prompt,
     ...(fields.preferredSurface ? { preferredSurface: fields.preferredSurface } : {}),
+    ...(fields.objects?.length ? { objects: fields.objects } : {}),
     topics: fields.topics,
     ...(depth ? { hasDepth: true } : {}),
     loadDepth: () => depth ? unpackDepth(depth) : depthOnDemand(photo),
@@ -151,6 +152,7 @@ export const resolveSuiteProfile: ResolveSuiteProfile = async (profile, i18n, ma
     people: p.people.map(v => ({ ...v })),
     prompt: resolvePrompt(p.prompt, media),
     topics: [...(p.topics ?? [])],
+    ...(p.objects?.some(o => o.included) ? { objects: p.objects.filter(o => o.included).map(o => ({ ...o, box: { ...o.box } })) } : {}),
     preferredSurface: p.surface,
     ...(p.depth ? { depth: p.depth } : {})
   }))
